@@ -1,4 +1,4 @@
-export const growth = {
+export const growthData = {
   "visible": true,
   "sectionTitle": "Growth",
   "subtitle": "What I am currently learning",

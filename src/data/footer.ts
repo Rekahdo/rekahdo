@@ -1,4 +1,4 @@
-export const footer = {
+export const footerData = {
   "visible": true,
   "copyrightText": "© 2026 Richard Okafor (Rekahdo). All rights reserved.",
   "socialLinks": [

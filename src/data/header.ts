@@ -1,4 +1,4 @@
-export const header = {
+export const headerData = {
   "visible": true,
   "brandName": "REKAHDO.dev",
   "brandLogoUrl": "/images/logo.png",
@@ -45,4 +45,4 @@ export const header = {
       "indexPosition": 5
     }
   ]
-}
+};

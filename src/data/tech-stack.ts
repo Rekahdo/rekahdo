@@ -1,4 +1,4 @@
-export const techStacks = [
+export const techStacksData = [
   {
     "id": 1,
     "name": "Java Programming",

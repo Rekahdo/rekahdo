@@ -1,4 +1,4 @@
-export const stackUsage = {
+export const stackUsageData = {
   "visible": true,
   "sectionTitle": "Stack Usage",
   "subtitle": "A percentage breakdown of how much I use each technology",
