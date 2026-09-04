@@ -1,4 +1,4 @@
-export const contactMe = {
+export const contactMeData = {
   "visible": true,
   "email": "contact@rekahdo.dev",
   "phone": "+2340000000000",

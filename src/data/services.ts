@@ -1,4 +1,4 @@
-export const services = {
+export const servicesData = {
   "visible": true,
   "sectionTitle": "Services",
   "subtitle": "What I do with my skills",

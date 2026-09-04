@@ -1,4 +1,4 @@
-export const aboutMe = {
+export const aboutMeData = {
   "visible": true,
   "sectionTitle": "About me",
   "headline": "Bridging Backend Stability With Frontend Inspiration",

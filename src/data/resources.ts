@@ -1,4 +1,4 @@
-export const resources = {
+export const resourcesData = {
   "visible": true,
   "sectionTitle": "Resources",
   "subtitle": "References and tools I rely on every day",

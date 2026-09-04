@@ -1,4 +1,4 @@
-export const heroSection = {
+export const heroSectionData = {
   "visible": true,
   "greetings": "Hi there, I'm",
   "fullName": "RICHARD OKAFOR",

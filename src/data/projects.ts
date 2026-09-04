@@ -1,4 +1,4 @@
-export const projects = {
+export const projectsData = {
   "visible": true,
   "sectionTitle": "PROJECTS",
   "subtitle": "Showcasing scalable backend systems and full-stack experiments",
