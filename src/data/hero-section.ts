@@ -5,7 +5,7 @@ export const heroSectionData = {
   "mainTitle": "Java Backend Developer & An Aspiring Frontend Developer",
   "description": "Welcome to my portfolio, where I showcase my projects, skills, and experience as a passionate developer with a focus on Java-based and front-end technologies, developing innovative solutions that drive business value and user engagement.",
   "location": "Lagos, Nigeria",
-  "avatarUrl": "/images/profile.jpg",
+  "avatarUrl": "/src/images/me/hero-section.png",
   "tags": [
     {
       "id": 1,
