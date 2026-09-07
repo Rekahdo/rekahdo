@@ -1,7 +1,7 @@
 export const headerData = {
   "visible": true,
   "brandName": "REKAHDO.dev",
-  "brandLogoUrl": "/images/logo.png",
+  "brandLogoUrl": "/src/images/logos/logo-full.svg",
   "ctaButton": {
     "visible": true,
     "label": "Download CV",
