@@ -1,48 +1,57 @@
-export const headerData = {
-  "visible": true,
-  "brandName": "REKAHDO.dev",
-  "brandLogoUrl": "/src/images/logos/logo-full.svg",
-  "ctaButton": {
-    "visible": true,
-    "label": "Download CV",
-    "path": "/resume.pdf",
-    "isExternal": true
+import type { HeaderType } from "../sections/header/HeaderType";
+
+export const headerData: HeaderType = {
+  visible: true,
+  brandLogo: {
+    visible: true,
+    name: "REKAHDO.dev",
+    url: "/images/logo.png",
   },
-  "navLinks": [
-    {
-      "id": 1,
-      "label": "Home",
-      "path": "#home",
-      "visible": true,
-      "indexPosition": 1
-    },
-    {
-      "id": 2,
-      "label": "About Me",
-      "path": "#about",
-      "visible": true,
-      "indexPosition": 2
-    },
-    {
-      "id": 3,
-      "label": "Tech-Stack",
-      "path": "#tech-stack",
-      "visible": true,
-      "indexPosition": 3
-    },
-    {
-      "id": 4,
-      "label": "Projects",
-      "path": "#projects",
-      "visible": true,
-      "indexPosition": 4
-    },
-    {
-      "id": 5,
-      "label": "Contact Me",
-      "path": "#contact",
-      "visible": true,
-      "indexPosition": 5
-    }
-  ]
+  navLink: {
+    visible: true,
+    links: [
+      {
+        id: 1,
+        visible: true,
+        text: "Home",
+        path: "#home",
+        indexPosition: 1,
+      },
+      {
+        id: 2,
+        visible: true,
+        text: "About Me",
+        path: "#about",
+        indexPosition: 2,
+      },
+      {
+        id: 3,
+        visible: true,
+        text: "Tech-Stack",
+        path: "#tech-stack",
+        indexPosition: 3,
+      },
+      {
+        id: 4,
+        visible: true,
+        text: "Projects",
+        path: "#projects",
+        indexPosition: 4,
+      },
+      {
+        id: 5,
+        visible: true,
+        text: "Contact Me",
+        path: "#contact",
+        indexPosition: 5,
+      },
+    ],
+  },
+  ctaButton: {
+    id: 1,
+    visible: true,
+    text: "Download CV",
+    path: "/resume.pdf",
+    isExternal: true,
+  },
 };
