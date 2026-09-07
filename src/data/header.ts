@@ -2,10 +2,10 @@ import type { HeaderType } from "../sections/header/HeaderType";
 
 export const headerData: HeaderType = {
   visible: true,
-  brandLogo: {
+  logo: {
     visible: true,
     name: "REKAHDO.dev",
-    url: "/images/logo.png",
+    url: "/src/images/logos/logo-full.png",
   },
   navLink: {
     visible: true,
