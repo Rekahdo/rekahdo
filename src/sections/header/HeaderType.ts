@@ -1,32 +1,33 @@
 export type LogoType = {
-  visible: boolean;
+  hidden: boolean;
   name: string;
   url: string;
 };
 
 export type LinkType = {
-  id: number;
-  visible: boolean;
+  readonly id: number;
+  hidden: boolean;
   text: string;
   path: string;
   indexPosition: number;
 };
 
 export type NavLinkType = {
-  visible: boolean;
+  hidden: boolean;
   links: LinkType[];
 };
 
 export type CtaButtonType = {
-  id: number;
-  visible: boolean;
+  readonly id: number;
+  hidden: boolean;
   text: string;
+  name: string;
   path: string;
   isExternal: boolean;
 };
 
 export type HeaderType = {
-  visible: boolean;
+  hidden: boolean;
   logo: LogoType;
   navLink: NavLinkType;
   ctaButton: CtaButtonType;

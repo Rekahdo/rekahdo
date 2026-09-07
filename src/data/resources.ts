@@ -1,5 +1,5 @@
 export const resourcesData = {
-  "visible": true,
+  "hidden": false,
   "sectionTitle": "Resources",
   "subtitle": "References and tools I rely on every day",
   "description": "A curated collection of documentation, testing tools, and community references that keep me productive and learning across the full stack.",
@@ -9,7 +9,7 @@ export const resourcesData = {
       "name": "Full Stack",
       "subtitle": "Foundation references",
       "count": 2,
-      "visible": true,
+      "hidden": false,
       "items": [
         {
           "id": 1,
@@ -17,7 +17,7 @@ export const resourcesData = {
           "badge": "Reference",
           "description": "The go-to reference for HTML, CSS, and JavaScript — comprehensive, authoritative, and always up to date.",
           "link": "https://developer.mozilla.org/en-US",
-          "visible": true
+          "hidden": false
         },
         {
           "id": 2,
@@ -25,7 +25,7 @@ export const resourcesData = {
           "badge": "Docs Hub",
           "description": "Aggregated, searchable API documentation for hundreds of languages and frameworks in one fast interface.",
           "link": "https://devdocs.io",
-          "visible": true
+          "hidden": false
         }
       ]
     },
@@ -34,7 +34,7 @@ export const resourcesData = {
       "name": "Frontend",
       "subtitle": "UI & testing toolkit",
       "count": 4,
-      "visible": true,
+      "hidden": false,
       "items": [
         {
           "id": 3,
@@ -42,7 +42,7 @@ export const resourcesData = {
           "badge": "Testing",
           "description": "A blazing-fast unit test framework powered by Vite — my go-to for testing React components and utilities.",
           "link": "https://vitest.dev/guide/why.html",
-          "visible": true
+          "hidden": false
         },
         {
           "id": 4,
@@ -50,7 +50,7 @@ export const resourcesData = {
           "badge": "Testing",
           "description": "User-centric testing utilities that encourage writing tests resembling real user interactions.",
           "link": "https://testing-library.com/docs",
-          "visible": true
+          "hidden": false
         },
         {
           "id": 5,
@@ -58,7 +58,7 @@ export const resourcesData = {
           "badge": "Package Registry",
           "description": "The world's largest software registry — where I discover, evaluate, and manage JavaScript packages.",
           "link": "https://www.npmjs.com",
-          "visible": true
+          "hidden": false
         },
         {
           "id": 6,
@@ -66,7 +66,7 @@ export const resourcesData = {
           "badge": "Routing",
           "description": "Declarative, component-based routing for React apps — handles navigation from simple SPAs to Full-stack frameworks.",
           "link": "https://reactrouter.com/start/modes",
-          "visible": true
+          "hidden": false
         }
       ]
     },
@@ -75,7 +75,7 @@ export const resourcesData = {
       "name": "Backend",
       "subtitle": "Server-side essentials",
       "count": 4,
-      "visible": true,
+      "hidden": false,
       "items": [
         {
           "id": 7,
@@ -83,7 +83,7 @@ export const resourcesData = {
           "badge": "Framework Docs",
           "description": "Official Spring Framework and Spring Boot documentation — my primary guide for building robust Java backends.",
           "link": "https://spring.io/docs",
-          "visible": true
+          "hidden": false
         },
         {
           "id": 8,
@@ -91,7 +91,7 @@ export const resourcesData = {
           "badge": "Tutorials",
           "description": "In-depth tutorials and guides on Java, Spring Boot, REST APIs, and security. Invaluable for real-world patterns.",
           "link": "https://www.baeldung.com",
-          "visible": true
+          "hidden": false
         },
         {
           "id": 9,
@@ -99,7 +99,7 @@ export const resourcesData = {
           "badge": "API Testing",
           "description": "The API platform I use to design, test, and document REST endpoints throughout development.",
           "link": "https://www.postman.com",
-          "visible": true
+          "hidden": false
         },
         {
           "id": 10,
@@ -107,7 +107,7 @@ export const resourcesData = {
           "badge": "DevOps",
           "description": "Official Docker documentation for containerising Java services and orchestrating development environments.",
           "link": "https://docs.docker.com",
-          "visible": true
+          "hidden": false
         }
       ]
     }

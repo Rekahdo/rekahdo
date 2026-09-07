@@ -1,5 +1,5 @@
 export const growthData = {
-  "visible": true,
+  "hidden": false,
   "sectionTitle": "Growth",
   "subtitle": "What I am currently learning",
   "description": "Continuous learning is the key to unlocking full potential. By embracing new skills, I stay ahead of the curve, adapt to new challenges, and grow both personally and professionally.",
@@ -15,7 +15,7 @@ export const growthData = {
       "endDate": "Present",
       "link": "https://github.com/username/project",
       "linkLabel": "What I worked on",
-      "visible": true
+      "hidden": false
     },
     {
       "id": 2,
@@ -28,11 +28,11 @@ export const growthData = {
       "endDate": "Present",
       "link": "https://github.com/username/project",
       "linkLabel": "What I worked on",
-      "visible": true
+      "hidden": false
     }
   ],
   "quote": {
-    "visible": true,
+    "hidden": false,
     "text": "The future belongs to those who never stop learning. Every line of code I write today is an investment in the developer I become tomorrow."
   }
 }
