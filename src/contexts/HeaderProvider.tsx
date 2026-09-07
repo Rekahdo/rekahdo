@@ -1,19 +1,33 @@
-import { createContext, useEffect, useState, type PropsWithChildren } from "react";
-import type { Header } from "../sections/header/HeaderInterface";
+import { createContext, useEffect, useState, type ReactNode } from "react";
 import { headerData } from "../data/header";
+import type { HeaderType } from "../sections/header/HeaderType";
 
-export const HeaderContext = createContext<null>(null);
+type HeaderPropsType = {
+    children: ReactNode
+}
 
-export const HeaderProvider = ({ children }: PropsWithChildren) => {
+export type HeaderContextType = {
+    data: HeaderType | undefined,
+    reloadHeader: () => HeaderType
+}
 
-    const [header, setHeader] = useState<Header|{}>({}) 
+export const HeaderContext = createContext<HeaderContextType|null>(null);
+
+export const HeaderProvider = ({ children }: HeaderPropsType) => {
+
+    const [data, setData] = useState<HeaderType>() 
 
     useEffect(() => {
-        setHeader(h => headerData)
+        fetchData();
     }, [])
 
+    function fetchData(): HeaderType{
+        setData(_ => headerData)
+        return headerData;
+    }
+
     return (
-        <HeaderContext.Provider value={null}>
+        <HeaderContext.Provider value={{data, reloadHeader: fetchData}}>
             {children}
         </HeaderContext.Provider>
     );
