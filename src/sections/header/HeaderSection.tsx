@@ -11,7 +11,7 @@ export const HeaderSection = () => {
                 data && data.visible &&
 
                 <header>
-                    <div hidden={data.brandLogo.visible}>
+                    <div hidden={data.logo.visible}>
                         <img src="" alt="" />
                     </div>
 

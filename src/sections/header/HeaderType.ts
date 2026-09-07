@@ -1,4 +1,4 @@
-export type BrandLogoType = {
+export type LogoType = {
   visible: boolean;
   name: string;
   url: string;
@@ -27,7 +27,7 @@ export type CtaButtonType = {
 
 export type HeaderType = {
   visible: boolean;
-  brandLogo: BrandLogoType;
+  logo: LogoType;
   navLink: NavLinkType;
   ctaButton: CtaButtonType;
 };
