@@ -4,10 +4,12 @@ export const heroData: HeroType = {
   hidden: false,
   greetings: "Hi there, I'm",
   fullName: "RICHARD OKAFOR",
-  mainTitle: "Java Backend Developer & An Aspiring Frontend Developer",
+  role: "Java Backend Developer & An Aspiring Frontend Developer",
   description: "Welcome to my portfolio, where I showcase my projects, skills, and experience as a passionate developer with a focus on Java-based and front-end technologies, developing innovative solutions that drive business value and user engagement.",
   location: "Lagos, Nigeria",
   avatar: {
+    hidden: false,
+    file_name: "richard okafor",
     file_path: "/src/images/me/hero-section.png",
     rounded: true,
   },
@@ -24,7 +26,6 @@ export const heroData: HeroType = {
     }
   ],
   actionButtons: [
-    
     {
       id: 1,
       hidden: false,

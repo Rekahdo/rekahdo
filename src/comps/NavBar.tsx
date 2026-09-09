@@ -5,10 +5,10 @@ import { useState } from 'react';
 import { Button, type ButtonType } from './Button';
 
 type NavBarType = {
-    version?: number,
-    logo: LogoType,
-    navLink: NavLinkType,
-    ctaButton: ButtonType,
+  version?: number,
+  logo: LogoType,
+  navLink: NavLinkType,
+  ctaButton: ButtonType,
 }
 
 export const NavBar = ({ logo, version = 0, navLink, ctaButton }: NavBarType) => {
@@ -23,47 +23,60 @@ export const NavBar = ({ logo, version = 0, navLink, ctaButton }: NavBarType) =>
 
 function Version_1(logo: LogoType, navLink: NavLinkType, ctaButton: ButtonType) {
 
-    const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
 
-    function toggleMenu() {
-        setOpen(o => o ? false : true)
-    }
+  function toggleMenu() {
+    setOpen(o => o ? false : true)
+  }
 
-    return (
+  return (
+    <>
+      {
+
         <div className='bottom-border'>
-            <section className='nav-bar'>
-                <div hidden={logo.hidden} className='logo'>
-                    <img src={logo.file_path} alt={`${logo.name} Logo`} />
-                </div>
+          <section className='nav-bar'>
+            {
+              !logo.hidden &&
+              <div hidden={logo.hidden} className='logo'>
+                <img src={logo.file_path} alt={`${logo.name} Logo`} />
+              </div>
+            }
 
+            {
+              !navLink.hidden &&
+              <>
                 <button className='hamburger-icon-con' onClick={toggleMenu}>
-                    {open ? <X color='white' /> : <Menu color='white' />}
+                  {open ? <X color='white' /> : <Menu color='white' />}
                 </button>
 
                 <nav className={`nav-link ${open ? "open" : ""}`} onClick={toggleMenu}>
-                    <div hidden={navLink.hidden} className='links'>
-                        {navLink.links.map((link) => (
-                            <a href={link.file_path} hidden={link.hidden} key={link.id} className='link'>{link.text}</a>
-                        ))}
-                    </div>
+                  <div hidden={navLink.hidden} className='links'>
+                    {navLink.links.map((link) => (
+                      <a href={link.file_path} hidden={link.hidden} key={link.id} className='link'>{link.text}</a>
+                    ))}
+                  </div>
 
-                    <Button {...ctaButton} className='download-cv-1' icon={<Download size={16}/>} />
+                  <Button {...ctaButton} className='download-cv-1' icon={<Download size={16} />} />
                 </nav>
 
-                <Button {...ctaButton} className='download-cv-2' icon={<Download size={16}/>} />
-            </section>
+                <Button {...ctaButton} className='download-cv-2' icon={<Download size={16} />} />
+              </>
+            }
+          </section>
         </div>
-    )
+      }
+    </>
+  )
 }
 
 function Version_2(navLink: NavLinkType, ctaButton: ButtonType) {
-    return (
-        <>
-            <div className='hamburger-icon-con'>
-                <Menu className="hamburger-icon" />
-            </div>
-        </>
-    )
+  return (
+    <>
+      <div className='hamburger-icon-con'>
+        <Menu className="hamburger-icon" />
+      </div>
+    </>
+  )
 }
 
 /*
