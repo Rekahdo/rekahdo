@@ -1,0 +1,99 @@
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* dominant: 60% Blue Shape */
+  --dominant: hsl(226, 60%, 9.8%);
+  --dominant-fg: hsl(0, 0%, 100%);
+  --dominant-bd: hsl(226, 60%, 30%);
+
+  /* primary: 30% Blue Shape */
+  --primary: hsl(207, 100%, 41%);
+  --primary-hover: hsl(207, 100%, 36%);
+  --primary-fg: hsl(0, 0%, 100%);
+
+  /* accent: 10% Blue Shape */
+  --accent: hsl(198.4, 93.2%, 59.6%);
+  --accent-hover: hsl(200.4, 98%, 39.4%);
+  --accent-fg: hsl(0, 0%, 100%);
+
+  /* Other Color */
+  --light: hsl(210, 40%, 98%);
+  --surface: hsl(217.2, 32.6%, 17.5%);
+
+  /* Default font */
+  --font-size: 16px;
+  --font-baloo: 'Baloo_2', sans-serif;
+
+  /* Spacing */
+  --sm-inline: 15px;
+
+  /* Breakpoint */
+  --mobile-sm: 320px;
+  --mobile-lg: 500px;
+
+  /* width */
+  --portfolio-width: 1700px;
+}
+
+.dark {
+  --dominant: hsl(226, 60%, 9.8%);
+  --dominant-fg: hsl(0, 0%, 100%);
+  --dominant-bd: hsl(225.7, 73.7%, 22.4%);
+}
+
+@theme inline {
+  --color-dominant: var(--dominant);
+  --color-dominant-fg: var(--dominant-fg);
+  --color-dominant-bd: var(--dominant-bd);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-fg: var(--primary-fg);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-fg: var(--accent-fg);
+
+  --color-light: var(--light);
+  --color-surface: var(--surface);
+
+  --font-primary: var(--font-baloo);
+
+  --spacing-sm-inline: var(--sm-inline);
+  
+  --max-width-portfolio: var(--portfolio-width);
+
+  --breakpoint-mobile-sm: var(--mobile-sm);
+  --breakpoint-mobile-lg: var(--mobile-lg);
+  --breakpoint-md: 900px;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    @apply m-0 p-0 box-border font-primary;
+  }
+
+  body {
+    @apply bg-dominant text-dominant-fg;
+  }
+
+  html {
+    font-size: var(--font-size);
+  }
+}
+
+@layer utilities {
+  .flex {
+    @apply flex flex-row;
+  }
+
+  .flex-col {
+    @apply flex flex-col;
+  }
+
+  .center {
+    @apply flex justify-center content-center;
+  }
+}
