@@ -1,10 +1,10 @@
 import { NavBar } from '../../comps/NavBar';
-import { useHeader } from '../../hooks/portfolio'
+import { useHeader } from '../../hooks/context'
 import './HeaderSection.css'
 
 export const HeaderSection = () => {
 
-    const { data } = useHeader();
+    const { data } = useHeader()!;
 
     return (
         <>

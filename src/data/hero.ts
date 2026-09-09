@@ -1,6 +1,6 @@
 import type { HeroType } from "../sections/hero/HeroType";
 
-export const heroSectionData: HeroType = {
+export const heroData: HeroType = {
   hidden: false,
   greetings: "Hi there, I'm",
   fullName: "RICHARD OKAFOR",

@@ -1,9 +1,13 @@
-import { Button } from '../../comps/Button'
+import { useHero } from '../../hooks/context'
 import './HeroSection.css'
 
 export const HeroSection = () => {
+
+    const {data, reload} = useHero()!;
+
     return (
         <section>
+            
         </section>
     )
 }

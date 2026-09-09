@@ -1,19 +1,11 @@
-import { createContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useEffect, useState } from "react";
 import { headerData } from "../data/header";
 import type { HeaderType } from "../sections/header/HeaderType";
+import { type ContextChildrenType, type ContextValueType } from "./ContextProvider";
 
-type HeaderPropsType = {
-    children: ReactNode
-}
+export const HeaderContext = createContext<ContextValueType<HeaderType>>(null);
 
-export type HeaderContextType = {
-    data: HeaderType | undefined,
-    reloadHeader: () => HeaderType
-}
-
-export const HeaderContext = createContext<HeaderContextType|null>(null);
-
-export const HeaderProvider = ({ children }: HeaderPropsType) => {
+export const HeaderProvider = ({ children }: ContextChildrenType) => {
 
     const [data, setData] = useState<HeaderType>() 
 
@@ -27,7 +19,7 @@ export const HeaderProvider = ({ children }: HeaderPropsType) => {
     }
 
     return (
-        <HeaderContext.Provider value={{data, reloadHeader: fetchData}}>
+        <HeaderContext.Provider value={{data, reload: fetchData}}>
             {children}
         </HeaderContext.Provider>
     );
