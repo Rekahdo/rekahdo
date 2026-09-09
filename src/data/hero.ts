@@ -1,47 +1,48 @@
 import type { HeroType } from "../sections/hero/HeroType";
 
 export const heroSectionData: HeroType = {
-  "hidden": false,
-  "greetings": "Hi there, I'm",
-  "fullName": "RICHARD OKAFOR",
-  "mainTitle": "Java Backend Developer & An Aspiring Frontend Developer",
-  "description": "Welcome to my portfolio, where I showcase my projects, skills, and experience as a passionate developer with a focus on Java-based and front-end technologies, developing innovative solutions that drive business value and user engagement.",
-  "location": "Lagos, Nigeria",
-  "avatar": {
-    "file_path": "/src/images/me/hero-section.png",
-    "rounded": true,
+  hidden: false,
+  greetings: "Hi there, I'm",
+  fullName: "RICHARD OKAFOR",
+  mainTitle: "Java Backend Developer & An Aspiring Frontend Developer",
+  description: "Welcome to my portfolio, where I showcase my projects, skills, and experience as a passionate developer with a focus on Java-based and front-end technologies, developing innovative solutions that drive business value and user engagement.",
+  location: "Lagos, Nigeria",
+  avatar: {
+    file_path: "/src/images/me/hero-section.png",
+    rounded: true,
   },
-  "tags": [
+  tags: [
     {
-      "id": 1,
-      "hidden": false,
-      "text": "Clean-Code Developer",
+      id: 1,
+      hidden: false,
+      text: "Clean-Code Developer",
     },
     {
-      "id": 2,
-      "hidden": false,
-      "text": "TS Academy Frontend Development Student",
+      id: 2,
+      hidden: false,
+      text: "TS Academy Frontend Development Student",
     }
   ],
-  "actionButtons": [
+  actionButtons: [
     
     {
-      "id": 1,
-      "hidden": false,
-      "text": "Contact Me",
-      "file_path": "#contact",
+      id: 1,
+      hidden: false,
+      text: "Contact Me",
+      file_path: "#contact",
     },
     {
-      "id": 2,
-      "hidden": false,
-      "text": "Tech-Stack",
-      "file_path": "#tech-stack",
+      id: 2,
+      hidden: false,
+      text: "Tech-Stack",
+      file_path: "#tech-stack",
     },
     {
-      "id": 3,
-      "hidden": false,
-      "text": "Download CV",
-      "file_path": "/resume.pdf",
+      id: 3,
+      hidden: false,
+      text: "Download CV",
+      file_path: "/Richard_Okafor_CV.pdf",
+      file_name: "Richard_Okafor_CV.pdf",
     }
   ]
 }
