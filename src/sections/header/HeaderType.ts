@@ -1,3 +1,5 @@
+import type { ButtonType } from "../../comps/Button";
+
 export type LogoType = {
   hidden: boolean;
   name: string;
@@ -17,18 +19,9 @@ export type NavLinkType = {
   links: LinkType[];
 };
 
-export type CtaButtonType = {
-  readonly id: number;
-  hidden: boolean;
-  text: string;
-  name: string;
-  path: string;
-  isExternal: boolean;
-};
-
 export type HeaderType = {
   hidden: boolean;
   logo: LogoType;
   navLink: NavLinkType;
-  ctaButton: CtaButtonType;
+  ctaButton: ButtonType;
 };

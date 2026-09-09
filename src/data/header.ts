@@ -51,8 +51,9 @@ export const headerData: HeaderType = {
     id: 1,
     hidden: false,
     text: "Download CV",
-    name: "Richard_Okafor_CV.pdf",
-    path: "/Richard_Okafor_CV.pdf",
-    isExternal: true,
+    download: {
+      file_name: "Richard_Okafor_CV.pdf",
+      file_path: "/Richard_Okafor_CV.pdf",
+    }
   },
 };

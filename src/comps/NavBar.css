@@ -1,0 +1,60 @@
+@import "tailwindcss";
+@import "../index.css";
+
+:root {
+  --sm-nav-bar-height: 8dvh;
+  --lg-nav-bar-height: 10dvh;
+}
+
+@layer utilities {
+  .bottom-border {
+    @apply flex justify-center grow border-dominant-bd border-b-1;
+  }
+
+  .nav-bar {
+    @apply flex items-center grow place-content-between bg-dominant text-dominant-fg py-4 ps-4 max-w-portfolio h-[var(--sm-nav-bar-height)];
+
+    @apply max-md:relative max-md:z-0;
+    @apply min-md:h-[var(--lg-nav-bar-height)] min-md:pe-4;
+
+    .logo {
+      & > img {
+        @apply max-sm:w-20 max-md:w-30 min-md:w-30;
+      }
+    }
+
+    .hamburger-icon-con {
+      @apply p-4;
+      @apply min-md:hidden;
+    }
+
+    .nav-link {
+      @apply max-md:absolute max-md:left-0 max-md:top-[var(--sm-nav-bar-height)] max-md:w-full max-md:flex-col max-md:border-dominant-bd max-md:border-b-1 max-md:p-4 max-md:hidden;
+
+      &.open {
+        @apply max-md:flex;
+      }
+    }
+
+    .links {
+      @apply flex;
+      @apply max-md:flex-col;
+    }
+
+    .link {
+      @apply py-3 text-sm text-white font-extrabold transition-colors;
+      @apply hover:text-blue-500;
+      @apply min-md:px-4 min-md:py-6 min-lg:px-8;
+      /* @apply max-lg:px-5 max-lg:py-6 min-lg:px-8 min-lg:py-6; */
+    }
+
+    & .download-cv-1 {
+      @apply me-auto my-2;
+      @apply min-md:hidden;
+    }
+
+    & .download-cv-2 {
+      @apply max-md:hidden;
+    }
+  }
+}

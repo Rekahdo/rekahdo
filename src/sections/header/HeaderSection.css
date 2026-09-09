@@ -1,1 +1,7 @@
-@import 'tailwindcss';
+@import "../../index.css";
+
+@layer utilities {
+  .header-section{
+    @apply flex justify-center fixed top-0 left-0 w-full;
+  }
+}
