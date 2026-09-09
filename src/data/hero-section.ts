@@ -1,5 +1,5 @@
 export const heroSectionData = {
-  "visible": true,
+  "hidden": false,
   "greetings": "Hi there, I'm",
   "fullName": "RICHARD OKAFOR",
   "mainTitle": "Java Backend Developer & An Aspiring Frontend Developer",
@@ -10,12 +10,12 @@ export const heroSectionData = {
     {
       "id": 1,
       "label": "Clean-Code Developer",
-      "visible": true
+      "hidden": false
     },
     {
       "id": 2,
       "label": "TS Academy Frontend Development Student",
-      "visible": true
+      "hidden": false
     }
   ],
   "actionButtons": [
@@ -24,21 +24,21 @@ export const heroSectionData = {
       "label": "Contact Me",
       "path": "#contact",
       "variant": "primary",
-      "visible": true
+      "hidden": false
     },
     {
       "id": 2,
       "label": "Tech-Stack",
       "path": "#tech-stack",
       "variant": "outline",
-      "visible": true
+      "hidden": false
     },
     {
       "id": 3,
       "label": "Download CV",
       "path": "/resume.pdf",
       "variant": "outline",
-      "visible": true
+      "hidden": false
     }
   ]
 }

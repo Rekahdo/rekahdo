@@ -1,46 +1,46 @@
 import type { HeaderType } from "../sections/header/HeaderType";
 
 export const headerData: HeaderType = {
-  visible: true,
+  hidden: false,
   logo: {
-    visible: true,
+    hidden: false,
     name: "REKAHDO.dev",
-    url: "/src/images/logos/logo-full.png",
+    url: "/src/images/logos/logo-full.svg",
   },
   navLink: {
-    visible: true,
+    hidden: false,
     links: [
       {
         id: 1,
-        visible: true,
+        hidden: false,
         text: "Home",
         path: "#home",
         indexPosition: 1,
       },
       {
         id: 2,
-        visible: true,
+        hidden: false,
         text: "About Me",
         path: "#about",
         indexPosition: 2,
       },
       {
         id: 3,
-        visible: true,
+        hidden: false,
         text: "Tech-Stack",
         path: "#tech-stack",
         indexPosition: 3,
       },
       {
         id: 4,
-        visible: true,
+        hidden: false,
         text: "Projects",
         path: "#projects",
         indexPosition: 4,
       },
       {
         id: 5,
-        visible: true,
+        hidden: false,
         text: "Contact Me",
         path: "#contact",
         indexPosition: 5,
@@ -49,9 +49,10 @@ export const headerData: HeaderType = {
   },
   ctaButton: {
     id: 1,
-    visible: true,
+    hidden: false,
     text: "Download CV",
-    path: "/resume.pdf",
+    name: "Richard_Okafor_CV.pdf",
+    path: "/Richard_Okafor_CV.pdf",
     isExternal: true,
   },
 };

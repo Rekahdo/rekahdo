@@ -125,11 +125,11 @@
 
 ```json
 {
-  "visible": true,
+  "hidden": false,
   "brandName": "REKAHDO.dev",
   "brandLogoUrl": "/images/logo.png",
   "ctaButton": {
-    "visible": true,
+    "hidden": false,
     "label": "Download CV",
     "path": "/resume.pdf",
     "isExternal": true
@@ -139,35 +139,35 @@
       "id": 1,
       "label": "Home",
       "path": "#home",
-      "visible": true,
+      "hidden": false,
       "indexPosition": 1
     },
     {
       "id": 2,
       "label": "About Me",
       "path": "#about",
-      "visible": true,
+      "hidden": false,
       "indexPosition": 2
     },
     {
       "id": 3,
       "label": "Tech-Stack",
       "path": "#tech-stack",
-      "visible": true,
+      "hidden": false,
       "indexPosition": 3
     },
     {
       "id": 4,
       "label": "Projects",
       "path": "#projects",
-      "visible": true,
+      "hidden": false,
       "indexPosition": 4
     },
     {
       "id": 5,
       "label": "Contact Me",
       "path": "#contact",
-      "visible": true,
+      "hidden": false,
       "indexPosition": 5
     }
   ]
@@ -193,7 +193,7 @@
 
 ```json
 {
-  "visible": true,
+  "hidden": false,
   "greetings": "Hi there, I'm",
   "fullName": "RICHARD OKAFOR",
   "mainTitle": "Java Backend Developer & An Aspiring Frontend Developer",
@@ -204,12 +204,12 @@
     {
       "id": 1,
       "label": "Clean-Code Developer",
-      "visible": true
+      "hidden": false
     },
     {
       "id": 2,
       "label": "TS Academy Frontend Development Student",
-      "visible": true
+      "hidden": false
     }
   ],
   "actionButtons": [
@@ -218,21 +218,21 @@
       "label": "Contact Me",
       "path": "#contact",
       "variant": "primary",
-      "visible": true
+      "hidden": false
     },
     {
       "id": 2,
       "label": "Tech-Stack",
       "path": "#tech-stack",
       "variant": "outline",
-      "visible": true
+      "hidden": false
     },
     {
       "id": 3,
       "label": "Download CV",
       "path": "/resume.pdf",
       "variant": "outline",
-      "visible": true
+      "hidden": false
     }
   ]
 }
@@ -245,7 +245,7 @@
 
 ```json
 {
-  "visible": true,
+  "hidden": false,
   "greetings": "Hi there, I'm",
   "fullName": "RICHARD OKAFOR",
   "mainTitle": "Java Backend Developer & An Aspiring Frontend Developer",
@@ -273,20 +273,20 @@
 
 ```json
 {
-  "visible": true,
+  "hidden": false,
   "sectionTitle": "About me",
   "headline": "Bridging Backend Stability With Frontend Inspiration",
   "bio": "I am a Java backend developer with almost 2 years of experience, specializing in building scalable and robust systems using Spring Boot and microservices architecture. I also have 2 years of experience working in a solar engineering company. I am currently expanding into front-end development.",
   "profileImageUrl": "/images/about-portrait.jpg",
   "experienceMetrics": {
-    "visible": true,
+    "hidden": false,
     "backendYears": "1+",
     "backendLabel": "Backend Years Experience",
     "frontendYears": "1",
     "frontendLabel": "Frontend Years Experience"
   },
   "quote": {
-    "visible": true,
+    "hidden": false,
     "text": "To me, Full-stack development involves engineering robust, scalable systems, bringing back-end stability and front-end inspiration to create seamless user experience."
   },
   "education": [
@@ -295,31 +295,31 @@
       "title": "Software Engineering",
       "institution": "NIIT",
       "icon": "/icons/niit.svg",
-      "visible": true
+      "hidden": false
     },
     {
       "id": 2,
       "title": "Spring Boot Certification",
       "institution": "Udemy",
       "icon": "/icons/udemy.svg",
-      "visible": true
+      "hidden": false
     },
     {
       "id": 3,
       "title": "Frontend Development",
       "institution": "TS Academy",
       "icon": "/icons/ts-academy.svg",
-      "visible": true
+      "hidden": false
     }
   ],
   "coreSkills": [
-    { "id": 1, "name": "Teaching", "emoji": "🧠", "visible": true },
-    { "id": 2, "name": "Problem Solving", "emoji": "🔧", "visible": true },
-    { "id": 3, "name": "Communication", "emoji": "💬", "visible": true },
-    { "id": 4, "name": "Collaboration", "emoji": "🤝", "visible": true },
-    { "id": 5, "name": "Team working", "emoji": "👥", "visible": true },
-    { "id": 6, "name": "Version Control", "emoji": "🔀", "visible": true },
-    { "id": 7, "name": "Agile", "emoji": "♻️", "visible": true }
+    { "id": 1, "name": "Teaching", "emoji": "🧠", "hidden": false },
+    { "id": 2, "name": "Problem Solving", "emoji": "🔧", "hidden": false },
+    { "id": 3, "name": "Communication", "emoji": "💬", "hidden": false },
+    { "id": 4, "name": "Collaboration", "emoji": "🤝", "hidden": false },
+    { "id": 5, "name": "Team working", "emoji": "👥", "hidden": false },
+    { "id": 6, "name": "Version Control", "emoji": "🔀", "hidden": false },
+    { "id": 7, "name": "Agile", "emoji": "♻️", "hidden": false }
   ]
 }
 
@@ -347,7 +347,7 @@
     "name": "Java Programming",
     "icon": "/icons/java.svg",
     "description": "Proficient in core Java with OOP principles, collections, streams, and exception handling for building robust backend applications.",
-    "visible": true,
+    "hidden": false,
     "indexPosition": 1
   },
   {
@@ -355,7 +355,7 @@
     "name": "Spring Boot",
     "icon": "/icons/spring.svg",
     "description": "Experience building RESTful APIs and microservices using Spring Boot, JPA, and Spring Security for enterprise-grade applications.",
-    "visible": true,
+    "hidden": false,
     "indexPosition": 2
   },
   {
@@ -363,7 +363,7 @@
     "name": "HTML & CSS",
     "icon": "/icons/html5.svg",
     "description": "Solid foundation in semantic HTML5 and CSS3 including Flexbox, Grid, and responsive design principles.",
-    "visible": true,
+    "hidden": false,
     "indexPosition": 3
   },
   {
@@ -371,7 +371,7 @@
     "name": "JavaScript",
     "icon": "/icons/javascript.svg",
     "description": "Growing proficiency in modern JavaScript including ES6+ features, DOM manipulation, and asynchronous programming.",
-    "visible": true,
+    "hidden": false,
     "indexPosition": 4
   }
 ]
@@ -392,27 +392,27 @@
 
 ```json
 {
-  "visible": true,
+  "hidden": false,
   "sectionTitle": "Stack Usage",
   "subtitle": "A percentage breakdown of how much I use each technology",
   "individualTechnologies": [
-    { "id": 1, "name": "Java", "icon": "/icons/java.svg", "percentage": 78, "color": "#0056b3", "visible": true },
-    { "id": 2, "name": "Spring Boot", "icon": "/icons/spring.svg", "percentage": 65, "color": "#28a745", "visible": true },
-    { "id": 3, "name": "REST APIs", "icon": "/icons/api.svg", "percentage": 72, "color": "#007bff", "visible": true },
-    { "id": 4, "name": "SQL / JPA", "icon": "/icons/database.svg", "percentage": 60, "color": "#6f42c1", "visible": true },
-    { "id": 5, "name": "HTML & CSS", "icon": "/icons/html.svg", "percentage": 55, "color": "#fd7e14", "visible": true },
-    { "id": 6, "name": "JavaScript", "icon": "/icons/js.svg", "percentage": 42, "color": "#d97706", "visible": true },
-    { "id": 7, "name": "Git", "icon": "/icons/git.svg", "percentage": 68, "color": "#e83e8c", "visible": true }
+    { "id": 1, "name": "Java", "icon": "/icons/java.svg", "percentage": 78, "color": "#0056b3", "hidden": false },
+    { "id": 2, "name": "Spring Boot", "icon": "/icons/spring.svg", "percentage": 65, "color": "#28a745", "hidden": false },
+    { "id": 3, "name": "REST APIs", "icon": "/icons/api.svg", "percentage": 72, "color": "#007bff", "hidden": false },
+    { "id": 4, "name": "SQL / JPA", "icon": "/icons/database.svg", "percentage": 60, "color": "#6f42c1", "hidden": false },
+    { "id": 5, "name": "HTML & CSS", "icon": "/icons/html.svg", "percentage": 55, "color": "#fd7e14", "hidden": false },
+    { "id": 6, "name": "JavaScript", "icon": "/icons/js.svg", "percentage": 42, "color": "#d97706", "hidden": false },
+    { "id": 7, "name": "Git", "icon": "/icons/git.svg", "percentage": 68, "color": "#e83e8c", "hidden": false }
   ],
   "categoryOverview": [
-    { "id": 1, "category": "Backend", "percentage": 72, "color": "#0056b3", "visible": true },
-    { "id": 2, "category": "Frontend", "percentage": 45, "color": "#fd7e14", "visible": true },
-    { "id": 3, "category": "DevOps / Tools", "percentage": 68, "color": "#28a745", "visible": true }
+    { "id": 1, "category": "Backend", "percentage": 72, "color": "#0056b3", "hidden": false },
+    { "id": 2, "category": "Frontend", "percentage": 45, "color": "#fd7e14", "hidden": false },
+    { "id": 3, "category": "DevOps / Tools", "percentage": 68, "color": "#28a745", "hidden": false }
   ],
   "proficiencyKey": [
-    { "range": "70 – 100%", "description": "Professional / Production use", "visible": true },
-    { "range": "50 – 69%", "description": "Intermediate / Project-proven", "visible": true },
-    { "range": "30 – 49%", "description": "Learning / Actively practising", "visible": true }
+    { "range": "70 – 100%", "description": "Professional / Production use", "hidden": false },
+    { "range": "50 – 69%", "description": "Intermediate / Project-proven", "hidden": false },
+    { "range": "30 – 49%", "description": "Learning / Actively practising", "hidden": false }
   ]
 }
 
@@ -433,7 +433,7 @@
 
 ```json
 {
-  "visible": true,
+  "hidden": false,
   "sectionTitle": "Growth",
   "subtitle": "What I am currently learning",
   "description": "Continuous learning is the key to unlocking full potential. By embracing new skills, I stay ahead of the curve, adapt to new challenges, and grow both personally and professionally.",
@@ -449,7 +449,7 @@
       "endDate": "Present",
       "link": "https://github.com/username/project",
       "linkLabel": "What I worked on",
-      "visible": true
+      "hidden": false
     },
     {
       "id": 2,
@@ -462,11 +462,11 @@
       "endDate": "Present",
       "link": "https://github.com/username/project",
       "linkLabel": "What I worked on",
-      "visible": true
+      "hidden": false
     }
   ],
   "quote": {
-    "visible": true,
+    "hidden": false,
     "text": "The future belongs to those who never stop learning. Every line of code I write today is an investment in the developer I become tomorrow."
   }
 }
@@ -483,7 +483,7 @@
 
 ```json
 {
-  "visible": true,
+  "hidden": false,
   "sectionTitle": "Services",
   "subtitle": "What I do with my skills",
   "description": "As a developer with focused backend experience and ongoing frontend training, I am driven by a passion for creating seamless, user-centered applications that grow alongside evolving needs.",
@@ -497,7 +497,7 @@
       "tags": ["Spring Security", "JWT Auth", "REST / JSON", "Swagger Docs"],
       "actionLabel": "Learn more",
       "actionUrl": "#contact",
-      "visible": true
+      "hidden": false
     },
     {
       "id": 2,
@@ -508,7 +508,7 @@
       "tags": ["Spring Boot", "React", "Tailwind CSS", "PostgreSQL"],
       "actionLabel": "Learn more",
       "actionUrl": "#contact",
-      "visible": true
+      "hidden": false
     },
     {
       "id": 3,
@@ -519,7 +519,7 @@
       "tags": ["Microservices", "SOLID", "JPA / Hibernate", "Docker"],
       "actionLabel": "Learn more",
       "actionUrl": "#contact",
-      "visible": true
+      "hidden": false
     },
     {
       "id": 4,
@@ -530,7 +530,7 @@
       "tags": ["Code Review", "Pair Programming", "Documentation", "Agile"],
       "actionLabel": "Learn more",
       "actionUrl": "#contact",
-      "visible": true
+      "hidden": false
     }
   ]
 }
@@ -547,7 +547,7 @@
 
 ```json
 {
-  "visible": true,
+  "hidden": false,
   "sectionTitle": "Resources",
   "subtitle": "References and tools I rely on every day",
   "description": "A curated collection of documentation, testing tools, and community references that keep me productive and learning across the full stack.",
@@ -557,7 +557,7 @@
       "name": "Full Stack",
       "subtitle": "Foundation references",
       "count": 2,
-      "visible": true,
+      "hidden": false,
       "items": [
         {
           "id": 1,
@@ -565,7 +565,7 @@
           "badge": "Reference",
           "description": "The go-to reference for HTML, CSS, and JavaScript — comprehensive, authoritative, and always up to date.",
           "link": "https://developer.mozilla.org/en-US",
-          "visible": true
+          "hidden": false
         },
         {
           "id": 2,
@@ -573,7 +573,7 @@
           "badge": "Docs Hub",
           "description": "Aggregated, searchable API documentation for hundreds of languages and frameworks in one fast interface.",
           "link": "https://devdocs.io",
-          "visible": true
+          "hidden": false
         }
       ]
     },
@@ -582,7 +582,7 @@
       "name": "Frontend",
       "subtitle": "UI & testing toolkit",
       "count": 4,
-      "visible": true,
+      "hidden": false,
       "items": [
         {
           "id": 3,
@@ -590,7 +590,7 @@
           "badge": "Testing",
           "description": "A blazing-fast unit test framework powered by Vite — my go-to for testing React components and utilities.",
           "link": "https://vitest.dev/guide/why.html",
-          "visible": true
+          "hidden": false
         },
         {
           "id": 4,
@@ -598,7 +598,7 @@
           "badge": "Testing",
           "description": "User-centric testing utilities that encourage writing tests resembling real user interactions.",
           "link": "https://testing-library.com/docs",
-          "visible": true
+          "hidden": false
         },
         {
           "id": 5,
@@ -606,7 +606,7 @@
           "badge": "Package Registry",
           "description": "The world's largest software registry — where I discover, evaluate, and manage JavaScript packages.",
           "link": "https://www.npmjs.com",
-          "visible": true
+          "hidden": false
         },
         {
           "id": 6,
@@ -614,7 +614,7 @@
           "badge": "Routing",
           "description": "Declarative, component-based routing for React apps — handles navigation from simple SPAs to Full-stack frameworks.",
           "link": "https://reactrouter.com/start/modes",
-          "visible": true
+          "hidden": false
         }
       ]
     },
@@ -623,7 +623,7 @@
       "name": "Backend",
       "subtitle": "Server-side essentials",
       "count": 4,
-      "visible": true,
+      "hidden": false,
       "items": [
         {
           "id": 7,
@@ -631,7 +631,7 @@
           "badge": "Framework Docs",
           "description": "Official Spring Framework and Spring Boot documentation — my primary guide for building robust Java backends.",
           "link": "https://spring.io/docs",
-          "visible": true
+          "hidden": false
         },
         {
           "id": 8,
@@ -639,7 +639,7 @@
           "badge": "Tutorials",
           "description": "In-depth tutorials and guides on Java, Spring Boot, REST APIs, and security. Invaluable for real-world patterns.",
           "link": "https://www.baeldung.com",
-          "visible": true
+          "hidden": false
         },
         {
           "id": 9,
@@ -647,7 +647,7 @@
           "badge": "API Testing",
           "description": "The API platform I use to design, test, and document REST endpoints throughout development.",
           "link": "https://www.postman.com",
-          "visible": true
+          "hidden": false
         },
         {
           "id": 10,
@@ -655,7 +655,7 @@
           "badge": "DevOps",
           "description": "Official Docker documentation for containerising Java services and orchestrating development environments.",
           "link": "https://docs.docker.com",
-          "visible": true
+          "hidden": false
         }
       ]
     }
@@ -674,7 +674,7 @@
 
 ```json
 {
-  "visible": true,
+  "hidden": false,
   "sectionTitle": "PROJECTS",
   "subtitle": "Showcasing scalable backend systems and full-stack experiments",
   "projects": [
@@ -686,7 +686,7 @@
       "githubLink": "https://github.com/username/project",
       "liveLink": "https://example.com",
       "technologies": ["Java", "Spring Boot", "MySQL"],
-      "visible": true,
+      "hidden": false,
       "indexPosition": 1
     },
     {
@@ -697,7 +697,7 @@
       "githubLink": "https://github.com/username/project",
       "liveLink": "https://example.com",
       "technologies": ["Spring Cloud", "Docker", "RabbitMQ"],
-      "visible": true,
+      "hidden": false,
       "indexPosition": 2
     },
     {
@@ -708,7 +708,7 @@
       "githubLink": "https://github.com/username/project",
       "liveLink": "https://example.com",
       "technologies": ["React", "Tailwind CSS", "Spring Boot"],
-      "visible": true,
+      "hidden": false,
       "indexPosition": 3
     }
   ]
@@ -726,14 +726,14 @@
 
 ```json
 {
-  "visible": true,
+  "hidden": false,
   "email": "contact@rekahdo.dev",
   "phone": "+2340000000000",
   "location": "Lagos, Nigeria",
   "socialLinks": [
-    { "id": 1, "platform": "GitHub", "url": "https://github.com/username", "icon": "github", "visible": true },
-    { "id": 2, "platform": "LinkedIn", "url": "https://linkedin.com/in/username", "icon": "linkedin", "visible": true },
-    { "id": 3, "platform": "Twitter", "url": "https://twitter.com/username", "icon": "twitter", "visible": true }
+    { "id": 1, "platform": "GitHub", "url": "https://github.com/username", "icon": "github", "hidden": false },
+    { "id": 2, "platform": "LinkedIn", "url": "https://linkedin.com/in/username", "icon": "linkedin", "hidden": false },
+    { "id": 3, "platform": "Twitter", "url": "https://twitter.com/username", "icon": "twitter", "hidden": false }
   ]
 }
 
@@ -773,18 +773,18 @@
 
 ```json
 {
-  "visible": true,
+  "hidden": false,
   "copyrightText": "© 2026 Richard Okafor (Rekahdo). All rights reserved.",
   "socialLinks": [
-    { "platform": "GitHub", "url": "https://github.com/username", "visible": true },
-    { "platform": "LinkedIn", "url": "https://linkedin.com/in/username", "visible": true }
+    { "platform": "GitHub", "url": "https://github.com/username", "hidden": false },
+    { "platform": "LinkedIn", "url": "https://linkedin.com/in/username", "hidden": false }
   ],
   "quickLinks": [
-    { "name": "Home", "path": "#home", "visible": true },
-    { "name": "About", "path": "#about", "visible": true },
-    { "name": "Tech-Stack", "path": "#tech-stack", "visible": true },
-    { "name": "Projects", "path": "#projects", "visible": true },
-    { "name": "Contact", "path": "#contact", "visible": true }
+    { "name": "Home", "path": "#home", "hidden": false },
+    { "name": "About", "path": "#about", "hidden": false },
+    { "name": "Tech-Stack", "path": "#tech-stack", "hidden": false },
+    { "name": "Projects", "path": "#projects", "hidden": false },
+    { "name": "Contact", "path": "#contact", "hidden": false }
   ]
 }
 

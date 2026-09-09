@@ -4,7 +4,7 @@ export const techStacksData = [
     "name": "Java Programming",
     "icon": "/icons/java.svg",
     "description": "Proficient in core Java with OOP principles, collections, streams, and exception handling for building robust backend applications.",
-    "visible": true,
+    "hidden": false,
     "indexPosition": 1
   },
   {
@@ -12,7 +12,7 @@ export const techStacksData = [
     "name": "Spring Boot",
     "icon": "/icons/spring.svg",
     "description": "Experience building RESTful APIs and microservices using Spring Boot, JPA, and Spring Security for enterprise-grade applications.",
-    "visible": true,
+    "hidden": false,
     "indexPosition": 2
   },
   {
@@ -20,7 +20,7 @@ export const techStacksData = [
     "name": "HTML & CSS",
     "icon": "/icons/html5.svg",
     "description": "Solid foundation in semantic HTML5 and CSS3 including Flexbox, Grid, and responsive design principles.",
-    "visible": true,
+    "hidden": false,
     "indexPosition": 3
   },
   {
@@ -28,7 +28,7 @@ export const techStacksData = [
     "name": "JavaScript",
     "icon": "/icons/javascript.svg",
     "description": "Growing proficiency in modern JavaScript including ES6+ features, DOM manipulation, and asynchronous programming.",
-    "visible": true,
+    "hidden": false,
     "indexPosition": 4
   }
 ]
