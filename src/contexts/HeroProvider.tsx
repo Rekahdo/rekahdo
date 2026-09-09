@@ -5,7 +5,7 @@ import { ContextProvider, type ContextChildrenType } from "./ContextProvider";
 
 export const HeroContext = new ContextProvider<HeroType>()
 
-export const HeroProvider = ( {children}: ContextChildrenType) => {
+export const HeroProvider = ({children}: ContextChildrenType) => {
 
     const [data, setData] = useState<HeroType>() 
 

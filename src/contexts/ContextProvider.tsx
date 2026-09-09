@@ -1,4 +1,11 @@
-import { createContext, type JSX, type ReactNode } from "react";
+import { createContext, useContext, type JSX, type ReactNode } from "react";
+
+export const Provider = {
+    HERO: "Hero",
+    ABOUT: "About",
+};
+
+type ProviderType = (typeof Provider)[keyof typeof Provider];
 
 export type ContextChildrenType = {
     children: ReactNode;
@@ -7,18 +14,23 @@ export type ContextChildrenType = {
 export type ContextValueType<T> = {
     data: T | undefined;
     reload: () => T;
-}|null;
+} | null;
 
 export class ContextProvider<T> {
 
     private Context: React.Context<ContextValueType<T>>;
 
-    constructor(){
+    constructor() {
         this.Context = createContext<ContextValueType<T>>(null);
     }
 
-    public context(): React.Context<ContextValueType<T>> {
-        return this.Context;
+    public context(provider: ProviderType): ContextValueType<T> {
+        const context = useContext(this.Context);
+
+        if (!context)
+            throw new Error(`use${provider} must be used within <${provider}Provider>...</${provider}Provider>`,);
+
+        return context;
     }
 
     public create({ children }: ContextChildrenType, data: T | undefined, reload: () => T): JSX.Element {
@@ -28,5 +40,4 @@ export class ContextProvider<T> {
             </this.Context.Provider>
         );
     }
-
 }

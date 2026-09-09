@@ -7,7 +7,7 @@ export const HeroSection = () => {
 
     return (
         <section>
-            
+            {data?.fullName}
         </section>
     )
 }
