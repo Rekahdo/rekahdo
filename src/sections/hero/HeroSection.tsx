@@ -11,9 +11,8 @@ export const HeroSection = () => {
     return (
         <>
             { data && !data.hidden &&
-                
                 <section>
-                    <Avatar {...data.avatar}/>
+                    <Avatar {...data.avatar} {...data.location}/>
                     <p>{data.greetings}</p>
                     <h1>{data.fullName}</h1>
                     <p>{data.role}</p>

@@ -1,4 +1,5 @@
 import { CodeXml } from "lucide-react"
+import type { LocationType } from "../sections/hero/HeroType";
 
 export type AvatarType = {
   hidden: boolean;
@@ -7,7 +8,7 @@ export type AvatarType = {
   rounded: boolean;
 }
 
-export type AvatarCompType = AvatarType & {
+export type AvatarCompType = AvatarType & LocationType & {
     className?: string;
 }
 
@@ -17,8 +18,15 @@ export const Avatar = (props: AvatarCompType) => {
             {
                 !props.hidden && 
                 <div hidden={props.hidden} className={`${props.className}`}>
+                    <div>
+
                     <img src={props.file_path} alt={`${props.file_name} hero section avatar photo`} />
                     <CodeXml color="#ffffff" />
+                    </div>
+                    <span>
+                        <span></span>
+                        {props.state}, {props.country}
+                    </span>
                 </div>
             }
         </>
