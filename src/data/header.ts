@@ -5,7 +5,7 @@ export const headerData: HeaderType = {
   logo: {
     hidden: false,
     name: "REKAHDO.dev",
-    url: "/src/images/logos/logo-full.svg",
+    file_path: "/src/images/logos/logo-full.svg",
   },
   navLink: {
     hidden: false,
@@ -14,35 +14,35 @@ export const headerData: HeaderType = {
         id: 1,
         hidden: false,
         text: "Home",
-        path: "#home",
+        file_path: "#home",
         indexPosition: 1,
       },
       {
         id: 2,
         hidden: false,
         text: "About Me",
-        path: "#about",
+        file_path: "#about",
         indexPosition: 2,
       },
       {
         id: 3,
         hidden: false,
         text: "Tech-Stack",
-        path: "#tech-stack",
+        file_path: "#tech-stack",
         indexPosition: 3,
       },
       {
         id: 4,
         hidden: false,
         text: "Projects",
-        path: "#projects",
+        file_path: "#projects",
         indexPosition: 4,
       },
       {
         id: 5,
         hidden: false,
         text: "Contact Me",
-        path: "#contact",
+        file_path: "#contact",
         indexPosition: 5,
       },
     ],
@@ -51,9 +51,7 @@ export const headerData: HeaderType = {
     id: 1,
     hidden: false,
     text: "Download CV",
-    download: {
-      file_name: "Richard_Okafor_CV.pdf",
-      file_path: "/Richard_Okafor_CV.pdf",
-    }
+    file_path: "/Richard_Okafor_CV.pdf",
+    file_name: "Richard_Okafor_CV.pdf",
   },
 };

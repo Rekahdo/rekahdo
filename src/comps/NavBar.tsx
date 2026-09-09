@@ -1,6 +1,6 @@
 import './NavBar.css'
 import type { LogoType, NavLinkType } from "../sections/header/HeaderType"
-import { Menu, X } from 'lucide-react';
+import { Download, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Button, type ButtonType } from './Button';
 
@@ -33,7 +33,7 @@ function Version_1(logo: LogoType, navLink: NavLinkType, ctaButton: ButtonType) 
         <div className='bottom-border'>
             <section className='nav-bar'>
                 <div hidden={logo.hidden} className='logo'>
-                    <img src={logo.url} alt={`${logo.name} Logo`} />
+                    <img src={logo.file_path} alt={`${logo.name} Logo`} />
                 </div>
 
                 <button className='hamburger-icon-con' onClick={toggleMenu}>
@@ -43,14 +43,14 @@ function Version_1(logo: LogoType, navLink: NavLinkType, ctaButton: ButtonType) 
                 <nav className={`nav-link ${open ? "open" : ""}`} onClick={toggleMenu}>
                     <div hidden={navLink.hidden} className='links'>
                         {navLink.links.map((link) => (
-                            <a href={link.path} hidden={link.hidden} key={link.id} className='link'>{link.text}</a>
+                            <a href={link.file_path} hidden={link.hidden} key={link.id} className='link'>{link.text}</a>
                         ))}
                     </div>
 
-                    <Button hidden={ctaButton.hidden} text={ctaButton.text} download={ctaButton.download} className='download-cv-1' />
+                    <Button {...ctaButton} className='download-cv-1' icon={<Download size={16}/>} />
                 </nav>
 
-                <Button hidden={ctaButton.hidden} text={ctaButton.text} download={ctaButton.download} className='download-cv-2'/>
+                <Button {...ctaButton} className='download-cv-2' icon={<Download size={16}/>} />
             </section>
         </div>
     )

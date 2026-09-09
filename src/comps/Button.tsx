@@ -1,14 +1,13 @@
-import { Download } from 'lucide-react'
 import './Button.css'
+import type { ReactNode } from 'react';
 
 export type ButtonType = {
-    readonly id?: number;
-    hidden?: boolean;
-    text?: string;
-    download?: {
-        file_name: string;
-        file_path: string;
-    };
+    readonly id: number;
+    hidden: boolean;
+    text: string;
+    file_name?: string;
+    file_path?: string;
+    icon?: ReactNode;
     className?: string;
     onClick?: () => void
 };
@@ -16,13 +15,17 @@ export type ButtonType = {
 export const Button = (props: ButtonType) => {
     return (
         <button key={props.id} className={`btn-ui ${props.className}`} hidden={props.hidden} onClick={props.onClick}>
-            {props.download && <Download size={16} />}
+            {props.icon && props.icon}
 
-            {!props.download ? props.text : (
-                <a href={props.download.file_path} download={props.download.file_name}>
-                    {props.text}
-                </a>
-            )}
+            {
+                props.file_name && props.file_path ?
+                    (
+                        <a href={props.file_path} download={props.file_name}>
+                            {props.text}
+                        </a>
+                    ) : props.text
+            }
+
         </button>
     )
 }

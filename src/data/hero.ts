@@ -1,44 +1,47 @@
-export const heroSectionData = {
+import type { HeroType } from "../sections/hero/HeroType";
+
+export const heroSectionData: HeroType = {
   "hidden": false,
   "greetings": "Hi there, I'm",
   "fullName": "RICHARD OKAFOR",
   "mainTitle": "Java Backend Developer & An Aspiring Frontend Developer",
   "description": "Welcome to my portfolio, where I showcase my projects, skills, and experience as a passionate developer with a focus on Java-based and front-end technologies, developing innovative solutions that drive business value and user engagement.",
   "location": "Lagos, Nigeria",
-  "avatarUrl": "/src/images/me/hero-section.png",
+  "avatar": {
+    "file_path": "/src/images/me/hero-section.png",
+    "rounded": true,
+  },
   "tags": [
     {
       "id": 1,
-      "label": "Clean-Code Developer",
-      "hidden": false
+      "hidden": false,
+      "text": "Clean-Code Developer",
     },
     {
       "id": 2,
-      "label": "TS Academy Frontend Development Student",
-      "hidden": false
+      "hidden": false,
+      "text": "TS Academy Frontend Development Student",
     }
   ],
   "actionButtons": [
+    
     {
       "id": 1,
-      "label": "Contact Me",
-      "path": "#contact",
-      "variant": "primary",
-      "hidden": false
+      "hidden": false,
+      "text": "Contact Me",
+      "file_path": "#contact",
     },
     {
       "id": 2,
-      "label": "Tech-Stack",
-      "path": "#tech-stack",
-      "variant": "outline",
-      "hidden": false
+      "hidden": false,
+      "text": "Tech-Stack",
+      "file_path": "#tech-stack",
     },
     {
       "id": 3,
-      "label": "Download CV",
-      "path": "/resume.pdf",
-      "variant": "outline",
-      "hidden": false
+      "hidden": false,
+      "text": "Download CV",
+      "file_path": "/resume.pdf",
     }
   ]
 }
