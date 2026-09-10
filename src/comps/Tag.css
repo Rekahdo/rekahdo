@@ -1,2 +1,5 @@
 @reference "../index.css";
 
+.tag{
+    @apply py-[0.4rem] px-[1rem] border-2 border-dominant-bd rounded-full text-xs font-bold;
+}

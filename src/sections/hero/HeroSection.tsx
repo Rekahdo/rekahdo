@@ -14,20 +14,20 @@ export const HeroSection = () => {
             {data && !data.hidden &&
                 <Container className='hero-container'>
                     <section className='hero-section'>
-                        <Avatar {...data.avatar} {...data.location} className='top-right' />
+                        <Avatar {...data.avatar} className='top-right' />
 
                         <div  className='bottom-left'>
                             <p>{data.greetings}</p>
                             <h1>{data.fullName}</h1>
                             <p>{data.role}</p>
                             <p>{data.description}</p>
-                            
-                            <div>{
-                                data.tags.map(tag => <Tag {...tag} />)
+
+                            <div className="tags">{
+                                data.tags.filter((_, i)  => i < 3).map(tag => <Tag key={tag.id} {...tag} />)
                             }</div>
 
-                            <div>{
-                                data.actionButtons.map(button => <Button {...button} />)
+                            <div className="actionBtns">{
+                                data.actionButtons.map(button => <Button key={button.id} {...button} />)
                             }</div>
                         </div>
                     </section>

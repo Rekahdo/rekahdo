@@ -15,7 +15,7 @@ export const Tag = (props: TagCompType) => {
         <>
             {
                 !props.hidden &&
-                <span key={props.id} hidden={props.hidden} className={`${props.className}`}>
+                <span key={props.id} hidden={props.hidden} className={`tag ${props.className}`}>
                     {props.text}
                 </span>
             }

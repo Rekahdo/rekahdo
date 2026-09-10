@@ -6,26 +6,27 @@
 }
 
 .avatar{
-    @apply flex flex-col justify-center items-center gap-2;
+    @apply flex flex-col justify-center items-center gap-2 ;
+    @apply max-md:py-8 max-lg:py-10;
 
     .avatar-img-con{
         @apply relative;
-        @apply w-[35%] min-sm-x1:w-[37%] min-lg:w-[50%];
+        @apply w-[45%] min-md:w-[40%] min-lg:w-[50%];
 
         .code{
             @apply absolute bottom-0 right-0 rounded-full bg-radial from-[var(--avatar-code-from)] from-30% to-[var(--avatar-code-to)] border-1 border-dominant-bd;
 
-            @apply w-9 h-9 p-2 min-sm-x1:w-15 min-sm-x1:h-15 min-sm-x1:p-3 
+            @apply w-9 h-9 p-2 min-md:w-15 min-md:h-15 min-md:p-3 
         }
     }
 
     .avatar-location-con{
         @apply flex items-center gap-2;
-        @apply text-xs min-sm-x1:text-lg;
+        @apply text-xs min-md:text-lg;
 
         .dot{
             @apply bg-accent rounded-full inline-block;
-            @apply w-2 h-2 min-md:w-3 min-md:h-3 min-lg:w-2.5 min-lg:h-2.5;
+            @apply w-2 h-2 min-md-2:w-3 min-md-2:h-3 min-lg:w-2.5 min-lg:h-2.5;
         }
     }
 }

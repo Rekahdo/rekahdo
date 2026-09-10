@@ -1,12 +1,12 @@
 @reference "../../index.css";
 
 :root {
-  --sm-hero-height: 92dvh;
+  --sm-hero-height: auto;
   --lg-hero-height: 4/2.1;
 }
 
 .hero-container{
-    @apply bg-radial from-[var(--dominant-rd)] from-5% from-10% to-[var(--dominant)] to-70% text-dominant-fg;
+    @apply bg-radial from-[var(--dominant-rd-from)] from-5% from-10% to-[var(--dominant-rd-to)] to-70% text-dominant-fg;
 }
 
 .hero-section{
@@ -18,8 +18,16 @@
     }
     
     .bottom-left{
-        @apply min-lg:order-1;
-    }
+        @apply flex flex-col justify-center items-center;
+        @apply min-lg:order-1 min-lg:items-start;
 
-    
+        .tags{
+            @apply flex flex-col items-center gap-3;
+            @apply min-lg:flex-row min-lg:gap-3;
+        }
+        
+        .actionBtns{
+            @apply flex flex-wrap justify-center;
+        }
+    }
 }

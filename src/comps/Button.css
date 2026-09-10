@@ -1,7 +1,31 @@
 @reference "../index.css";
 
-.btn-ui {
+.btn-comp-ui {
   @apply flex items-center gap-3 rounded-xl bg-primary text-primary-fg px-4 py-2;
 
   @apply hover:bg-primary-hover;
+
+  .header-download-cv-mobile {
+
+  }
+
+  .header-download-cv-desktop {
+    
+  }
+
+  .hero-download-cv {
+    
+  }
+
+  .contact-me {
+    
+  }
+
+  .tech-stack {
+    
+  }
+
+  .send-message {
+    
+  }
 }

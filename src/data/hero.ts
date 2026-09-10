@@ -5,17 +5,18 @@ export const heroData: HeroType = {
   greetings: "Hi there, I'm",
   fullName: "RICHARD OKAFOR",
   role: "Full Stack Developer",
-  description: "Welcome to my portfolio, where I showcase my projects, skills, and experience as a passionate developer with a focus on Java-based and front-end technologies, developing innovative solutions that drive business value and user engagement.",
-  location: {
-    hidden: false,
-    state: "Lagos",
-    country: "Nigeria"
-  },
+  description:
+    "Welcome to my portfolio, where I showcase my projects, skills, and experience as a passionate developer with a focus on Java-based and front-end technologies, developing innovative solutions that drive business value and user engagement.",
   avatar: {
     hidden: false,
     file_name: "richard okafor",
     file_path: "/src/images/me/hero-section.png",
     rounded: true,
+    location: {
+      hidden: false,
+      state: "Lagos",
+      country: "Nigeria",
+    },
   },
   tags: [
     {
@@ -27,7 +28,7 @@ export const heroData: HeroType = {
       id: 2,
       hidden: false,
       text: "TS Academy Frontend Development Student",
-    }
+    },
   ],
   actionButtons: [
     {
@@ -48,6 +49,6 @@ export const heroData: HeroType = {
       text: "Download CV",
       file_path: "/Richard_Okafor_CV.pdf",
       file_name: "Richard_Okafor_CV.pdf",
-    }
-  ]
-}
+    },
+  ],
+};
