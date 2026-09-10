@@ -6,8 +6,8 @@
 }
 
 .hero-section {
-  @apply w-full overflow-scroll flex flex-col pb-8;
-  @apply min-md:h-[92dvh] min-lg:aspect-[var(--lg-hero-height)] min-lg:flex-row max-lg:items-center;
+  @apply w-full overflow-hidden flex flex-col pb-8;
+  @apply min-md:h-[92dvh] min-lg:aspect-[var(--lg-hero-height)] min-lg:flex-row max-lg:items-center min-lg:w-[75%];
 
   .top-right {
     @apply min-lg:order-2 ;

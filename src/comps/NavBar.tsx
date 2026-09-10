@@ -66,7 +66,7 @@ function Version_1(logo: LogoType, navLink: NavLinkType, ctaButton: ActionButton
   )
 }
 
-function Version_2(navLink: NavLinkType, ctaButton: ActionButtonType) {
+function Version_2(_navLink: NavLinkType, _ctaButton: ActionButtonType) {
   return (
     <>
       <div className='hamburger-icon-con'>

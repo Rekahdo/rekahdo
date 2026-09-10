@@ -7,7 +7,7 @@ import './HeroSection.css'
 
 export const HeroSection = () => {
 
-    const { data, reload } = useHero()!; 
+    const { data } = useHero()!; 
 
     return (
         <>
