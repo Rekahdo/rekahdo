@@ -1,32 +1,53 @@
 @reference "../../index.css";
 
 :root {
-  --sm-hero-height: auto;
+  --sm-hero-height: 92dvh;
   --lg-hero-height: 4/2.1;
 }
 
-.hero-container{
-}
+.hero-section {
+  @apply w-full overflow-scroll flex flex-col pb-8;
+  @apply min-md:h-[92dvh] min-lg:aspect-[var(--lg-hero-height)] min-lg:flex-row max-lg:items-center;
 
-.hero-section{
-    @apply w-full overflow-y-hidden grid grid-cols-1;
-    @apply max-lg:h-[var(--sm-hero-height)] min-lg:aspect-[var(--lg-hero-height)] min-lg:grid-cols-2;
+  .top-right {
+    @apply min-lg:order-2 ;
+  }
 
-    .top-right{
-        @apply min-lg:order-2;
+  .bottom-left {
+    @apply flex flex-col justify-center items-center text-center gap-5 grow;
+    @apply min-sm:gap-8 min-lg:gap-2 min-lg:order-1 min-lg:items-start min-lg:text-start max-lg:place-content-between min-md:w-[90%] min-lg:w-[60%] min-lg:grow;
+
+    .tags {
+      @apply flex flex-col items-center gap-3;
+      @apply min-md:flex-row min-lg:gap-3 min-lg:mt-3 min-lg:my-6;
     }
-    
-    .bottom-left{
-        @apply flex flex-col justify-center items-center;
-        @apply min-lg:order-1 min-lg:items-start;
 
-        .tags{
-            @apply flex flex-col items-center gap-3;
-            @apply min-lg:flex-row min-lg:gap-3;
-        }
-        
-        .actionBtns{
-            @apply flex flex-wrap justify-center;
-        }
+    .actionBtns {
+      @apply flex flex-wrap justify-center gap-5;
     }
+
+    & > :not(.ignore-font) {
+      @apply font-hero;
+    }
+
+    .greetings, .role{
+        @apply font-bold;
+    }
+
+    .greetings{
+        @apply text-[1.2rem] min-md:text-[1.7rem] min-lg:text-[1.6rem];
+    }
+
+    .fullName{
+        @apply max-sm:text-[2.2rem] max-lg:text-[3rem];
+    }
+
+    .role{
+        @apply text-[1.5rem] min-md:text-[1.8rem] min-lg:text-[2rem];
+    }
+
+    .description{
+        @apply text-[0.8rem] w-[90%] min-sm:text-[1.3rem] min-lg:text-[1.1rem] min-lg:my-2;
+    }
+  }
 }

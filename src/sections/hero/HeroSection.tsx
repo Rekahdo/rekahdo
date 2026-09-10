@@ -7,7 +7,7 @@ import './HeroSection.css'
 
 export const HeroSection = () => {
 
-    const { data, reload } = useHero()!;
+    const { data, reload } = useHero()!; 
 
     return (
         <>
@@ -17,16 +17,16 @@ export const HeroSection = () => {
                         <Avatar {...data.avatar} className='top-right' />
 
                         <div  className='bottom-left'>
-                            <p>{data.greetings}</p>
-                            <h1>{data.fullName}</h1>
-                            <p>{data.role}</p>
-                            <p>{data.description}</p>
+                            <p className="greetings">{data.greetings}</p>
+                            <h1 className="fullName">{data.fullName}</h1>
+                            <p className="role">{data.role}</p>
+                            <p className="description">{data.description}</p>
 
-                            <div className="tags">{
+                            <div className="tags ignore-font">{
                                 data.tags.filter((_, i)  => i < 3).map(tag => <Tag key={tag.id} {...tag} />)
                             }</div>
 
-                            <div className="actionBtns">{
+                            <div className="actionBtns ignore-font">{
                                 data.actionButtons.map(acBtn => <Button key={acBtn.button.id} {...acBtn} />)
                             }</div>
                         </div>

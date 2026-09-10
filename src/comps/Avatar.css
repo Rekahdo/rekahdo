@@ -7,11 +7,11 @@
 
 .avatar{
     @apply flex flex-col justify-center items-center gap-2 ;
-    @apply max-md:py-8 max-lg:py-10;
+    @apply max-md:py-8 max-lg:py-10 min-lg:w-[40%];
 
     .avatar-img-con{
         @apply relative;
-        @apply w-[45%] min-md:w-[40%] min-lg:w-[50%];
+        @apply w-[45%] min-md:w-[40%] min-lg:w-[80%];
 
         .code{
             @apply absolute bottom-0 right-0 rounded-full bg-radial from-[var(--avatar-code-from)] from-30% to-[var(--avatar-code-to)] border-1 border-dominant-bd;
