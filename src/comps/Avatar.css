@@ -1,0 +1,32 @@
+@reference "../index.css";
+
+:root{
+    --avatar-code-from: hsl(226, 60%, 9.8%);
+    --avatar-code-to: hsla(226, 91%, 52%, 0.518);
+}
+
+.avatar{
+    @apply flex flex-col justify-center items-center gap-2 ;
+    @apply max-md:py-8 max-lg:py-10 min-lg:w-[40%];
+
+    .avatar-img-con{
+        @apply relative;
+        @apply w-[45%] min-md:w-[40%] min-lg:w-[80%];
+
+        .code{
+            @apply absolute bottom-0 right-0 rounded-full bg-radial from-[var(--avatar-code-from)] from-30% to-[var(--avatar-code-to)] border-1 border-dominant-bd;
+
+            @apply w-9 h-9 p-2 min-md:w-15 min-md:h-15 min-md:p-3 
+        }
+    }
+
+    .avatar-location-con{
+        @apply flex items-center gap-2;
+        @apply text-xs min-md:text-lg;
+
+        .dot{
+            @apply bg-accent rounded-full inline-block;
+            @apply w-2 h-2 min-md-2:w-3 min-md-2:h-3 min-lg:w-2.5 min-lg:h-2.5;
+        }
+    }
+}

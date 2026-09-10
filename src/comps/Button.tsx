@@ -1,28 +1,74 @@
-import { Download } from 'lucide-react'
+import { Download, Send } from 'lucide-react';
 import './Button.css'
 
+export const Position = {
+    LEFT: "Left",
+    RIGHT: "Right",
+}
+
+export type PositionType = (typeof Position)[keyof typeof Position];
+
+export const Icon = {
+    DOWNLOAD: {
+        btnId: 1,
+        icon: <Download size={16} />,
+        position: Position.LEFT,
+    },
+    SEND: {
+        btnId: 4,
+        icon: <Send size={16} />,
+        position: Position.RIGHT,
+    }
+}
+
+export type IconType = (typeof Icon)[keyof typeof Icon]
+
 export type ButtonType = {
-    readonly id?: number;
-    hidden?: boolean;
-    text?: string;
-    download?: {
-        file_name: string;
-        file_path: string;
-    };
-    className?: string;
-    onClick?: () => void
+    readonly id: number;
+    hidden: boolean;
+    text: string;
+    file_name?: string;
+    file_path?: string;
 };
 
-export const Button = (props: ButtonType) => {
-    return (
-        <button key={props.id} className={`btn-ui ${props.className}`} hidden={props.hidden} onClick={props.onClick}>
-            {props.download && <Download size={16} />}
+export type ActionButtonType = {
+  uiTypeId: number;
+  button: ButtonType;
+}
 
-            {!props.download ? props.text : (
-                <a href={props.download.file_path} download={props.download.file_name}>
-                    {props.text}
-                </a>
-            )}
-        </button>
+export type ButtonCompType = ActionButtonType & {
+    icon?: IconType;
+    className?: string;
+    onClick?: () => void;
+};
+
+export const Button = (props: ButtonCompType) => {
+
+    return (
+        <>
+            {
+                !props.button?.hidden &&
+
+                <button key={props.button.id} className={`btn-comp-ui ui-${props.uiTypeId} ${props.className}`} onClick={props.onClick}>
+                    {
+                        props.icon && props.icon.position === Position.LEFT && props.icon.icon
+                    }
+
+                    {
+                        props.button.file_name && props.button.file_path ?
+                            (
+                                <a href={props.button.file_path} download={props.button.file_name}>
+                                    {props.button.text}
+                                </a>
+                            ) : props.button.text
+                    }
+
+                    {
+                        props.icon && props.icon.position === Position.RIGHT && props.icon.icon
+                    }
+
+                </button>
+            }
+        </>
     )
 }

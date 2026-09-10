@@ -1,16 +1,16 @@
-import type { ButtonType } from "../../comps/Button";
+import type { ActionButtonType } from "../../comps/Button";
 
 export type LogoType = {
   hidden: boolean;
   name: string;
-  url: string;
+  file_path: string;
 };
 
 export type LinkType = {
   readonly id: number;
   hidden: boolean;
   text: string;
-  path: string;
+  file_path: string;
   indexPosition: number;
 };
 
@@ -23,5 +23,5 @@ export type HeaderType = {
   hidden: boolean;
   logo: LogoType;
   navLink: NavLinkType;
-  ctaButton: ButtonType;
+  ctaButton: ActionButtonType;
 };
