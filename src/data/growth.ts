@@ -1,4 +1,32 @@
-export const growthData = {
+type GrowthItem = {
+  id: number;
+  title: string;
+  provider: string;
+  status: string;
+  description: string;
+  technologies: string[];
+  startDate: string;
+  endDate: string;
+  link: string;
+  linkLabel: string;
+  hidden: boolean;
+}
+
+type Quote = {
+  hidden: boolean;
+  text: string;
+}
+
+type GrowthType = {
+  hidden: boolean;
+  sectionTitle: string;
+  subtitle: string;
+  description: string;
+  items: GrowthItem[];
+  quote: Quote;
+}
+
+export const growthData: GrowthType = {
   hidden: false,
   sectionTitle: "Growth",
   subtitle: "What I am currently learning",

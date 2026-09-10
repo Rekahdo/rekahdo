@@ -1,4 +1,24 @@
-export const servicesData = {
+type Service = {
+  id: number;
+  title: string;
+  badge: string;
+  subHeading: string;
+  description: string;
+  tags: string[];
+  actionLabel: string;
+  actionUrl: string;
+  hidden: boolean;
+}
+
+type ServicesType = {
+  hidden: boolean;
+  sectionTitle: string;
+  subtitle: string;
+  description: string;
+  services: Service[];
+}
+
+export const servicesData: ServicesType = {
   hidden: false,
   sectionTitle: "Services",
   subtitle: "What I do with my skills",

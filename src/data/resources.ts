@@ -1,4 +1,30 @@
-export const resourcesData = {
+type ResourceItem = {
+  id: number;
+  title: string;
+  badge: string;
+  description: string;
+  link: string;
+  hidden: boolean;
+}
+
+type ResourceCategory = {
+  id: string;
+  name: string;
+  subtitle: string;
+  count: number;
+  hidden: boolean;
+  items: ResourceItem[];
+}
+
+type ResourcesType = {
+  hidden: boolean;
+  sectionTitle: string;
+  subtitle: string;
+  description: string;
+  categories: ResourceCategory[];
+}
+
+export const resourcesData: ResourcesType = {
   hidden: false,
   sectionTitle: "Resources",
   subtitle: "References and tools I rely on every day",

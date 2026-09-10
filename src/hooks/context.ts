@@ -17,3 +17,7 @@ export const useHeader = (): ContextValueType<HeaderType> => {
 export const useHero = (): ContextValueType<HeroType> => {
   return HeroContext.context(Provider.HERO);
 };
+
+export const useAbout = (): ContextValueType<HeroType> => {
+  return HeroContext.context(Provider.HERO);
+};
