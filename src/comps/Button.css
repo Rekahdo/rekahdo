@@ -1,31 +1,33 @@
 @reference "../index.css";
 
 .btn-comp-ui {
-  @apply flex items-center gap-3 rounded-xl bg-primary text-primary-fg px-4 py-2;
+  @apply flex items-center gap-3 rounded-xl text-primary-fg;
 
-  @apply hover:bg-primary-hover;
-
-  .header-download-cv-mobile {
-
+  &.ui-1{
+    @apply px-4 py-2;
+  }
+  
+  &.ui-1, &.ui-2{
+    @apply bg-primary;
+    @apply hover:bg-primary-hover;
+  }
+  
+  &.ui-3{
+    @apply border-white;
+    @apply hover:bg-dominant-transparent;
+  }
+  
+  &.ui-4{
+    @apply border-accent;
+    @apply hover:bg-accent-transparent;
   }
 
-  .header-download-cv-desktop {
-    
+  &.ui-2, &.ui-3, &.ui-4{
+    @apply px-6 py-3;
   }
 
-  .hero-download-cv {
-    
+  &.ui-3, &.ui-4{
+    @apply bg-transparent border-1;
   }
-
-  .contact-me {
-    
-  }
-
-  .tech-stack {
-    
-  }
-
-  .send-message {
-    
-  }
+  
 }

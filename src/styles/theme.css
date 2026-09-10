@@ -7,16 +7,19 @@
   --dominant-bd: hsl(226, 60%, 30%);
   --dominant-rd-from: hsl(226, 70%, 21%);
   --dominant-rd-to: var(--dominant);
+  --dominant-transparent: hsla(227, 43%, 23%, 0.593);
 
   /* primary: 30% Blue Shape */
   --primary: hsl(207, 100%, 41%);
   --primary-hover: hsl(207, 100%, 36%);
   --primary-fg: hsl(0, 0%, 100%);
+  --primary-transparent: hsla(207, 100%, 41%, 0.185);
 
   /* accent: 10% Blue Shape */
   --accent: hsl(198.4, 93.2%, 59.6%);
   --accent-hover: hsl(200.4, 98%, 39.4%);
   --accent-fg: hsl(0, 0%, 100%);
+  --accent-transparent: hsla(198.4, 93.2%, 59.6%, 0.185);
 
   /* Other Color */
   --light: hsl(210, 40%, 98%);
@@ -47,14 +50,17 @@
   --color-dominant: var(--dominant);
   --color-dominant-fg: var(--dominant-fg);
   --color-dominant-bd: var(--dominant-bd);
+  --color-dominant-transparent: var(--dominant-transparent);
 
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-primary-fg: var(--primary-fg);
+  --color-primary-transparent: var(--primary-transparent);
 
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-accent-fg: var(--accent-fg);
+  --color-accent-transparent: var(--accent-transparent);
 
   --color-light: var(--light);
   --color-surface: var(--surface);
@@ -72,7 +78,7 @@
 
 @layer base {
   *,
-  *::before,
+  *::before, 
   *::after {
     @apply m-0 p-0 box-border font-primary;
   }
@@ -83,6 +89,10 @@
 
   html {
     font-size: var(--font-size);
+  }
+
+  button, a{
+    @apply cursor-pointer;
   }
 };
 

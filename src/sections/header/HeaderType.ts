@@ -1,4 +1,4 @@
-import type { ButtonType } from "../../comps/Button";
+import type { ActionButtonType } from "../../comps/Button";
 
 export type LogoType = {
   hidden: boolean;
@@ -23,5 +23,5 @@ export type HeaderType = {
   hidden: boolean;
   logo: LogoType;
   navLink: NavLinkType;
-  ctaButton: ButtonType;
+  ctaButton: ActionButtonType;
 };

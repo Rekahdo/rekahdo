@@ -1,14 +1,14 @@
 import './NavBar.css'
 import type { LogoType, NavLinkType } from "../sections/header/HeaderType"
-import { Download, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
-import { Button, ButtonUI, type ButtonType } from './Button';
+import { Button, ButtonIcon, type ActionButtonType } from './Button';
 
 type NavBarType = {
   version?: number,
   logo: LogoType,
   navLink: NavLinkType,
-  ctaButton: ButtonType,
+  ctaButton: ActionButtonType,
 }
 
 export const NavBar = ({ logo, version = 0, navLink, ctaButton }: NavBarType) => {
@@ -21,7 +21,7 @@ export const NavBar = ({ logo, version = 0, navLink, ctaButton }: NavBarType) =>
   }
 };
 
-function Version_1(logo: LogoType, navLink: NavLinkType, ctaButton: ButtonType) {
+function Version_1(logo: LogoType, navLink: NavLinkType, ctaButton: ActionButtonType) {
 
   const [open, setOpen] = useState<boolean>(false);
 
@@ -54,10 +54,10 @@ function Version_1(logo: LogoType, navLink: NavLinkType, ctaButton: ButtonType) 
                   ))}
                 </div>
 
-                <Button {...ctaButton} type={ButtonUI.HEADER_DOWNLOAD_CV_MOBILE} className='download-cv-mobile' />
+                <Button {...ctaButton} className='download-cv-mobile' icon={ButtonIcon.DOWNLOAD} />
               </nav>
 
-              <Button {...ctaButton} type={ButtonUI.HEADER_DOWNLOAD_CV_DESKTOP}  className='download-cv-desktop' />
+              <Button {...ctaButton} className='download-cv-desktop' icon={ButtonIcon.DOWNLOAD}  />
             </>
           }
         </section>
@@ -66,7 +66,7 @@ function Version_1(logo: LogoType, navLink: NavLinkType, ctaButton: ButtonType) 
   )
 }
 
-function Version_2(navLink: NavLinkType, ctaButton: ButtonType) {
+function Version_2(navLink: NavLinkType, ctaButton: ActionButtonType) {
   return (
     <>
       <div className='hamburger-icon-con'>

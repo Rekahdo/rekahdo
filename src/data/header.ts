@@ -1,4 +1,5 @@
 import type { HeaderType } from "../sections/header/HeaderType";
+import { buttonData } from "./button";
 
 export const headerData: HeaderType = {
   hidden: false,
@@ -48,10 +49,7 @@ export const headerData: HeaderType = {
     ],
   },
   ctaButton: {
-    id: 1,
-    hidden: false,
-    text: "Download CV",
-    file_path: "/Richard_Okafor_CV.pdf",
-    file_name: "Richard_Okafor_CV.pdf",
+    uiTypeId: 1,
+    button: buttonData[0],
   },
 };

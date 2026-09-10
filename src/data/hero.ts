@@ -1,4 +1,5 @@
 import type { HeroType } from "../sections/hero/HeroType";
+import { buttonData } from "./button";
 
 export const heroData: HeroType = {
   hidden: false,
@@ -32,23 +33,16 @@ export const heroData: HeroType = {
   ],
   actionButtons: [
     {
-      id: 1,
-      hidden: false,
-      text: "Contact Me",
-      file_path: "#contact",
+      uiTypeId: 2,
+      button: buttonData[1],
     },
     {
-      id: 2,
-      hidden: false,
-      text: "Tech-Stack",
-      file_path: "#tech-stack",
+      uiTypeId: 3,
+      button: buttonData[2],
     },
     {
-      id: 3,
-      hidden: false,
-      text: "Download CV",
-      file_path: "/Richard_Okafor_CV.pdf",
-      file_name: "Richard_Okafor_CV.pdf",
-    },
+      uiTypeId: 4,
+      button: buttonData[0],
+    }
   ],
 };

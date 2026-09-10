@@ -27,7 +27,7 @@ export const HeroSection = () => {
                             }</div>
 
                             <div className="actionBtns">{
-                                data.actionButtons.map(button => <Button key={button.id} {...button} />)
+                                data.actionButtons.map(acBtn => <Button key={acBtn.button.id} {...acBtn} />)
                             }</div>
                         </div>
                     </section>

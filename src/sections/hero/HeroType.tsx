@@ -1,5 +1,5 @@
 import type { AvatarType } from "../../comps/Avatar";
-import type { ButtonType } from "../../comps/Button";
+import type { ActionButtonType } from "../../comps/Button";
 import type { TagType } from "../../comps/Tag";
 
 export type HeroType = {
@@ -10,5 +10,5 @@ export type HeroType = {
   description: string;
   avatar: AvatarType;
   tags: TagType[];
-  actionButtons: ButtonType[];
+  actionButtons: ActionButtonType[];
 }

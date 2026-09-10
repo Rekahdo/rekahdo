@@ -1,6 +1,5 @@
 import { Download, Send } from 'lucide-react';
 import './Button.css'
-import type { ReactNode } from 'react';
 
 export const Position = {
     LEFT: "Left",
@@ -9,40 +8,20 @@ export const Position = {
 
 export type PositionType = (typeof Position)[keyof typeof Position];
 
-export const ButtonUI = {
-    HEADER_DOWNLOAD_CV_MOBILE: {
-        className: "header-download-cv-mobile",
+export const ButtonIcon = {
+    DOWNLOAD: {
+        btnId: 1,
         icon: <Download size={16} />,
         position: Position.LEFT,
     },
-    HEADER_DOWNLOAD_CV_DESKTOP: {
-        className: "header-download-cv-desktop",
-        icon: <Download size={16} />,
-        position: Position.LEFT,
-    },
-    HERO_DOWNLOAD_CV: {
-        className: "hero-download-cv",
-        icon: null,
-        position: null,
-    },
-    CONTACT_ME: {
-        className: "contact-me",
-        icon: null,
-        position: null,
-    },
-    TECH_STACK: {
-        className: "tech-stack",
-        icon: null,
-        position: null,
-    },
-    SEND_MESSAGE: {
-        className: "send-message",
+    SEND: {
+        btnId: 4,
         icon: <Send size={16} />,
         position: Position.RIGHT,
     }
-};
+}
 
-export type ButtonUIType = (typeof ButtonUI)[keyof typeof ButtonUI]
+export type ButtonIconType = (typeof ButtonIcon)[keyof typeof ButtonIcon]
 
 export type ButtonType = {
     readonly id: number;
@@ -52,37 +31,40 @@ export type ButtonType = {
     file_path?: string;
 };
 
-export type ButtonCompType = ButtonType & {
-    icon?: ReactNode;
+export type ActionButtonType = {
+  uiTypeId: number;
+  button: ButtonType;
+}
+
+export type ButtonCompType = ActionButtonType & {
+    icon?: ButtonIconType;
     className?: string;
-    type: ButtonUIType;
     onClick?: () => void;
 };
 
 export const Button = (props: ButtonCompType) => {
+
     return (
         <>
             {
-                !props.hidden &&
+                !props.button?.hidden &&
 
-                <button key={props.id} className={`btn-comp-ui ${props.className} ${props.type?.className}`} onClick={props.onClick}>
-                    {props.icon && props.icon}
-
+                <button key={props.button.id} className={`btn-comp-ui ui-${props.uiTypeId} ${props.className}`} onClick={props.onClick}>
                     {
-                        !props.icon && props.type?.position === Position.LEFT && props.type?.icon
+                        props.icon && props.icon.position === Position.LEFT && props.icon.icon
                     }
 
                     {
-                        props.file_name && props.file_path ?
+                        props.button.file_name && props.button.file_path ?
                             (
-                                <a href={props.file_path} download={props.file_name}>
-                                    {props.text}
+                                <a href={props.button.file_path} download={props.button.file_name}>
+                                    {props.button.text}
                                 </a>
-                            ) : props.text
+                            ) : props.button.text
                     }
 
                     {
-                        !props.icon && props.type?.position === Position.RIGHT && props.type?.icon
+                        props.icon && props.icon.position === Position.RIGHT && props.icon.icon
                     }
 
                 </button>
