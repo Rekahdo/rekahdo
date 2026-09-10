@@ -1,4 +1,4 @@
-type SocialLink = {
+export type SocialLink = {
   id: number;
   platform: string;
   url: string;
@@ -6,7 +6,7 @@ type SocialLink = {
   hidden: boolean;
 }
 
-type ContactMeType = {
+export type ContactMeType = {
   hidden: boolean;
   email: string;
   phone: string;

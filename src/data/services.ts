@@ -1,4 +1,4 @@
-type Service = {
+export type Service = {
   id: number;
   title: string;
   badge: string;
@@ -10,7 +10,7 @@ type Service = {
   hidden: boolean;
 }
 
-type ServicesType = {
+export type ServicesType = {
   hidden: boolean;
   sectionTitle: string;
   subtitle: string;

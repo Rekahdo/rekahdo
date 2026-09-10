@@ -1,4 +1,4 @@
-type ResourceItem = {
+export type ResourceItem = {
   id: number;
   title: string;
   badge: string;
@@ -7,7 +7,7 @@ type ResourceItem = {
   hidden: boolean;
 }
 
-type ResourceCategory = {
+export type ResourceCategory = {
   id: string;
   name: string;
   subtitle: string;
@@ -16,7 +16,7 @@ type ResourceCategory = {
   items: ResourceItem[];
 }
 
-type ResourcesType = {
+export type ResourcesType = {
   hidden: boolean;
   sectionTitle: string;
   subtitle: string;

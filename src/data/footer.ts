@@ -1,16 +1,16 @@
-type FooterSocialLink = {
+export type FooterSocialLink = {
   platform: string;
   url: string;
   hidden: boolean;
 }
 
-type FooterQuickLink = {
+export type FooterQuickLink = {
   name: string;
   path: string;
   hidden: boolean;
 }
 
-type FooterType = {
+export type FooterType = {
   hidden: boolean;
   copyrightText: string;
   socialLinks: FooterSocialLink[];

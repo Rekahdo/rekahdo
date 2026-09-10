@@ -1,4 +1,4 @@
-type Project = {
+export type Project = {
   id: number;
   title: string;
   description: string;
@@ -10,7 +10,7 @@ type Project = {
   indexPosition: number;
 }
 
-type ProjectsType = {
+export type ProjectsType = {
   hidden: boolean;
   sectionTitle: string;
   subtitle: string;

@@ -1,10 +1,10 @@
-type Experience = {
+export type Experience = {
   hidden: boolean;
   years: number;
   text: string;
 };
 
-type Education = {
+export type Education = {
   id: number;
   title: string;
   institution: string;
@@ -12,14 +12,14 @@ type Education = {
   hidden: boolean;
 };
 
-type CoreSkillType = {
+export type CoreSkillType = {
   id: number;
   text: string;
   emoji: string;
   hidden: boolean;
 };
 
-type AboutType = {
+export type AboutType = {
   hidden: boolean;
   sectionTitle: string;
   headline: string;

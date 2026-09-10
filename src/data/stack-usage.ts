@@ -1,4 +1,4 @@
-type Technology = {
+export type Technology = {
   id: number;
   name: string;
   icon: string;
@@ -7,7 +7,7 @@ type Technology = {
   hidden: boolean;
 }
 
-type CategoryOverview = {
+export type CategoryOverview = {
   id: number;
   category: string;
   percentage: number;
@@ -15,13 +15,13 @@ type CategoryOverview = {
   hidden: boolean;
 }
 
-type ProficiencyKey = {
+export type ProficiencyKey = {
   range: string;
   description: string;
   hidden: boolean;
 }
 
-type StackUsageType = {
+export type StackUsageType = {
   hidden: boolean;
   sectionTitle: string;
   subtitle: string;

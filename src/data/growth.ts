@@ -1,4 +1,4 @@
-type GrowthItem = {
+export type GrowthItem = {
   id: number;
   title: string;
   provider: string;
@@ -12,12 +12,12 @@ type GrowthItem = {
   hidden: boolean;
 }
 
-type Quote = {
+export type Quote = {
   hidden: boolean;
   text: string;
 }
 
-type GrowthType = {
+export type GrowthType = {
   hidden: boolean;
   sectionTitle: string;
   subtitle: string;
