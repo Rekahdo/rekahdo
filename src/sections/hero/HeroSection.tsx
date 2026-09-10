@@ -11,7 +11,9 @@ export const HeroSection = () => {
     return (
         <>
             { data && !data.hidden &&
-                <section>
+                <div>
+
+                <section className='hero-section'>
                     <Avatar {...data.avatar} {...data.location}/>
                     <p>{data.greetings}</p>
                     <h1>{data.fullName}</h1>
@@ -24,6 +26,7 @@ export const HeroSection = () => {
                         data.actionButtons.map(button => <Button {...button}/>)  
                     }</div>
                 </section>
+                    </div>
             }
         </>
     )

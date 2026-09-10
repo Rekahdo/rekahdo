@@ -1,3 +1,4 @@
+import { Container } from '../../comps/Container';
 import { NavBar } from '../../comps/NavBar';
 import { useHeader } from '../../hooks/context'
 import './HeaderSection.css'
@@ -11,9 +12,11 @@ export const HeaderSection = () => {
             {
                 data && !data.hidden &&
 
-                <header className='header-section'>
-                    <NavBar logo={data.logo} navLink={data.navLink} ctaButton={data.ctaButton} />
-                </header>
+                <Container className='bg-dominant border-dominant-bd border-b-1'>
+                    <header className='header-section'>
+                        <NavBar logo={data.logo} navLink={data.navLink} ctaButton={data.ctaButton} />
+                    </header>
+                </Container>
             }
         </>
     )

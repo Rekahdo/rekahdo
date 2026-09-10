@@ -32,38 +32,35 @@ function Version_1(logo: LogoType, navLink: NavLinkType, ctaButton: ButtonType) 
   return (
     <>
       {
+        <section className='nav-bar'>
+          {
+            !logo.hidden &&
+            <div hidden={logo.hidden} className='logo'>
+              <img src={logo.file_path} alt={`${logo.name} Logo`} />
+            </div>
+          }
 
-        <div className='bottom-border'>
-          <section className='nav-bar'>
-            {
-              !logo.hidden &&
-              <div hidden={logo.hidden} className='logo'>
-                <img src={logo.file_path} alt={`${logo.name} Logo`} />
-              </div>
-            }
+          {
+            !navLink.hidden &&
+            <>
+              <button className='hamburger-icon-con' onClick={toggleMenu}>
+                {open ? <X color='white' /> : <Menu color='white' />}
+              </button>
 
-            {
-              !navLink.hidden &&
-              <>
-                <button className='hamburger-icon-con' onClick={toggleMenu}>
-                  {open ? <X color='white' /> : <Menu color='white' />}
-                </button>
+              <nav className={`nav-link ${open ? "open" : ""}`} onClick={toggleMenu}>
+                <div hidden={navLink.hidden} className='links'>
+                  {navLink.links.map((link) => (
+                    <a href={link.file_path} hidden={link.hidden} key={link.id} className='link'>{link.text}</a>
+                  ))}
+                </div>
 
-                <nav className={`nav-link ${open ? "open" : ""}`} onClick={toggleMenu}>
-                  <div hidden={navLink.hidden} className='links'>
-                    {navLink.links.map((link) => (
-                      <a href={link.file_path} hidden={link.hidden} key={link.id} className='link'>{link.text}</a>
-                    ))}
-                  </div>
+                <Button {...ctaButton} className='download-cv-1' icon={<Download size={16} />} />
+              </nav>
 
-                  <Button {...ctaButton} className='download-cv-1' icon={<Download size={16} />} />
-                </nav>
-
-                <Button {...ctaButton} className='download-cv-2' icon={<Download size={16} />} />
-              </>
-            }
-          </section>
-        </div>
+              <Button {...ctaButton} className='download-cv-2' icon={<Download size={16} />} />
+            </>
+          }
+        </section>
       }
     </>
   )

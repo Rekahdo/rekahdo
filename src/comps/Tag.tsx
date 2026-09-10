@@ -1,3 +1,5 @@
+import './Tag.css'
+
 export type TagType = {
     readonly id: number;
     hidden: boolean;

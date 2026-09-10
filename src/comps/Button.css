@@ -1,11 +1,7 @@
-@import '../index.css';
+@reference "../index.css";
 
-@layer utilities {
+.btn-ui {
+  @apply flex items-center gap-3 rounded-xl bg-primary text-primary-fg px-4 py-2;
 
-  .btn-ui {
-    @apply flex items-center gap-3 rounded-xl bg-primary text-primary-fg px-4 py-2;
-
-    @apply hover:bg-primary-hover;
-  }
-
+  @apply hover:bg-primary-hover;
 }

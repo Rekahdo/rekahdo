@@ -1,1 +1,7 @@
-@import 'tailwindcss';
+@reference "../../index.css";
+
+.hero-section{
+    @apply bg-radial from-[var(--dominant-rd)] from-5% from-10% to-[var(--dominant)] to-70% overflow-hidden;
+
+    @apply h-[800px]
+}

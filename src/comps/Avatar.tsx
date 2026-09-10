@@ -1,3 +1,4 @@
+import './Avatar.css'
 import { CodeXml } from "lucide-react"
 import type { LocationType } from "../sections/hero/HeroType";
 

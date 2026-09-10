@@ -5,7 +5,7 @@ import './Home.css'
 export const Home = () => {
     return (
         <>
-            {/* <HeaderSection /> */}
+            <HeaderSection />
             <HeroSection />
         </>
     )

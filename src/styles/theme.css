@@ -5,6 +5,7 @@
   --dominant: hsl(226, 60%, 9.8%);
   --dominant-fg: hsl(0, 0%, 100%);
   --dominant-bd: hsl(226, 60%, 30%);
+  --dominant-rd: hsl(226, 60%, 15%);
 
   /* primary: 30% Blue Shape */
   --primary: hsl(207, 100%, 41%);
@@ -66,7 +67,7 @@
   --breakpoint-mobile-sm: var(--mobile-sm);
   --breakpoint-mobile-lg: var(--mobile-lg);
   --breakpoint-md: 900px;
-}
+};
 
 @layer base {
   *,
@@ -76,24 +77,20 @@
   }
 
   body {
-    @apply bg-dominant text-dominant-fg;
+    /* @apply bg-dominant text-dominant-fg; */
   }
 
   html {
     font-size: var(--font-size);
   }
-}
+};
 
-@layer utilities {
-  .flex {
-    @apply flex flex-row;
-  }
+@layer components{
+  .section-container{
+    @apply flex justify-center;
 
-  .flex-col {
-    @apply flex flex-col;
-  }
-
-  .center {
-    @apply flex justify-center content-center;
+    & > *{
+      @apply max-w-portfolio;
+    }
   }
 }

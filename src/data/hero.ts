@@ -4,7 +4,7 @@ export const heroData: HeroType = {
   hidden: false,
   greetings: "Hi there, I'm",
   fullName: "RICHARD OKAFOR",
-  role: "Java Backend Developer & An Aspiring Frontend Developer",
+  role: "Full Stack Developer",
   description: "Welcome to my portfolio, where I showcase my projects, skills, and experience as a passionate developer with a focus on Java-based and front-end technologies, developing innovative solutions that drive business value and user engagement.",
   location: {
     hidden: false,
