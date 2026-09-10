@@ -6,7 +6,6 @@
 }
 
 .hero-container{
-    @apply bg-radial from-[var(--dominant-rd-from)] from-5% from-10% to-[var(--dominant-rd-to)] to-70% text-dominant-fg;
 }
 
 .hero-section{

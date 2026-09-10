@@ -12,7 +12,7 @@ export const HeroSection = () => {
     return (
         <>
             {data && !data.hidden &&
-                <Container className='hero-container'>
+                <Container className='hero-container bg-dominant-rd'>
                     <section className='hero-section'>
                         <Avatar {...data.avatar} className='top-right' />
 

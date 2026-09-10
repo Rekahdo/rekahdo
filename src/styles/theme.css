@@ -91,10 +91,40 @@
     font-size: var(--font-size);
   }
 
+  h1 {
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
   button, a{
     @apply cursor-pointer;
   }
 };
+
+@layer utilities{
+  .bg-dominant-rd{
+    @apply bg-radial from-[var(--dominant-rd-from)] from-10% to-[var(--dominant-rd-to)] to-70% text-dominant-fg;
+  }
+}
 
 @layer components{
   .section-container{

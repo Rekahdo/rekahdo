@@ -2,7 +2,7 @@ import './NavBar.css'
 import type { LogoType, NavLinkType } from "../sections/header/HeaderType"
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
-import { Button, ButtonIcon, type ActionButtonType } from './Button';
+import { Button, Icon, type ActionButtonType } from './Button';
 
 type NavBarType = {
   version?: number,
@@ -54,10 +54,10 @@ function Version_1(logo: LogoType, navLink: NavLinkType, ctaButton: ActionButton
                   ))}
                 </div>
 
-                <Button {...ctaButton} className='download-cv-mobile' icon={ButtonIcon.DOWNLOAD} />
+                <Button {...ctaButton} className='download-cv-mobile' icon={Icon.DOWNLOAD} />
               </nav>
 
-              <Button {...ctaButton} className='download-cv-desktop' icon={ButtonIcon.DOWNLOAD}  />
+              <Button {...ctaButton} className='download-cv-desktop' icon={Icon.DOWNLOAD}  />
             </>
           }
         </section>

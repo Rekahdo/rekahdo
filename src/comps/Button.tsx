@@ -8,7 +8,7 @@ export const Position = {
 
 export type PositionType = (typeof Position)[keyof typeof Position];
 
-export const ButtonIcon = {
+export const Icon = {
     DOWNLOAD: {
         btnId: 1,
         icon: <Download size={16} />,
@@ -21,7 +21,7 @@ export const ButtonIcon = {
     }
 }
 
-export type ButtonIconType = (typeof ButtonIcon)[keyof typeof ButtonIcon]
+export type IconType = (typeof Icon)[keyof typeof Icon]
 
 export type ButtonType = {
     readonly id: number;
@@ -37,7 +37,7 @@ export type ActionButtonType = {
 }
 
 export type ButtonCompType = ActionButtonType & {
-    icon?: ButtonIconType;
+    icon?: IconType;
     className?: string;
     onClick?: () => void;
 };
