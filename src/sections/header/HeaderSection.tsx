@@ -12,7 +12,7 @@ export const HeaderSection = () => {
             {
                 data && !data.hidden &&
 
-                <Container className='bg-dominant border-dominant-bd border-b-1'>
+                <Container className='header-container'>
                     <header className='header-section'>
                         <NavBar logo={data.logo} navLink={data.navLink} ctaButton={data.ctaButton} />
                     </header>

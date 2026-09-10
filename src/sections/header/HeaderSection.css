@@ -1,7 +1,11 @@
 @import "../../index.css";
 
 @layer utilities {
+  .header-container{
+    @apply bg-dominant border-dominant-bd border-b-1 sticky top-0 left-0;
+  }
+
   .header-section{
-    @apply flex justify-center sticky top-0 left-0 w-full bg-dominant text-dominant-fg;
+    @apply flex justify-center w-full bg-dominant text-dominant-fg;
   }
 }

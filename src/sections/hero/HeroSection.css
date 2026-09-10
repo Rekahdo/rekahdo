@@ -1,7 +1,25 @@
 @reference "../../index.css";
 
-.hero-section{
-    @apply bg-radial from-[var(--dominant-rd)] from-5% from-10% to-[var(--dominant)] to-70% overflow-hidden;
+:root {
+  --sm-hero-height: 92dvh;
+  --lg-hero-height: 4/2.1;
+}
 
-    @apply h-[800px]
+.hero-container{
+    @apply bg-radial from-[var(--dominant-rd)] from-5% from-10% to-[var(--dominant)] to-70% text-dominant-fg;
+}
+
+.hero-section{
+    @apply w-full overflow-y-hidden grid grid-cols-1;
+    @apply max-lg:h-[var(--sm-hero-height)] min-lg:aspect-[var(--lg-hero-height)] min-lg:grid-cols-2;
+
+    .top-right{
+        @apply min-lg:order-2;
+    }
+    
+    .bottom-left{
+        @apply min-lg:order-1;
+    }
+
+    
 }

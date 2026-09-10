@@ -66,6 +66,7 @@
 
   --breakpoint-mobile-sm: var(--mobile-sm);
   --breakpoint-mobile-lg: var(--mobile-lg);
+  --breakpoint-sm-x1: 780px;
   --breakpoint-md: 900px;
 };
 
