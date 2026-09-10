@@ -1,9 +1,6 @@
-import { useAbout } from '../../hooks/context'
 import './AboutSection.css'
 
 export const AboutSection = () => {
-
-    const {data} = useAbout();
 
     return (
         <>
