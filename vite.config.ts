@@ -3,8 +3,6 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 const localhost = "http://localhost:3000";
-const webhost = "";
-
 const hosting = localhost;
 
 // https://vite.dev/config/
