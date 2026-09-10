@@ -11,7 +11,7 @@ export const heroData: HeroType = {
   avatar: {
     hidden: false,
     file_name: "richard okafor",
-    file_path: "/src/images/me/hero-section.png",
+    file_path: "/images/me/hero-section.png",
     rounded: true,
     location: {
       hidden: false,

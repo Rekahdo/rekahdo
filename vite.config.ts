@@ -13,9 +13,6 @@ export default defineConfig({
       "/api": {
         target: hosting,
       },
-      "/images": {
-        target: hosting,
-      },
     },
   },
   build: {
