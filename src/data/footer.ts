@@ -1,4 +1,23 @@
-export const footerData = {
+export type FooterSocialLink = {
+  platform: string;
+  url: string;
+  hidden: boolean;
+}
+
+export type FooterQuickLink = {
+  name: string;
+  path: string;
+  hidden: boolean;
+}
+
+export type FooterType = {
+  hidden: boolean;
+  copyrightText: string;
+  socialLinks: FooterSocialLink[];
+  quickLinks: FooterQuickLink[];
+}
+
+export const footerData: FooterType = {
   hidden: false,
   copyrightText: "© 2026 Richard Okafor (Rekahdo). All rights reserved.",
   socialLinks: [
