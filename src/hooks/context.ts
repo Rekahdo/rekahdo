@@ -1,17 +1,5 @@
 import { useContext } from "react";
 import { HeaderContext } from "../contexts/HeaderProvider";
-import { Provider, type ContextValueType } from "../contexts/ContextProvider";
-import type { HeaderType } from "../sections/header/HeaderType";
-import type { HeroType } from "../sections/hero/HeroType";
-import type { AboutType } from "../data/about-me";
-import type { ContactMeType } from "../data/contact-me";
-import type { FooterType } from "../data/footer";
-import type { GrowthType } from "../data/growth";
-import type { ProjectsType } from "../data/projects";
-import type { ResourcesType } from "../data/resources";
-import type { ServicesType } from "../data/services";
-import type { StackUsageType } from "../data/stack-usage";
-import type { TechStack } from "../data/tech-stack";
 import { HeroContext } from "../contexts/HeroProvider";
 import { AboutContext } from "../contexts/AboutProvider";
 import { ContactContext } from "../contexts/ContactProvider";
@@ -22,6 +10,8 @@ import { ResourcesContext } from "../contexts/ResourcesProvider";
 import { ServicesContext } from "../contexts/ServicesProvider";
 import { StackUsageContext } from "../contexts/StackUsageProvider";
 import { TechStackContext } from "../contexts/TechStackProvider";
+import type { AboutType, ContactMeType, ContextValueType, FooterType, GrowthType, HeaderType, HeroType, ProjectsType, ResourcesType, ServicesType, StackUsageType, TechStack } from "../utils/type";
+import { Provider } from "../utils/enum";
 
 export const useHeader = (): ContextValueType<HeaderType> => {
   const context = useContext(HeaderContext);

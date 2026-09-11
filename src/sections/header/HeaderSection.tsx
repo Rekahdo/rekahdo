@@ -1,7 +1,7 @@
 import { Container } from '../../components/Container';
 import { NavBar } from '../../components/NavBar';
 import { useHeader } from '../../hooks/context'
-import './HeaderSection.css'
+// import './HeaderSection.css'
 
 export const HeaderSection = () => {
 

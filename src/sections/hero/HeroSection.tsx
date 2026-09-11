@@ -3,7 +3,7 @@ import { Button } from '../../components/Button';
 import { Container } from '../../components/Container';
 import { Tag } from '../../components/Tag';
 import { useHero } from '../../hooks/context'
-import './HeroSection.css'
+// import './HeroSection.css'
 
 export const HeroSection = () => {
 

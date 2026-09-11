@@ -1,15 +1,9 @@
-import './NavBar.css'
-import type { LogoType, NavLinkType } from "../sections/header/HeaderType"
+// import './NavBar.css'
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
-import { Button, Icon, type ActionButtonType } from './Button';
-
-type NavBarType = {
-  version?: number,
-  logo: LogoType,
-  navLink: NavLinkType,
-  ctaButton: ActionButtonType,
-}
+import { Button } from './Button';
+import { Icon } from '../utils/enum';
+import type { ActionButtonType, NavBarType, LogoType, NavLinkType } from '../utils/type';
 
 export const NavBar = ({ logo, version = 0, navLink, ctaButton }: NavBarType) => {
   switch (version) {

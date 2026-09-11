@@ -1,34 +1,4 @@
-export type Technology = {
-  id: number;
-  name: string;
-  icon: string;
-  percentage: number;
-  color: string;
-  hidden: boolean;
-}
-
-export type CategoryOverview = {
-  id: number;
-  category: string;
-  percentage: number;
-  color: string;
-  hidden: boolean;
-}
-
-export type ProficiencyKey = {
-  range: string;
-  description: string;
-  hidden: boolean;
-}
-
-export type StackUsageType = {
-  hidden: boolean;
-  sectionTitle: string;
-  subtitle: string;
-  individualTechnologies: Technology[];
-  categoryOverview: CategoryOverview[];
-  proficiencyKey: ProficiencyKey[];
-}
+import type { Technology, CategoryOverview, ProficiencyKey, StackUsageType } from '../utils/type';
 
 export const stackUsageData: StackUsageType = {
   hidden: false,

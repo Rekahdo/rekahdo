@@ -1,18 +1,4 @@
-export type SocialLink = {
-  id: number;
-  platform: string;
-  url: string;
-  icon: string;
-  hidden: boolean;
-}
-
-export type ContactMeType = {
-  hidden: boolean;
-  email: string;
-  phone: string;
-  location: string;
-  socialLinks: SocialLink[];
-}
+import type { SocialLink, ContactMeType } from '../utils/type';
 
 export const contactMeData: ContactMeType = {
   hidden: false,

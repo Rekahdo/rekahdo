@@ -1,8 +1,4 @@
-export type ErrorPageData = {
-  statusCode: number;
-  message: string;
-  description: string;
-}
+import type { ErrorPageData } from '../utils/type';
 
 export const errorPages: Record<number, ErrorPageData> = {
   400: {

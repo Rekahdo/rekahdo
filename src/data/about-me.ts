@@ -1,38 +1,4 @@
-export type Experience = {
-  hidden: boolean;
-  years: number;
-  text: string;
-};
-
-export type Education = {
-  id: number;
-  title: string;
-  institution: string;
-  icon: string;
-  hidden: boolean;
-};
-
-export type CoreSkillType = {
-  id: number;
-  text: string;
-  emoji: string;
-  hidden: boolean;
-};
-
-export type AboutType = {
-  hidden: boolean;
-  sectionTitle: string;
-  headline: string;
-  bio: string;
-  me: string;
-  experiences: Experience[];
-  quote: {
-    hidden: boolean;
-    text: string;
-  };
-  education: Education[];
-  coreSkills: CoreSkillType[];
-};
+import type { Experience, Education, CoreSkillType, AboutType } from '../utils/type';
 
 export const aboutMeData: AboutType = {
   hidden: false,

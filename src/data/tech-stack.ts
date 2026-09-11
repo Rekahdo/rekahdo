@@ -1,11 +1,4 @@
-export type TechStack = {
-  id: number;
-  name: string;
-  icon: string;
-  description: string;
-  hidden: boolean;
-  indexPosition: number;
-}
+import type { TechStack } from '../utils/type';
 
 export const techStacksData: TechStack[] = [
   {
