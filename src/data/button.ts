@@ -1,4 +1,4 @@
-import type { ButtonType } from "../comps/Button";
+import type { ButtonType } from "../components/Button";
 
 export const buttonData: ButtonType[] = [
     {

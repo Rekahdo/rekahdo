@@ -1,5 +1,5 @@
-import { Container } from '../../comps/Container';
-import { NavBar } from '../../comps/NavBar';
+import { Container } from '../../components/Container';
+import { NavBar } from '../../components/NavBar';
 import { useHeader } from '../../hooks/context'
 import './HeaderSection.css'
 

@@ -1,4 +1,4 @@
-import type { ActionButtonType } from "../../comps/Button";
+import type { ActionButtonType } from "../../components/Button";
 
 export type LogoType = {
   hidden: boolean;
