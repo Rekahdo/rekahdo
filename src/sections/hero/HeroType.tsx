@@ -1,6 +1,6 @@
-import type { AvatarType } from "../../comps/Avatar";
-import type { ActionButtonType } from "../../comps/Button";
-import type { TagType } from "../../comps/Tag";
+import type { AvatarType } from "../../components/Avatar";
+import type { ActionButtonType } from "../../components/Button";
+import type { TagType } from "../../components/Tag";
 
 export type HeroType = {
   hidden: boolean;

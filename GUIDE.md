@@ -57,6 +57,10 @@ tailwindcss
 npm install tailwindcss @tailwindcss/vite
 doc: https://tailwindcss.com/docs/installation/using-vite
 
+shadcn.ui
+npx shadcn@latest init -t vite
+doc: https://ui.shadcn.com/docs/installation
+
 vitest for testing in development
 npm install --save-dev vitest @testing-library/react @testing-library/jest-dom @testing-library/user-event jsdom
 doc: https://testing-library.com/docs/
@@ -68,6 +72,9 @@ doc:
 lucid react for icon
 npm install lucide-react 
 doc: https://lucide.dev/icons
+
+tweakcn
+doc: https://tweakcn.com/editor/theme
 
 
 
@@ -82,6 +89,23 @@ doc: https://lucide.dev/icons
 
 
 
+
+
+
+
+SHADCN.UI
+Configure tsconfig.json
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+run commands
+- npx shadcn@4.20.0 init -t vite OR npx shadcn@latest init -t vite
 
 
 

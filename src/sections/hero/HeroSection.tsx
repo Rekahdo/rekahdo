@@ -1,7 +1,7 @@
-import { Avatar } from '../../comps/Avatar';
-import { Button } from '../../comps/Button';
-import { Container } from '../../comps/Container';
-import { Tag } from '../../comps/Tag';
+import { Avatar } from '../../components/Avatar';
+import { Button } from '../../components/Button';
+import { Container } from '../../components/Container';
+import { Tag } from '../../components/Tag';
 import { useHero } from '../../hooks/context'
 import './HeroSection.css'
 

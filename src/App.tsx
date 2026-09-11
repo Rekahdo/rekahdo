@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import { Error } from './pages/Error/Error'
+import { Error } from './pages/error/Error'
 import { Home } from './pages/home/Home'
 import { HeaderProvider } from './contexts/HeaderProvider'
 
