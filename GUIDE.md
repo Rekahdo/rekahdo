@@ -94,18 +94,6 @@ doc: https://tweakcn.com/editor/theme
 
 
 SHADCN.UI
-Configure tsconfig.app.json
-```json
-{
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    },
-  }
-}
-```
-
 Configure tsconfig.json
 ```json
 {
@@ -116,22 +104,8 @@ Configure tsconfig.json
   }
 }
 ```
-
-Configure vite.config.ts
-```typescript
-import path from "path"
-export default defineConfig({
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
-})
-```
-
 run commands
-- npm install -D @types/node
-- npx shadcn@latest init -t vite
+- npx shadcn@4.20.0 init -t vite OR npx shadcn@latest init -t vite
 
 
 
