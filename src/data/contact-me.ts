@@ -1,4 +1,20 @@
-export const contactMeData = {
+export type SocialLink = {
+  id: number;
+  platform: string;
+  url: string;
+  icon: string;
+  hidden: boolean;
+}
+
+export type ContactMeType = {
+  hidden: boolean;
+  email: string;
+  phone: string;
+  location: string;
+  socialLinks: SocialLink[];
+}
+
+export const contactMeData: ContactMeType = {
   hidden: false,
   email: "contact@rekahdo.dev",
   phone: "+2340000000000",

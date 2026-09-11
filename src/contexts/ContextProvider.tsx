@@ -2,7 +2,16 @@ import { createContext, useContext, type JSX, type ReactNode } from "react";
 
 export const Provider = {
     HERO: "Hero",
+    HEADER: "Header",
     ABOUT: "About",
+    CONTACT: "Contact",
+    FOOTER: "Footer",
+    GROWTH: "Growth",
+    PROJECTS: "Projects",
+    RESOURCES: "Resources",
+    SERVICES: "Services",
+    STACK_USAGE: "StackUsage",
+    TECH_STACK: "TechStack",
 };
 
 type ProviderType = (typeof Provider)[keyof typeof Provider];

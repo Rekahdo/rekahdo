@@ -1,4 +1,23 @@
-export const projectsData = {
+export type Project = {
+  id: number;
+  title: string;
+  description: string;
+  imageUrl: string;
+  githubLink: string;
+  liveLink: string;
+  technologies: string[];
+  hidden: boolean;
+  indexPosition: number;
+}
+
+export type ProjectsType = {
+  hidden: boolean;
+  sectionTitle: string;
+  subtitle: string;
+  projects: Project[];
+}
+
+export const projectsData: ProjectsType = {
   hidden: false,
   sectionTitle: "PROJECTS",
   subtitle: "Showcasing scalable backend systems and full-stack experiments",
