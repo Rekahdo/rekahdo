@@ -25,7 +25,7 @@ export const HeaderSection = () => {
                             footer={<Button {...data.ctaButton} variantType='download-cv' size={'lg'} />} 
                             />
 
-                        <Switch />
+                        <Switch toggleTheme={true} size='xl'/>
                         <Button {...data.ctaButton} variantType='download-cv' className='max-md:hidden' />
                     </header>
                 </Container>
