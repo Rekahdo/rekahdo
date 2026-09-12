@@ -1,6 +1,6 @@
 @import './styles/font.css';
 @import 'tailwindcss';
-/* @import './styles/theme.css'; */
+@import './styles/theme.css';
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
@@ -25,8 +25,8 @@
   --muted-foreground: oklch(0.5544 0.0407 257.4166);
   --accent: oklch(0.9288 0.0126 255.5078);
   --accent-foreground: oklch(0.2077 0.0398 265.7549);
-  --destructive: oklch(0.6368 0.2078 25.3313);
-  --destructive-foreground: oklch(1.0000 0 0);
+  --destructive: oklch(85.46% 0.07894 18.76);
+  --destructive-foreground: oklch(62.793% 0.95768 29.223);
   --border: oklch(0.9288 0.0126 255.5078);
   --input: oklch(1.0000 0 0);
   --ring: oklch(0.5876 0.1389 241.9661);
@@ -80,8 +80,8 @@
   --muted-foreground: oklch(0.7107 0.0351 256.7878);
   --accent: oklch(0.3717 0.0392 257.2870);
   --accent-foreground: oklch(0.9842 0.0034 247.8575);
-  --destructive: oklch(0.4437 0.1613 26.8994);
-  --destructive-foreground: oklch(0.9842 0.0034 247.8575);
+  --destructive: oklch(54.673% 0.15532 23.77);
+  --destructive-foreground: oklch(62.793% 0.95768 29.223);
   --border: oklch(0.3717 0.0392 257.2870);
   --input: oklch(0.2795 0.0368 260.0310);
   --ring: oklch(0.7535 0.1390 232.6615);
@@ -101,7 +101,7 @@
   --font-sans: "Baloo 2", sans-serif;
   --font-serif: "Playfair Display", serif;
   --font-mono: "Fira Code", monospace;
-  --radius: 0.5rem;
+  --radius: 0.5rem;   
   --shadow-x: 0px;
   --shadow-y: 2px;
   --shadow-blur: 6px;
@@ -183,7 +183,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-secondary text-foreground;
     letter-spacing: var(--tracking-normal);
   }
   html {

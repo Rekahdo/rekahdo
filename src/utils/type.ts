@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import type { Icon, Position, Provider } from "./enum";
+import type { NavLinkType } from "../components/ui/nav";
+import type { ButtonType } from "../components/ui/button";
 
 // ============================================================================
 // ENUM-DERIVED TYPES
@@ -14,13 +16,18 @@ export type ImageFileType = typeof import("./enum").ImageType[keyof typeof impor
 // COMPONENT TYPES
 // ============================================================================
 
-export type ButtonType = {
-    readonly id: number;
-    hidden: boolean;
-    text: string;
-    file_name?: string;
-    file_path?: string;
-};
+export type ComponentType = {
+    children: ReactNode;
+    className?: string;
+}
+
+export type ChildrenType = {
+    children?: ReactNode;
+}
+
+export type ClassNameType = {
+    className?: string;
+}
 
 export type ActionButtonType = {
   uiTypeId: number;
@@ -48,35 +55,22 @@ export type TagCompType = TagType & {
     className?: string;
 }
 
-export type LogoType = {
+export type ImageType = {
   hidden: boolean;
   name: string;
   file_path: string;
 };
 
-export type LinkType = {
-  readonly id: number;
-  hidden: boolean;
-  text: string;
-  file_path: string;
-  indexPosition: number;
-};
-
-export type NavLinkType = {
-  hidden: boolean;
-  links: LinkType[];
-};
-
 export type HeaderType = {
   hidden: boolean;
-  logo: LogoType;
+  logo: ImageType;
   navLink: NavLinkType;
-  ctaButton: ActionButtonType;
+  ctaButton: ButtonType ;
 };
 
 export type NavBarType = {
   version?: number,
-  logo: LogoType,
+  logo: ImageType,
   navLink: NavLinkType,
   ctaButton: ActionButtonType,
 }

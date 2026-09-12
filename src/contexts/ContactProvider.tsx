@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import type { ContactMeType } from "../data/contact-me";
 import { contactMeData } from "../data/contact-me";
-import { ContextProvider, type ContextChildrenType } from "./ContextProvider";
+import type { ContactMeType, ContextChildrenType } from "../utils/type";
+import { ContextProvider } from "./ContextProvider";
 
 export const ContactContext = new ContextProvider<ContactMeType>()
 
