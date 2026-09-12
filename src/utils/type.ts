@@ -17,7 +17,7 @@ export type ImageFileType = typeof import("./enum").ImageType[keyof typeof impor
 // ============================================================================
 
 export type ComponentType = {
-    children: ReactNode;
+    children?: ReactNode;
     className?: string;
 }
 

@@ -1,13 +1,12 @@
 import { Switch as SwitchPrimitive } from "@base-ui/react/switch"
 import { cn } from "cn"
 
-function Switch({
-  className,
-  size = "default",
-  ...props
-}: SwitchPrimitive.Root.Props & {
-  size?: "sm" | "default"
-}) {
+type SwitchType = SwitchPrimitive.Root.Props & {
+  size?: "sm" | "default" | "lg" | "xl";
+  callBack: () => void;
+}
+
+function Switch({className, size = "default", ...props}: SwitchType){
   return (
     <SwitchPrimitive.Root
       data-slot="switch"

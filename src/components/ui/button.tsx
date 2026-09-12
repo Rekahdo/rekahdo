@@ -3,12 +3,14 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 import { Download, Send } from "lucide-react";
 import type { ClassNameType } from "../../utils/type";
-import { Link, type AnchorType } from "./nav";
+import { Link } from "./nav";
 
 export type ButtonType = {
-  readonly id?: number;
+  readonly bId?: number;
   text: string;
   hidden?: boolean;
+  file_path?: string;
+  file_name?: string;
 };
 
 const buttonVariants = cva(
@@ -48,38 +50,21 @@ const buttonVariants = cva(
   }
 )
 
-function Button({
-  className,
-  variant = "default",
-  size = "default",
-  ...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+export type ButtonVariantType = ButtonType & ClassNameType & ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & {
+  variantType?: "download-cv" | "send-message";
+}
+
+function Button({className, variant = "default", size = "default", ...props}: ButtonVariantType) {
   return (
-    <ButtonPrimitive
-      data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
-    />
+    <Link file_name={props.file_name} file_path={props.file_path} variant={"btn"}>
+      <ButtonPrimitive data-slot="button" {...props}
+        className={cn(buttonVariants({ variant, size, className }), "grow")}>
+        {props.variantType === "download-cv" && <Download size={14} />}
+        {props.variantType === "send-message" && <Send size={14} />}
+        {props.text}
+      </ButtonPrimitive>
+    </Link>
   )
 }
 
-type ButtonVariantType = ButtonType & ClassNameType & VariantProps<typeof buttonVariants> & {
-  type?: "download_cv" | "send-message" | undefined;
-  file_name?: string;
-  file_path?: string;
-}
-
-function ButtonVariant({ className, type, variant, size, file_name, file_path, ...props }: ButtonVariantType) {
-  console.log(props.text)
-  return (
-    <Button variant={variant} size={size} className={className}>
-      {type === "download_cv" && <Download size={14} />}
-      {type === "send-message" && <Send size={14} />}
-      {file_name && file_path 
-        ? <Link file_path={file_path} file_name={file_name} text={props.text}/> 
-        : props.text}
-    </Button>
-  )
-}
-
-export { Button, buttonVariants, ButtonVariant }
+export { Button, buttonVariants }

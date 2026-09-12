@@ -12,27 +12,27 @@ export const headerData: HeaderType = {
     hidden: false,
     links: [
       {
-        id: 1,
+        bId: 1,
         text: "Home",
         file_path: "#home",
       },
       {
-        id: 2,
+        bId: 2,
         text: "About Me",
         file_path: "#about",
       },
       {
-        id: 3,
+        bId: 3,
         text: "Tech-Stack",
         file_path: "#tech-stack",
       },
       {
-        id: 4,
+        bId: 4,
         text: "Projects",
         file_path: "#projects",
       },
       {
-        id: 5,
+        bId: 5,
         text: "Contact Me",
         file_path: "#contact",
       },

@@ -1,17 +1,11 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
-import type { ClassNameType } from "../../utils/type";
+import type { ClassNameType, ComponentType } from "../../utils/type";
 import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '../../components/ui/sheet';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "./navigation-menu";
 import type { ReactNode } from "react";
 import { Menu } from "lucide-react";
-
-export type AnchorType = {
-    readonly id?: number;
-    text: string;
-    file_path: string;
-    file_name?: string;
-};
+import type { ButtonType } from "./button";
 
 const linkVariant = cva(
     'transition-colors',
@@ -19,7 +13,8 @@ const linkVariant = cva(
         variants: {
             variant: {
                 normal: '',
-                navLink: 'p-4 font-extrabold hover:bg-accent hover:text-accent-foreground',
+                nav: 'p-4 font-extrabold hover:bg-accent hover:text-accent-foreground',
+                btn: 'flex justify-center',
             }
         },
         defaultVariants: {
@@ -28,11 +23,17 @@ const linkVariant = cva(
     }
 )
 
-function Link({ className, variant, ...props }: ClassNameType & AnchorType & VariantProps<typeof linkVariant>) {
+type LinkType = ComponentType & VariantProps<typeof linkVariant> & {
+  text?: string;
+  file_path?: string;
+  file_name?: string;
+}
+
+function Link({ className, variant, ...props }: LinkType) {
     return (
         <a href={props.file_path} download={props.file_name}
             className={cn(linkVariant({ variant, className }))}>
-            {props.text}
+            {variant === "btn" ? props.children : props.text}
         </a>
     )
 }
@@ -41,7 +42,7 @@ type side = "left" | "top" | "right" | "bottom" | undefined
 
 export type NavLinkType = {
     hidden: boolean;
-    links: AnchorType[];
+    links: ButtonType[];
 };
 
 type NavLinkCompType = ClassNameType & NavLinkType & {
@@ -77,7 +78,7 @@ function NavLink({ className, variant, trigger=<Menu size={20}/>,  ...props }: N
                         <SheetHeader>
                             <SheetTitle className={"p-4"}>{props.title}</SheetTitle>
                             <SheetDescription>{props.description}</SheetDescription>
-                            {props.links.map((link) => <Link key={link.id} {...link} variant={variant} />)}
+                            {props.links.map((link) => <Link key={link.bId} {...link} variant={"nav"} />)}
                         </SheetHeader>
                         <SheetFooter>{props.footer}</SheetFooter>
                     </SheetContent>
@@ -89,9 +90,7 @@ function NavLink({ className, variant, trigger=<Menu size={20}/>,  ...props }: N
                     {props.links.map((link) => (
                         <NavigationMenuItem>
                             <NavigationMenuLink
-                                render={<Link key={link.id} {...link} variant={variant} />}
-                                className={cn(linkVariant({ variant, className }))}>
-                                {link.text}
+                                render={<Link key={link.bId} {...link} variant={"nav"} />}>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
                     ))}

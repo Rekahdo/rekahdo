@@ -1,12 +1,15 @@
+import { useState } from 'react';
 import { Container } from '../../components/Container';
-import { ButtonVariant } from '../../components/ui/button';
 import { Image } from '../../components/ui/image';
 import { NavLink } from '../../components/ui/nav';
+import { Switch } from '../../components/ui/switch';
 import { useHeader } from '../../hooks/context'
+import { Button } from '../../components/ui/button';
 
 export const HeaderSection = () => {
 
     const { data } = useHeader()!;
+    const [dark, setDark ] = useState()
 
     return (
         <>
@@ -19,13 +22,11 @@ export const HeaderSection = () => {
 
                         <NavLink {...data.navLink} showCloseBtn={false} side='left' variant={'navLink'}
                             title={<Image {...data.logo} alt={`${data.logo.name} Logo`} />}
-                            footer={
-                                <ButtonVariant {...data.ctaButton} type='download_cv' size={'lg'} />
-                            } 
+                            footer={<Button {...data.ctaButton} variantType='download-cv' size={'lg'} />} 
                             />
 
-                        <ButtonVariant {...data.ctaButton} className='max-md:hidden' 
-                            type='download_cv' />
+                        <Switch />
+                        <Button {...data.ctaButton} variantType='download-cv' className='max-md:hidden' />
                     </header>
                 </Container>
             }
