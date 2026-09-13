@@ -3,10 +3,10 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 import { Download, Send } from "lucide-react";
 import type { ClassNameType } from "../../utils/type";
-import { Link } from "./nav";
+import { Link } from "./navbar";
 
 export type ButtonType = {
-  readonly bId?: number;
+  readonly b_id?: number;
   text: string;
   hidden?: boolean;
   file_path?: string;
@@ -51,7 +51,7 @@ const buttonVariants = cva(
 )
 
 export type ButtonVariantType = ButtonType & ClassNameType & ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & {
-  variantType?: "download-cv" | "send-message";
+  variant_type?: "download-cv" | "send-message";
 }
 
 function Button({className, variant = "default", size = "default", ...props}: ButtonVariantType) {
@@ -59,8 +59,8 @@ function Button({className, variant = "default", size = "default", ...props}: Bu
     <Link file_name={props.file_name} file_path={props.file_path} variant={"btn"}>
       <ButtonPrimitive data-slot="button" {...props}
         className={cn(buttonVariants({ variant, size, className }), "grow")}>
-        {props.variantType === "download-cv" && <Download size={14} />}
-        {props.variantType === "send-message" && <Send size={14} />}
+        {props.variant_type === "download-cv" && <Download size={14} />}
+        {props.variant_type === "send-message" && <Send size={14} />}
         {props.text}
       </ButtonPrimitive>
     </Link>

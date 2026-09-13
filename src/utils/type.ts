@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import type { Icon, Position, Provider } from "./enum";
-import type { NavLinkType } from "../components/ui/nav";
+import type { NavLinkType } from "../components/ui/navbar";
 import type { ButtonType } from "../components/ui/button";
 
 // ============================================================================

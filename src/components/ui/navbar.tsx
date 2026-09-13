@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
 import type { ClassNameType, ComponentType } from "../../utils/type";
-import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '../../components/ui/sheet';
+import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from './sheet';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "./navigation-menu";
 import type { ReactNode } from "react";
 import { Menu } from "lucide-react";
@@ -45,7 +45,7 @@ export type NavLinkType = {
     links: ButtonType[];
 };
 
-type NavLinkCompType = ClassNameType & NavLinkType & {
+type NavBarCompType = ClassNameType & NavLinkType & {
     trigger?: ReactNode;
     title?: ReactNode;
     description?: ReactNode;
@@ -54,7 +54,7 @@ type NavLinkCompType = ClassNameType & NavLinkType & {
     side?: side;
 };
 
-const navLinkVariant = cva(
+const navBarVariant = cva(
     'flex',
     {
         variants: {
@@ -68,7 +68,7 @@ const navLinkVariant = cva(
     }
 )
 
-function NavLink({ className, variant, trigger=<Menu size={20}/>,  ...props }: NavLinkCompType & VariantProps<typeof navLinkVariant>) {
+function NavBar({ className, variant, trigger=<Menu size={20}/>,  ...props }: NavBarCompType & VariantProps<typeof navBarVariant>) {
     return (
         <>
             <nav className="md:hidden ml-auto">
@@ -78,7 +78,7 @@ function NavLink({ className, variant, trigger=<Menu size={20}/>,  ...props }: N
                         <SheetHeader>
                             <SheetTitle className={"p-4"}>{props.title}</SheetTitle>
                             <SheetDescription>{props.description}</SheetDescription>
-                            {props.links.map((link) => <Link key={link.bId} {...link} variant={"nav"} />)}
+                            {props.links.map((link) => <Link key={link.b_id} {...link} variant={"nav"} />)}
                         </SheetHeader>
                         <SheetFooter>{props.footer}</SheetFooter>
                     </SheetContent>
@@ -86,11 +86,11 @@ function NavLink({ className, variant, trigger=<Menu size={20}/>,  ...props }: N
             </nav>
 
             <NavigationMenu className="max-md:hidden">
-                <NavigationMenuList className={cn(navLinkVariant({ variant, className }))}>
+                <NavigationMenuList className={cn(navBarVariant({ variant, className }))}>
                     {props.links.map((link) => (
-                        <NavigationMenuItem>
+                        <NavigationMenuItem key={link.b_id}>
                             <NavigationMenuLink
-                                render={<Link key={link.bId} {...link} variant={"nav"} />}>
+                                render={<Link {...link} variant={"nav"} />}>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
                     ))}
@@ -100,4 +100,4 @@ function NavLink({ className, variant, trigger=<Menu size={20}/>,  ...props }: N
     )
 }
 
-export { NavLink, Link }
+export { NavBar, Link }

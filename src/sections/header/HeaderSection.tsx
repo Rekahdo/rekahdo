@@ -1,15 +1,13 @@
-import { useState } from 'react';
 import { Container } from '../../components/Container';
 import { Image } from '../../components/ui/image';
-import { NavLink } from '../../components/ui/nav';
 import { Switch } from '../../components/ui/switch';
 import { useHeader } from '../../hooks/context'
 import { Button } from '../../components/ui/button';
+import { NavBar } from '../../components/ui/navbar';
 
 export const HeaderSection = () => {
 
     const { data } = useHeader()!;
-    const [dark, setDark ] = useState()
 
     return (
         <>
@@ -20,13 +18,15 @@ export const HeaderSection = () => {
                     <header className='flex w-full items-center justify-between'>
                         <Image {...data.logo} alt={`${data.logo.name} Logo`} />
 
-                        <NavLink {...data.navLink} showCloseBtn={false} side='left' variant={'navLink'}
+                        <NavBar {...data.navLink} showCloseBtn={false} side='left' variant={'navLink'}
                             title={<Image {...data.logo} alt={`${data.logo.name} Logo`} />}
-                            footer={<Button {...data.ctaButton} variantType='download-cv' size={'lg'} />} 
-                            />
+                            footer={<Button {...data.ctaButton} variant_type='download-cv' size={'lg'} />}
+                        />
 
-                        <Switch />
-                        <Button {...data.ctaButton} variantType='download-cv' className='max-md:hidden' />
+                        <div className=''>
+                            <Switch variant={'thin'} toggleTheme={true} />
+                            <Button {...data.ctaButton} variant_type='download-cv' className='max-md:hidden' />
+                        </div>
                     </header>
                 </Container>
             }
