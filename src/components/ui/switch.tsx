@@ -2,7 +2,7 @@ import { Switch as SwitchPrimitive } from "@base-ui/react/switch"
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn"
 import { useEffect, useState, type ReactNode } from "react";
-import { rootDocument, themeIsDark, windowTheme } from "../../utils/utils";
+import { themeIsDark } from "../../utils/utils";
 
 const rootVariants = cva(
   cn(
@@ -91,53 +91,28 @@ const thumbVariants = cva(
 
 type SwitchType = Omit<SwitchPrimitive.Root.Props, "size"> & VariantProps<typeof rootVariants> & {
   onIcon?: ReactNode; offIcon?: ReactNode;
-  toggleTheme?: boolean; callBack?: () => void;
+  toggleOn: () => void; toggleOff: () => void;
+  checked?: boolean
 }
 
-function Switch({ className, variant = "default", size = "default", toggleTheme = false, ...props }: SwitchType) {
-  const system = windowTheme();
-  const [isChecked, setIsChecked] = useState<boolean>(() => {
-    if (toggleTheme) {
-      const isDark = themeIsDark();
-      applyTheme(isDark)
+function Switch({ className, variant = "default", size = "default",
+  checked = false, toggleOn, toggleOff, ...props }: SwitchType) {
 
-      if (!localStorage.dark)
-        system.addEventListener("change", setToSystemTheme)
-
-      return isDark;
-    }
-
-    return false;
-  });
+  const [isChecked, setIsChecked] = useState<boolean>(checked)
 
   useEffect(() => {
-    return () => {
-      system.removeEventListener("change", setToSystemTheme)
-    }
-  }, [])
+    setIsChecked(checked);
+  }, [checked]);
 
-  function applyTheme(isDark: boolean) {
-    isDark
-      ? rootDocument.classList.add("dark")
-      : rootDocument.classList.remove("dark");
-  }
-
-  function setToSystemTheme() {
-    localStorage.removeItem("theme");
-    const isDark = themeIsDark();
-    applyTheme(isDark); setIsChecked(isDark);
-  }
-
-  function toggle(isDark: boolean) {
-    localStorage.dark = isDark;
-    setIsChecked(isDark);
-    applyTheme(isDark);
+  function handleChecked(c: boolean) {
+    c ? toggleOn() : toggleOff();
+    setIsChecked(c);
   }
 
   return (
     <SwitchPrimitive.Root
       checked={isChecked}
-      onCheckedChange={(checked) => toggle(checked)}
+      onCheckedChange={(c) => handleChecked(c)}
       data-slot="switch"
       data-var={variant}
       className={cn(rootVariants({ variant, size, className }))}
@@ -147,11 +122,9 @@ function Switch({ className, variant = "default", size = "default", toggleTheme 
         data-slot="switch-thumb"
         className={cn(thumbVariants({ variant }))}>
 
-        {isChecked && props.onIcon && props.onIcon}
-        {!isChecked && props.offIcon && props.offIcon}
+        {checked && props.onIcon && props.onIcon}
+        {!checked && props.offIcon && props.offIcon}
       </SwitchPrimitive.Thumb>
-
-
     </SwitchPrimitive.Root>
   )
 }

@@ -3,7 +3,8 @@ export function windowTheme(): MediaQueryList {
 }
 
 export function themeIsDark(): boolean {
-  if (localStorage.dark !== undefined) return localStorage.dark === "true";
+  if (localStorage.dark !== undefined) 
+    return localStorage.dark === "true";
   return windowTheme().matches;
 }
 

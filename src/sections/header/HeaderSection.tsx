@@ -1,13 +1,11 @@
 import { Container } from '../../components/Container';
 import { Image } from '../../components/ui/image';
-import { Switch } from '../../components/ui/switch';
 import { useHeader } from '../../hooks/context'
 import { NavBar } from '../../components/ui/navbar';
-import { Button } from '../../components/ui/button';
-import { cn } from 'cn';
 import { useEffect, useState } from 'react';
 import { themeIsDark } from '../../utils/utils';
 import { useTheme } from '../../hooks/useTheme';
+import { ThemeToggle } from '../../components/ui/toggle';
 
 export const HeaderSection = () => {
 
@@ -26,14 +24,6 @@ export const HeaderSection = () => {
             stop(observer);
         }
     }, [])
-    
-    const headerStyle = cn(
-        "flex w-full items-center"
-    )
-    
-    const rightStyle = cn(
-        "flex items-center md:space-x-10 max-md:hidden"
-    )
 
     return (
         <>
@@ -41,11 +31,11 @@ export const HeaderSection = () => {
                 data && !data.hidden &&
 
                 <Container>
-                    <header className={cn(headerStyle)}>
+                    <header className={"flex w-full items-center"}>
                         <NavBar
                             links={data.navLink.links} cta={{button: data.ctaButton, variant: 'download-cv'}}
                             logo={<Image {...data.logo} file_path={src} alt={`${data.logo.name} Logo`} />}
-                            theme_toggle={<Switch variant={"thin"} size={"lg"}/>}
+                            theme_toggle={<ThemeToggle />}
                         />
                     </header>
                 </Container>
