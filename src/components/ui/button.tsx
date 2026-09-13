@@ -54,7 +54,7 @@ export type ButtonVariantType = ButtonType & ClassNameType & ButtonPrimitive.Pro
   variant_type?: "download-cv" | "send-message";
 }
 
-function Button({className, variant = "default", size = "default", ...props}: ButtonVariantType) {
+function Button({ className, variant = "default", size = "default", ...props }: ButtonVariantType) {
   return (
     <Link file_name={props.file_name} file_path={props.file_path} variant={"btn"}>
       <ButtonPrimitive data-slot="button" {...props}

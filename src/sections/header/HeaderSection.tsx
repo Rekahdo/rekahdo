@@ -2,8 +2,8 @@ import { Container } from '../../components/Container';
 import { Image } from '../../components/ui/image';
 import { Switch } from '../../components/ui/switch';
 import { useHeader } from '../../hooks/context'
-import { Button } from '../../components/ui/button';
 import { NavBar } from '../../components/ui/navbar';
+import { Button } from '../../components/ui/button';
 
 export const HeaderSection = () => {
 
