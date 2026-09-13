@@ -20,7 +20,7 @@ import { ResourceSection } from '../../sections/resource/ResourceSection'
 import { ServicesSection } from '../../sections/services/ServicesSection'
 import { StackSection } from '../../sections/stack/StackSection'
 import { UsageSection } from '../../sections/usage/UsageSection'
-import './Home.css'
+// import './Home.css'
 
 export const Home = () => {
     return (
@@ -36,7 +36,7 @@ export const Home = () => {
                                             <StackUsageProvider>
                                                 <TechStackProvider>
                                                     <HeaderSection />
-                                                    <HeroSection />
+                                                    {/* <HeroSection />
                                                     <AboutSection />
                                                     <ServicesSection />
                                                     <ProjectSection />
@@ -45,7 +45,7 @@ export const Home = () => {
                                                     <GrowthSection />
                                                     <ResourceSection />
                                                     <ContactSection />
-                                                    <FooterSection />
+                                                    <FooterSection /> */}
                                                 </TechStackProvider>
                                             </StackUsageProvider>
                                         </ServicesProvider>

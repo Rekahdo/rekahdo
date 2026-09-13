@@ -1,28 +1,4 @@
-export type ResourceItem = {
-  id: number;
-  title: string;
-  badge: string;
-  description: string;
-  link: string;
-  hidden: boolean;
-}
-
-export type ResourceCategory = {
-  id: string;
-  name: string;
-  subtitle: string;
-  count: number;
-  hidden: boolean;
-  items: ResourceItem[];
-}
-
-export type ResourcesType = {
-  hidden: boolean;
-  sectionTitle: string;
-  subtitle: string;
-  description: string;
-  categories: ResourceCategory[];
-}
+import type { ResourceItem, ResourceCategory, ResourcesType } from '../utils/type';
 
 export const resourcesData: ResourcesType = {
   hidden: false,

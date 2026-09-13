@@ -1,12 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Home, ArrowLeft } from 'lucide-react';
+import type { ErrorPageProps } from '../../utils/type';
 import './Error.css'
-
-export type ErrorPageProps = {
-    statusCode?: number;
-    message?: string;
-    description?: string;
-}
 
 export const Error = ({
     statusCode = 404, message = 'Page Not Found',

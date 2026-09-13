@@ -1,22 +1,4 @@
-export type Service = {
-  id: number;
-  title: string;
-  badge: string;
-  subHeading: string;
-  description: string;
-  tags: string[];
-  actionLabel: string;
-  actionUrl: string;
-  hidden: boolean;
-}
-
-export type ServicesType = {
-  hidden: boolean;
-  sectionTitle: string;
-  subtitle: string;
-  description: string;
-  services: Service[];
-}
+import type { Service, ServicesType } from '../utils/type';
 
 export const servicesData: ServicesType = {
   hidden: false,

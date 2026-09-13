@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import type { ServicesType } from "../data/services";
 import { servicesData } from "../data/services";
-import { ContextProvider, type ContextChildrenType } from "./ContextProvider";
+import { ContextProvider } from "./ContextProvider";
+import type { ContextChildrenType, ServicesType } from "../utils/type";
 
 export const ServicesContext = new ContextProvider<ServicesType>()
 

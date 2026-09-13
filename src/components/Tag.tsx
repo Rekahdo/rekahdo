@@ -1,14 +1,6 @@
-import './Tag.css'
+// import './Tag.css'
 
-export type TagType = {
-    readonly id: number;
-    hidden: boolean;
-    text: string;
-}
-
-export type TagCompType = TagType & {
-    className?: string;
-}
+import type { TagCompType } from '../utils/type'
 
 export const Tag = (props: TagCompType) => {
     return (

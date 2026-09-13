@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import type { GrowthType } from "../data/growth";
 import { growthData } from "../data/growth";
-import { ContextProvider, type ContextChildrenType } from "./ContextProvider";
+import { ContextProvider } from "./ContextProvider";
+import type { ContextChildrenType, GrowthType } from "../utils/type";
 
 export const GrowthContext = new ContextProvider<GrowthType>()
 

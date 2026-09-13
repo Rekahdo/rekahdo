@@ -1,7 +1,9 @@
 import { Container } from '../../components/Container';
-import { NavBar } from '../../components/NavBar';
+import { Image } from '../../components/ui/image';
+import { Switch } from '../../components/ui/switch';
 import { useHeader } from '../../hooks/context'
-import './HeaderSection.css'
+import { NavBar } from '../../components/ui/navbar';
+import { Button } from '../../components/ui/button';
 
 export const HeaderSection = () => {
 
@@ -12,9 +14,19 @@ export const HeaderSection = () => {
             {
                 data && !data.hidden &&
 
-                <Container className='header-container'>
-                    <header className='header-section'>
-                        <NavBar logo={data.logo} navLink={data.navLink} ctaButton={data.ctaButton} />
+                <Container>
+                    <header className='flex w-full items-center justify-between'>
+                        <Image {...data.logo} alt={`${data.logo.name} Logo`} />
+
+                        <NavBar {...data.navLink} showCloseBtn={false} side='left' variant={'navLink'}
+                            title={<Image {...data.logo} alt={`${data.logo.name} Logo`} />}
+                            footer={<Button {...data.ctaButton} variant_type='download-cv' size={'lg'} />}
+                        />
+
+                        <div className=''>
+                            <Switch variant={'thin'} toggleTheme={true} />
+                            <Button {...data.ctaButton} variant_type='download-cv' className='max-md:hidden' />
+                        </div>
                     </header>
                 </Container>
             }

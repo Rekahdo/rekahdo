@@ -1,21 +1,4 @@
-export type FooterSocialLink = {
-  platform: string;
-  url: string;
-  hidden: boolean;
-}
-
-export type FooterQuickLink = {
-  name: string;
-  path: string;
-  hidden: boolean;
-}
-
-export type FooterType = {
-  hidden: boolean;
-  copyrightText: string;
-  socialLinks: FooterSocialLink[];
-  quickLinks: FooterQuickLink[];
-}
+import type { FooterSocialLink, FooterQuickLink, FooterType } from '../utils/type';
 
 export const footerData: FooterType = {
   hidden: false,

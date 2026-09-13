@@ -1,9 +1,8 @@
 import { Avatar } from '../../components/Avatar';
-import { Button } from '../../components/Button';
 import { Container } from '../../components/Container';
 import { Tag } from '../../components/Tag';
 import { useHero } from '../../hooks/context'
-import './HeroSection.css'
+// import './HeroSection.css'
 
 export const HeroSection = () => {
 
@@ -27,7 +26,7 @@ export const HeroSection = () => {
                             }</div>
 
                             <div className="actionBtns ignore-font">{
-                                data.actionButtons.map(acBtn => <Button key={acBtn.button.id} {...acBtn} />)
+                                // data.actionButtons.map(acBtn => <Button key={acBtn.button.id} {...acBtn} />)
                             }</div>
                         </div>
                     </section>

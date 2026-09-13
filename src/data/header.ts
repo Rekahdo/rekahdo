@@ -1,4 +1,4 @@
-import type { HeaderType } from "../sections/header/HeaderType";
+import type { HeaderType } from "../utils/type";
 import { buttonData } from "./button";
 
 export const headerData: HeaderType = {
@@ -12,44 +12,31 @@ export const headerData: HeaderType = {
     hidden: false,
     links: [
       {
-        id: 1,
-        hidden: false,
+        b_id: 1,
         text: "Home",
         file_path: "#home",
-        indexPosition: 1,
       },
       {
-        id: 2,
-        hidden: false,
+        b_id: 2,
         text: "About Me",
         file_path: "#about",
-        indexPosition: 2,
       },
       {
-        id: 3,
-        hidden: false,
+        b_id: 3,
         text: "Tech-Stack",
         file_path: "#tech-stack",
-        indexPosition: 3,
       },
       {
-        id: 4,
-        hidden: false,
+        b_id: 4,
         text: "Projects",
         file_path: "#projects",
-        indexPosition: 4,
       },
       {
-        id: 5,
-        hidden: false,
+        b_id: 5,
         text: "Contact Me",
         file_path: "#contact",
-        indexPosition: 5,
       },
     ],
   },
-  ctaButton: {
-    uiTypeId: 1,
-    button: buttonData[0],
-  },
+  ctaButton: buttonData[0],
 };

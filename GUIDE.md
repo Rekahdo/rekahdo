@@ -61,6 +61,9 @@ shadcn.ui
 npx shadcn@latest init -t vite
 doc: https://ui.shadcn.com/docs/installation
 
+tweakcn
+doc: https://tweakcn.com/editor/theme
+
 vitest for testing in development
 npm install --save-dev vitest @testing-library/react @testing-library/jest-dom @testing-library/user-event jsdom
 doc: https://testing-library.com/docs/
@@ -72,9 +75,6 @@ doc:
 lucid react for icon
 npm install lucide-react 
 doc: https://lucide.dev/icons
-
-tweakcn
-doc: https://tweakcn.com/editor/theme
 
 
 
