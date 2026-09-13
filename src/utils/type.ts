@@ -1,7 +1,9 @@
 import type { ReactNode } from "react";
 import type { Icon, Position, Provider } from "./enum";
-import type { NavLinkType } from "../components/ui/navbar";
+import type { NavLinkType } from "../components/ui/navigation-bar";
 import type { ButtonType } from "../components/ui/button";
+import type { ImageType } from "../components/ui/image";
+import type { LogoType } from "../components/ui/logo";
 
 // ============================================================================
 // ENUM-DERIVED TYPES
@@ -55,15 +57,9 @@ export type TagCompType = TagType & {
     className?: string;
 }
 
-export type ImageType = {
-  hidden: boolean;
-  name: string;
-  file_path: string;
-};
-
 export type HeaderType = {
   hidden: boolean;
-  logo: ImageType;
+  logo: LogoType;
   navLink: NavLinkType;
   ctaButton: ButtonType ;
 };

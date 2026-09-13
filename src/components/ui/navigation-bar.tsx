@@ -1,48 +1,18 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
-import type { ClassNameType, ComponentType } from "../../utils/type";
+import type { ClassNameType } from "../../utils/type";
 import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from './sheet';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "./navigation-menu";
 import type { ReactNode } from "react";
 import { Menu } from "lucide-react";
 import { Button, type ButtonType, type ButtonVariantTypes } from "./button";
-
-const linkVariant = cva(
-    'transition-colors',
-    {
-        variants: {
-            variant: {
-                normal: '',
-                nav: 'p-4 font-extrabold hover:bg-accent hover:text-accent-foreground',
-                btn: 'flex justify-center',
-            }
-        },
-        defaultVariants: {
-            variant: 'normal'
-        }
-    }
-)
-
-type LinkType = ComponentType & VariantProps<typeof linkVariant> & {
-    text?: string;
-    file_path?: string;
-    file_name?: string;
-}
-
-function Link({ className, variant, ...props }: LinkType) {
-    return (
-        <a href={props.file_path} download={props.file_name}
-            className={cn(linkVariant({ variant, className }))}>
-            {variant === "btn" ? props.children : props.text}
-        </a>
-    )
-}
+import { Link, type LinkType } from "./link";
 
 type side = "left" | "top" | "right" | "bottom" | undefined
 
 export type NavLinkType = {
     hidden?: boolean;
-    links?: ButtonType[];
+    links?: LinkType[];
 };
 
 type NavBarCompType = ClassNameType & {
@@ -53,7 +23,7 @@ type NavBarCompType = ClassNameType & {
     theme_toggle?: ReactNode;
     title?: ReactNode;
     description?: ReactNode;
-    links?: ButtonType[];
+    links?: LinkType[];
     cta?: {
         button: ButtonType;
         variant: ButtonVariantTypes;
@@ -103,7 +73,7 @@ function NavBar({
 
                             {props.links && <hr className="my-4" />}
 
-                            {props.links?.map((link) => <Link key={link.b_id} {...link} variant={"nav"} />)}
+                            {props.links?.map((link) => <Link key={link.id} {...link} variant={"nav"} />)}
                         </SheetHeader>
                         <SheetFooter className="p-4">
                             {props.bottom}
@@ -116,7 +86,7 @@ function NavBar({
             <NavigationMenu className="max-md:hidden">
                 <NavigationMenuList className={cn(navBarVariant({ variant, className }))}>
                     {props.links?.map((link) => (
-                        <NavigationMenuItem key={link.b_id}>
+                        <NavigationMenuItem key={link.id}>
                             <NavigationMenuLink
                                 render={<Link {...link} variant={"nav"} />}>
                             </NavigationMenuLink>
@@ -133,4 +103,4 @@ function NavBar({
     )
 }
 
-export { NavBar, Link }
+export { NavBar }

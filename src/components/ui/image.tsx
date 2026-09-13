@@ -25,17 +25,16 @@ const imgVariants = cva(
 export type ImageType = {
     hidden: boolean;
     name: string;
-    file_path: string;
-};
-
-export type ImageComponentType = ImageType & ClassNameType & {
+    src: string;
     alt: string;
 };
+
+export type ImageComponentType = ImageType & ClassNameType
 
 export function Image({ className, variant, ...props }: ImageComponentType & VariantProps<typeof imgVariants>) {
     return (
         <div className={cn(imgVariants({ variant, className }))}>
-            <img src={props.file_path} alt={`${props.alt}`}
+            <img src={props.src} alt={`${props.alt}`}
                 className="w-full"/>
         </div>
     )
