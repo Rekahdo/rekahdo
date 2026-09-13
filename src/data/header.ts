@@ -6,7 +6,7 @@ export const headerData: HeaderType = {
   logo: {
     hidden: false,
     name: "REKAHDO.dev",
-    file_path: "/images/logos/logo-full.svg",
+    file_path: "/images/logos/logo-dark.svg",
   },
   navLink: {
     hidden: false,

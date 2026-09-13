@@ -2,6 +2,7 @@ import { Switch as SwitchPrimitive } from "@base-ui/react/switch"
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn"
 import { useEffect, useState, type ReactNode } from "react";
+import { rootDocument, themeIsDark, windowTheme } from "../../utils/utils";
 
 const rootVariants = cva(
   cn(
@@ -14,7 +15,7 @@ const rootVariants = cva(
     // Validation States
     "aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40",
     // Track Color States
-    "data-checked:bg-green-300 data-unchecked:bg-green-900",
+    "data-checked:bg-primary data-unchecked:bg-primary/30",
     // Disabled State
     "data-disabled:cursor-not-allowed data-disabled:opacity-50",
     // Sizing Variants (Track)
@@ -60,21 +61,12 @@ const rootVariants = cva(
     }
   })
 
-function SwitchRoot({ variant }: VariantProps<typeof rootVariants>) {
-  return (
-    <SwitchPrimitive.Thumb
-      data-slot="switch-thumb"
-      className={cn(thumbVariants({ variant }))}
-    />
-  )
-}
-
 const thumbVariants = cva(
   cn(
     // Base Layout
     "flex justify-center items-center pointer-events-none rounded-full bg-background ring-0 transition-transform",
     // Dark Mode Colors
-    "dark:data-checked:bg-primary-foreground dark:data-unchecked:bg-foreground data-checked:text-primary data-unchecked:text-input",
+    "data-checked:bg-primary-foreground data-unchecked:bg-primary data-checked:text-primary data-unchecked:text-input",
     // Size
     "size-4"
   ),
@@ -104,16 +96,10 @@ type SwitchType = Omit<SwitchPrimitive.Root.Props, "size"> & VariantProps<typeof
 
 function Switch({ className, variant = "default", size = "default", toggleTheme = false, ...props }: SwitchType) {
 
-  const system = window.matchMedia('(prefers-color-scheme: dark)');
-  const theme = () => {
-    if(localStorage.dark !== undefined)
-      return localStorage.dark === "true";
-    return system.matches;
-  };
-
+  const system = windowTheme();
   const [isChecked, setIsChecked] = useState<boolean>(() => {
     if (toggleTheme) {
-      const isDark = theme();
+      const isDark = themeIsDark();
       applyTheme(isDark)
 
       if (!localStorage.dark)
@@ -133,13 +119,13 @@ function Switch({ className, variant = "default", size = "default", toggleTheme 
 
   function applyTheme(isDark: boolean) {
     isDark
-      ? document.documentElement.classList.add("dark")
-      : document.documentElement.classList.remove("dark");
+      ? rootDocument.classList.add("dark")
+      : rootDocument.classList.remove("dark");
   }
 
   function setToSystemTheme() {
     localStorage.removeItem("theme");
-    const isDark = theme();
+    const isDark = themeIsDark();
     applyTheme(isDark); setIsChecked(isDark);
   }
 
