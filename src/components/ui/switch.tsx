@@ -95,7 +95,6 @@ type SwitchType = Omit<SwitchPrimitive.Root.Props, "size"> & VariantProps<typeof
 }
 
 function Switch({ className, variant = "default", size = "default", toggleTheme = false, ...props }: SwitchType) {
-
   const system = windowTheme();
   const [isChecked, setIsChecked] = useState<boolean>(() => {
     if (toggleTheme) {

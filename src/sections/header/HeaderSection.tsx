@@ -28,7 +28,7 @@ export const HeaderSection = () => {
     }, [])
     
     const headerStyle = cn(
-        "flex w-full items-center justify-between"
+        "flex w-full items-center"
     )
     
     const rightStyle = cn(
@@ -42,17 +42,11 @@ export const HeaderSection = () => {
 
                 <Container>
                     <header className={cn(headerStyle)}>
-                        <Image {...data.logo} file_path={src} alt={`${data.logo.name} Logo`} />
-
-                        <NavBar {...data.navLink} showCloseBtn={false} side='left' variant={'navLink'}
-                            title={<Image {...data.logo} file_path={src} alt={`${data.logo.name} Logo`} />}
-                            footer={<Button {...data.ctaButton} variant_type='download-cv' size={'lg'} />}
+                        <NavBar
+                            links={data.navLink.links} cta={{button: data.ctaButton, variant: 'download-cv'}}
+                            logo={<Image {...data.logo} file_path={src} alt={`${data.logo.name} Logo`} />}
+                            theme_toggle={<Switch variant={"thin"} size={"lg"}/>}
                         />
-
-                        <div className={cn(rightStyle)}>
-                            <Switch variant={'thin'} size={'lg'} toggleTheme={true} />
-                            <Button {...data.ctaButton} variant_type='download-cv' />
-                        </div>
                     </header>
                 </Container>
             }

@@ -50,8 +50,10 @@ const buttonVariants = cva(
   }
 )
 
-export type ButtonVariantType = ButtonType & ClassNameType & ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & {
-  variant_type?: "download-cv" | "send-message";
+export type ButtonVariantTypes = "download-cv" | "send-message";
+
+type ButtonVariantType = ButtonType & ClassNameType & ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & {
+  variant_type?: ButtonVariantTypes;
 }
 
 function Button({ className, variant = "default", size = "default", ...props }: ButtonVariantType) {
