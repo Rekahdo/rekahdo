@@ -5,13 +5,10 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
 import type { ClassNameType } from "../../utils/type";
 import type { Tag } from "./tag";
+import { formatNumber } from "../../utils/number";
 
 type TextType = {
     text: string | undefined
-};
-
-type TextArrayType = {
-    texts: string[] | undefined
 };
 
 type ButtonArrayType = {
@@ -160,7 +157,7 @@ export function Role({ text, variant, className }: TextType & ClassNameType & Va
 }
 
 const DescriptionVariant = cva(
-    "text-lg text-foreground/50",
+    "text-foreground/50 text-sm px-4 mlg:p-0 md:text-lg",
     {
         variants: {
             variant: {
@@ -195,7 +192,7 @@ export function Description({ text, variant, className }: TextType & ClassNameTy
 }
 
 const CtaVariant = cva(
-    "flex flex-wrap justify-center gap-4 lg:justify-start",
+    "flex flex-wrap justify-center gap-6 lg:justify-start",
     {
         variants: {
             variant: {
@@ -232,18 +229,20 @@ export function CTA({ btns, variant, className }: ClassNameType & ButtonArrayTyp
 }
 
 const HeroImageVariant = cva(
-    "w-full aspect-[3/2] bg-red-600",
+    "w-full",
     {
         variants: {
             variant: {
                 default: cn(
-
-                )
+                ),
             },
             size: {
+                sm: "aspect-[2/1]",
                 default: cn(
-
-                )
+                    "aspect-[3/2]"
+                ),
+                lg: "aspect-[5/4]",
+                xl: "aspect-[1]",
             }
         },
         defaultVariants: {
@@ -253,19 +252,19 @@ const HeroImageVariant = cva(
     }
 )
 
-export function HeroImage({ variant, className, src, alt }: ImageType & ClassNameType & VariantProps<typeof HeroImageVariant>) {
+export function HeroImage({ variant, size, className, src, alt }: ImageType & ClassNameType & VariantProps<typeof HeroImageVariant>) {
     return (
         <>
             {
                 src &&
-                <Image src={src} alt={alt} className={cn(HeroImageVariant({ variant, className }))} />
+                <Image src={src} alt={alt} className={cn(HeroImageVariant({ variant, size, className }))} />
             }
         </>
     )
 }
 
 const SocialProfTextVariant = cva(
-    "flex items-center flex-wrap max-lg:justify-center gap-4 mt-8 ",
+    "flex items-center flex-wrap max-lg:justify-center gap-4",
     {
         variants: {
             variant: {
@@ -300,7 +299,9 @@ export function SocialProfText({ count, variant, className }: { count: number } 
                             alt="team img-3" />
                     </div>
                     <div className="text-slate-600 text-base dark:text-slate-400">
-                        <span className="font-semibold">Over {count}</span> Professionals trust us
+                        Over
+                        <span className="font-semibold"> {formatNumber(count)} </span>
+                        Professionals trust us
                     </div>
                 </div>
             }
@@ -325,6 +326,8 @@ type HeroCompType = {
     socialProfText?: ReactElement<ComponentProps<typeof SocialProfText>, typeof SocialProfText>;
     heroImage?: ReactElement<ComponentProps<typeof HeroImage>, typeof HeroImage>;
     location?: LocationType;
+    mobile_position?: "top" | "bottom"
+    desktop_position?: "right" | "left"
 }
 
 const HeroVariant = cva(
@@ -349,23 +352,40 @@ const HeroVariant = cva(
     }
 )
 
-export function Hero({ variant, className, ...props }: HeroCompType & ClassNameType & VariantProps<typeof HeroVariant>) {
+export function Hero({ variant, className, mobile_position = "top", desktop_position = "right", ...props }: HeroCompType & ClassNameType & VariantProps<typeof HeroVariant>) {
+
+    const image = 
+    <>{
+        <div data-mp={mobile_position} 
+            className={"data-[mp=top]:max-md:row-start-1"}>
+            {props.heroImage}
+        </div>
+    }</>
+
     return (
-        <div className="grid lg:grid-cols-2 justify-center items-center gap-x-12 gap-y-16">
-            <div>
-                <div className="max-w-3xl mx-auto text-center lg:mx-0 lg:text-left">
-                    {props.badge}
-                    {props.greetings}
-                    {props.title}
-                    {props.role}
-                    {props.description}
-                    {props.tags}
-                    {props.ctaBtns}
-                    {props.socialProfText}
-                </div>
+        <div data-slot="hero" className="grid lg:grid-cols-2 justify-center items-center gap-x-4 gap-y-8 max-md:py-8">
+
+            {desktop_position === "left" && image}
+
+            <div className="grid text-center lg:mx-0 lg:text-left gap-6">
+                {
+                    (props.badge || props.greetings
+                        || props.title || props.role) &&
+                    <div className="grid gap-2 md:gap-4">
+                        {props.badge}
+                        {props.greetings}
+                        {props.title}
+                        {props.role}
+                    </div>
+                }
+
+                {props.description}
+                {props.tags}
+                {props.ctaBtns}
+                {props.socialProfText}
             </div>
 
-            {props.heroImage}
+            {desktop_position === "right" && image}
         </div>
     )
 }

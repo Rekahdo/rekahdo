@@ -7,13 +7,13 @@ type TextArrayType = {
     texts: string[] | undefined
 };
 
-const TagVariant = cva(
-    "text-xs font-bold",
+const TagChildVariant = cva(
+    "text-[0.6rem] sm:text-xs sm:font-bold",
     {
         variants: {
             variant: {
                 default: cn(
-                    "py-2 px-4 border-2 border-border rounded-full"
+                    "py-1 px-4 sm:py-2 border-2 border-border rounded-full"
                 )
             },
         },
@@ -23,20 +23,29 @@ const TagVariant = cva(
     }
 )
 
-const tagConStyle = cn(
-    "flex flex-col items-center gap-3",
-    "md:flex-row lg:gap-3"
+const TagVariant = cva(
+    cn(
+        "flex flex-wrap items-center gap-3",
+        "md:flex-row lg:gap-3 max-md:justify-center"
+    ),
+    {
+        variants: {
+            section: {
+                hero: ""
+            }
+        },
+    }
 )
 
-export function Tag({ texts, variant, className }: TextArrayType & ClassNameType & VariantProps<typeof TagVariant>) {
+export function Tag({ texts, variant, section, className }: TextArrayType & ClassNameType & VariantProps<typeof TagVariant> & VariantProps<typeof TagChildVariant>) {
     return (
         <>
             {
                 texts &&
-                <div className={tagConStyle}>
+                <div className={cn(TagVariant({ section }))}>
                     {
-                        texts.map(text => (
-                            <p className={cn(TagVariant({ variant, className }))}>
+                        texts.map((text, index) => (
+                            <p key={index} className={cn(TagChildVariant({ variant, className }))}>
                                 {text}
                             </p>
                         ))

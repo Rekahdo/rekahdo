@@ -4,7 +4,10 @@ import type { ReactNode } from 'react';
 import type { ChildrenType } from '../../utils/type';
 
 const containerChildVariants = cva(
-    'flex grow px-2 sm:px-4 md:px-6 lg:px-8 border-x-1 border-border max-w-[var(--max-w)] h-[10dvh]',
+    cn(
+        'flex grow px-2 sm:px-4 md:px-6 lg:px-8 max-w-[var(--max-w)] h-[10dvh]',
+        // 'border-x-1 border-border'
+    ),
     {
         variants: {
             variant: {
@@ -41,8 +44,8 @@ const containerVariants = cva(
         variants: {
             variant: {
                 default: '',
-                header: 'border-b-1 border-border',
-                hero: '',
+                header: 'border-b-1 border-border sticky top-0',
+                hero: 'lg:px-0',
                 about: '',
             },
         },
