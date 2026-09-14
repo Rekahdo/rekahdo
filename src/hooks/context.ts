@@ -10,8 +10,9 @@ import { ResourcesContext } from "../contexts/ResourcesProvider";
 import { ServicesContext } from "../contexts/ServicesProvider";
 import { StackUsageContext } from "../contexts/StackUsageProvider";
 import { TechStackContext } from "../contexts/TechStackProvider";
-import type { AboutType, ContactMeType, ContextValueType, FooterType, GrowthType, HeaderType, HeroType, ProjectsType, ResourcesType, ServicesType, StackUsageType, TechStack } from "../utils/type";
+import type { AboutType, ContactMeType, ContextValueType, FooterType, GrowthType, HeaderType, ProjectsType, ResourcesType, ServicesType, StackUsageType, TechStack } from "../utils/type";
 import { Provider } from "../utils/enum";
+import type { HeroType } from "../sections/hero/HeroSection";
 
 export const useHeader = (): ContextValueType<HeaderType> => {
   const context = useContext(HeaderContext);

@@ -1,4 +1,4 @@
-import type { Experience, Education, CoreSkillType, AboutType } from '../utils/type';
+import type { AboutType } from '../utils/type';
 
 export const aboutMeData: AboutType = {
   hidden: false,

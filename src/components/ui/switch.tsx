@@ -2,7 +2,6 @@ import { Switch as SwitchPrimitive } from "@base-ui/react/switch"
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn"
 import { useEffect, useState, type ReactNode } from "react";
-import { themeIsDark } from "../../utils/utils";
 
 const rootVariants = cva(
   cn(

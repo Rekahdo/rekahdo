@@ -1,5 +1,3 @@
-import './ContactSection.css'
-
 export const ContactSection = () => {
     return (
         <section>

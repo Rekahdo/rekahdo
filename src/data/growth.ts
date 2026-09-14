@@ -1,4 +1,4 @@
-import type { GrowthItem, Quote, GrowthType } from '../utils/type';
+import type { GrowthType } from '../utils/type';
 
 export const growthData: GrowthType = {
   hidden: false,

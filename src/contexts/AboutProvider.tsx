@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import type { AboutType } from "../data/about-me";
 import { aboutMeData } from "../data/about-me";
-import { ContextProvider, type ContextChildrenType } from "./ContextProvider";
+import type { AboutType, ContextChildrenType } from "../utils/type";
+import { ContextProvider } from "./ContextProvider";
 
 export const AboutContext = new ContextProvider<AboutType>()
 
@@ -14,7 +14,7 @@ export const AboutProvider = ({children}: ContextChildrenType) => {
     }, [])
 
     function fetchData(): AboutType{
-        setData(_ => aboutMeData)
+        setData(aboutMeData)
         return aboutMeData;
     }
 

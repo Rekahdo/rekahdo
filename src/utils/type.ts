@@ -1,10 +1,9 @@
-import type { ComponentProps, ReactNode } from "react";
+import type { ReactNode } from "react";
 import type { Icon, Position, Provider } from "./enum";
-import type { NavLinkType } from "../components/ui/navigation-bar";
 import type { ButtonType } from "../components/ui/button";
 import type { ImageType } from "../components/ui/image";
 import type { LogoType } from "../components/ui/logo";
-import type React from "react";
+import type { NavLinkType } from "../components/ui/navigation-menu";
 
 // ============================================================================
 // ENUM-DERIVED TYPES

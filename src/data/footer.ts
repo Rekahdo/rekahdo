@@ -1,4 +1,4 @@
-import type { FooterSocialLink, FooterQuickLink, FooterType } from '../utils/type';
+import type { FooterType } from '../utils/type';
 
 export const footerData: FooterType = {
   hidden: false,
