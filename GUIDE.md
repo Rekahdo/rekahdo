@@ -76,6 +76,16 @@ lucid react for icon
 npm install lucide-react 
 doc: https://lucide.dev/icons
 
+Aceternity
+doc: https://ui.aceternity.com/components
+
+Readymadeui
+doc: https://readymadeui.com/tailwind-blocks/login-form
+
+
+
+
+
 
 
 

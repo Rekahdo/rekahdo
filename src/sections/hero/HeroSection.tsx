@@ -1,37 +1,47 @@
-import { Avatar } from '../../components/Avatar';
-import { Container } from '../../components/container';
-import { Tag } from '../../components/Tag';
+import type { ButtonType } from '../../components/ui/button';
+import { Container } from '../../components/ui/container';
+import { BadgeText, CTA, Description, Greeting, Hero, HeroImage, Role, SocialProfText, Title, type LocationType } from '../../components/ui/hero';
+import type { ImageType } from '../../components/ui/image';
+import { Tag } from '../../components/ui/tag';
 import { useHero } from '../../hooks/context'
 // import './HeroSection.css'
 
+export type HeroType = {
+    hidden: boolean;
+    greetings: string;
+    fullName: string;
+    role: string;
+    description: string;
+    heroImage: ImageType;
+    location: LocationType
+    tags: string[];
+    buttons: ButtonType[];
+}
+
 export const HeroSection = () => {
 
-    const { data } = useHero()!; 
+    const { data } = useHero()!;
 
     return (
         <>
             {data && !data.hidden &&
-                <Container className='hero-container bg-dominant-rd'>
-                    <section className='hero-section'>
-                        <Avatar {...data.avatar} className='top-right' />
-
-                        <div  className='bottom-left'>
-                            <p className="greetings">{data.greetings}</p>
-                            <h1 className="fullName">{data.fullName}</h1>
-                            <p className="role">{data.role}</p>
-                            <p className="description">{data.description}</p>
-
-                            <div className="tags ignore-font">{
-                                data.tags.filter((_, i)  => i < 3).map(tag => <Tag key={tag.id} {...tag} />)
-                            }</div>
-
-                            <div className="actionBtns ignore-font">{
-                                // data.actionButtons.map(acBtn => <Button key={acBtn.button.id} {...acBtn} />)
-                            }</div>
-                        </div>
-                    </section>
+                <Container variant={"hero"}>
+                    <Hero
+                        badge={<BadgeText text='app that help your business grow'/>}
+                        greetings={<Greeting text={data.greetings} />}
+                        title={<Title text={data.fullName} />}
+                        role={<Role text={data.role} />}
+                        description={<Description text={data.description} />}
+                        tags={<Tag texts={data.tags} />}
+                        ctaBtns={<CTA btns={data.buttons}/>}
+                        heroImage={<HeroImage {...data.heroImage} />}
+                        location={data.location}
+                        socialProfText={<SocialProfText count={10000}/>}
+                    />
                 </Container>
             }
+
+            <p className='sm:text-4xl'></p>
         </>
     )
 }

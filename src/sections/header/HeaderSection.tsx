@@ -1,8 +1,8 @@
-import { useHeader } from '../../hooks/context'
-import { NavBar } from '../../components/ui/navigation-bar';
-import { ThemeToggle } from '../../components/ui/toggle';
-import { Logo } from '../../components/ui/logo';
-import { Container } from '../../components/container';
+import { Container } from "../../components/ui/container";
+import { Logo } from "../../components/ui/logo";
+import { NavBar } from "../../components/ui/navigation-menu";
+import { ThemeToggle } from "../../components/ui/toggle";
+import { useHeader } from "../../hooks/context";
 
 export const HeaderSection = () => {
 
@@ -13,11 +13,11 @@ export const HeaderSection = () => {
             {
                 data && !data.hidden &&
 
-                <Container>
-                    <header className={"flex w-full items-center"}>
+                <Container variant={"header"}>
+                    <header className={"flex items-center w-full"}>
                         <NavBar
                             links={data.navLink.links} cta={{button: data.ctaButton, variant: 'download-cv'}}
-                            logo={<Logo {...data.logo} />}
+                            logo={<Logo  {...data.logo} />}
                             theme_toggle={<ThemeToggle />}
                         />
                     </header>

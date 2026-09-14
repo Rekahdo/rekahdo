@@ -7,24 +7,26 @@ const imgVariants = cva(
     {
         variants: {
             variant: {
+                default: "",
                 logo: "w-20 min-sm:w-30"
             },
             size: {
+                default: "",
                 small: "w-20 min-sm:w-25",
                 meduim: "w-30 min-sm:w-40",
                 large: "w-40 min-sm:w-50",
             }
         },
         defaultVariants: {
-            variant: "logo",
-            size: "small",
+            variant: "default",
+            size: "default",
         }
     }
 )
 
 export type ImageType = {
-    hidden: boolean;
-    name: string;
+    hidden?: boolean;
+    name?: string;
     src: string;
     alt: string;
 };
@@ -35,7 +37,7 @@ export function Image({ className, variant, ...props }: ImageComponentType & Var
     return (
         <div className={cn(imgVariants({ variant, className }))}>
             <img src={props.src} alt={`${props.alt}`}
-                className="w-full"/>
+                className="w-full h-full object-contain"/>
         </div>
     )
 }

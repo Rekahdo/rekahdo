@@ -1,9 +1,10 @@
-import type { ReactNode } from "react";
+import type { ComponentProps, ReactNode } from "react";
 import type { Icon, Position, Provider } from "./enum";
 import type { NavLinkType } from "../components/ui/navigation-bar";
 import type { ButtonType } from "../components/ui/button";
 import type { ImageType } from "../components/ui/image";
 import type { LogoType } from "../components/ui/logo";
+import type React from "react";
 
 // ============================================================================
 // ENUM-DERIVED TYPES
@@ -31,12 +32,7 @@ export type ClassNameType = {
     className?: string;
 }
 
-export type ActionButtonType = {
-  uiTypeId: number;
-  button: ButtonType;
-}
-
-export type ButtonCompType = ActionButtonType & {
+export type ButtonCompType = {
     icon?: IconType;
     className?: string;
     onClick?: () => void;
@@ -68,7 +64,7 @@ export type NavBarType = {
   version?: number,
   logo: ImageType,
   navLink: NavLinkType,
-  ctaButton: ActionButtonType,
+  ctaButton: ButtonType,
 }
 
 export type LocationType = {
@@ -361,15 +357,4 @@ export type ErrorPageProps = {
     statusCode?: number;
     message?: string;
     description?: string;
-}
-
-export type HeroType = {
-  hidden: boolean;
-  greetings: string;
-  fullName: string;
-  role: string;
-  description: string;
-  avatar: AvatarType;
-  tags: TagType[];
-  actionButtons: ActionButtonType[];
 }
