@@ -1,9 +1,8 @@
-import { Container } from '../../components/Container';
-import { Image } from '../../components/ui/image';
-import { Switch } from '../../components/ui/switch';
-import { useHeader } from '../../hooks/context'
-import { NavBar } from '../../components/ui/navbar';
-import { Button } from '../../components/ui/button';
+import { Container } from "../../components/ui/container";
+import { Logo } from "../../components/ui/logo";
+import { NavBar } from "../../components/ui/navigation-menu";
+import { ThemeToggle } from "../../components/ui/toggle";
+import { useHeader } from "../../hooks/context";
 
 export const HeaderSection = () => {
 
@@ -14,19 +13,13 @@ export const HeaderSection = () => {
             {
                 data && !data.hidden &&
 
-                <Container>
-                    <header className='flex w-full items-center justify-between'>
-                        <Image {...data.logo} alt={`${data.logo.name} Logo`} />
-
-                        <NavBar {...data.navLink} showCloseBtn={false} side='left' variant={'navLink'}
-                            title={<Image {...data.logo} alt={`${data.logo.name} Logo`} />}
-                            footer={<Button {...data.ctaButton} variant_type='download-cv' size={'lg'} />}
+                <Container variant={"header"}>
+                    <header className={"flex items-center w-full"}>
+                        <NavBar
+                            links={data.navLink.links} cta={{button: data.ctaButton, variant: 'download-cv'}}
+                            logo={<Logo  {...data.logo} />}
+                            theme_toggle={<ThemeToggle />}
                         />
-
-                        <div className=''>
-                            <Switch variant={'thin'} toggleTheme={true} />
-                            <Button {...data.ctaButton} variant_type='download-cv' className='max-md:hidden' />
-                        </div>
                     </header>
                 </Container>
             }
