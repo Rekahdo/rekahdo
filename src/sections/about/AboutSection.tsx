@@ -1,7 +1,4 @@
-import './AboutSection.css'
-
 export const AboutSection = () => {
-
     return (
         <>
             {

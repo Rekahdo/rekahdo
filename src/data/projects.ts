@@ -1,4 +1,4 @@
-import type { Project, ProjectsType } from '../utils/type';
+import type { ProjectsType } from '../utils/type';
 
 export const projectsData: ProjectsType = {
   hidden: false,

@@ -1,4 +1,4 @@
-import type { Technology, CategoryOverview, ProficiencyKey, StackUsageType } from '../utils/type';
+import type { StackUsageType } from '../utils/type';
 
 export const stackUsageData: StackUsageType = {
   hidden: false,

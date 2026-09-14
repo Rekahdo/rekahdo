@@ -13,7 +13,7 @@ export const HeaderProvider = ({ children }: ContextChildrenType) => {
     }, [])
 
     function fetchData(): HeaderType{
-        setData(_ => headerData)
+        setData(headerData)
         return headerData;
     }
 

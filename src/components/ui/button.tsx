@@ -44,7 +44,7 @@ const buttonVariants = cva(
 
 export type ButtonType = {
   readonly b_id?: number;
-  text: string;
+  text?: string;
   hidden?: boolean;
   src?: string;
   file_name?: string;

@@ -1,4 +1,4 @@
-import type { Service, ServicesType } from '../utils/type';
+import type { ServicesType } from '../utils/type';
 
 export const servicesData: ServicesType = {
   hidden: false,
