@@ -1,20 +1,5 @@
-import { createContext, useContext, type JSX, type ReactNode } from "react";
-
-export const Provider = {
-    HERO: "Hero",
-    ABOUT: "About",
-};
-
-type ProviderType = (typeof Provider)[keyof typeof Provider];
-
-export type ContextChildrenType = {
-    children: ReactNode;
-};
-
-export type ContextValueType<T> = {
-    data: T | undefined;
-    reload: () => T;
-} | null;
+import { createContext, useContext, type JSX } from "react";
+import type { ProviderType, ContextChildrenType, ContextValueType } from "../utils/type";
 
 export class ContextProvider<T> {
 

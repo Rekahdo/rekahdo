@@ -1,4 +1,6 @@
-export const footerData = {
+import type { FooterType } from '../utils/type';
+
+export const footerData: FooterType = {
   hidden: false,
   copyrightText: "© 2026 Richard Okafor (Rekahdo). All rights reserved.",
   socialLinks: [

@@ -1,4 +1,6 @@
-export const contactMeData = {
+import type { ContactMeType } from '../utils/type';
+
+export const contactMeData: ContactMeType = {
   hidden: false,
   email: "contact@rekahdo.dev",
   phone: "+2340000000000",

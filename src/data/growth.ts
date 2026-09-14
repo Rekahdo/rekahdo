@@ -1,4 +1,6 @@
-export const growthData = {
+import type { GrowthType } from '../utils/type';
+
+export const growthData: GrowthType = {
   hidden: false,
   sectionTitle: "Growth",
   subtitle: "What I am currently learning",

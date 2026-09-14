@@ -1,4 +1,6 @@
-export const resourcesData = {
+import type { ResourcesType } from '../utils/type';
+
+export const resourcesData: ResourcesType = {
   hidden: false,
   sectionTitle: "Resources",
   subtitle: "References and tools I rely on every day",

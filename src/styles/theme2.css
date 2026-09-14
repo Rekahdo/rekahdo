@@ -1,0 +1,144 @@
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* dominant: 60% Blue Shape */
+  --dominant: hsl(226, 60%, 9.8%);
+  --dominant-fg: hsl(0, 0%, 100%);
+  --dominant-bd: hsl(226, 60%, 30%);
+  --dominant-rd-from: hsl(226, 70%, 21%);
+  --dominant-rd-to: var(--dominant);
+  --dominant-transparent: hsla(227, 43%, 23%, 0.593);
+
+  /* primary: 30% Blue Shape */
+  --primary: hsl(207, 100%, 41%);
+  --primary-hover: hsl(207, 100%, 36%);
+  --primary-fg: hsl(0, 0%, 100%);
+  --primary-transparent: hsla(207, 100%, 41%, 0.185);
+
+  /* accent: 10% Blue Shape */
+  --accent: hsl(198.4, 93.2%, 59.6%);
+  --accent-hover: hsl(200.4, 98%, 39.4%);
+  --accent-fg: hsl(0, 0%, 100%);
+  --accent-transparent: hsla(198.4, 93.2%, 59.6%, 0.185);
+
+  /* Other Color */
+  --light: hsl(210, 40%, 98%);
+  --surface: hsl(217.2, 32.6%, 17.5%);
+
+  /* Default font */
+  --font-size: 16px;
+  --font-baloo: 'Baloo_2', sans-serif;
+  --font-space-grotesk: 'Space Grotesk', sans-serif;
+
+  /* Spacing */
+  --sm-inline: 15px;
+
+  /* Breakpoint */
+  --mobile-sm: 320px;
+  --mobile-lg: 500px;
+
+  /* width */
+  --portfolio-width: 1700px;
+
+  /* Heading */
+  --heading-weight: 700;
+  --heading-line-height: 1.5;
+}
+
+.dark {
+  --dominant: hsl(226, 60%, 9.8%);
+  --dominant-fg: hsl(0, 0%, 100%);
+  --dominant-bd: hsl(225.7, 73.7%, 22.4%);
+}
+
+@theme inline {
+  --color-dominant: var(--dominant);
+  --color-dominant-fg: var(--dominant-fg);
+  --color-dominant-bd: var(--dominant-bd);
+  --color-dominant-transparent: var(--dominant-transparent);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-fg: var(--primary-fg);
+  --color-primary-transparent: var(--primary-transparent);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-transparent: var(--accent-transparent);
+
+  --color-light: var(--light);
+  --color-surface: var(--surface);
+
+  --font-primary: var(--font-baloo);
+  --font-hero: var(--font-space-grotesk);
+
+  --spacing-sm-inline: var(--sm-inline);
+  
+  --max-width-portfolio: var(--portfolio-width);
+
+  --breakpoint-mobile-sm: var(--mobile-sm);
+  --breakpoint-mobile-lg: var(--mobile-lg);
+  --breakpoint-md-2: 900px;
+};
+
+@layer base {
+  *,
+  *::before, 
+  *::after {
+    @apply m-0 p-0 box-border font-primary;
+  }
+
+  body {
+    @apply bg-dominant text-dominant-fg;
+  }
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  h1 {
+    font-size: 3.75rem;
+    font-weight: var(--heading-weight);
+    line-height: var(--heading-line-height);
+  }
+
+  h2 {
+    font-size: 2.25rem;
+    font-weight: var(--heading-weight);
+    line-height: var(--heading-line-height);
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: var(--heading-weight);
+    line-height: var(--heading-line-height);
+  }
+
+  h4 {
+    font-size: 1.2rem;
+    font-weight: var(--heading-weight);
+    line-height: var(--heading-line-height);
+  }
+
+  button, a{
+    @apply cursor-pointer;
+  }
+};
+
+@layer utilities{
+  .bg-dominant-rd{
+    @apply bg-radial from-[var(--dominant-rd-from)] from-10% to-[var(--dominant-rd-to)] to-70% text-dominant-fg;
+  }
+}
+
+@layer components{
+  .section-container{
+    @apply flex justify-center px-2; 
+    @apply min-md:px-6 min-lg:px-6;
+
+    & > *{
+      @apply max-w-portfolio;
+    }
+  }
+}

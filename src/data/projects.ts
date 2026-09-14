@@ -1,4 +1,6 @@
-export const projectsData = {
+import type { ProjectsType } from '../utils/type';
+
+export const projectsData: ProjectsType = {
   hidden: false,
   sectionTitle: "PROJECTS",
   subtitle: "Showcasing scalable backend systems and full-stack experiments",

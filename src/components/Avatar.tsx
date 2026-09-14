@@ -1,23 +1,7 @@
-import './Avatar.css'
+// import './Avatar.css'
 import { CodeXml } from "lucide-react"
+import type { AvatarCompType } from '../utils/type';
 
-export type LocationType = {
-    hidden: boolean;
-    state: string;
-    country: string;
-}
-
-export type AvatarType = {
-    hidden: boolean;
-    file_name: string;
-    file_path: string;
-    rounded: boolean;
-    location: LocationType;
-}
-
-export type AvatarCompType = AvatarType & {
-    className?: string;
-}
 
 export const Avatar = (props: AvatarCompType) => {
     return (

@@ -1,4 +1,6 @@
-export const servicesData = {
+import type { ServicesType } from '../utils/type';
+
+export const servicesData: ServicesType = {
   hidden: false,
   sectionTitle: "Services",
   subtitle: "What I do with my skills",

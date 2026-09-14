@@ -1,11 +1,5 @@
-export const ImageType = {
-  ICON: 'icons',
-  LOGO: 'logos',
-  ME: 'me',
-} as const;
+import type { ImageFileType } from './type';
 
-export type ImageType = typeof ImageType[keyof typeof ImageType];
-
-export const getImageUrl = (name: string, type: ImageType) => {
+export const getImageUrl = (name: string, type: ImageFileType) => {
   return new URL(`../images/${type}/${name}`, import.meta.url).href;
 };
