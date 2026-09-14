@@ -1,5 +1,5 @@
 import { Avatar } from '../../components/Avatar';
-import { Container } from '../../components/ui/container';
+import { Container } from '../../components/container';
 import { Tag } from '../../components/Tag';
 import { useHero } from '../../hooks/context'
 // import './HeroSection.css'

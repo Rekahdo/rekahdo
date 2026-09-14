@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from 'cn'
 import type { ReactNode } from 'react';
-import type { ComponentType } from '../../utils/type';
+import type { ComponentType } from '../utils/type';
 
 type ContainerType = {
     children: ReactNode;

@@ -1,8 +1,8 @@
-import { Container } from '../../components/ui/container';
 import { useHeader } from '../../hooks/context'
 import { NavBar } from '../../components/ui/navigation-bar';
 import { ThemeToggle } from '../../components/ui/toggle';
 import { Logo } from '../../components/ui/logo';
+import { Container } from '../../components/container';
 
 export const HeaderSection = () => {
 
