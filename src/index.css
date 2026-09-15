@@ -192,11 +192,11 @@
   }
 
   body {
-    @apply bg-secondary text-foreground overflow-x-hidden;
+    @apply bg-secondary text-foreground;
     letter-spacing: var(--tracking-normal);
   }
 
   html {
-    @apply font-sans;
+    @apply font-sans overflow-x-hidden;
   }
 }

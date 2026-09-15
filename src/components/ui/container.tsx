@@ -12,8 +12,8 @@ const containerChildVariants = cva(
         variants: {
             variant: {
                 default: "",
-                header: 'items-center max-sm:h-[8dvh]',
-                hero: 'min-h-[92dvh] h-auto lg:min-h-[90dvh] lg:px-20',
+                header: 'items-center max-sm:h-[8dvh] py-4',
+                hero: 'py-12 lg:px-20 overflow-hidden max-sm:h-[91.9dvh] lg:h-[89.9dvh]',
                 about: '',
             },
         },
@@ -44,7 +44,7 @@ const containerVariants = cva(
         variants: {
             variant: {
                 default: '',
-                header: 'border-b-1 border-border sticky top-0',
+                header: 'border-b-1 border-border sticky top-0 z-100',
                 hero: 'lg:px-0 max-lg:h-full',
                 about: '',
             },

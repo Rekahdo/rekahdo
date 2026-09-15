@@ -87,7 +87,7 @@ export function Greeting({ text, variant, className }: TextType & ClassNameType 
 }
 
 const TitleVariant = cva(
-    "font-extrabold text-4xl text-foreground md:text-6xl",
+    "font-extrabold text-4xl text-foreground md:text-6xl uppercase",
     {
         variants: {
             variant: {
@@ -363,7 +363,7 @@ export function Hero({ variant, className, mobile_position = "top", desktop_posi
     }</>
 
     return (
-        <div data-slot="hero" className="grid lg:grid-cols-2 justify-center items-center gap-x-4 gap-y-8 max-md:py-8">
+        <div data-slot="hero" className="grid lg:grid-cols-2 justify-center items-center gap-x-4 gap-y-8 max-md:py-8  overflow-hidden">
 
             {desktop_position === "left" && image}
 
