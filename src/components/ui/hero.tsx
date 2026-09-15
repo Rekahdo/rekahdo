@@ -363,7 +363,7 @@ export function Hero({ variant, className, mobile_position = "top", desktop_posi
     }</>
 
     return (
-        <div data-slot="hero" className="grid lg:grid-cols-2 justify-center items-center gap-x-4 gap-y-8 max-md:py-8  overflow-hidden">
+        <div data-slot="hero" className="grid lg:grid-cols-2 justify-center items-center gap-x-4 gap-y-8">
 
             {desktop_position === "left" && image}
 

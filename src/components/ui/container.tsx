@@ -13,7 +13,7 @@ const containerChildVariants = cva(
             variant: {
                 default: "",
                 header: 'items-center max-sm:h-[8dvh] py-4',
-                hero: 'py-12 lg:px-20 overflow-hidden max-sm:h-[91.9dvh] lg:h-[89.9dvh]',
+                hero: 'py-10 lg:px-20 max-sm:min-h-[91.9dvh] h-auto lg:h-[89.9dvh]',
                 about: '',
             },
         },
