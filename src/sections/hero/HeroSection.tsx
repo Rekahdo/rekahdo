@@ -4,6 +4,7 @@ import { BadgeText, CTA, Description, Greeting, Hero, HeroImage, Role, Title, ty
 import type { ImageType } from '../../components/ui/image';
 import { Tag } from '../../components/ui/tag';
 import { useHero } from '../../hooks/context'
+import type { ClassNameType } from '../../utils/type';
 
 export type HeroType = {
     hidden: boolean;
@@ -17,15 +18,16 @@ export type HeroType = {
     buttons: ButtonType[];
 }
 
-export const HeroSection = () => {
+export const HeroSection = ({className}: ClassNameType) => {
 
     const { data } = useHero()!;
 
     return (
         <>
             {data && !data.hidden &&
-                <Container variant={"hero"}>
+                <Container variant={"hero"} className={className}>
                     <Hero
+                    className='bg-green-400'
                         badge={<BadgeText text='developer that help your business grow'/>}
                         greetings={<Greeting text={data.greetings} />}
                         title={<Title text={data.fullName} />}
