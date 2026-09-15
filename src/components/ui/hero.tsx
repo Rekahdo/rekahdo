@@ -16,7 +16,7 @@ type ButtonArrayType = {
 };
 
 const BadgeTextVariant = cva(
-    "font-medium text-primary text-sm uppercase",
+    "font-medium text-primary uppercase text-xs md:text-sm ",
     {
         variants: {
             variant: {

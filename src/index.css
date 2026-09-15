@@ -192,36 +192,11 @@
   }
 
   body {
-    @apply bg-secondary text-foreground;
+    @apply bg-secondary text-foreground overflow-x-hidden;
     letter-spacing: var(--tracking-normal);
   }
 
   html {
     @apply font-sans;
-    /* font-size: var(--font-size); */
   }
-
-  /* h1 {
-    font-size: 3.75rem;
-    font-weight: var(--heading-weight);
-    line-height: var(--heading-line-height);
-  }
-
-  h2 {
-    font-size: 2.25rem;
-    font-weight: var(--heading-weight);
-    line-height: var(--heading-line-height);
-  }
-
-  h3 {
-    font-size: 1.5rem;
-    font-weight: var(--heading-weight);
-    line-height: var(--heading-line-height);
-  }
-
-  h4 {
-    font-size: 1.2rem;
-    font-weight: var(--heading-weight);
-    line-height: var(--heading-line-height);
-  } */
 }
