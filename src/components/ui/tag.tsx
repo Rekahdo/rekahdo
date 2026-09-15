@@ -26,7 +26,7 @@ const TagChildVariant = cva(
 const TagVariant = cva(
     cn(
         "flex flex-wrap items-center gap-3",
-        "md:flex-row lg:gap-3 max-md:justify-center"
+        "max-lg:justify-center"
     ),
     {
         variants: {

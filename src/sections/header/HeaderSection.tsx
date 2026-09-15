@@ -1,6 +1,6 @@
 import { Container } from "../../components/ui/container";
 import { Logo } from "../../components/ui/logo";
-import { NavBar } from "../../components/ui/navigation-menu";
+import { NavBar } from "../../components/ui/navigation-bar";
 import { ThemeToggle } from "../../components/ui/toggle";
 import { useHeader } from "../../hooks/context";
 

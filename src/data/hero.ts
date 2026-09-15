@@ -4,7 +4,7 @@ import { buttonData } from "./button";
 export const heroData: HeroType = {
   hidden: false,
   greetings: "Hi there, I'm",
-  fullName: "RICHARD OKAFOR",
+  fullName: "RICHARD T. OKAFOR",
   role: "Full Stack Developer",
   description:
     "Welcome to my portfolio, where I showcase my projects, skills, and experience as a passionate developer with a focus on Java-based and front-end technologies, developing innovative solutions that drive business value and user engagement.",

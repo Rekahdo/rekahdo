@@ -5,15 +5,15 @@ import type { ChildrenType } from '../../utils/type';
 
 const containerChildVariants = cva(
     cn(
-        'flex grow px-2 sm:px-4 md:px-6 lg:px-8 max-w-[var(--max-w)] h-[10dvh]',
+        'flex grow px-2 sm:px-4 md:px-6 lg:px-8 max-w-[var(--max-w)] h-[9.9dvh]',
         // 'border-x-1 border-border'
     ),
     {
         variants: {
             variant: {
                 default: "",
-                header: 'items-center max-sm:h-[8dvh] py-4',
-                hero: 'py-10 lg:px-20 max-sm:min-h-[91.9dvh] h-auto lg:h-[89.9dvh]',
+                header: 'items-center max-lg:h-[7.9dvh] py-4',
+                hero: 'py-10 h-auto lg:px-20 max-lg:min-h-[92dvh] lg:h-[90dvh] lg:max-h-[1000px]',
                 about: '',
             },
         },

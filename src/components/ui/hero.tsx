@@ -16,7 +16,7 @@ type ButtonArrayType = {
 };
 
 const BadgeTextVariant = cva(
-    "font-medium text-primary uppercase text-xs md:text-sm ",
+    "font-medium text-primary uppercase ",
     {
         variants: {
             variant: {
@@ -26,7 +26,7 @@ const BadgeTextVariant = cva(
             },
             size: {
                 default: cn(
-
+                    "text-xs md:text-sm"
                 )
             }
         },
@@ -52,7 +52,7 @@ export function BadgeText({ text, variant, className }: TextType & ClassNameType
 }
 
 const GreetingVariant = cva(
-    "font-medium text-base text-foreground md:text-2xl",
+    "font-medium text-foreground",
     {
         variants: {
             variant: {
@@ -62,7 +62,7 @@ const GreetingVariant = cva(
             },
             size: {
                 default: cn(
-
+                    "text-base md:text-2xl"
                 )
             }
         },
@@ -87,18 +87,19 @@ export function Greeting({ text, variant, className }: TextType & ClassNameType 
 }
 
 const TitleVariant = cva(
-    "font-extrabold text-4xl text-foreground md:text-6xl uppercase",
+    "font-extrabold uppercase",
     {
         variants: {
             variant: {
                 default: cn(
-
+                    "text-foreground"
                 )
             },
             size: {
                 default: cn(
-
-                )
+                    "text-4xl md:text-5xl lg:text-6xl"
+                ),
+                lg: "text-3xl md:text-6xl lg:text-7xl"
             }
         },
         defaultVariants: {
@@ -108,12 +109,12 @@ const TitleVariant = cva(
     }
 )
 
-export function Title({ text, variant, className }: TextType & ClassNameType & VariantProps<typeof TitleVariant>) {
+export function Title({ text, variant, size, className }: TextType & ClassNameType & VariantProps<typeof TitleVariant>) {
     return (
         <>
             {
                 text &&
-                <h1 className={cn(TitleVariant({ variant, className }))}>
+                <h1 className={cn(TitleVariant({ variant, size, className }))}>
                     {text}
                 </h1>
             }
@@ -122,7 +123,7 @@ export function Title({ text, variant, className }: TextType & ClassNameType & V
 }
 
 const RoleVariant = cva(
-    "font-medium text-xl md:text-3xl",
+    "font-medium",
     {
         variants: {
             variant: {
@@ -132,7 +133,7 @@ const RoleVariant = cva(
             },
             size: {
                 default: cn(
-
+                    "text-xl md:text-2xl lg:text-3xl"
                 )
             }
         },
@@ -157,7 +158,7 @@ export function Role({ text, variant, className }: TextType & ClassNameType & Va
 }
 
 const DescriptionVariant = cva(
-    "text-foreground/50 text-sm px-4 mlg:p-0 md:text-lg",
+    "text-foreground/50 max-lg:px-4",
     {
         variants: {
             variant: {
@@ -167,7 +168,7 @@ const DescriptionVariant = cva(
             },
             size: {
                 default: cn(
-
+                    "text-sm md:text-lg"
                 )
             }
         },
@@ -192,7 +193,7 @@ export function Description({ text, variant, className }: TextType & ClassNameTy
 }
 
 const CtaVariant = cva(
-    "flex flex-wrap justify-center gap-6 lg:justify-start",
+    "flex flex-wrap gap-6 max-lg:justify-center",
     {
         variants: {
             variant: {
@@ -237,11 +238,11 @@ const HeroImageVariant = cva(
                 ),
             },
             size: {
-                sm: "aspect-[2/1]",
+                sm: "aspect-[2/1] md:aspect-[4/2] lg:aspect-[4/2.5]",
                 default: cn(
-                    "aspect-[3/2]"
+                    "aspect-[3/2] md:aspect-[5/3] lg:aspect-[5/3.5]"
                 ),
-                lg: "aspect-[5/4]",
+                lg: "aspect-[5/4] md:aspect-[6/4] lg:aspect-[6/4.5]",
                 xl: "aspect-[1]",
             }
         },
@@ -357,13 +358,13 @@ export function Hero({ variant, className, mobile_position = "top", desktop_posi
     const image = 
     <>{
         <div data-mp={mobile_position} 
-            className={"data-[mp=top]:max-md:row-start-1"}>
+            className={"data-[mp=top]:max-lg:row-start-1"}>
             {props.heroImage}
         </div>
     }</>
 
     return (
-        <div data-slot="hero" className="grid lg:grid-cols-2 justify-center items-center gap-x-4 gap-y-8">
+        <div data-slot="hero" className="grid lg:grid-cols-2 justify-center items-center gap-y-8">
 
             {desktop_position === "left" && image}
 
