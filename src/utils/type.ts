@@ -52,13 +52,6 @@ export type TagCompType = TagType & {
     className?: string;
 }
 
-export type HeaderType = {
-  hidden: boolean;
-  logo: LogoType;
-  navLink: NavLinkType;
-  ctaButton: ButtonType ;
-};
-
 export type NavBarType = {
   version?: number,
   logo: ImageType,

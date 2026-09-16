@@ -1,25 +1,24 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "../../hooks/useTheme";
-import { Image } from "./image";
+import { Image, type ImageType } from "./image";
 import { themeIsDark } from "../../utils/utils";
 import { cn } from "cn";
 import { Link } from "./link";
 
-export type LogoType = {
-    hidden: boolean;
+export type LogoType = ImageType & {
     name: string;
     light_src: string;
     dark_src: string;
     alt: string;
 }
 
-function Logo(data: LogoType) {
+function Logo({name, light_src, dark_src, alt, ...props}: LogoType) {
 
     const { listen, stop } = useTheme();
-    const [src, setSrc] = useState<string>(themeIsDark() ? data.dark_src : data.light_src);
+    const [src, setSrc] = useState<string>(themeIsDark() ? dark_src : light_src);
 
     useEffect(() => {
-        const observer = listen(() => setSrc(data.dark_src), () => setSrc(data.light_src));
+        const observer = listen(() => setSrc(dark_src), () => setSrc(light_src));
 
         return () => {
             stop(observer);
@@ -27,12 +26,13 @@ function Logo(data: LogoType) {
     }, [])
 
     const logoStyle = cn(
-        "cursor-pointer"
+        "cursor-pointer",
+        "w-20 min-sm:w-30"
     )
 
     return (
-        <Link variant={"img"} href="/">
-            <Image className={logoStyle} variant={"logo"} {...data} src={src}/>
+        <Link href="/">
+            <Image className={logoStyle} src={src} alt={alt} size={props.size}/>
         </Link>
     )
 }

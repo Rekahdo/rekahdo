@@ -1,10 +1,10 @@
 import { type ComponentProps, type ReactElement } from "react";
-import { Button, type ButtonType } from "./button";
-import { Image, type ImageType } from "./image";
+import { Button, type ButtonType } from "../ui/button";
+import { Image, type ImageType } from "../ui/image";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
 import type { ClassNameType } from "../../utils/type";
-import type { Tag } from "./tag";
+import type { Tag } from "../ui/tag";
 import { formatNumber } from "../../utils/number";
 
 type TextType = {

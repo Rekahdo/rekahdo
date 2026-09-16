@@ -5,16 +5,15 @@ import type { ChildrenType } from '../../utils/type';
 
 const containerChildVariants = cva(
     cn(
-        'flex grow px-2 sm:px-4 md:px-6 lg:px-8 max-w-[var(--max-w)] h-[9.9dvh]',
-        // 'border-x-1 border-border'
+        'mx-auto max-w-[var(--max-w)]',
+        'px-2 sm:px-4 md:px-6 lg:px-8'
     ),
     {
         variants: {
             variant: {
                 default: "",
-                header: 'items-center max-lg:h-[7.9dvh] py-4',
+                header: '',
                 hero: 'py-10 h-auto lg:px-20 max-lg:min-h-[92dvh] lg:h-[90dvh] lg:max-h-[1000px]',
-                about: '',
             },
         },
 
@@ -39,14 +38,13 @@ function ContainerChild({ children, variant, max_w }: ContainerChildType) {
 }
 
 const containerVariants = cva(
-    'bg-background flex justify-center p-0 m-0 min-w-[var(--min-w)]',
+    'bg-background min-w-[var(--min-w)]',
     {
         variants: {
             variant: {
                 default: '',
-                header: 'border-b-1 border-border sticky top-0 z-100',
+                header: 'bg-background border-b-1 border-border',
                 hero: 'lg:px-0 max-lg:h-full',
-                about: '',
             },
         },
         defaultVariants: {

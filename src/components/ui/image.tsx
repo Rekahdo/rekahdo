@@ -1,15 +1,10 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
-import type { ClassNameType } from "../../utils/type";
 
 const imgVariants = cva(
     "flex",
     {
         variants: {
-            variant: {
-                default: "",
-                logo: "w-20 min-sm:w-30"
-            },
             size: {
                 default: "",
                 small: "w-20 min-sm:w-25",
@@ -18,24 +13,22 @@ const imgVariants = cva(
             }
         },
         defaultVariants: {
-            variant: "default",
             size: "default",
         }
     }
 )
 
-export type ImageType = {
+export type ImageType = VariantProps<typeof imgVariants> & {
     hidden?: boolean;
     name?: string;
     src: string;
     alt: string;
+    className?: string
 };
 
-export type ImageComponentType = ImageType & ClassNameType
-
-export function Image({ className, variant, ...props }: ImageComponentType & VariantProps<typeof imgVariants>) {
+export function Image({ className, size, ...props }: ImageType) {
     return (
-        <div className={cn(imgVariants({ variant, className }))}>
+        <div className={cn(imgVariants({size, className }))}>
             <img src={props.src} alt={`${props.alt}`}
                 className="w-full h-full object-contain"/>
         </div>

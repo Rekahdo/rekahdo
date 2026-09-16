@@ -1,28 +1,23 @@
 import type { ButtonType } from "../components/ui/button";
+import type { DownloadType } from "../components/ui/download";
 
 export const buttonData: ButtonType[] = [
-    {
-      b_id: 1,
-      hidden: false,
-      text: "Download CV",
-      src: "/Richard_Okafor_CV.pdf",
-      file_name: "Richard_Okafor_CV.pdf",
-    },
-    {
-      b_id: 2,
-      hidden: false,
-      text: "Contact Me",
-      src: "#contact",
-    },
-    {
-      b_id: 3,
-      hidden: false,
-      text: "Tech-Stack",
-      src: "#tech-stack",
-    },
-    {
-      b_id: 4,
-      hidden: false,
-      text: "Send Message",
-    },
-]
+  {
+    text: "Contact Me",
+    src: "#contact",
+  },
+  {
+    text: "Tech-Stack",
+    src: "#tech-stack",
+  },
+  {
+    text: "Send Message",
+    src: "#tech-stack",
+  },
+];
+
+export const downloadCVData: DownloadType = {
+  text: "Download CV",
+  src: "/Richard_Okafor_CV.pdf",
+  file_name: "Richard_Okafor_CV.pdf",
+};

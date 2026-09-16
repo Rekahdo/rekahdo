@@ -10,9 +10,19 @@ import { ResourcesContext } from "../contexts/ResourcesProvider";
 import { ServicesContext } from "../contexts/ServicesProvider";
 import { StackUsageContext } from "../contexts/StackUsageProvider";
 import { TechStackContext } from "../contexts/TechStackProvider";
-import type { AboutType, ContactMeType, ContextValueType, FooterType, GrowthType, HeaderType, ProjectsType, ResourcesType, ServicesType, StackUsageType, TechStack } from "../utils/type";
+import type { AboutType, ContactMeType, ContextValueType, FooterType, GrowthType, ProjectsType, ResourcesType, ServicesType, StackUsageType, TechStack } from "../utils/type";
 import { Provider } from "../utils/enum";
 import type { HeroType } from "../sections/hero/HeroSection";
+import type { LogoType } from "../components/ui/logo";
+import type { DownloadType } from "../components/ui/download";
+import type { NavigationLinkType } from "../components/ui/navigation-bar";
+
+export type HeaderType = {
+  hidden: boolean;
+  logo: LogoType;
+  navLink: NavigationLinkType[];
+  downloadCV: DownloadType;
+};
 
 export const useHeader = (): ContextValueType<HeaderType> => {
   const context = useContext(HeaderContext);

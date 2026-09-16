@@ -1,6 +1,6 @@
 import type { ButtonType } from '../../components/ui/button';
 import { Container } from '../../components/ui/container';
-import { BadgeText, CTA, Description, Greeting, Hero, HeroImage, Role, Title, type LocationType } from '../../components/ui/hero';
+import { BadgeText, CTA, Description, Greeting, Hero, HeroImage, Role, Title, type LocationType } from '../../components/block/hero';
 import type { ImageType } from '../../components/ui/image';
 import { Tag } from '../../components/ui/tag';
 import { useHero } from '../../hooks/context'
