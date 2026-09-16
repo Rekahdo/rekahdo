@@ -1,5 +1,6 @@
 import { cn } from "cn";
-import type { AnchorHTMLAttributes } from "react";
+import type { AnchorHTMLAttributes, MouseEvent } from "react";
+import { NavLink } from "react-router-dom";
 
 const linkStyle = cn(
     'transition-colors cursor-pointer',
@@ -7,15 +8,16 @@ const linkStyle = cn(
 
 export type LinkType = AnchorHTMLAttributes<HTMLAnchorElement> & {
     text?: string;
-    href?: string;
+    href: string;
     file_name?: string;
     className?: string;
+    onClick?: (event: MouseEvent<HTMLAnchorElement>) => void
 }
 
-export function Link({ children, text, className, ...props }: LinkType) {
+export function Link({ children, text, className, href, onClick }: LinkType) {
     return (
-        <a href={props.href} download={props.file_name}
-            className={cn(linkStyle, className)} {...props}>
+        <a href={href} onClick={onClick}
+            className={cn(linkStyle, className)}>
             {text} {children}
         </a>
     )

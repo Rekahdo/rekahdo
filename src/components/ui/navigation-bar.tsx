@@ -1,25 +1,8 @@
-import { cva, type VariantProps } from "class-variance-authority";
-import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "./navigation-menu";
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "./navigation-menu";
 import { cn } from "cn";
 import { Link } from "./link";
+import { cva, type VariantProps } from "class-variance-authority";
 
-const navBarVariant = cva(
-    "",
-    {
-        variants: {
-            variant: {
-                default: ""
-            },
-            size: {
-                default: ""
-            }
-        },
-        defaultVariants: {
-            variant: 'default',
-            size: 'default'
-        }
-    }
-)
 
 export type NavigationLinkType = {
     text: string;
@@ -28,33 +11,126 @@ export type NavigationLinkType = {
     onClick?: () => unknown;
 }
 
-export type NavigationBarType = VariantProps<typeof navBarVariant> & {
+const navigationBarVariants = cva(
+    "max-lg:hidden lg:px-6",
+    {
+        variants: {
+            navbarPosition: {
+                left: "me-auto",
+                center: "mx-auto",
+                right: "ms-auto",
+            },
+            linkTextCase: {
+                capitalize: "capitalize",
+                lowercase: "lowercase",
+                uppercase: "uppercase",
+            },
+        },
+        defaultVariants: {
+            navbarPosition: "center",
+            linkTextCase: "capitalize",
+        },
+    }
+);
+
+export const navigationLinkVariants = cva(
+    cn(
+        navigationMenuTriggerStyle(),
+        "font-semibold",
+        "hover:bg-primary/70 hover:text-primary-foreground",
+        "active:bg-primary active:text-primary-foreground",
+        "focus:bg-primary/10 focus:text-foreground"
+    ),
+    {
+        variants: {
+            linksPosition: {
+                left: "justify-start",
+                center: "justify-center",
+                right: "justify-end",
+            },
+            linkTextSize: {
+                xs: "!text-[0.7rem]",
+                sm: "!text-xs",
+                default: "!text-sm",
+                lg: "!text-lg",
+            },
+            linkTextHeight: {
+                sm: "!py-2",
+                default: "!py-4",
+                lg: "!py-6",
+                xl: "!py-8",
+            },
+            linkTextWidth: {
+                sm: "!px-2",
+                default: "!px-4",
+                lg: "!px-6",
+                full: "w-full"
+            },
+            linkTextCase: {
+                capitalize: "capitalize",
+                lowercase: "lowercase",
+                uppercase: "uppercase",
+            },
+        },
+        defaultVariants: {
+            linksPosition: "center",
+            linkTextSize: "default",
+            linkTextHeight: "default",
+            linkTextWidth: "default",
+        },
+    }
+);
+
+export type NavigationType = VariantProps<typeof navigationBarVariants> & VariantProps<typeof navigationLinkVariants> & {
     className?: string;
     links: NavigationLinkType[];
-    position?: "left" | "center" | "right"
+    linkClassName?: string;
 }
 
-export function NavigationBar({ links, variant, size, position="center", className }: NavigationBarType) {
+type NavigationItemType = NavigationLinkType & Omit<NavigationType, "links">
+
+export function NavigationBar({
+    links,
+    navbarPosition,
+    linkTextCase,
+    linkClassName,
+    ...props
+}: NavigationType) {
+
     return (
-        <NavigationMenu className={cn("mx-auto", className)}>
-            <NavigationMenuList className={cn(navBarVariant({ variant, size }))}>
-                {links.map((link, i) => <NavigationItem key={i} {...link} size={size}/>)}
+        <NavigationMenu className={cn(navigationBarVariants({
+            navbarPosition, linkTextCase}))}>
+
+            <NavigationMenuList>
+                {links.map((link, i) =>
+                    <NavigationItem key={i}
+                        {...link}
+                        {...props}
+                        className={linkClassName}
+                    />
+                )}
             </NavigationMenuList>
+
         </NavigationMenu>
     )
 }
 
-type NavigationItemType = NavigationLinkType & VariantProps<typeof navBarVariant>;
-
-function NavigationItem({ text, href, size, active }: NavigationItemType) {
-    const style = cn(
-        "p-4 font-bold transition-colors cursor-pointer",
-        "hover:bg-green-400 hover:text-accent-foreground"
-    );
+function NavigationItem({ 
+    text, href, 
+    className,
+    linksPosition,
+    linkTextSize,
+    linkTextHeight,
+    linkTextWidth,
+}: NavigationItemType) {
     return (
-        <NavigationMenuItem className={cn(style, size)}>
-            <NavigationMenuLink render={
-                <Link text={text} href={href} />}>
+        <NavigationMenuItem>
+            <NavigationMenuLink
+                className={cn(navigationLinkVariants({ 
+                    linksPosition, linkTextSize, 
+                    linkTextHeight, linkTextWidth
+                }), className)}
+                render={<Link text={text} href={href} />}>
             </NavigationMenuLink>
         </NavigationMenuItem>
     )

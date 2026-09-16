@@ -6,7 +6,6 @@ import type { ChildrenType } from '../../utils/type';
 const containerChildVariants = cva(
     cn(
         'mx-auto max-w-[var(--max-w)]',
-        'px-2 sm:px-4 md:px-6 lg:px-8'
     ),
     {
         variants: {
@@ -62,7 +61,7 @@ type ContainerType = VariantProps<typeof containerVariants> & {
 
 export function Container({
     children, className, variant,
-    min_w = 250, max_w = 1700,
+    min_w = 300, max_w = 1700,
     ...props
 }: ContainerType) {
     return (
@@ -70,6 +69,7 @@ export function Container({
             className={cn(containerVariants({ variant, className }))}
             style={{ '--min-w': `${min_w}px` } as React.CSSProperties}
             {...props}>
+
             <ContainerChild variant={variant} max_w={max_w}>
                 {children}
             </ContainerChild>

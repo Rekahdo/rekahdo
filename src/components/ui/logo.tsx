@@ -6,13 +6,12 @@ import { cn } from "cn";
 import { Link } from "./link";
 
 export type LogoType = ImageType & {
-    name: string;
     light_src: string;
     dark_src: string;
     alt: string;
 }
 
-function Logo({name, light_src, dark_src, alt, ...props}: LogoType) {
+export function Logo({light_src, dark_src, alt}: LogoType) {
 
     const { listen, stop } = useTheme();
     const [src, setSrc] = useState<string>(themeIsDark() ? dark_src : light_src);
@@ -27,14 +26,12 @@ function Logo({name, light_src, dark_src, alt, ...props}: LogoType) {
 
     const logoStyle = cn(
         "cursor-pointer",
-        "w-20 min-sm:w-30"
+        "w-20 md:w-30"
     )
 
     return (
         <Link href="/">
-            <Image className={logoStyle} src={src} alt={alt} size={props.size}/>
+            <Image className={logoStyle} src={src} alt={alt}/>
         </Link>
     )
 }
-
-export {Logo}

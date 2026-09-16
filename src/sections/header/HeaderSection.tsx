@@ -1,7 +1,5 @@
 import { Container } from "../../components/ui/container";
 import { useHeader } from "../../hooks/context";
-import { navLinksData } from "../../data/navlink";
-import { logoData } from "../../data/logo";
 import { SideBar } from "../../components/ui/side-bar";
 import { Header, HeaderCenter, HeaderLeft, HeaderRight } from "../../components/block/header";
 import { Logo } from "../../components/ui/logo";
@@ -24,14 +22,22 @@ export const HeaderSection = () => {
                             logo={<Logo {...data.logo} />} />}
 
                         center={<HeaderCenter 
-                            navbar={<NavigationBar links={data.navLink}/>}/>}
+                            navbar={<NavigationBar 
+                                    links={data.navLink}/>}/>}
 
                         right={<HeaderRight 
                             themeToggle={<ThemeToggle />}
-                            downloadBtn={<DownloadBtn {...data.downloadCV} />}/>}
+                            downloadBtn={<DownloadBtn {...data.downloadCV} showTextAt="md"/>}/>}
 
-                        sidebar={<SideBar 
-                            links={data.navLink} showCloseButton={false} />}
+                        sidebar={<SideBar side="left"
+                            logo={<Logo {...data.logo} />}
+                            links={data.navLink}
+                            navClassName="divide-y-1 flex flex-col gap-2"
+                            linkTextHeight={'lg'}
+                            linkTextWidth={"full"}
+                            linksPosition="left"
+                            bottom={<DownloadBtn {...data.downloadCV} size={"lg"} fullWidth={true}/>}
+                        />}
                     />
                 </Container>
             }

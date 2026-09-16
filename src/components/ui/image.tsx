@@ -6,10 +6,10 @@ const imgVariants = cva(
     {
         variants: {
             size: {
+                sm: "w-20 sm:w-25",
                 default: "",
-                small: "w-20 min-sm:w-25",
-                meduim: "w-30 min-sm:w-40",
-                large: "w-40 min-sm:w-50",
+                lg: "w-40 sm:w-50",
+                xl: "w-30 sm:w-40",
             }
         },
         defaultVariants: {

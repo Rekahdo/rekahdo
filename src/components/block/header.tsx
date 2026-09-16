@@ -71,8 +71,8 @@ export function HeaderRight({ themeToggle, downloadBtn }: HeaderRightType) {
 
 const headerVariant = cva(
   cn(
-    "flex items-center gap-4 h-[7.9dvh] sticky top-0",
-    "md:gap-6 lg:gap-10 lg:h-9.9dvh",
+    "flex items-center h-[7.9dvh] sticky top-0 px-2",
+    "sm:px-4 md:px-6 lg:px-8 md:h-[8.9dvh] lg:h-[9.9dvh]",
   ),
   {
     variants: {
