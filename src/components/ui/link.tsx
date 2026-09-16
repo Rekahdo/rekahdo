@@ -16,9 +16,9 @@ export type LinkType = AnchorHTMLAttributes<HTMLAnchorElement> & {
 
 export function Link({ children, text, className, href, onClick }: LinkType) {
     return (
-        <a href={href} onClick={onClick}
+        <NavLink to={href} onClick={onClick}
             className={cn(linkStyle, className)}>
             {text} {children}
-        </a>
+        </NavLink>
     )
 }

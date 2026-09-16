@@ -73,7 +73,7 @@ export function SideBar({
         <nav className="lg:hidden ml-auto flex items-center gap-4">
             <Sheet open={open} onOpenChange={openSheet}>
                 <SheetTrigger
-                    className="p-2 ms-2 rounded-md hover:bg-accent hover:text-accent-forground">
+                    className="p-2 ms-2 sm:ms-4 rounded-md hover:bg-accent hover:text-accent-forground">
                     {trigger}
                 </SheetTrigger>
 

@@ -13,7 +13,7 @@ type HeaderLeftType = {
 }
 
 const headerChild = cn(
-  "flex items-center gap-4 lg:gap-6"
+  "flex items-center gap-6 sm:gap-8"
 )
 
 // Logo, NavBar

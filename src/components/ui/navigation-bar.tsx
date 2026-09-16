@@ -36,7 +36,7 @@ const navigationBarVariants = cva(
 export const navigationLinkVariants = cva(
     cn(
         navigationMenuTriggerStyle(),
-        "font-semibold",
+        "font-semibold text-foreground",
         "hover:bg-primary/70 hover:text-primary-foreground",
         "active:bg-primary active:text-primary-foreground",
         "focus:bg-primary/10 focus:text-foreground"
