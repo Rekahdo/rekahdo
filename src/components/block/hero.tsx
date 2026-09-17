@@ -45,6 +45,7 @@ export const heroImageVariants = cva(
             
         },
         defaultVariants: {
+            
         },
     }
 );
@@ -139,9 +140,7 @@ export function Hero({
             }
 
             {heroImage &&
-                <div className={cn(heroImageVariants({ 
-                     
-                }))}>
+                <div className={cn(heroImageVariants({}))}>
                     {heroImage}
                 </div>
             }

@@ -9,7 +9,10 @@ type CTAType = VariantProps<typeof CtaVariant> & {
 }
 
 const CtaVariant = cva(
-    "flex flex-wrap gap-6 align-center",
+    [
+        "flex flex-wrap gap-6 align-center",
+        "max-sm:p-4 justify-center",
+    ],
     {
         variants: {
             width: {
@@ -18,7 +21,7 @@ const CtaVariant = cva(
             },
         },
         defaultVariants: {
-            width:'stretch',
+            width: 'stretch',
         }
     }
 )

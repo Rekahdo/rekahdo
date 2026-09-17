@@ -10,7 +10,7 @@ type ClassNameType = {
 }
 
 const GreetingVariant = cva(
-    "font-medium text-foreground",
+    "font-medium text-foreground text-red-500",
     {
         variants: {
             variant: {
@@ -121,7 +121,7 @@ const DescriptionVariant = cva(
         variants: {
             variant: {
                 default: cn(
-
+                    "max-lg:w-[80%]"
                 )
             },
             size: {
