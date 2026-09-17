@@ -1,25 +1,24 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "../../hooks/useTheme";
-import { Image } from "./image";
+import { Image, ImageVariants, type ImageType } from "./image";
 import { themeIsDark } from "../../utils/utils";
 import { cn } from "cn";
 import { Link } from "./link";
+import type { VariantProps } from "class-variance-authority";
 
-export type LogoType = {
-    hidden: boolean;
-    name: string;
+export type LogoType = Omit<ImageType, "src"> & VariantProps<typeof ImageVariants> & {
     light_src: string;
     dark_src: string;
     alt: string;
 }
 
-function Logo(data: LogoType) {
+export function Logo({light_src, dark_src, alt, size='xs'}: LogoType) {
 
     const { listen, stop } = useTheme();
-    const [src, setSrc] = useState<string>(themeIsDark() ? data.dark_src : data.light_src);
+    const [src, setSrc] = useState<string>(themeIsDark() ? dark_src : light_src);
 
     useEffect(() => {
-        const observer = listen(() => setSrc(data.dark_src), () => setSrc(data.light_src));
+        const observer = listen(() => setSrc(dark_src), () => setSrc(light_src));
 
         return () => {
             stop(observer);
@@ -27,14 +26,12 @@ function Logo(data: LogoType) {
     }, [])
 
     const logoStyle = cn(
-        "cursor-pointer"
+        "cursor-pointer",
     )
 
     return (
-        <Link variant={"img"} href="/">
-            <Image className={logoStyle} variant={"logo"} {...data} src={src}/>
+        <Link href="/">
+            <Image  className={cn(ImageVariants({ size }), logoStyle)} src={src} alt={alt}/>
         </Link>
     )
 }
-
-export {Logo}

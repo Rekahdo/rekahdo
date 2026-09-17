@@ -1,8 +1,11 @@
 import { Container } from "../../components/ui/container";
-import { Logo } from "../../components/ui/logo";
-import { NavBar } from "../../components/ui/navigation-menu";
-import { ThemeToggle } from "../../components/ui/toggle";
 import { useHeader } from "../../hooks/context";
+import { SideBar } from "../../components/ui/side-bar";
+import { Header, HeaderCenter, HeaderLeft, HeaderRight } from "../../components/block/header";
+import { Logo } from "../../components/ui/logo";
+import { ThemeToggle } from "../../components/ui/toggle";
+import { DownloadBtn } from "../../components/ui/download";
+import { NavigationBar } from "../../components/ui/navigation-bar";
 
 export const HeaderSection = () => {
 
@@ -14,13 +17,28 @@ export const HeaderSection = () => {
                 data && !data.hidden &&
 
                 <Container variant={"header"}>
-                    <header className={"flex items-center w-full"}>
-                        <NavBar
-                            links={data.navLink.links} cta={{button: data.ctaButton, variant: 'download-cv'}}
-                            logo={<Logo  {...data.logo} />}
-                            theme_toggle={<ThemeToggle />}
-                        />
-                    </header>
+                    <Header
+                        left={<HeaderLeft 
+                            logo={<Logo {...data.logo} />} />}
+
+                        center={<HeaderCenter 
+                            navbar={<NavigationBar 
+                                    links={data.navLink}/>}/>}
+
+                        right={<HeaderRight 
+                            themeToggle={<ThemeToggle />}
+                            downloadBtn={<DownloadBtn {...data.downloadCV} showTextAt="md"/>}/>}
+
+                        sidebar={<SideBar side="left"
+                            logo={<Logo {...data.logo} />}
+                            links={data.navLink}
+                            navClassName="divide-y-1 flex flex-col gap-2"
+                            linkTextHeight={'lg'}
+                            linkTextWidth={"full"}
+                            linksPosition="left"
+                            bottom={<DownloadBtn {...data.downloadCV} size={"lg"} fullWidth={true}/>}
+                        />}
+                    />
                 </Container>
             }
         </>

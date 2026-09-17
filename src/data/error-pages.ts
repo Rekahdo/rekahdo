@@ -1,4 +1,4 @@
-import type { ErrorPageData } from '../utils/type';
+import type { ErrorPageData } from './type';
 
 export const errorPages: Record<number, ErrorPageData> = {
   400: {

@@ -1,20 +1,18 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from 'cn'
 import type { ReactNode } from 'react';
-import type { ChildrenType } from '../../utils/type';
+import type { ChildrenType } from '../../data/type';
 
 const containerChildVariants = cva(
     cn(
-        'flex grow px-2 sm:px-4 md:px-6 lg:px-8 max-w-[var(--max-w)] h-[10dvh]',
-        // 'border-x-1 border-border'
+        'mx-auto max-w-[var(--max-w)]',
     ),
     {
         variants: {
             variant: {
                 default: "",
-                header: 'items-center max-sm:h-[8dvh] py-4',
-                hero: 'py-10 lg:px-20 max-sm:min-h-[91.9dvh] h-auto lg:h-[89.9dvh]',
-                about: '',
+                header: '',
+                hero: '',
             },
         },
 
@@ -39,14 +37,13 @@ function ContainerChild({ children, variant, max_w }: ContainerChildType) {
 }
 
 const containerVariants = cva(
-    'bg-background flex justify-center p-0 m-0 min-w-[var(--min-w)]',
+    'bg-background min-w-[var(--min-w)]',
     {
         variants: {
             variant: {
                 default: '',
-                header: 'border-b-1 border-border sticky top-0 z-100',
-                hero: 'lg:px-0 max-lg:h-full',
-                about: '',
+                header: 'bg-background border-b-1 border-border sticky top-0 ',
+                hero: 'bg-background',
             },
         },
         defaultVariants: {
@@ -64,7 +61,7 @@ type ContainerType = VariantProps<typeof containerVariants> & {
 
 export function Container({
     children, className, variant,
-    min_w = 250, max_w = 1700,
+    min_w = 300, max_w = 1700,
     ...props
 }: ContainerType) {
     return (
@@ -72,6 +69,7 @@ export function Container({
             className={cn(containerVariants({ variant, className }))}
             style={{ '--min-w': `${min_w}px` } as React.CSSProperties}
             {...props}>
+
             <ContainerChild variant={variant} max_w={max_w}>
                 {children}
             </ContainerChild>

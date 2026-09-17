@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { projectsData } from "../data/projects";
-import type { ContextChildrenType, ProjectsType } from "../utils/type";
+import type { ContextChildrenType, ProjectsType } from "../data/type";
 import { ContextProvider } from "./ContextProvider";
 
 export const ProjectsContext = new ContextProvider<ProjectsType>()

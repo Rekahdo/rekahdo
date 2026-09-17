@@ -1,29 +1,29 @@
-import type { LinkType } from "../components/ui/link";
+import type { NavigationLinkType } from "../components/ui/navigation-bar";
 
-export const linkData: LinkType[] = [
+export const navLinksData: NavigationLinkType[] = [
   {
-    id: 1,
     text: "Home",
     href: "#home",
+    active: true,
   },
   {
-    id: 2,
     text: "About Me",
     href: "#about",
+    active: false,
   },
   {
-    id: 3,
     text: "Tech-Stack",
     href: "#tech-stack",
+    active: false,
   },
   {
-    id: 4,
     text: "Projects",
     href: "#projects",
+    active: false,
   },
   {
-    id: 5,
     text: "Contact Me",
     href: "#contact",
+    active: false,
   },
-];
+]

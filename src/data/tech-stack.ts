@@ -1,4 +1,4 @@
-import type { TechStack } from '../utils/type';
+import type { TechStack } from './type';
 
 export const techStacksData: TechStack[] = [
   {

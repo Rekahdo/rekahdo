@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
-import type { Icon, Position, Provider } from "./enum";
+import type { Icon, Position, Provider } from "../utils/enum";
 import type { ButtonType } from "../components/ui/button";
 import type { ImageType } from "../components/ui/image";
-import type { LogoType } from "../components/ui/logo";
-import type { NavLinkType } from "../components/ui/navigation-menu";
+import type { NavigationLinkType } from "../components/ui/navigation-bar";
+import type { LocationType } from "../components/ui/hero-ui";
 
 // ============================================================================
 // ENUM-DERIVED TYPES
@@ -12,7 +12,7 @@ import type { NavLinkType } from "../components/ui/navigation-menu";
 export type PositionType = (typeof Position)[keyof typeof Position];
 export type IconType = (typeof Icon)[keyof typeof Icon];
 export type ProviderType = (typeof Provider)[keyof typeof Provider];
-export type ImageFileType = typeof import("./enum").ImageType[keyof typeof import("./enum").ImageType];
+export type ImageFileType = typeof import("../utils/enum").ImageType[keyof typeof import("../utils/enum").ImageType];
 
 // ============================================================================
 // COMPONENT TYPES
@@ -52,24 +52,11 @@ export type TagCompType = TagType & {
     className?: string;
 }
 
-export type HeaderType = {
-  hidden: boolean;
-  logo: LogoType;
-  navLink: NavLinkType;
-  ctaButton: ButtonType ;
-};
-
 export type NavBarType = {
   version?: number,
   logo: ImageType,
-  navLink: NavLinkType,
+  navLink: NavigationLinkType,
   ctaButton: ButtonType,
-}
-
-export type LocationType = {
-    hidden: boolean;
-    state: string;
-    country: string;
 }
 
 export type AvatarType = {

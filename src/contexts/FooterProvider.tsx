@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { footerData } from "../data/footer";
 import { ContextProvider  } from "./ContextProvider";
-import type { ContextChildrenType, FooterType } from "../utils/type";
+import type { ContextChildrenType, FooterType } from "../data/type";
 
 export const FooterContext = new ContextProvider<FooterType>()
 

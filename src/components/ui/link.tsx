@@ -1,40 +1,24 @@
-import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
-import type { ComponentType } from "../../utils/type";
+import type { AnchorHTMLAttributes, MouseEvent } from "react";
+import { NavLink } from "react-router-dom";
 
-const linkVariant = cva(
+const linkStyle = cn(
     'transition-colors cursor-pointer',
-    {
-        variants: {
-            variant: {
-                text: '',
-                img: '',
-                nav: 'p-4 font-extrabold hover:bg-accent hover:text-accent-foreground',
-                btn: 'flex justify-center',
-            }
-        },
-        defaultVariants: {
-            variant: 'text'
-        }
-    }
 )
 
-export type LinkType = {
-    id?: number;
+export type LinkType = AnchorHTMLAttributes<HTMLAnchorElement> & {
     text?: string;
-    href?: string;
+    href: string;
     file_name?: string;
+    className?: string;
+    onClick?: (event: MouseEvent<HTMLAnchorElement>) => void
 }
 
-type LinkCompType = LinkType & ComponentType & VariantProps<typeof linkVariant>;
-
-function Link({ children, className, variant, ...props }: LinkCompType) {
+export function Link({ children, text, className, href, onClick }: LinkType) {
     return (
-        <a href={props.href} download={props.file_name}
-            className={cn(linkVariant({ variant, className }))}>
-            {variant === "text" || variant === "nav" ? props.text : children }
-        </a>
+        <NavLink to={href} onClick={onClick}
+            className={cn(linkStyle, className)}>
+            {text} {children}
+        </NavLink>
     )
 }
-
-export { Link }

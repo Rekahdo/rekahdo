@@ -1,4 +1,4 @@
-import type { GrowthType } from '../utils/type';
+import type { GrowthType } from './type';
 
 export const growthData: GrowthType = {
   hidden: false,

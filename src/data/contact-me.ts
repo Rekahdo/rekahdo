@@ -1,4 +1,4 @@
-import type { ContactMeType } from '../utils/type';
+import type { ContactMeType } from './type';
 
 export const contactMeData: ContactMeType = {
   hidden: false,

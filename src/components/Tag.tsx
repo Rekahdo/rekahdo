@@ -1,6 +1,6 @@
 // import './Tag.css'
 
-import type { TagCompType } from '../utils/type'
+import type { TagCompType } from '../data/type'
 
 export const Tag = (props: TagCompType) => {
     return (

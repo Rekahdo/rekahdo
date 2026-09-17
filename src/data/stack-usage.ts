@@ -1,4 +1,4 @@
-import type { StackUsageType } from '../utils/type';
+import type { StackUsageType } from './type';
 
 export const stackUsageData: StackUsageType = {
   hidden: false,

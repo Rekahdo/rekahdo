@@ -1,15 +1,14 @@
 import type { HeroType } from "../sections/hero/HeroSection";
-import { buttonData } from "./button";
+import { buttonData, downloadCVData } from "./button";
 
 export const heroData: HeroType = {
   hidden: false,
   greetings: "Hi there, I'm",
-  fullName: "RICHARD OKAFOR",
+  fullName: "RICHARD T. OKAFOR",
   role: "Full Stack Developer",
   description:
     "Welcome to my portfolio, where I showcase my projects, skills, and experience as a passionate developer with a focus on Java-based and front-end technologies, developing innovative solutions that drive business value and user engagement.",
   heroImage: {
-    hidden: false,
     alt: "richard okafor",
     src: "/images/me/hero-section.png",
   },
@@ -18,6 +17,6 @@ export const heroData: HeroType = {
     state: "Lagos",
     country: "Nigeria",
   },
-  tags: ["Clean-Code Developer", "TS Academy Frontend Development Student"],
-  buttons: [buttonData[1], buttonData[2], buttonData[0]],
+  tags: ["Clean-Code", "Object Oriented"],
+  buttons: [downloadCVData, ...buttonData],
 };

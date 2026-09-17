@@ -1,6 +1,6 @@
 // import './Avatar.css'
 import { CodeXml } from "lucide-react"
-import type { AvatarCompType } from '../utils/type';
+import type { AvatarCompType } from '../data/type';
 
 
 export const Avatar = (props: AvatarCompType) => {

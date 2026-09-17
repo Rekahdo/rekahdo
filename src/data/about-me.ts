@@ -1,4 +1,4 @@
-import type { AboutType } from '../utils/type';
+import type { AboutType } from './type';
 
 export const aboutMeData: AboutType = {
   hidden: false,

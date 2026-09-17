@@ -1,4 +1,4 @@
-import type { FooterType } from '../utils/type';
+import type { FooterType } from './type';
 
 export const footerData: FooterType = {
   hidden: false,

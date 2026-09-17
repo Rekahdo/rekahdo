@@ -2,7 +2,7 @@ import { Switch } from "./switch"
 import { rootDocument, themeIsDark, windowTheme } from "../../utils/utils";
 import { useEffect, useState } from "react";
 
-function ThemeToggle() {
+export function ThemeToggle() {
 
     const [isChecked, setIsChecked] = useState<boolean>(themeIsDark())
 
@@ -49,5 +49,3 @@ function ThemeToggle() {
             toggleOn={toggleOn} toggleOff={toggleOff} />
     )
 }
-
-export { ThemeToggle }

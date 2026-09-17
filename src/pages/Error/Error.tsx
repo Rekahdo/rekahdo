@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Home, ArrowLeft } from 'lucide-react';
-import type { ErrorPageProps } from '../../utils/type';
+import type { ErrorPageProps } from '../../data/type';
 import './Error.css'
 
 export const Error = ({
