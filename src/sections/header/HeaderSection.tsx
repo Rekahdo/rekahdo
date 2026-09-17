@@ -36,7 +36,7 @@ export const HeaderSection = () => {
                             linkTextHeight={'lg'}
                             linkTextWidth={"full"}
                             linksPosition="left"
-                            bottom={<DownloadBtn {...data.downloadCV} size={"lg"} fullWidth={true}/>}
+                            bottom={<DownloadBtn {...data.downloadCV} size={"lg"} />}
                         />}
                     />
                 </Container>

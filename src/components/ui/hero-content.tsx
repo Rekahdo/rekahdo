@@ -10,7 +10,7 @@ type ClassNameType = {
 }
 
 const GreetingVariant = cva(
-    "font-medium text-foreground text-red-500",
+    "font-medium text-foreground",
     {
         variants: {
             variant: {
@@ -116,12 +116,12 @@ export function Role({ text, variant, className }: TextType & ClassNameType & Va
 }
 
 const DescriptionVariant = cva(
-    "text-foreground/50 max-lg:px-4",
+    "text-foreground/50 max-md:w-[90%] max-lg:w-[80%]",
     {
         variants: {
             variant: {
                 default: cn(
-                    "max-lg:w-[80%]"
+                    ""
                 )
             },
             size: {

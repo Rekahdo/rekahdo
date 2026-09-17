@@ -10,8 +10,7 @@ type CTAType = VariantProps<typeof CtaVariant> & {
 
 const CtaVariant = cva(
     [
-        "flex flex-wrap gap-6 align-center",
-        "max-sm:p-4 justify-center",
+        "flex flex-wrap gap-6 align-center justify-center",
     ],
     {
         variants: {
@@ -32,7 +31,7 @@ export function CTA({ btns, width, className }: CTAType) {
             {
                 btns &&
                 <div className={cn(CtaVariant({ width, className }))}>
-                    <DownloadBtn {...btns[0]} variant={"default"} size={"lg"} />
+                    <DownloadBtn data-grow {...btns[0]} variant={"default"} size={"lg"} />
                     <Button {...btns[2]} variant={"secondary"} size={"lg"} />
                     <Button {...btns[1]} variant={"outline"} size={"lg"} />
                 </div>

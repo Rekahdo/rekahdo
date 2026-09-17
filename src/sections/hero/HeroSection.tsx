@@ -4,9 +4,10 @@ import { Container } from '../../components/ui/container';
 import { CTA } from '../../components/ui/cta';
 import type { DownloadType } from '../../components/ui/download';
 import { HeroImage } from '../../components/ui/hero-image';
-import { BadgeText, Description, Greeting, Role, Title, type LocationType } from '../../components/ui/hero-ui';
+import { BadgeText, type LocationType } from '../../components/ui/hero-ui';
 import type { ImageType } from '../../components/ui/image';
 import { Tag } from '../../components/ui/tag';
+import { Description, Greeting, Role, Title } from '../../components/ui/hero-content';
 import { useHero } from '../../hooks/context'
 
 export type HeroType = {
@@ -39,8 +40,6 @@ export const HeroSection = () => {
                         ctaBtns={<CTA btns={data.buttons} width={'fit'} />}
                         heroImage={<HeroImage {...data.heroImage} size={'lg'} tablet={'xl'}/>}
                         location={data.location}
-                        // align={'center'}
-                        // desktopPosition='top'
                     />
                 </Container>
             }

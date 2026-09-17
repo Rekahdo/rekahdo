@@ -8,9 +8,6 @@ const hosting = localhost;
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  optimizeDeps: {
-    exclude: ['@tailwindcss/vite'], // Prevents Vite from caching the plugin logic
-  },
   server: {
     proxy: {
       "/api": {
