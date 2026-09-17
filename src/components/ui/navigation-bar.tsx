@@ -48,21 +48,21 @@ export const navigationLinkVariants = cva(
                 right: "justify-end",
             },
             linkTextSize: {
-                xs: "!text-[0.7rem]",
-                sm: "!text-xs",
-                default: "!text-sm",
-                lg: "!text-lg",
+                xs: "text-[0.7rem]!",
+                sm: "text-xs!",
+                default: "text-sm!",
+                lg: "text-lg!",
             },
             linkTextHeight: {
-                sm: "!py-2",
-                default: "!py-4",
-                lg: "!py-6",
-                xl: "!py-8",
+                sm: "py-2!",
+                default: "py-4!",
+                lg: "py-6!",
+                xl: "py-8!",
             },
             linkTextWidth: {
-                sm: "!px-2",
-                default: "!px-4",
-                lg: "!px-6",
+                sm: "px-2!",
+                default: "px-4!",
+                lg: "px-6!",
                 full: "w-full"
             },
             linkTextCase: {

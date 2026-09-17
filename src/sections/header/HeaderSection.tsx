@@ -32,7 +32,7 @@ export const HeaderSection = () => {
                         sidebar={<SideBar side="left"
                             logo={<Logo {...data.logo} />}
                             links={data.navLink}
-                            navClassName="divide-y-1 flex flex-col gap-2"
+                            navClassName="divide-y flex flex-col gap-2"
                             linkTextHeight={'lg'}
                             linkTextWidth={"full"}
                             linksPosition="left"

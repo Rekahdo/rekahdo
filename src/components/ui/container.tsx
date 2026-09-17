@@ -5,7 +5,7 @@ import type { ChildrenType } from '../../data/type';
 
 const containerChildVariants = cva(
     cn(
-        'mx-auto max-w-[var(--max-w)]',
+        'mx-auto max-w-(--max-w)',
     ),
     {
         variants: {
@@ -37,12 +37,12 @@ function ContainerChild({ children, variant, max_w }: ContainerChildType) {
 }
 
 const containerVariants = cva(
-    'bg-background min-w-[var(--min-w)]',
+    'bg-background min-w-(--min-w)',
     {
         variants: {
             variant: {
                 default: '',
-                header: 'bg-background border-b-1 border-border sticky top-0 ',
+                header: 'bg-background border-b border-border sticky top-0 ',
                 hero: 'bg-background',
             },
         },
