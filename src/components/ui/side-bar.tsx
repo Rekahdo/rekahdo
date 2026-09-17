@@ -50,22 +50,23 @@ export function SideBar({
 }: SideBarType) {
 
     const [open, setOpen] = useState(false)
+    const [hold, setHold] = useState(false)
     const { large } = useWidthMedia();
 
     useEffect(() => {
-        localStorage.removeItem("openSheet");
+        setHold(false);
     }, [])
 
     useEffect(() => {
-        if (large && open && localStorage.openSheet)
+        if (large && open && hold)
             setOpen(false)
-        if (localStorage.openSheet && !large)
+        if (hold && !large)
             setOpen(true)
     }, [large, open]);
 
     function openSheet(value: boolean) {
-        if (value) localStorage.openSheet = true;
-        else localStorage.removeItem("openSheet");
+        if (value) setHold(value);
+        else setHold(false);
         setOpen(value);
     }
 

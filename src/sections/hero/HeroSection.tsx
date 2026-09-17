@@ -2,6 +2,7 @@ import { Hero } from '../../components/block/hero';
 import type { ButtonType } from '../../components/ui/button';
 import { Container } from '../../components/ui/container';
 import { CTA } from '../../components/ui/cta';
+import type { DownloadType } from '../../components/ui/download';
 import { HeroImage } from '../../components/ui/hero-image';
 import { BadgeText, Description, Greeting, Role, Title, type LocationType } from '../../components/ui/hero-ui';
 import type { ImageType } from '../../components/ui/image';
@@ -17,7 +18,7 @@ export type HeroType = {
     heroImage: ImageType;
     location: LocationType
     tags: string[];
-    buttons: ButtonType[];
+    buttons: [DownloadType, ...ButtonType[]];
 }
 
 export const HeroSection = ({className}: {className: string}) => {

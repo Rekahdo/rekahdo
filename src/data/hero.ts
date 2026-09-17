@@ -1,5 +1,5 @@
 import type { HeroType } from "../sections/hero/HeroSection";
-import { buttonData } from "./button";
+import { buttonData, downloadCVData } from "./button";
 
 export const heroData: HeroType = {
   hidden: false,
@@ -18,5 +18,5 @@ export const heroData: HeroType = {
     country: "Nigeria",
   },
   tags: ["Clean-Code Developer", "TS Academy Frontend Development Student"],
-  buttons: [buttonData[1], buttonData[2], buttonData[0]],
+  buttons: [downloadCVData, ...buttonData],
 };

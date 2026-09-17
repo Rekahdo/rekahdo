@@ -1,10 +1,11 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { Button, type ButtonType } from "./button";
 import { cn } from "cn";
+import { DownloadBtn, type DownloadType } from "./download";
 
 type CTAType = VariantProps<typeof CtaVariant> & {
     className?: string;
-    btns: ButtonType[]
+    btns: [DownloadType, ...ButtonType[]]
 }
 
 const CtaVariant = cva(
@@ -28,9 +29,9 @@ export function CTA({ btns, width, className }: CTAType) {
             {
                 btns &&
                 <div className={cn(CtaVariant({ width, className }))}>
-                    <Button {...btns[0]} variant={"default"} size={"lg"} className={"grow-0"} />
-                    <Button {...btns[1]} variant={"outline"} size={"lg"} className={"grow-0"}/>
-                    <Button {...btns[2]} variant={"secondary"} size={"lg"} className={"grow-0"}/>
+                    <DownloadBtn {...btns[0]} variant={"default"} size={"lg"} />
+                    <Button {...btns[1]} variant={"outline"} size={"lg"} />
+                    <Button {...btns[2]} variant={"secondary"} size={"lg"} />
                 </div>
             }
         </>
