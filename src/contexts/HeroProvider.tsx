@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { heroData } from "../data/hero";
 import { ContextProvider } from "./ContextProvider";
-import type { ContextChildrenType } from "../utils/type";
+import type { ContextChildrenType } from "../data/type";
 import type { HeroType } from "../sections/hero/HeroSection";
 
 export const HeroContext = new ContextProvider<HeroType>()

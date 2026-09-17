@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
-import type { ClassNameType } from "../../utils/type";
+import type { ClassNameType } from "../../data/type";
 
 
 type TextArrayType = {

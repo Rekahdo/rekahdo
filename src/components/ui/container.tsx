@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from 'cn'
 import type { ReactNode } from 'react';
-import type { ChildrenType } from '../../utils/type';
+import type { ChildrenType } from '../../data/type';
 
 const containerChildVariants = cva(
     cn(
@@ -12,7 +12,7 @@ const containerChildVariants = cva(
             variant: {
                 default: "",
                 header: '',
-                hero: 'py-10 h-auto lg:px-20 max-lg:min-h-[92dvh] lg:h-[90dvh] lg:max-h-[1000px]',
+                hero: '',
             },
         },
 
@@ -42,8 +42,8 @@ const containerVariants = cva(
         variants: {
             variant: {
                 default: '',
-                header: 'bg-background border-b-1 border-border',
-                hero: 'lg:px-0 max-lg:h-full',
+                header: 'bg-background border-b-1 border-border sticky top-0 ',
+                hero: 'bg-background',
             },
         },
         defaultVariants: {

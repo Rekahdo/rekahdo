@@ -1,392 +1,151 @@
 import { type ComponentProps, type ReactElement } from "react";
-import { Button, type ButtonType } from "../ui/button";
-import { Image, type ImageType } from "../ui/image";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
-import type { ClassNameType } from "../../utils/type";
 import type { Tag } from "../ui/tag";
-import { formatNumber } from "../../utils/number";
+import type { BadgeText, Description, Greeting, LocationType, Role, SocialProfText, Title } from "../ui/hero-ui";
+import type { HeroImage } from "../ui/hero-image";
+import type { CTA } from "../ui/cta";
 
-type TextType = {
-    text: string | undefined
-};
-
-type ButtonArrayType = {
-    btns: ButtonType[] | undefined
-};
-
-const BadgeTextVariant = cva(
-    "font-medium text-primary uppercase ",
+const HeroVariant = cva(
+    cn(
+        "h-auto py-10",
+    ),
     {
         variants: {
             variant: {
                 default: cn(
-
-                )
-            },
-            size: {
-                default: cn(
-                    "text-xs md:text-sm"
-                )
-            }
-        },
-        defaultVariants: {
-            variant: "default",
-            size: "default",
-        }
-    }
-)
-
-export function BadgeText({ text, variant, className }: TextType & ClassNameType & VariantProps<typeof BadgeTextVariant>) {
-    return (
-        <>
-            {
-                text &&
-                <p className={cn(BadgeTextVariant({ variant, className }))}>
-                    <span className="rotate-90 inline-block mr-2">|</span>
-                    {text}
-                </p>
-            }
-        </>
-    )
-}
-
-const GreetingVariant = cva(
-    "font-medium text-foreground",
-    {
-        variants: {
-            variant: {
-                default: cn(
-
-                )
-            },
-            size: {
-                default: cn(
-                    "text-base md:text-2xl"
-                )
-            }
-        },
-        defaultVariants: {
-            variant: "default",
-            size: "default",
-        }
-    }
-)
-
-export function Greeting({ text, variant, className }: TextType & ClassNameType & VariantProps<typeof GreetingVariant>) {
-    return (
-        <>
-            {
-                text &&
-                <p className={cn(GreetingVariant({ variant, className }))}>
-                    {text}
-                </p>
-            }
-        </>
-    )
-}
-
-const TitleVariant = cva(
-    "font-extrabold uppercase",
-    {
-        variants: {
-            variant: {
-                default: cn(
-                    "text-foreground"
-                )
-            },
-            size: {
-                default: cn(
-                    "text-4xl md:text-5xl lg:text-6xl"
-                ),
-                lg: "text-3xl md:text-6xl lg:text-7xl"
-            }
-        },
-        defaultVariants: {
-            variant: "default",
-            size: "default",
-        }
-    }
-)
-
-export function Title({ text, variant, size, className }: TextType & ClassNameType & VariantProps<typeof TitleVariant>) {
-    return (
-        <>
-            {
-                text &&
-                <h1 className={cn(TitleVariant({ variant, size, className }))}>
-                    {text}
-                </h1>
-            }
-        </>
-    )
-}
-
-const RoleVariant = cva(
-    "font-medium",
-    {
-        variants: {
-            variant: {
-                default: cn(
-
-                )
-            },
-            size: {
-                default: cn(
-                    "text-xl md:text-2xl lg:text-3xl"
-                )
-            }
-        },
-        defaultVariants: {
-            variant: "default",
-            size: "default",
-        }
-    }
-)
-
-export function Role({ text, variant, className }: TextType & ClassNameType & VariantProps<typeof RoleVariant>) {
-    return (
-        <>
-            {
-                text &&
-                <p className={cn(RoleVariant({ variant, className }))}>
-                    {text}
-                </p>
-            }
-        </>
-    )
-}
-
-const DescriptionVariant = cva(
-    "text-foreground/50 max-lg:px-4",
-    {
-        variants: {
-            variant: {
-                default: cn(
-
-                )
-            },
-            size: {
-                default: cn(
-                    "text-sm md:text-lg"
-                )
-            }
-        },
-        defaultVariants: {
-            variant: "default",
-            size: "default",
-        }
-    }
-)
-
-export function Description({ text, variant, className }: TextType & ClassNameType & VariantProps<typeof DescriptionVariant>) {
-    return (
-        <>
-            {
-                text &&
-                <p className={cn(DescriptionVariant({ variant, className }))}>
-                    {text}
-                </p>
-            }
-        </>
-    )
-}
-
-const CtaVariant = cva(
-    "flex flex-wrap gap-6 max-lg:justify-center",
-    {
-        variants: {
-            variant: {
-                default: cn(
-
+                    "grid items-center min-h-[92dvh] gap-10",
+                    "lg:px-20 lg:grid-cols-2 md:min-h-[91dvh] lg:max-h-[1000px]",
                 )
             },
             size: {
                 default: cn(
 
                 )
-            }
+            },
+            desktopPosition: {
+                left: "",
+                right: "",
+                top: "lg:flex lg:flex-col lg:gap-20 lg:max-h-auto lg:py-20",
+                bottom: "lg:flex lg:flex-col lg:gap-20 lg:max-h-auto lg:py-20",
+            },
         },
         defaultVariants: {
             variant: "default",
             size: "default",
+            desktopPosition: "right",
         }
     }
 )
 
-export function CTA({ btns, variant, className }: ClassNameType & ButtonArrayType & VariantProps<typeof CtaVariant>) {
-    return (
-        <>
-            {
-                btns &&
-                <div className={cn(CtaVariant({ variant, className }))}>
-                    <Button {...btns[0]} variant={"default"} size={"lg"} />
-                    <Button {...btns[1]} variant={"outline"} size={"lg"} />
-                    <Button {...btns[2]} variant={"secondary"} size={"lg"} />
-                </div>
-            }
-        </>
-    )
-}
-
-const HeroImageVariant = cva(
-    "w-full",
+export const heroImageVariants = cva(
+    "w-full flex justify-center items-center",
     {
         variants: {
-            variant: {
-                default: cn(
-                ),
-            },
-            size: {
-                sm: "aspect-[2/1] md:aspect-[4/2] lg:aspect-[4/2.5]",
-                default: cn(
-                    "aspect-[3/2] md:aspect-[5/3] lg:aspect-[5/3.5]"
-                ),
-                lg: "aspect-[5/4] md:aspect-[6/4] lg:aspect-[6/4.5]",
-                xl: "aspect-[1]",
-            }
+            
         },
         defaultVariants: {
-            variant: "default",
-            size: "default",
-        }
+        },
     }
-)
+);
 
-export function HeroImage({ variant, size, className, src, alt }: ImageType & ClassNameType & VariantProps<typeof HeroImageVariant>) {
-    return (
-        <>
-            {
-                src &&
-                <Image src={src} alt={alt} className={cn(HeroImageVariant({ variant, size, className }))} />
-            }
-        </>
-    )
-}
-
-const SocialProfTextVariant = cva(
-    "flex items-center flex-wrap max-lg:justify-center gap-4",
+export const heroContentVariants = cva(
+    [
+        "grid w-full gap-6 lg:gap-8",
+        "max-lg:text-center max-lg:justify-items-center",
+    ],
     {
         variants: {
-            variant: {
-                default: cn(
-
-                )
+            mobilePosition: {
+                top: "max-lg:row-start-1",
+                bottom: "max-lg:row-start-2",
             },
-            size: {
-                default: cn(
-
-                )
+            desktopPosition: {
+                left: "lg:order-first",
+                right: "lg:order-last",
+                top: "lg:order-0",
+                bottom: "lg:order-1",
+            },
+            align: {
+                start: "text-start justify-items-start",
+                center: "text-center justify-items-center mx-auto w-[90%] lg:w-[70%]",
+                end: "text-end justify-items-end",
             }
         },
         defaultVariants: {
-            variant: "default",
-            size: "default",
-        }
+            mobilePosition:'bottom',
+            desktopPosition:'left',
+            align: "start",
+        },
     }
-)
+);
 
-export function SocialProfText({ count, variant, className }: { count: number } & ClassNameType & VariantProps<typeof SocialProfTextVariant>) {
-    return (
-        <>
-            {
-                <div className={cn(SocialProfTextVariant({ variant, className }))}>
-                    <div className="flex -space-x-2">
-                        <img className="w-10 h-10 rounded-full border-2 border-white" src="https://readymadeui.com/team-1.webp"
-                            alt="team img-1" />
-                        <img className="w-10 h-10 rounded-full border-2 border-white" src="https://readymadeui.com/team-2.webp"
-                            alt="team img-2" />
-                        <img className="w-10 h-10 rounded-full border-2 border-white" src="https://readymadeui.com/team-3.webp"
-                            alt="team img-3" />
-                    </div>
-                    <div className="text-slate-600 text-base dark:text-slate-400">
-                        Over
-                        <span className="font-semibold"> {formatNumber(count)} </span>
-                        Professionals trust us
-                    </div>
-                </div>
-            }
-        </>
-    )
-}
-
-export type LocationType = {
-    hidden: boolean;
-    state: string;
-    country: string;
-}
-
-type HeroCompType = {
+type HeroCompType = VariantProps<typeof HeroVariant> & VariantProps<typeof heroImageVariants> & VariantProps<typeof heroContentVariants> & {
+    className?: string;
     badge?: ReactElement<ComponentProps<typeof BadgeText>, typeof BadgeText>;
     greetings?: ReactElement<ComponentProps<typeof Greeting>, typeof Greeting>;
-    title: ReactElement<ComponentProps<typeof Title>, typeof Title>;
+    title?: ReactElement<ComponentProps<typeof Title>, typeof Title>;
     role?: ReactElement<ComponentProps<typeof Role>, typeof Role>;
-    description: ReactElement<ComponentProps<typeof Description>, typeof Description>;
+    description?: ReactElement<ComponentProps<typeof Description>, typeof Description>;
     tags?: ReactElement<ComponentProps<typeof Tag>, typeof Tag>;
     ctaBtns?: ReactElement<ComponentProps<typeof CTA>, typeof CTA>;
     socialProfText?: ReactElement<ComponentProps<typeof SocialProfText>, typeof SocialProfText>;
     heroImage?: ReactElement<ComponentProps<typeof HeroImage>, typeof HeroImage>;
     location?: LocationType;
-    mobile_position?: "top" | "bottom"
-    desktop_position?: "right" | "left"
 }
 
-const HeroVariant = cva(
-    "",
-    {
-        variants: {
-            variant: {
-                default: cn(
-
-                )
-            },
-            size: {
-                default: cn(
-
-                )
-            }
-        },
-        defaultVariants: {
-            variant: "default",
-            size: "default",
-        }
-    }
-)
-
-export function Hero({ variant, className, mobile_position = "top", desktop_position = "right", ...props }: HeroCompType & ClassNameType & VariantProps<typeof HeroVariant>) {
-
-    const image = 
-    <>{
-        <div data-mp={mobile_position} 
-            className={"data-[mp=top]:max-lg:row-start-1"}>
-            {props.heroImage}
-        </div>
-    }</>
-
+export function Hero({
+    variant,
+    className,
+    mobilePosition,
+    desktopPosition,
+    align,
+    heroImage,
+    badge,
+    greetings,
+    title,
+    role,
+    description,
+    tags,
+    ctaBtns,
+    socialProfText,
+}: HeroCompType) {
     return (
-        <div data-slot="hero" className="grid lg:grid-cols-2 justify-center items-center gap-y-8">
+        <div data-slot="hero" className={cn(HeroVariant({ 
+            variant, desktopPosition, className 
+        }))}>
 
-            {desktop_position === "left" && image}
+            {(badge || greetings || title || role || description
+                || tags || ctaBtns || socialProfText) &&
 
-            <div className="grid text-center lg:mx-0 lg:text-left gap-6">
-                {
-                    (props.badge || props.greetings
-                        || props.title || props.role) &&
-                    <div className="grid gap-2 md:gap-4">
-                        {props.badge}
-                        {props.greetings}
-                        {props.title}
-                        {props.role}
-                    </div>
-                }
+                <div className={cn(heroContentVariants({ 
+                    mobilePosition, desktopPosition, align
+                }))}>
+                    {
+                        (badge || greetings || title || role) &&
+                        <div className="grid gap-4 md:gap-6">
+                            {badge}
+                            {greetings}
+                            {title}
+                            {role}
+                        </div>
+                    }
 
-                {props.description}
-                {props.tags}
-                {props.ctaBtns}
-                {props.socialProfText}
-            </div>
+                    {description}
+                    {tags}
+                    {ctaBtns}
+                    {socialProfText}
+                </div>
+            }
 
-            {desktop_position === "right" && image}
+            {heroImage &&
+                <div className={cn(heroImageVariants({ 
+                     
+                }))}>
+                    {heroImage}
+                </div>
+            }
+
         </div>
     )
 }

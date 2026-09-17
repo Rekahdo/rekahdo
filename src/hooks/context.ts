@@ -10,7 +10,7 @@ import { ResourcesContext } from "../contexts/ResourcesProvider";
 import { ServicesContext } from "../contexts/ServicesProvider";
 import { StackUsageContext } from "../contexts/StackUsageProvider";
 import { TechStackContext } from "../contexts/TechStackProvider";
-import type { AboutType, ContactMeType, ContextValueType, FooterType, GrowthType, ProjectsType, ResourcesType, ServicesType, StackUsageType, TechStack } from "../utils/type";
+import type { AboutType, ContactMeType, ContextValueType, FooterType, GrowthType, ProjectsType, ResourcesType, ServicesType, StackUsageType, TechStack } from "../data/type";
 import { Provider } from "../utils/enum";
 import type { HeroType } from "../sections/hero/HeroSection";
 import type { LogoType } from "../components/ui/logo";

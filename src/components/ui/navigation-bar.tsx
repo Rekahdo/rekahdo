@@ -3,7 +3,6 @@ import { cn } from "cn";
 import { Link } from "./link";
 import { cva, type VariantProps } from "class-variance-authority";
 
-
 export type NavigationLinkType = {
     text: string;
     href: string;

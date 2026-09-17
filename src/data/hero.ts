@@ -9,7 +9,6 @@ export const heroData: HeroType = {
   description:
     "Welcome to my portfolio, where I showcase my projects, skills, and experience as a passionate developer with a focus on Java-based and front-end technologies, developing innovative solutions that drive business value and user engagement.",
   heroImage: {
-    hidden: false,
     alt: "richard okafor",
     src: "/images/me/hero-section.png",
   },

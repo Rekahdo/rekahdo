@@ -1,5 +1,5 @@
 import { createContext, useContext, type JSX } from "react";
-import type { ProviderType, ContextChildrenType, ContextValueType } from "../utils/type";
+import type { ProviderType, ContextChildrenType, ContextValueType } from "../data/type";
 
 export class ContextProvider<T> {
 

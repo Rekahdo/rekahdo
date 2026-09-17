@@ -9,7 +9,7 @@ export const Home = () => {
         <HeaderProvider>
             <HeroProvider>
                 <HeaderSection />
-                {/* <HeroSection /> */}
+                <HeroSection />
             </HeroProvider>
         </HeaderProvider>
     )

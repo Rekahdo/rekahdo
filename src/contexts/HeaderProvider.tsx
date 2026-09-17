@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { headerData } from "../data/header";
-import type { ContextChildrenType, ContextValueType, HeaderType } from "../utils/type";
+import type { ContextChildrenType, ContextValueType, HeaderType } from "../data/type";
 
 export const HeaderContext = createContext<ContextValueType<HeaderType>>(null);
 

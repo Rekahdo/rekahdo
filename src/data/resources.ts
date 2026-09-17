@@ -1,4 +1,4 @@
-import type { ResourcesType } from '../utils/type';
+import type { ResourcesType } from './type';
 
 export const resourcesData: ResourcesType = {
   hidden: false,
