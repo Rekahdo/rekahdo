@@ -17,6 +17,6 @@ export const heroData: HeroType = {
     state: "Lagos",
     country: "Nigeria",
   },
-  tags: ["Clean-Code Developer", "TS Academy Frontend Development Student"],
+  tags: ["Clean-Code", "Object Oriented"],
   buttons: [downloadCVData, ...buttonData],
 };

@@ -21,14 +21,14 @@ export type HeroType = {
     buttons: [DownloadType, ...ButtonType[]];
 }
 
-export const HeroSection = ({className}: {className: string}) => {
+export const HeroSection = () => {
 
     const { data } = useHero()!;
 
     return (
         <>
             {data && !data.hidden &&
-                <Container variant={"hero"} className={className}>
+                <Container variant={"hero"}>
                     <Hero
                         badge={<BadgeText text='developer that help your business grow'/>}
                         greetings={<Greeting text={data.greetings} />}
