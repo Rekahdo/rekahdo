@@ -1,7 +1,6 @@
 import type { AboutType } from './type';
 
 export const aboutMeData: AboutType = {
-  hidden: false,
   sectionTitle: "About me",
   headline: "Bridging Backend Stability With Frontend Inspiration",
   bio: "I am a Java backend developer with almost 2 years of experience, specializing in building scalable and robust systems using Spring Boot and microservices architecture. I also have 2 years of experience working in a solar engineering company. I am currently expanding into front-end development.",

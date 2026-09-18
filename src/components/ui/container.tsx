@@ -24,22 +24,41 @@ function ContainerChild({ children, max_w }: ContainerChildType) {
 }
 
 const containerVariants = cva(
-    'bg-background min-w-(--min-w)',
+    'flex min-w-(--min-w) rounded-none *:grow',
     {
         variants: {
-            section: {
-                non: '',
-                header: 'bg-background border-b border-border sticky top-0',
-                hero: 'bg-background',
-                about: 'bg-background/2',
+            sticky:{
+                top: "sticky top-0",
+                bottom: "sticky bottom-0",
             },
-            padding:{
-                true: "lg:py-20",
+            py:{
+                normal: "py-10 md:py-15 lg:py-20",
+            },
+            px:{
+                normal: "px-2 sm:px-4 md:px-6 lg:px-8",
+            },
+            bg:{
+                background: "bg-background text-foreground",
+                muted: "bg-muted text-muted-foreground",
+                secondary: "bg-secondary text-secondary-foreground",
+            },
+            bd:{
+                top: "border-t border-border",
+                bottom: "border-b border-border",
+            },
+            height:{
+                header: "h-auto min-h-[8dvh] md:min-h-[10dvh]",
+                hero: "h-auto min-h-[92dvh] md:min-h-[90dvh]",
+                full: "h-auto min-h-[100dvh]",
+                fluid: "h-auto"
+            },
+            align:{
+                center: "items-center"
+            },
+            justify:{
+                center: "justify-center"
             }
         },
-        defaultVariants: {
-            section: 'non',
-        }
     }
 )
 
@@ -51,13 +70,17 @@ type ContainerType = VariantProps<typeof containerVariants> & {
 }
 
 export function Container({
-    children, className, section, padding,
+    children, className, 
     min_w = 300, max_w = 1700,
+    sticky, py, px, bg, bd, height, align, justify,
     ...props
 }: ContainerType) {
     return (
         <section data-slot="container"
-            className={cn(containerVariants({ section, padding, className }))}
+            className={cn(containerVariants({
+                sticky, py, px, bg, bd, height, align, justify, className 
+            }))}
+            
             style={{ '--min-w': `${min_w}px` } as React.CSSProperties}
             {...props}>
 

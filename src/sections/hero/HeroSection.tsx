@@ -29,7 +29,13 @@ export const HeroSection = () => {
     return (
         <>
             {data && !data.hidden &&
-                <Container section={"hero"}>
+                <Container 
+                    bg={"background"}
+                    height={'hero'}
+                    py={"normal"}
+                    px={"normal"}
+                    align={'center'}>
+
                     <Hero
                         badge={<BadgeText text='developer that help your business grow'/>}
                         greetings={<Greeting text={data.greetings} />}

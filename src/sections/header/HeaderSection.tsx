@@ -16,7 +16,14 @@ export const HeaderSection = () => {
             {
                 data && !data.hidden &&
 
-                <Container section={"header"}>
+                <Container 
+                    bd={"bottom"} 
+                    sticky={"top"} 
+                    bg={"background"}
+                    px={"normal"}
+                    height={"header"}
+                    align={"center"}>
+                        
                     <Header
                         left={<HeaderLeft 
                             logo={<Logo {...data.logo} />} />}

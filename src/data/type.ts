@@ -75,15 +75,6 @@ export type AvatarCompType = AvatarType & {
 // CONTEXT TYPES
 // ============================================================================
 
-export type ContextChildrenType = {
-    children: ReactNode;
-};
-
-export type ContextValueType<T> = {
-    data: T | undefined;
-    reload: () => T;
-} | null;
-
 // ============================================================================
 // DATA TYPES - ABOUT ME
 // ============================================================================
@@ -110,7 +101,6 @@ export type CoreSkillType = {
 };
 
 export type AboutType = {
-  hidden: boolean;
   sectionTitle: string;
   headline: string;
   bio: string;

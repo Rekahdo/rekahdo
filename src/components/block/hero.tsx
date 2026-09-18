@@ -9,14 +9,14 @@ import type { Description, Greeting, Role, Title } from "../ui/hero-content";
 
 const HeroVariant = cva(
     cn(
-        "h-auto py-10",
+        "",
     ),
     {
         variants: {
             variant: {
                 default: cn(
-                    "grid items-center min-h-[92dvh] gap-10",
-                    "lg:px-20 lg:grid-cols-2 md:min-h-[91dvh] lg:max-h-[1000px]",
+                    "grid items-center gap-10",
+                    "lg:px-20 lg:grid-cols-2",
                 )
             },
             size: {
