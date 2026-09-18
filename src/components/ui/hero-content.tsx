@@ -58,21 +58,26 @@ const TitleVariant = cva(
                     "text-4xl md:text-5xl lg:text-6xl"
                 ),
                 lg: "text-3xl md:text-6xl lg:text-7xl"
+            },
+            style: {
+                default: "",
+                gradient: "bg-gradient-to-tr from-red-500 to-cyan-400 bg-clip-text text-transparent",
             }
         },
         defaultVariants: {
             variant: "default",
             size: "default",
+            style: "default",
         }
     }
 )
 
-export function Title({ text, variant, size, className }: TextType & ClassNameType & VariantProps<typeof TitleVariant>) {
+export function Title({ text, variant, size, style, className }: TextType & ClassNameType & VariantProps<typeof TitleVariant>) {
     return (
         <>
             {
                 text &&
-                <h1 className={cn(TitleVariant({ variant, size, className }))}>
+                <h1 className={cn(TitleVariant({ variant, size, style, className }))}>
                     {text}
                 </h1>
             }
@@ -116,7 +121,7 @@ export function Role({ text, variant, className }: TextType & ClassNameType & Va
 }
 
 const DescriptionVariant = cva(
-    "text-foreground/50 max-md:w-[90%] max-lg:w-[80%]",
+    "text-foreground/50 max-md:w-[100%] max-lg:w-[80%]",
     {
         variants: {
             variant: {

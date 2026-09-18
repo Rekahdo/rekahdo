@@ -6,20 +6,7 @@ import type { ChildrenType } from '../../data/type';
 const containerChildVariants = cva(
     cn(
         'mx-auto max-w-(--max-w)',
-    ),
-    {
-        variants: {
-            variant: {
-                default: "",
-                header: '',
-                hero: '',
-            },
-        },
-
-        defaultVariants: {
-            variant: 'default',
-        }
-    }
+    )
 )
 
 type ContainerChildType = ChildrenType & VariantProps<typeof containerChildVariants> & {
@@ -27,9 +14,9 @@ type ContainerChildType = ChildrenType & VariantProps<typeof containerChildVaria
     max_w?: number;
 }
 
-function ContainerChild({ children, variant, max_w }: ContainerChildType) {
+function ContainerChild({ children, max_w }: ContainerChildType) {
     return (
-        <section data-slot="container-child" className={cn(containerChildVariants({ variant }))}
+        <section data-slot="container-child" className={cn(containerChildVariants({}))}
             style={{ '--max-w': `${max_w}px` } as React.CSSProperties}>
             {children}
         </section>
@@ -70,7 +57,7 @@ export function Container({
             style={{ '--min-w': `${min_w}px` } as React.CSSProperties}
             {...props}>
 
-            <ContainerChild variant={variant} max_w={max_w}>
+            <ContainerChild max_w={max_w}>
                 {children}
             </ContainerChild>
         </section>

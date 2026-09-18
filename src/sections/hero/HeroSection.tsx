@@ -40,6 +40,8 @@ export const HeroSection = () => {
                         ctaBtns={<CTA btns={data.buttons} width={'fit'} />}
                         heroImage={<HeroImage {...data.heroImage} size={'lg'} tablet={'xl'}/>}
                         location={data.location}
+                        align={'center'}
+                        desktopPosition='top'
                     />
                 </Container>
             }
