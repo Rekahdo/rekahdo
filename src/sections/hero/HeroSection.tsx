@@ -29,7 +29,7 @@ export const HeroSection = () => {
     return (
         <>
             {data && !data.hidden &&
-                <Container variant={"hero"}>
+                <Container section={"hero"}>
                     <Hero
                         badge={<BadgeText text='developer that help your business grow'/>}
                         greetings={<Greeting text={data.greetings} />}

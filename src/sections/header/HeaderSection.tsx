@@ -16,7 +16,7 @@ export const HeaderSection = () => {
             {
                 data && !data.hidden &&
 
-                <Container variant={"header"}>
+                <Container section={"header"}>
                     <Header
                         left={<HeaderLeft 
                             logo={<Logo {...data.logo} />} />}

@@ -27,14 +27,18 @@ const containerVariants = cva(
     'bg-background min-w-(--min-w)',
     {
         variants: {
-            variant: {
-                default: '',
-                header: 'bg-background border-b border-border sticky top-0 ',
+            section: {
+                non: '',
+                header: 'bg-background border-b border-border sticky top-0',
                 hero: 'bg-background',
+                about: 'bg-background/2',
             },
+            padding:{
+                true: "lg:py-20",
+            }
         },
         defaultVariants: {
-            variant: 'default',
+            section: 'non',
         }
     }
 )
@@ -47,13 +51,13 @@ type ContainerType = VariantProps<typeof containerVariants> & {
 }
 
 export function Container({
-    children, className, variant,
+    children, className, section, padding,
     min_w = 300, max_w = 1700,
     ...props
 }: ContainerType) {
     return (
         <section data-slot="container"
-            className={cn(containerVariants({ variant, className }))}
+            className={cn(containerVariants({ section, padding, className }))}
             style={{ '--min-w': `${min_w}px` } as React.CSSProperties}
             {...props}>
 

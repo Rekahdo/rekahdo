@@ -4,12 +4,12 @@ import { Container } from "../../components/ui/container"
 export function AboutSection(){
 
     const styles = cn(
-        "p-"
+        ""
     )
 
     return (
         <>
-            <Container>
+            <Container section={"about"} padding={true}>
                 <section className={styles}>
                     <h2>About Section</h2>
                 </section>
