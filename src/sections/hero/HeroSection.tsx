@@ -38,10 +38,9 @@ export const HeroSection = () => {
                         description={<Description text={data.description} />}
                         tags={<Tag texts={data.tags} section={'hero'}/>}
                         ctaBtns={<CTA btns={data.buttons} width={'fit'} />}
-                        heroImage={<HeroImage {...data.heroImage} size={'lg'} tablet={'xl'}/>}
+                        heroImage={<HeroImage {...data.heroImage} 
+                        size={'xl'} />}
                         location={data.location}
-                        align={'center'}
-                        desktopPosition='top'
                     />
                 </Container>
             }

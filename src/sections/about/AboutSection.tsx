@@ -1,8 +1,6 @@
 import { cn } from "cn"
 import { Container } from "../../components/ui/container"
 
-
-
 export function AboutSection(){
 
     const styles = cn(

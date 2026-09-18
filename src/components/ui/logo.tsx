@@ -12,7 +12,7 @@ export type LogoType = Omit<ImageType, "src"> & VariantProps<typeof ImageVariant
     alt: string;
 }
 
-export function Logo({light_src, dark_src, alt, size='xs'}: LogoType) {
+export function Logo({light_src, dark_src, alt}: LogoType) {
 
     const { listen, stop } = useTheme();
     const [src, setSrc] = useState<string>(themeIsDark() ? dark_src : light_src);
@@ -31,7 +31,8 @@ export function Logo({light_src, dark_src, alt, size='xs'}: LogoType) {
 
     return (
         <Link href="/">
-            <Image  className={cn(ImageVariants({ size }), logoStyle)} src={src} alt={alt}/>
+            <Image className={cn(logoStyle)} src={src} alt={alt} 
+                size={"xs"}/>
         </Link>
     )
 }
