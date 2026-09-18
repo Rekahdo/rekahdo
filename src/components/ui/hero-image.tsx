@@ -1,17 +1,19 @@
-import { cn } from "cn"
 import { Image, ImageVariants, type ImageType } from "./image"
 import type { VariantProps } from "class-variance-authority";
 
-type ClassNameType = {
+type HeroImageCompType = ImageType & VariantProps<typeof ImageVariants> &{
     className?: string;
 }
 
-export function HeroImage({ size, mobile, tablet, desktop, className, src, alt }: ImageType & ClassNameType & VariantProps<typeof ImageVariants>) {
+export function HeroImage({
+    className, src, alt,
+    ...props
+}: HeroImageCompType) {
     return (
         <>
             {
                 src &&
-                <Image src={src} alt={alt} fluid={true} className={cn(ImageVariants({ size, mobile, tablet, desktop, className }))} />
+                <Image src={src} alt={alt} fluid={true} {...props} />
             }
         </>
     )

@@ -29,6 +29,15 @@ const desktop = {
     xxl: "lg:w-200 lg:data-[fluid=true]:w-[100%] lg:max-w-200",
 }
 
+const size = {
+    xxs: cn(mobile.xxs, tablet.xxs, desktop.xxs),
+    xs: cn(mobile.xs, tablet.xs, desktop.xs),
+    sm: cn(mobile.sm, tablet.sm, desktop.sm),
+    lg: cn(mobile.lg, tablet.lg, desktop.lg),
+    xl: cn(mobile.xl, tablet.xl, desktop.xl),
+    xxl: cn(mobile.xxl, tablet.xxl, desktop.xxl)
+}
+
 export const ImageVariants = cva(
     "flex",
     {
@@ -36,14 +45,31 @@ export const ImageVariants = cva(
             mobile: mobile,
             tablet: tablet,
             desktop: desktop,
-            size: {
-                xxs: cn(mobile.xxs, tablet.xxs, desktop.xxs),
-                xs: cn(mobile.xs, tablet.xs, desktop.xs),
-                sm: cn(mobile.sm, tablet.sm, desktop.sm),
-                lg: cn(mobile.lg, tablet.lg, desktop.lg),
-                xl: cn(mobile.xl, tablet.xl, desktop.xl),
-                xxl: cn(mobile.xxl, tablet.xxl, desktop.xxl)
+            size: size,
+            nonMobile: {
+                xxs: cn(tablet.xxs, desktop.xxs),
+                xs: cn(tablet.xs, desktop.xs),
+                sm: cn(tablet.sm, desktop.sm),
+                lg: cn(tablet.lg, desktop.lg),
+                xl: cn(tablet.xl, desktop.xl),
+                xxl: cn(tablet.xxl, desktop.xxl)
             },
+            nonTablet:{
+                xxs: cn(mobile.xxs, desktop.xxs),
+                xs: cn(mobile.xs, desktop.xs),
+                sm: cn(mobile.sm, desktop.sm),
+                lg: cn(mobile.lg, desktop.lg),
+                xl: cn(mobile.xl, desktop.xl),
+                xxl: cn(mobile.xxl, desktop.xxl)
+            },
+            nonDesktop:{
+                xxs: cn(mobile.xxs, tablet.xxs),
+                xs: cn(mobile.xs, tablet.xs),
+                sm: cn(mobile.sm, tablet.sm),
+                lg: cn(mobile.lg, tablet.lg),
+                xl: cn(mobile.xl, tablet.xl),
+                xxl: cn(mobile.xxl, tablet.xxl)
+            }
         },
     }
 )
@@ -52,17 +78,33 @@ export type ImageType = VariantProps<typeof ImageVariants> & {
     name?: string;
     src: string;
     alt: string;
-    className?: string;
 };
 
 type ImageCompType = ImageType & {
+    className?: string;
     fluid?: boolean;
 }
 
-export function Image({ className, fluid = false, size, mobile, tablet, desktop, ...props }: ImageCompType) {
+export function Image({ 
+    className, 
+    fluid = false, 
+    size, 
+    mobile, 
+    tablet, 
+    desktop, 
+    nonMobile,
+    nonTablet,
+    nonDesktop,
+    ...props 
+}: ImageCompType) {
     return (
-        <div data-fluid={fluid}
-            className={cn(ImageVariants({ size, mobile, tablet, desktop, className }))}>
+        <div data-fluid={fluid} 
+            className={cn(ImageVariants({ 
+                size, mobile, tablet, desktop, 
+                nonMobile, nonTablet, nonDesktop, 
+                className 
+            }))}>
+
             <img src={props.src} alt={`${props.alt}`}
                 className="w-full h-full object-contain" />
         </div>
