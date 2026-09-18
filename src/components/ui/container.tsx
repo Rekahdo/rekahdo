@@ -5,21 +5,8 @@ import type { ChildrenType } from '../../data/type';
 
 const containerChildVariants = cva(
     cn(
-        'mx-auto max-w-[var(--max-w)]',
-    ),
-    {
-        variants: {
-            variant: {
-                default: "",
-                header: '',
-                hero: '',
-            },
-        },
-
-        defaultVariants: {
-            variant: 'default',
-        }
-    }
+        'mx-auto max-w-(--max-w)',
+    )
 )
 
 type ContainerChildType = ChildrenType & VariantProps<typeof containerChildVariants> & {
@@ -27,9 +14,9 @@ type ContainerChildType = ChildrenType & VariantProps<typeof containerChildVaria
     max_w?: number;
 }
 
-function ContainerChild({ children, variant, max_w }: ContainerChildType) {
+function ContainerChild({ children, max_w }: ContainerChildType) {
     return (
-        <section data-slot="container-child" className={cn(containerChildVariants({ variant }))}
+        <section data-slot="container-child" className={cn(containerChildVariants({}))}
             style={{ '--max-w': `${max_w}px` } as React.CSSProperties}>
             {children}
         </section>
@@ -37,12 +24,12 @@ function ContainerChild({ children, variant, max_w }: ContainerChildType) {
 }
 
 const containerVariants = cva(
-    'bg-background min-w-[var(--min-w)]',
+    'bg-background min-w-(--min-w)',
     {
         variants: {
             variant: {
                 default: '',
-                header: 'bg-background border-b-1 border-border sticky top-0 ',
+                header: 'bg-background border-b border-border sticky top-0 ',
                 hero: 'bg-background',
             },
         },
@@ -70,7 +57,7 @@ export function Container({
             style={{ '--min-w': `${min_w}px` } as React.CSSProperties}
             {...props}>
 
-            <ContainerChild variant={variant} max_w={max_w}>
+            <ContainerChild max_w={max_w}>
                 {children}
             </ContainerChild>
         </section>

@@ -2,9 +2,10 @@ import { type ComponentProps, type ReactElement } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
 import type { Tag } from "../ui/tag";
-import type { BadgeText, Description, Greeting, LocationType, Role, SocialProfText, Title } from "../ui/hero-ui";
+import type { BadgeText, LocationType, SocialProfText } from "../ui/hero-ui";
 import type { HeroImage } from "../ui/hero-image";
 import type { CTA } from "../ui/cta";
+import type { Description, Greeting, Role, Title } from "../ui/hero-content";
 
 const HeroVariant = cva(
     cn(
@@ -45,13 +46,14 @@ export const heroImageVariants = cva(
             
         },
         defaultVariants: {
+            
         },
     }
 );
 
 export const heroContentVariants = cva(
     [
-        "grid w-full gap-6 lg:gap-8",
+        "grid w-full gap-6 lg:gap-8 max-lg:px-8",
         "max-lg:text-center max-lg:justify-items-center",
     ],
     {
@@ -139,9 +141,7 @@ export function Hero({
             }
 
             {heroImage &&
-                <div className={cn(heroImageVariants({ 
-                     
-                }))}>
+                <div className={cn(heroImageVariants({}))}>
                     {heroImage}
                 </div>
             }

@@ -6,11 +6,11 @@ import type { ButtonHTMLAttributes, ReactNode } from "react"
 export const buttonVariants = cva(
   cn(
     // Base Layout & Alignment
-    "group/button inline-flex shrink-0 items-center justify-center data-[sta=all]:min-w-30 select-none cursor-pointer",
+    "group/button inline-flex shrink-0 items-center justify-center data-[sta=all]:min-w-40 select-none cursor-pointer",
     "data-[fw=true]:w-full",
 
     // Typography & Motion
-    "text-sm font-medium whitespace-nowrap transition-all outline-none",
+    "text-sm font-bold whitespace-nowrap transition-all outline-none",
 
     // Surface & Border Shapes
     "rounded-lg border border-transparent bg-clip-padding",

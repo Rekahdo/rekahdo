@@ -1,8 +1,8 @@
 import { HeaderProvider } from '../../contexts/HeaderProvider'
 import { HeroProvider } from '../../contexts/HeroProvider'
+// import { AboutSection } from '../../sections/about/AboutSection'
 import { HeaderSection } from '../../sections/header/HeaderSection'
 import { HeroSection } from '../../sections/hero/HeroSection'
-// import './Home.css'
 
 export const Home = () => {
     return (
@@ -10,6 +10,7 @@ export const Home = () => {
             <HeroProvider>
                 <HeaderSection />
                 <HeroSection />
+                {/* <AboutSection /> */}
             </HeroProvider>
         </HeaderProvider>
     )

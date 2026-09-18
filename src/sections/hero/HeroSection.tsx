@@ -4,9 +4,10 @@ import { Container } from '../../components/ui/container';
 import { CTA } from '../../components/ui/cta';
 import type { DownloadType } from '../../components/ui/download';
 import { HeroImage } from '../../components/ui/hero-image';
-import { BadgeText, Description, Greeting, Role, Title, type LocationType } from '../../components/ui/hero-ui';
+import { BadgeText, type LocationType } from '../../components/ui/hero-ui';
 import type { ImageType } from '../../components/ui/image';
 import { Tag } from '../../components/ui/tag';
+import { Description, Greeting, Role, Title } from '../../components/ui/hero-content';
 import { useHero } from '../../hooks/context'
 
 export type HeroType = {
@@ -44,8 +45,6 @@ export const HeroSection = () => {
                     />
                 </Container>
             }
-
-            <p className='sm:text-4xl'></p>
         </>
     )
 }
