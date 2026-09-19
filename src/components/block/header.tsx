@@ -5,7 +5,7 @@ import type { ComponentProps, ReactElement, ReactNode } from "react";
 import type { NavigationBar } from "../ui/navigation-bar";
 import type { Logo } from "../ui/logo";
 import type { ThemeToggle } from "../ui/toggle";
-import type { DownloadBtn } from "../ui/download";
+import type { DownloadBtn } from "../ui/download-btn";
 
 type HeaderLeftType = {
     logo?: ReactElement<ComponentProps<typeof Logo>, typeof Logo>

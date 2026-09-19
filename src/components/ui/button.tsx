@@ -137,7 +137,6 @@ const showTextAtStyle = cn("hidden",
 
 export type ButtonType = ButtonHTMLAttributes<HTMLButtonElement> & ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & {
   text?: string;
-  src?: string;
   fullWidth?: boolean;
   icon?: ReactNode;
   showTextAt?: "sm" | "md" | "lg" | "all"

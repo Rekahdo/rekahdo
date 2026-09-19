@@ -74,13 +74,13 @@ export const ImageVariants = cva(
     }
 )
 
-export type ImageType = VariantProps<typeof ImageVariants> & {
+export type ImageType = {
     name?: string;
     src: string;
     alt: string;
 };
 
-type ImageCompType = ImageType & {
+type ImageCompType = ImageType & VariantProps<typeof ImageVariants> & {
     className?: string;
     fluid?: boolean;
 }

@@ -1,9 +1,14 @@
 import type { ReactNode } from "react";
-import type { Icon, Position, Provider } from "../utils/enum";
+import type { Icon, Position } from "../utils/enum";
 import type { ButtonType } from "../components/ui/button";
 import type { ImageType } from "../components/ui/image";
 import type { NavigationLinkType } from "../components/ui/navigation-bar";
 import type { LocationType } from "../components/ui/hero-ui";
+import type { ExperienceType } from "../components/ui/experience";
+import type { Education } from "../components/ui/education";
+import type { QuoteType } from "../components/ui/quote";
+import type { TagType } from "../components/ui/tag";
+import type { Provider } from "../hooks/context";
 
 // ============================================================================
 // ENUM-DERIVED TYPES
@@ -42,16 +47,6 @@ export type ContainerType = {
     className?: string;
 }
 
-export type TagType = {
-    readonly id: number;
-    hidden: boolean;
-    text: string;
-}
-
-export type TagCompType = TagType & {
-    className?: string;
-}
-
 export type NavBarType = {
   version?: number,
   logo: ImageType,
@@ -60,8 +55,7 @@ export type NavBarType = {
 }
 
 export type AvatarType = {
-    hidden: boolean;
-    file_name: string;
+        file_name: string;
     file_path: string;
     rounded: boolean;
     location: LocationType;
@@ -79,40 +73,6 @@ export type AvatarCompType = AvatarType & {
 // DATA TYPES - ABOUT ME
 // ============================================================================
 
-export type Experience = {
-  hidden: boolean;
-  years: number;
-  text: string;
-};
-
-export type Education = {
-  id: number;
-  title: string;
-  institution: string;
-  icon: string;
-  hidden: boolean;
-};
-
-export type CoreSkillType = {
-  id: number;
-  text: string;
-  emoji: string;
-  hidden: boolean;
-};
-
-export type AboutType = {
-  sectionTitle: string;
-  headline: string;
-  bio: string;
-  me: string;
-  experiences: Experience[];
-  quote: {
-    hidden: boolean;
-    text: string;
-  };
-  education: Education[];
-  coreSkills: CoreSkillType[];
-};
 
 // ============================================================================
 // DATA TYPES - CONTACT ME
@@ -123,11 +83,9 @@ export type SocialLink = {
   platform: string;
   url: string;
   icon: string;
-  hidden: boolean;
 }
 
 export type ContactMeType = {
-  hidden: boolean;
   email: string;
   phone: string;
   location: string;
@@ -151,17 +109,14 @@ export type ErrorPageData = {
 export type FooterSocialLink = {
   platform: string;
   url: string;
-  hidden: boolean;
 }
 
 export type FooterQuickLink = {
   name: string;
   path: string;
-  hidden: boolean;
 }
 
 export type FooterType = {
-  hidden: boolean;
   copyrightText: string;
   socialLinks: FooterSocialLink[];
   quickLinks: FooterQuickLink[];
@@ -182,21 +137,14 @@ export type GrowthItem = {
   endDate: string;
   link: string;
   linkLabel: string;
-  hidden: boolean;
-}
-
-export type Quote = {
-  hidden: boolean;
-  text: string;
 }
 
 export type GrowthType = {
-  hidden: boolean;
   sectionTitle: string;
   subtitle: string;
   description: string;
   items: GrowthItem[];
-  quote: Quote;
+  quote: QuoteType;
 }
 
 // ============================================================================
@@ -211,12 +159,10 @@ export type Project = {
   githubLink: string;
   liveLink: string;
   technologies: string[];
-  hidden: boolean;
   indexPosition: number;
 }
 
 export type ProjectsType = {
-  hidden: boolean;
   sectionTitle: string;
   subtitle: string;
   projects: Project[];
@@ -232,7 +178,6 @@ export type ResourceItem = {
   badge: string;
   description: string;
   link: string;
-  hidden: boolean;
 }
 
 export type ResourceCategory = {
@@ -240,12 +185,10 @@ export type ResourceCategory = {
   name: string;
   subtitle: string;
   count: number;
-  hidden: boolean;
   items: ResourceItem[];
 }
 
 export type ResourcesType = {
-  hidden: boolean;
   sectionTitle: string;
   subtitle: string;
   description: string;
@@ -265,11 +208,9 @@ export type Service = {
   tags: string[];
   actionLabel: string;
   actionUrl: string;
-  hidden: boolean;
 }
 
 export type ServicesType = {
-  hidden: boolean;
   sectionTitle: string;
   subtitle: string;
   description: string;
@@ -286,7 +227,6 @@ export type Technology = {
   icon: string;
   percentage: number;
   color: string;
-  hidden: boolean;
 }
 
 export type CategoryOverview = {
@@ -294,17 +234,14 @@ export type CategoryOverview = {
   category: string;
   percentage: number;
   color: string;
-  hidden: boolean;
 }
 
 export type ProficiencyKey = {
   range: string;
   description: string;
-  hidden: boolean;
 }
 
 export type StackUsageType = {
-  hidden: boolean;
   sectionTitle: string;
   subtitle: string;
   individualTechnologies: Technology[];
@@ -316,14 +253,6 @@ export type StackUsageType = {
 // DATA TYPES - TECH STACK
 // ============================================================================
 
-export type TechStack = {
-  id: number;
-  name: string;
-  icon: string;
-  description: string;
-  hidden: boolean;
-  indexPosition: number;
-}
 
 // ============================================================================
 // PAGE & SECTION TYPES

@@ -1,7 +1,7 @@
 import type { ServicesType } from './type';
 
 export const servicesData: ServicesType = {
-  hidden: false,
+  
   sectionTitle: "Services",
   subtitle: "What I do with my skills",
   description: "As a developer with focused backend experience and ongoing frontend training, I am driven by a passion for creating seamless, user-centered applications that grow alongside evolving needs.",

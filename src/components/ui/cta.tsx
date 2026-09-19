@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { Button, type ButtonType } from "./button";
 import { cn } from "cn";
-import { DownloadBtn, type DownloadType } from "./download";
+import { DownloadBtn, type DownloadType } from "./download-btn";
 
 type CTAType = VariantProps<typeof CtaVariant> & {
     className?: string;

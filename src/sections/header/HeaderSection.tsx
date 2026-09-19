@@ -4,7 +4,7 @@ import { SideBar } from "../../components/ui/side-bar";
 import { Header, HeaderCenter, HeaderLeft, HeaderRight } from "../../components/block/header";
 import { Logo } from "../../components/ui/logo";
 import { ThemeToggle } from "../../components/ui/toggle";
-import { DownloadBtn } from "../../components/ui/download";
+import { DownloadBtn } from "../../components/ui/download-btn";
 import { NavigationBar } from "../../components/ui/navigation-bar";
 
 export const HeaderSection = () => {
@@ -14,7 +14,7 @@ export const HeaderSection = () => {
     return (
         <>
             {
-                data && !data.hidden &&
+                data &&
 
                 <Container 
                     bd={"bottom"} 

@@ -4,7 +4,7 @@ import { logoData } from "./logo";
 import { navLinksData } from "./navlink";
 
 export const headerData: HeaderType = {
-  hidden: false,
+  
   logo: logoData,
   navLink: navLinksData,
   downloadCV: downloadCVData,

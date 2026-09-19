@@ -1,7 +1,7 @@
 import type { ProjectsType } from './type';
 
 export const projectsData: ProjectsType = {
-  hidden: false,
+  
   sectionTitle: "PROJECTS",
   subtitle: "Showcasing scalable backend systems and full-stack experiments",
   projects: [
@@ -13,7 +13,7 @@ export const projectsData: ProjectsType = {
       githubLink: "https://github.com/username/project",
       liveLink: "https://example.com",
       technologies: ["Java", "Spring Boot", "MySQL"],
-      hidden: false,
+      
       indexPosition: 1
     },
     {
@@ -24,7 +24,7 @@ export const projectsData: ProjectsType = {
       githubLink: "https://github.com/username/project",
       liveLink: "https://example.com",
       technologies: ["Spring Cloud", "Docker", "RabbitMQ"],
-      hidden: false,
+      
       indexPosition: 2
     },
     {
@@ -35,7 +35,7 @@ export const projectsData: ProjectsType = {
       githubLink: "https://github.com/username/project",
       liveLink: "https://example.com",
       technologies: ["React", "Tailwind CSS", "Spring Boot"],
-      hidden: false,
+      
       indexPosition: 3
     }
   ]

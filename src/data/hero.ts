@@ -2,7 +2,7 @@ import type { HeroType } from "../sections/hero/HeroSection";
 import { buttonData, downloadCVData } from "./button";
 
 export const heroData: HeroType = {
-  hidden: false,
+  
   greetings: "Hi there, I'm",
   fullName: "RICHARD T. OKAFOR",
   role: "Full Stack Developer",
@@ -13,7 +13,7 @@ export const heroData: HeroType = {
     src: "/images/me/hero-section.png",
   },
   location: {
-    hidden: false,
+    
     state: "Lagos",
     country: "Nigeria",
   },

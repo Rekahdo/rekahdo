@@ -1,7 +1,7 @@
 import type { ResourcesType } from './type';
 
 export const resourcesData: ResourcesType = {
-  hidden: false,
+  
   sectionTitle: "Resources",
   subtitle: "References and tools I rely on every day",
   description: "A curated collection of documentation, testing tools, and community references that keep me productive and learning across the full stack.",
@@ -11,7 +11,7 @@ export const resourcesData: ResourcesType = {
       name: "Full Stack",
       subtitle: "Foundation references",
       count: 2,
-      hidden: false,
+      
       items: [
         {
           id: 1,
@@ -36,7 +36,7 @@ export const resourcesData: ResourcesType = {
       name: "Frontend",
       subtitle: "UI & testing toolkit",
       count: 4,
-      hidden: false,
+      
       items: [
         {
           id: 3,
@@ -77,7 +77,7 @@ export const resourcesData: ResourcesType = {
       name: "Backend",
       subtitle: "Server-side essentials",
       count: 4,
-      hidden: false,
+      
       items: [
         {
           id: 7,

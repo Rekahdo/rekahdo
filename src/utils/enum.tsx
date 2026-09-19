@@ -18,20 +18,6 @@ export const Icon = {
     }
 } as const;
 
-export const Provider = {
-    HERO: "Hero",
-    HEADER: "Header",
-    ABOUT: "About",
-    CONTACT: "Contact",
-    FOOTER: "Footer",
-    GROWTH: "Growth",
-    PROJECTS: "Projects",
-    RESOURCES: "Resources",
-    SERVICES: "Services",
-    STACK_USAGE: "StackUsage",
-    TECH_STACK: "TechStack",
-} as const;
-
 export const ImageType = {
   ICON: 'icons',
   LOGO: 'logos',

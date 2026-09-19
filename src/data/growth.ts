@@ -1,7 +1,7 @@
 import type { GrowthType } from './type';
 
 export const growthData: GrowthType = {
-  hidden: false,
+  
   sectionTitle: "Growth",
   subtitle: "What I am currently learning",
   description: "Continuous learning is the key to unlocking full potential. By embracing new skills, I stay ahead of the curve, adapt to new challenges, and grow both personally and professionally.",
@@ -34,7 +34,7 @@ export const growthData: GrowthType = {
     }
   ],
   quote: {
-    hidden: false,
+    
     text: "The future belongs to those who never stop learning. Every line of code I write today is an investment in the developer I become tomorrow."
   }
 }

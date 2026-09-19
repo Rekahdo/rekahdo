@@ -1,5 +1,5 @@
 import type { ButtonType } from "../components/ui/button";
-import type { DownloadType } from "../components/ui/download";
+import type { DownloadType } from "../components/ui/download-btn";
 
 export const buttonData: ButtonType[] = [
   {
@@ -18,6 +18,6 @@ export const buttonData: ButtonType[] = [
 
 export const downloadCVData: DownloadType = {
   text: "Download CV",
-  src: "/Richard_Okafor_CV.pdf",
+  src: "/docs/Richard_Okafor_CV.pdf",
   file_name: "Richard_Okafor_CV.pdf",
 };

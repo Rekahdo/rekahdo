@@ -1,13 +1,8 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
-import type { ClassNameType } from "../../data/type";
+import type { ReactNode } from "react";
 
-
-type TextArrayType = {
-    texts: string[] | undefined
-};
-
-const TagChildVariant = cva(
+const TagVariant = cva(
     "text-[0.6rem] sm:text-xs sm:font-bold",
     {
         variants: {
@@ -23,35 +18,17 @@ const TagChildVariant = cva(
     }
 )
 
-const TagVariant = cva(
-    cn(
-        "flex flex-wrap items-center gap-3",
-        "max-lg:justify-center"
-    ),
-    {
-        variants: {
-            section: {
-                hero: ""
-            }
-        },
-    }
-)
+export type TagType = {
+    text: string;
+    emoji?: ReactNode;
+};
 
-export function Tag({ texts, variant, section, className }: TextArrayType & ClassNameType & VariantProps<typeof TagVariant> & VariantProps<typeof TagChildVariant>) {
+type TagCompType = TagType & VariantProps<typeof TagVariant>
+
+export function Tag({ text, emoji, variant }: TagCompType) {
     return (
-        <>
-            {
-                texts &&
-                <div className={cn(TagVariant({ section }))}>
-                    {
-                        texts.map((text, index) => (
-                            <p key={index} className={cn(TagChildVariant({ variant, className }))}>
-                                {text}
-                            </p>
-                        ))
-                    }
-                </div>
-            }
-        </>
+        <p className={cn(TagVariant({ variant }))}>
+            {text} {emoji}
+        </p>
     )
 }
