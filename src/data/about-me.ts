@@ -39,7 +39,7 @@ export const aboutMeData: AboutType = {
     {
       institution: "TS Academy",
       course: "Frontend Development",
-      certification: "",
+      certification: "/docs/Frontend_Development_Certification.pdf",
       website: "https://tsacademyonline.com/",
       logo: "/images/icons/ts-academy.svg",
     },

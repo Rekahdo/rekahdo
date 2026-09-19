@@ -2,7 +2,7 @@ import type { HeroType } from "../sections/hero/HeroSection";
 import { buttonData, downloadCVData } from "./button";
 
 export const heroData: HeroType = {
-  
+  badge: "developer that help your business grow",
   greetings: "Hi there, I'm",
   fullName: "RICHARD T. OKAFOR",
   role: "Full Stack Developer",
@@ -17,6 +17,10 @@ export const heroData: HeroType = {
     state: "Lagos",
     country: "Nigeria",
   },
-  tags: ["Clean-Code", "Object Oriented"],
+  tags: [
+    { text: "Clean-Code" }, 
+    { text: "Object Oriented" },
+    { text: "Component Based" },
+  ],
   buttons: [downloadCVData, ...buttonData],
 };
