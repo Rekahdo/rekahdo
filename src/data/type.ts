@@ -5,7 +5,7 @@ import type { ImageType } from "../components/ui/image";
 import type { NavigationLinkType } from "../components/ui/navigation-bar";
 import type { LocationType } from "../components/ui/hero-ui";
 import type { ExperienceType } from "../components/ui/experience";
-import type { Education } from "../components/ui/education";
+import type { EducationType } from "../components/ui/education";
 import type { QuoteType } from "../components/ui/quote";
 import type { TagType } from "../components/ui/tag";
 import type { Provider } from "../hooks/context";

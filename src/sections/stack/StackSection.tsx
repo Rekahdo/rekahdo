@@ -28,8 +28,8 @@ export function TechStackSection() {
             {data &&
                 <Container
                     bg={"secondary"}
-                    height={"hero"}
-                    py={"normal"}>
+                    h={"hero"}
+                    py={"py_10"}>
 
                     <section className={styles}>
                         <H2 title={data.title}/>

@@ -1,71 +1,126 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
 import type { ReactNode } from "react";
+import { justify } from "./css-types";
+
+/* ------------------------------------------------------------------ */
+/* Tag                                                                 */
+/* ------------------------------------------------------------------ */
 
 const TagVariant = cva(
-    "text-[0.6rem] sm:text-xs sm:font-bold",
-    {
-        variants: {
-            variant: {
-                outline: cn(
-                    "py-1 px-4 sm:py-2 border-2 border-border rounded-full"
-                ),
-                filled: "",
-            },
-        },
-        defaultVariants: {
-            variant: "outline",
-        }
-    }
-)
+  "inline-flex items-center gap-1.5 whitespace-nowrap font-medium transition-colors",
+  {
+    variants: {
+      /* Visual style */
+      variant: {
+        outline:
+          "border-2 border-border bg-transparent text-foreground hover:border-primary/50 hover:text-primary",
+        filled:
+          "border-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/90",
+        soft:
+          "border-2 border-transparent bg-primary/10 text-primary hover:bg-primary/15",
+        muted:
+          "border-2 border-transparent bg-muted text-muted-foreground hover:bg-muted/70",
+        ghost:
+          "border-2 border-transparent bg-transparent text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+        success:
+          "border-2 border-transparent bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/15 dark:text-emerald-400",
+        warning:
+          "border-2 border-transparent bg-amber-500/10 text-amber-600 hover:bg-amber-500/15 dark:text-amber-400",
+        danger:
+          "border-2 border-transparent bg-destructive/10 text-destructive hover:bg-destructive/15",
+      },
+      /* Size */
+      size: {
+        sm: "text-[0.65rem] px-3 py-0.5 rounded-full",
+        md: "text-xs px-4 py-1 rounded-full",
+        lg: "text-sm px-5 py-1.5 rounded-full",
+      },
+      /* Shape */
+      shape: {
+        pill: "rounded-full",
+        square: "rounded-md",
+      },
+    },
+    defaultVariants: {
+      variant: "outline",
+      size: "md",
+      shape: "pill",
+    },
+  }
+);
 
-const TagsVariant = cva(
-    cn(
-        "flex flex-wrap items-center gap-3",
-        "max-lg:justify-center"
-    ),
-    {
-        variants: {
-            justify: {
-                center: ""
-            }
-        },
-    }
-)
+/* ------------------------------------------------------------------ */
+/* Tags container                                                      */
+/* ------------------------------------------------------------------ */
+
+const TagsVariant = cva("flex flex-wrap items-center", {
+  variants: {
+    justify: justify,
+    gap: {
+      sm: "gap-2",
+      md: "gap-3",
+      lg: "gap-4",
+    },
+  },
+  defaultVariants: {
+    gap: "lg",
+  },
+});
+
+/* ------------------------------------------------------------------ */
+/* Types                                                               */
+/* ------------------------------------------------------------------ */
 
 export type TagType = {
-    text: string;
-    emoji?: ReactNode;
+  text: string;
+  emoji?: ReactNode;
 };
 
-type TagCompType = TagType & VariantProps<typeof TagVariant>
+type TagCompType = TagType &
+  VariantProps<typeof TagVariant> & {
+    className?: string;
+  };
 
-type TagsCompType = VariantProps<typeof TagsVariant> 
-    & VariantProps<typeof TagVariant> & {
-    tags: TagType[]
-};
+type TagsCompType = VariantProps<typeof TagsVariant> &
+  VariantProps<typeof TagVariant> & {
+    tags: TagType[];
+    className?: string;
+  };
 
-export function Tag({ text, emoji, variant }: TagCompType) {
-    return (
-        <p className={cn(TagVariant({ variant }))}>
-            {text} {emoji}
-        </p>
-    )
+/* ------------------------------------------------------------------ */
+/* Components                                                          */
+/* ------------------------------------------------------------------ */
+
+export function Tag({ text, emoji, variant, size, shape, className }: TagCompType) {
+  return (
+    <span className={cn(TagVariant({ variant, size, shape }), className)}>
+      {text}
+      {emoji && <span className="inline-flex items-center">{emoji}</span>}
+    </span>
+  );
 }
 
-export function Tags({ tags, variant, justify }: TagsCompType) {
-    return (
-        <>
-            {
-                tags &&
-                <div className={cn(TagsVariant({ justify }))}>
-                    {
-                        tags.map((tag, i) => (
-                            <Tag key={i} {...tag} variant={variant}/>
-                        ))
-                    }
-                </div>
-            }
-        </>
-    )
+export function Tags({
+  tags,
+  variant,
+  size,
+  shape,
+  justify,
+  gap,
+  className,
+}: TagsCompType) {
+  if (!tags?.length) return null;
+
+  return (
+    <div
+      role="list"
+      aria-label="Tags"
+      className={cn(TagsVariant({ justify, gap }), className)}
+    >
+      {tags.map((tag, i) => (
+        <Tag key={`${tag.text}-${i}`} variant={variant} size={size} shape={shape} {...tag} />
+      ))}
+    </div>
+  );
 }

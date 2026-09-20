@@ -5,7 +5,7 @@ export const aboutMeData: AboutType = {
   headline: "Bridging Backend Stability With Frontend Inspiration",
   bio: "I am a Java backend developer with almost 2 years of experience, specializing in building scalable and robust systems using Spring Boot and microservices architecture. I also have 2 years of experience working in a solar engineering company. I am currently expanding into front-end development.",
   me: {
-    src: "/images/me/richard.png",
+    src: "/images/me/richard.svg",
     alt: "Richard Okafor About Me"
   },
   experiences: [
@@ -21,10 +21,10 @@ export const aboutMeData: AboutType = {
   quote: {
     text: "To me, Full-stack development involves engineering robust, scalable systems, bringing back-end stability and front-end inspiration to create seamless user experience.",
   },
-  education: [
+  educations: [
     {
       institution: "NIIT",
-      course: "Software Engineering",
+      course: "Software Engineering ",
       certification: "/docs/NIIT_Certification.jpg",
       website: "https://www.niit.com/nigeria/",
       logo: "/images/icons/niit.svg",
@@ -41,7 +41,7 @@ export const aboutMeData: AboutType = {
       course: "Frontend Development",
       certification: "/docs/Frontend_Development_Certification.pdf",
       website: "https://tsacademyonline.com/",
-      logo: "/images/icons/ts-academy.svg",
+      logo: "/images/icons/tsa.svg",
     },
   ],
   skillTags: [

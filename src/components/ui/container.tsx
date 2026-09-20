@@ -1,93 +1,111 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from 'cn'
-import type { ReactNode } from 'react';
-import type { ChildrenType } from '../../data/type';
+import type { ElementType, HTMLAttributes, ReactNode } from 'react';
+import { align, background, border, minHeight, justify, paddingY, sticky, maxWidth, rounded } from './css-types';
 
-const containerChildVariants = cva(
-    cn(
-        'mx-auto max-w-(--max-w)',
-    )
-)
-
-type ContainerChildType = ChildrenType & VariantProps<typeof containerChildVariants> & {
-    children: ReactNode;
-    max_w?: number;
-}
-
-function ContainerChild({ children, max_w }: ContainerChildType) {
-    return (
-        <section data-slot="container-child" className={cn(containerChildVariants({}))}
-            style={{ '--max-w': `${max_w}px` } as React.CSSProperties}>
-            {children}
-        </section>
-    )
-}
-
-const containerVariants = cva(
-    'flex min-w-(--min-w) rounded-none *:grow',
+const containerInnerVariants = cva(
+    cn('mx-auto w-full'),
     {
         variants: {
-            sticky:{
-                top: "sticky top-0",
-                bottom: "sticky bottom-0",
-            },
-            py:{
-                normal: "py-10 md:py-15 lg:py-20",
-            },
-            px:{
-                normal: "px-2 sm:px-4 md:px-6 lg:px-8",
-            },
-            bg:{
-                background: "bg-background text-foreground",
-                muted: "bg-muted text-muted-foreground",
-                secondary: "bg-secondary text-secondary-foreground",
-            },
-            bd:{
-                top: "border-t border-border",
-                bottom: "border-b border-border",
-            },
-            height:{
-                header: "h-auto min-h-[8dvh] md:min-h-[10dvh]",
-                hero: "h-auto min-h-[92dvh] md:min-h-[90dvh]",
-                full: "h-auto min-h-[100dvh]",
-                fluid: "h-auto"
-            },
-            align:{
-                center: "items-center"
-            },
-            justify:{
-                center: "justify-center"
-            }
+            maxWidth: maxWidth,
         },
+        defaultVariants: {
+            maxWidth: "w1300",
+        }
     }
 )
 
-type ContainerType = VariantProps<typeof containerVariants> & {
+const containerVariants = cva(
+    'flex rounded-none *:grow',
+    {
+        variants: {
+            sticky: sticky,
+            py: {
+                none: "",
+                default: "py-15 md:py-20 lg:py-25",
+                sm: "py-8 md:py-10 lg:py-12",
+                lg: "py-20 md:py-28 lg:py-32",
+            },
+            px: {
+                none: "",
+                default: "px-2 sm:px-4 md:px-6 lg:px-8",
+                sm: "px-3 sm:px-5 md:px-7 lg:px-9",
+            },
+            minWidth: {
+                default: "min-w-[300px]",
+                none: "",
+            },
+            bg: background,
+            bd: border,
+            h: minHeight,
+            align: align,
+            justify: justify,
+            rounded: rounded,
+        },
+        defaultVariants: {
+            minWidth: "default",
+            px: "default",
+            rounded: "none",
+        }
+    }
+)
+
+type ContainerInnerProps = VariantProps<typeof containerInnerVariants> & {
     children: ReactNode;
     className?: string;
-    min_w?: number;
-    max_w?: number;
+}
+
+type ContainerProps = VariantProps<typeof containerVariants>
+    & VariantProps<typeof containerInnerVariants> &
+{
+    children: ReactNode;
+    className?: string;
+    innerClassName?: string;
+    as?: ElementType;
+    id?: string;
+} & Omit<HTMLAttributes<HTMLElement>, "id">;
+
+function ContainerInner({
+    children,
+    maxWidth,
+    className,
+}: ContainerInnerProps) {
+    return (
+        <div
+            data-slot="container-inner"
+            className={cn(containerInnerVariants({ maxWidth }), className)}
+        >
+            {children}
+        </div>
+    );
 }
 
 export function Container({
-    children, className, 
-    min_w = 300, max_w = 1700,
-    sticky, py, px, bg, bd, height, align, justify,
+    children,
+    className,
+    innerClassName,
+    maxWidth,
+    sticky,
+    py,
+    px,
+    bg,
+    bd,
+    h,
+    align,
+    justify,
+    rounded,
+    as: Tag = "section",
     ...props
-}: ContainerType) {
+}: ContainerProps) {
     return (
-        <section data-slot="container"
+        <Tag data-slot="container"
             className={cn(containerVariants({
-                sticky, py, px, bg, bd, height, align, justify, className 
-            }))}
-            
-            style={{ '--min-w': `${min_w}px` } as React.CSSProperties}
-            {...props}>
+                sticky, py, px, bg, bd, h, align, justify, rounded
+            }), className)} {...props}>
 
-            <ContainerChild max_w={max_w}>
+            <ContainerInner maxWidth={maxWidth} className={innerClassName}>
                 {children}
-            </ContainerChild>
-        </section>
-    )
+            </ContainerInner>
+        </Tag>
+    );
 }
-

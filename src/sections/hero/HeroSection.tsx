@@ -32,9 +32,8 @@ export const HeroSection = () => {
             {data &&
                 <Container 
                     bg={"background"}
-                    height={'hero'}
-                    py={"normal"}
-                    px={"normal"}
+                    h={'hero'}
+                    py={"py_10"}
                     align={'center'}>
 
                     <Hero

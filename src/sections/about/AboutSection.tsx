@@ -1,12 +1,12 @@
 import { cn } from "cn"
 import { Container } from "../../components/ui/container"
 import { useAbout } from "../../hooks/context"
-import { H2, H3 } from "../../components/ui/headings";
+import { H2, H3, H4, H5, H6 } from "../../components/ui/headings";
 import { Image, type ImageType } from "../../components/ui/image";
-import { Experience, type ExperienceType } from "../../components/ui/experience";
-import { QuoteType } from "../../components/ui/quote";
-import { Tag, type TagType } from "../../components/ui/tag";
-import { Education } from "../../components/ui/education";
+import { Experiences, type ExperienceType } from "../../components/ui/experience";
+import { Quote, type QuoteType } from "../../components/ui/quote";
+import { Tags, type TagType } from "../../components/ui/tag";
+import { Educations, type EducationType } from "../../components/ui/education";
 
 export type SectionType = {
     title: string;
@@ -19,7 +19,7 @@ export type AboutType = SectionType & {
     me: ImageType;
     experiences: ExperienceType[];
     quote: QuoteType
-    education: Education[];
+    educations: EducationType[];
     skillTags: TagType[];
 };
 
@@ -27,51 +27,47 @@ export function AboutSection() {
 
     const { data } = useAbout()!;
 
-    const styles = cn(
-        ""
-    )
-
     return (
         <>
             {data &&
                 <Container
                     bg={"secondary"}
-                    height={"hero"}
-                    py={"normal"}>
+                    h={"hero"}
+                    py={"default"}
+                    px={"lg"}>
 
-                    <section className={styles}>
-                        <H2 title={data.title} />
+                    <section>
+                        <H2 title={data.title} align="center" />
 
-                        <div>
-                            <Image src={data.me.src} alt={data.me.alt} />
+                        <div className={cn("grid grid-cols-1 md:grid-cols-3 max-md:gap-10 my-10 md:my-15")}>
 
-                            <section>
-                                <H2 title={data.headline} />
-                                <p>{data.bio}</p>
+                            <div className="max-md:w-[40%] max-md:mx-auto">
+                                <Image src={data.me.src} alt={data.me.alt} size={"xxl"} fluid />
+                            </div>
 
-                                <div>
-                                    {data.experiences.map((e, i) => (
-                                        <Experience {...e} />
-                                    ))}
-                                </div>
+                            <div className={cn(
+                                "flex flex-col",
+                                "gap-8 lg:gap-10",
+                                "md:ps-10 md:col-span-2",
+                                "max-md:text-center"
+                            )}>
 
-                                <QuoteType text={data.quote.text} />
+                                <H3 title={data.headline} subtitle={data.bio} />
+                                <Experiences experiences={data.experiences} />
+                                <Quote {...data.quote} variant={"normal"} />
 
-                                <div>
-                                    <H3 title="core skills" />
-                                    <div>
-                                        {data.skillTags.map((tag, i) =>
-                                            <Tag key={i} {...tag} />)}
-                                    </div>
-                                </div>
-                            </section>
+                            </div>
                         </div>
 
-                        <div>{
-                            data.education.map((edu, i) => (
-                                <Education key={i} {...edu} />
-                            ))
-                        }</div>
+                        <div>
+                            <H4 title="Education & Certification" />
+                            <Educations educations={data.educations} />
+                        </div>
+
+                        <div className="grid gap-6 max-md:">
+                            <H4 title="core skills" />
+                            <Tags tags={data.skillTags} />
+                        </div>
                     </section>
                 </Container>
             }

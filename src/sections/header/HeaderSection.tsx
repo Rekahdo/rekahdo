@@ -20,9 +20,9 @@ export const HeaderSection = () => {
                     bd={"bottom"} 
                     sticky={"top"} 
                     bg={"background"}
-                    px={"normal"}
-                    height={"header"}
-                    align={"center"}>
+                    h={"header"}
+                    align={"center"}
+                    maxWidth={"w1500"}>
                         
                     <Header
                         left={<HeaderLeft 

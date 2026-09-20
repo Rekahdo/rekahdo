@@ -1,218 +1,181 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
+import type { ElementType, ReactNode } from "react";
+import { align, fontWeight, foreground, textAlign, textcase, textsize, } from "./css-types";
 
-const textcase = {
-    lowercase: "lowercase",
-    uppercase: "uppercase",
-    capitalize: "capitalize",
-}
+const wrapperVariants = cva("flex flex-col", {
+    variants: {
+        align,
+        textAlign,
+    },
+});
 
-const fontWeight = {
-    medium: "font-medium",
-    semibold: "font-semibold",
-    bold: "font-bold",
-    extrabold: "font-extrabold",
-}
-
-const foreground = {
-    default: "text-foreground",
-    gradient: "bg-gradient-to-tr from-red-500 to-cyan-400 bg-clip-text text-transparent",
-}
-
-const TitleVariants = cva("",
-    {
-        variants: {
-            titleSize: {
-                h1: "text-4xl sm:text-5xl md:text-6xl lg:text-7xl",
-                h2: "text-2xl sm:text-3xl md:text-4xl lg:text-5xl",
-                h3: "text-xl sm:text-2xl md:text-3xl lg:text-4xl",
-                h4: "text-lg sm:text-xl md:text-2xl lg:text-3xl",
-                h5: "text-base sm:text-lg md:text-xl lg:text-2xl",
-                h6: "text-sm sm:text-base md:text-lg lg:text-xl",
-            },
-            titleCase: textcase,
-            titleWeight: fontWeight,
-            titleForeground: foreground,
+const titleVariants = cva("", {
+    variants: {
+        size: {
+            h1: "text-4xl sm:text-5xl",
+            h2: "text-3xl sm:text-4xl",
+            h3: "text-xl sm:text-2xl",
+            h4: "text-lg sm:text-xl",
+            h5: "text-base sm:text-lg",
+            h6: "text-sm sm:text-base",
         },
-        defaultVariants: {
-            titleWeight:'extrabold',
-            titleForeground: 'default',
-        }
-    }
-)
+        case: textcase,
+        weight: fontWeight,
+        color: foreground,
+    },
+    defaultVariants: {
+        weight: "extrabold",
+        color: "default",
+    },
+});
 
-const SubTitleVariants = cva("",
-    {
-        variants: {
-            subTitleSize: {
-                h1: "text-2xl sm:text-3xl md:text-4xl lg:text-5xl",
-                h2: "text-base sm:text-lg",
-                h3: "text-base sm:text-lg",
-                h4: "text-base sm:text-lg",
-                h5: "text-base sm:text-lg",
-                h6: "text-base sm:text-lg",
-            },
-            subTitleCase: textcase,
-            subTitleWeight: fontWeight,
-            subTitleForeground: foreground,
-        },
-        defaultVariants: {
-            subTitleCase:'capitalize',
-            subTitleWeight:'medium',
-            subTitleForeground: 'default',
-        }
-    }
-)
+const subtitleVariants = cva("mt-4 lg:mt-6", {
+    variants: {
+        size: textsize,
+        case: textcase,
+        weight: fontWeight,
+        color: foreground,
+    },
+    defaultVariants: {
+        size: "base",
+        case: "capitalize",
+        weight: "medium",
+        color: "default",
+    },
+});
 
-type TitleType = {
-    title: string
-    subtitle?: string;
+/* ------------------------------------------------------------------ */
+/* Types                                                               */
+/* ------------------------------------------------------------------ */
+
+/** Semantic heading levels. */
+export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
+
+export type TitleProps = {
+    title?: ReactNode;
+    subtitle?: ReactNode;
+    children?: ReactNode;
+
+    as?: ElementType;
+    size?: VariantProps<typeof titleVariants>["size"];
+
+    id?: string;
+    className?: string;
+    titleClassName?: string;
+    subtitleClassName?: string;
+
+    align?: VariantProps<typeof wrapperVariants>["align"];
+    textAlign?: VariantProps<typeof wrapperVariants>["textAlign"];
+    titleCase?: VariantProps<typeof titleVariants>["case"];
+    titleWeight?: VariantProps<typeof titleVariants>["weight"];
+    titleForeground?: VariantProps<typeof titleVariants>["color"];
+    subTitleSize?: VariantProps<typeof subtitleVariants>["size"];
+    subTitleCase?: VariantProps<typeof subtitleVariants>["case"];
+    subTitleWeight?: VariantProps<typeof subtitleVariants>["weight"];
+    subTitleForeground?: VariantProps<typeof subtitleVariants>["color"];
 };
 
-type TitleCompType = TitleType 
-    & VariantProps<typeof TitleVariants> 
-    & VariantProps<typeof SubTitleVariants>;
 
-export function H1({
+// ================================================================================================
+
+
+function Heading({
+    level,
     title,
-    titleForeground,
     subtitle,
-    subTitleForeground
-}: TitleCompType) {
-    return (
-        <div>
-            <h1 className={cn(TitleVariants({ 
-                'titleSize':'h1', 'titleCase':'uppercase', 
-                'titleWeight':'extrabold', titleForeground 
-            }))}>
-                {title}
-            </h1>
+    children,
+    as,
+    size,
+    id,
+    className,
+    titleClassName,
+    subtitleClassName,
+    align,
+    textAlign,
+    titleCase,
+    titleWeight,
+    titleForeground,
+    subTitleSize,
+    subTitleCase,
+    subTitleWeight,
+    subTitleForeground,
+}: TitleProps & { level: HeadingLevel }) {
+    const hasTitle = title !== undefined && title !== null && title !== "";
 
-            {subtitle && <p className={cn(SubTitleVariants({
-                'subTitleSize':'h1', subTitleForeground
-            }))}>
-                {subtitle}
-            </p>}
+    if (!hasTitle) return null;
+
+    const Tag = (as ?? (`h${level}` as ElementType)) as ElementType;
+    const visualSize = size ?? (`h${level}` as const);
+
+    /* A heading with no text is skipped — an empty <h*> is noise
+       for assistive tech and takes a slot in the outline. */
+
+
+    return (
+        <div className={cn(wrapperVariants({ align, textAlign }), className)}>
+            {hasTitle && (
+                <Tag
+                    id={id}
+                    className={cn(
+                        titleVariants({
+                            size: visualSize,
+                            case: titleCase,
+                            weight: titleWeight,
+                            color: titleForeground,
+                        }),
+                        titleClassName
+                    )}
+                >
+                    {title}
+                </Tag>
+            )}
+
+            {subtitle !== undefined && subtitle !== null && subtitle !== "" && (
+                <p
+                    className={cn(
+                        subtitleVariants({
+                            size: subTitleSize,
+                            case: subTitleCase,
+                            weight: subTitleWeight,
+                            color: subTitleForeground,
+                        }),
+                        subtitleClassName
+                    )}
+                >
+                    {subtitle}
+                </p>
+            )}
+
+            {children}
         </div>
-    )
+    );
 }
 
-export function H2({
-    title,
-    titleForeground,
-    subtitle,
-    subTitleForeground
-}: TitleCompType) {
-    return (
-        <div>
-            <h2 className={cn(TitleVariants({ 
-                'titleSize':'h2', 'titleCase':'capitalize', 
-                'titleWeight':'extrabold', titleForeground 
-            }))}>
-                {title}
-            </h2>
+/* ------------------------------------------------------------------ */
+/* Public API — one thin wrapper per level                             */
+/* ------------------------------------------------------------------ */
 
-            {subtitle && <p className={cn(SubTitleVariants({
-                'subTitleSize':'h2', subTitleForeground
-            }))}>
-                {subtitle}
-            </p>}
-        </div>
-    )
+export function H1(props: TitleProps) {
+    return <Heading level={1} {...props} />;
 }
 
-export function H3({
-    title,
-    titleForeground,
-    subtitle,
-    subTitleForeground
-}: TitleCompType) {
-    return (
-        <div>
-            <h3 className={cn(TitleVariants({ 
-                'titleSize':'h3', 'titleCase':'capitalize', 
-                'titleWeight':'extrabold', titleForeground 
-            }))}>
-                {title}
-            </h3>
-
-            {subtitle && <p className={cn(SubTitleVariants({
-                'subTitleSize':'h3', subTitleForeground
-            }))}>
-                {subtitle}
-            </p>}
-        </div>
-    )
+export function H2(props: TitleProps) {
+    return <Heading level={2} {...props} />;
 }
 
-export function H4({
-    title,
-    titleForeground,
-    subtitle,
-    subTitleForeground
-}: TitleCompType) {
-    return (
-        <div>
-            <h4 className={cn(TitleVariants({ 
-                'titleSize':'h4', 'titleCase':'capitalize', 
-                'titleWeight':'extrabold', titleForeground 
-            }))}>
-                {title}
-            </h4>
-
-            {subtitle && <p className={cn(SubTitleVariants({
-                'subTitleSize':'h4', subTitleForeground
-            }))}>
-                {subtitle}
-            </p>}
-        </div>
-    )
+export function H3(props: TitleProps) {
+    return <Heading level={3} {...props} />;
 }
 
-export function H5({
-    title,
-    titleForeground,
-    subtitle,
-    subTitleForeground
-}: TitleCompType) {
-    return (
-        <div>
-            <h5 className={cn(TitleVariants({ 
-                'titleSize':'h5', 'titleCase':'capitalize', 
-                'titleWeight':'extrabold', titleForeground 
-            }))}>
-                {title}
-            </h5>
-
-            {subtitle && <p className={cn(SubTitleVariants({
-                'subTitleSize':'h5', subTitleForeground
-            }))}>
-                {subtitle}
-            </p>}
-        </div>
-    )
+export function H4(props: TitleProps) {
+    return <Heading level={4} {...props} />;
 }
 
-export function H6({
-    title,
-    titleForeground,
-    subtitle,
-    subTitleForeground
-}: TitleCompType) {
-    return (
-        <div>
-            <h6 className={cn(TitleVariants({ 
-                'titleSize':'h6', 'titleCase':'capitalize', 
-                'titleWeight':'extrabold', titleForeground 
-            }))}>
-                {title}
-            </h6>
+export function H5(props: TitleProps) {
+    return <Heading level={5} {...props} />;
+}
 
-            {subtitle && <p className={cn(SubTitleVariants({
-                'subTitleSize':'h6', subTitleForeground
-            }))}>
-                {subtitle}
-            </p>}
-        </div>
-    )
+export function H6(props: TitleProps) {
+    return <Heading level={6} {...props} />;
 }
