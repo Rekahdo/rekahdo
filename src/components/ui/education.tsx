@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
-import { ExternalLink, GraduationCap } from "lucide-react";
+import { GraduationCap } from "lucide-react";
 import { Image } from "./image";
 import { hover, shadow } from "./css-types";
 import { OpenBtn } from "./button";
@@ -54,13 +54,12 @@ function Education({
 
       <div className="flex flex-1 flex-col gap-4 p-5">
 
-        <header className="flex items-start justify-between gap-3">
+        <header className="flex justify-between gap-3 items-center">
           <div className="flex items-center gap-3">
             <div className="flex size-11 shrink-0 items-center justify-center rounded-lg border border-border bg-background p-1.5">
               <Image
                 src={logo}
                 alt={`${institution} logo`}
-                className="size-full object-contain"
               />
             </div>
 
@@ -71,15 +70,8 @@ function Education({
             </div>
           </div>
 
-          <a
-            href={website}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Visit ${institution} website`}
-            className="flex size-8 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          >
-            <ExternalLink className="size-4" />
-          </a>
+          <OpenBtn href={website} variant={"ghost"}
+            aria-label={`Visit ${institution} website`}/>
         </header>
 
         {/* Course title */}

@@ -1,20 +1,20 @@
-import { Image, ImageVariants, type ImageType } from "./image"
+import { Image, ImageVariants, type ImageCompType } from "./image"
 import type { VariantProps } from "class-variance-authority";
 
-type HeroImageCompType = ImageType & VariantProps<typeof ImageVariants> &{
+type HeroImageCompType = ImageCompType & VariantProps<typeof ImageVariants> & {
     className?: string;
 }
 
 export function HeroImage({
     className, src, alt,
-    ...props
+    size='xl',  xs='lg',
+     ...props
 }: HeroImageCompType) {
     return (
-        <>
-            {
-                src &&
-                <Image src={src} alt={alt} fluid={false} {...props} />
-            }
-        </>
+        <div className="w-full h-full flex items-center justify-center lg:justify-end">
+            <Image src={src} alt={alt} 
+                size={size} fluid={true}
+                {...props} />
+        </div>
     )
 }

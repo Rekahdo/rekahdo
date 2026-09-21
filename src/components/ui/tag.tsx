@@ -45,6 +45,29 @@ const TagVariant = cva(
   }
 );
 
+export type TagType = {
+  text: string;
+  emoji?: ReactNode;
+};
+
+type TagCompType = TagType &
+  VariantProps<typeof TagVariant> & {
+    className?: string;
+  };
+
+export function Tag({ text, emoji, variant, size, shape, className }: TagCompType) {
+  return (
+    <span className={cn(TagVariant({ variant, size, shape }), className)}>
+      {text}
+      {emoji && <span className="inline-flex items-center">{emoji}</span>}
+    </span>
+  );
+}
+
+
+// ====================================================================================
+
+
 const TagsVariant = cva("flex flex-wrap items-center", {
   variants: {
     justify: justify,
@@ -59,30 +82,11 @@ const TagsVariant = cva("flex flex-wrap items-center", {
   },
 });
 
-export type TagType = {
-  text: string;
-  emoji?: ReactNode;
-};
-
-type TagCompType = TagType &
-  VariantProps<typeof TagVariant> & {
-    className?: string;
-  };
-
 type TagsCompType = VariantProps<typeof TagsVariant> &
   VariantProps<typeof TagVariant> & {
     tags: TagType[];
     className?: string;
   };
-
-export function Tag({ text, emoji, variant, size, shape, className }: TagCompType) {
-  return (
-    <span className={cn(TagVariant({ variant, size, shape }), className)}>
-      {text}
-      {emoji && <span className="inline-flex items-center">{emoji}</span>}
-    </span>
-  );
-}
 
 export function Tags({
   tags,
