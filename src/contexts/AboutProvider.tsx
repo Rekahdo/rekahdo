@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { aboutMeData } from "../data/about-me";
 import { ContextProvider, type ContextChildrenType } from "./ContextProvider";
-import type { AboutType } from "../data/type";
+import type { AboutType } from "../sections/about/AboutSection";
 
 export const AboutContext = new ContextProvider<AboutType>()
 

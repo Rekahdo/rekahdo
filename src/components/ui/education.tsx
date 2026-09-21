@@ -98,7 +98,7 @@ function Education({
 
         {/* Footer action */}
         <div className="mt-auto pt-2">
-          <OpenBtn text="View Certification" src={certification} size="lg" />
+          <OpenBtn text="View Certification" href={certification} size="lg" />
         </div>
       </div>
     </article>

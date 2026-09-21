@@ -2,7 +2,7 @@ import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 import { Download, ExternalLink } from "lucide-react";
-import type { ButtonHTMLAttributes, ComponentProps, ElementType, ReactElement, ReactNode } from "react"
+import type { ButtonHTMLAttributes, ComponentProps, ReactElement, ReactNode } from "react"
 import { Link } from "./link";
 
 export const buttonVariants = cva(
@@ -68,7 +68,7 @@ export const buttonVariants = cva(
 
         // Inline text link styling
         link: cn(
-          "text-primary underline-offset-4 hover:underline"
+          "text-foreground underline-offset-4 hover:underline hover:text-background"
         ),
       },
 

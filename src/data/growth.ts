@@ -17,7 +17,6 @@ export const growthData: GrowthType = {
       endDate: "Present",
       link: "https://github.com/username/project",
       linkLabel: "What I worked on",
-      hidden: false
     },
     {
       id: 2,
@@ -30,7 +29,6 @@ export const growthData: GrowthType = {
       endDate: "Present",
       link: "https://github.com/username/project",
       linkLabel: "What I worked on",
-      hidden: false
     }
   ],
   quote: {

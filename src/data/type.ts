@@ -1,13 +1,7 @@
 import type { ReactNode } from "react";
 import type { Icon, Position } from "../utils/enum";
-import type { ButtonType } from "../components/ui/button";
-import type { ImageEnum } from "../components/ui/image";
-import type { NavigationLinkType } from "../components/ui/navigation-bar";
 import type { LocationType } from "../components/ui/hero-ui";
-import type { ExperienceType } from "../components/ui/experience";
-import type { EducationType } from "../components/ui/education";
 import type { QuoteType } from "../components/ui/quote";
-import type { TagType } from "../components/ui/tag";
 import type { Provider } from "../hooks/context";
 
 // ============================================================================
@@ -17,7 +11,6 @@ import type { Provider } from "../hooks/context";
 export type PositionType = (typeof Position)[keyof typeof Position];
 export type IconType = (typeof Icon)[keyof typeof Icon];
 export type ProviderType = (typeof Provider)[keyof typeof Provider];
-export type ImageFileType = typeof import("../utils/enum").ImageEnum[keyof typeof import("../utils/enum").ImageEnum];
 
 // ============================================================================
 // COMPONENT TYPES
@@ -45,13 +38,6 @@ export type ButtonCompType = {
 export type ContainerType = {
     children: ReactNode;
     className?: string;
-}
-
-export type NavBarType = {
-  version?: number,
-  logo: ImageEnum,
-  navLink: NavigationLinkType,
-  ctaButton: ButtonType,
 }
 
 export type AvatarType = {
