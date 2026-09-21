@@ -211,7 +211,7 @@ export type DownloadBtnType = ButtonType & HrefType & {
 export function DownloadBtn({ href, file_name, className, ...props }: DownloadBtnType) {
   return (
     <a href={href} download={file_name} 
-      className={cn("grow", className)} data-grow role="download-btn">
+      className={cn("grow", className)} role="download-btn">
 
       <Button {...props} 
         icon={<Download size={20} />} className="w-full" />
@@ -225,7 +225,7 @@ export type PageBtnType = ButtonType & HrefType & {onClick?: () => void};
 export function PageBtn({ href, className, icon, onClick, ...props }: PageBtnType) {
   return (
     <Link href={href} onClick={onClick}
-      className={cn("grow", className)} data-grow>
+      className={cn(className)}>
 
       <Button {...props} icon={icon} className="w-full" />
     </Link>
@@ -241,7 +241,7 @@ export function AnchorBtn({ href, className, icon, onClick, ...props }: PageBtnT
 
   return (
     <a href={href} onClick={(e) => {e.preventDefault(); scrollToId()}}
-      className={cn("grow", className)} data-grow>
+      className={cn("grow", className)} >
 
       <Button {...props} icon={icon} className="w-full" />
     </a>
@@ -253,8 +253,8 @@ export type OpenBtnType = ButtonType & HrefType;
 
 export function OpenBtn({ href, className, ...props }: OpenBtnType) {
   return (
-    <a href={href} target="_blank" 
-      className={cn("grow", className)} data-grow>
+    <a href={href} target="_blank" rel="noopener noreferrer"
+      className={cn(className)} >
 
       <Button {...props} 
         icon={<ExternalLink size={20} />} className="w-full" />

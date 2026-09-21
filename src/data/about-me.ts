@@ -46,7 +46,8 @@ export const aboutMeData: AboutType = {
   ],
   skillTags: [
     {text: "Teaching", emoji: "🧠"},
-    {text: "Problem Solving", emoji: "🔧"},
+    {text: "Problem Solving", emoji: "🧩"},
+    {text: "Logic Reasoning", emoji: "🔧"},
     {text: "Communication", emoji: "💬"},
     {text: "Collaboration", emoji: "🤝"},
     {text: "Team working", emoji: "👥"},

@@ -8,6 +8,8 @@ import { HeroSection } from '../../sections/hero/HeroSection'
 
 export const Home = () => {
     return (
+        <div id='home'>
+
         <HeaderProvider>
             <HeroProvider>
                 <AboutProvider>
@@ -28,5 +30,6 @@ export const Home = () => {
                 </AboutProvider>
             </HeroProvider>
         </HeaderProvider>
+        </div>
     )
 }

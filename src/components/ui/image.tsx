@@ -8,7 +8,7 @@ const fluidPercent = {
     sm: "w-[40%]",
     lg: "w-[60%]",
     xl: "w-[80%]",
-    xxl: "w-[100%]",
+    xxl: "w-[90%]",
 } as const;
 
 const xs = {
@@ -17,7 +17,7 @@ const xs = {
     sm: `max-sm:w-40 max-sm:data-[fluid=true]:${fluidPercent.sm}`,
     lg: `max-sm:w-60 max-sm:data-[fluid=true]:${fluidPercent.lg}`,
     xl: `max-sm:w-80 max-sm:data-[fluid=true]:${fluidPercent.xl}`,
-    xxl: `max-sm:w-100 max-sm:data-[fluid=true]:${fluidPercent.xxl}`,
+    xxl: `max-sm:w-90 max-sm:data-[fluid=true]:${fluidPercent.xxl}`,
 } as const;
 
 const sm = {
@@ -44,7 +44,7 @@ const lg = {
     sm: `lg:w-65 lg:data-[fluid=true]:${fluidPercent.sm}`,
     lg: `lg:w-100 lg:data-[fluid=true]:${fluidPercent.lg}`,
     xl: `lg:w-140 lg:data-[fluid=true]:${fluidPercent.xl}`,
-    xxl: `lg:w-200 lg:data-[fluid=true]:${fluidPercent.xxl}`,
+    xxl: `lg:w-200 lg:data-[fluid=true]:w-[100%]`,
 } as const;
 
 const size = {
@@ -108,9 +108,9 @@ export type ImageType = {
     alt: string;
 };
 
-type ImageCompType = ImageType & VariantProps<typeof ImageVariants> & {
-    className?: string;
+export type ImageCompType = ImageType & VariantProps<typeof ImageVariants> & {
     fluid?: boolean;
+    className?: string;
 }
 
 export function Image({

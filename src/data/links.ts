@@ -3,7 +3,7 @@ import type { PageBtnType } from "../components/ui/button";
 export const links = {
   home: {
     text: "Home",
-    href: "hero",
+    href: "home",
   },
   aboutMe: {
     text: "About Me",
