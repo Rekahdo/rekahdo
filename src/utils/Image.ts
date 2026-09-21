@@ -1,5 +1,0 @@
-import type { ImageFileType } from '../data/type';
-
-export const getImageUrl = (name: string, type: ImageFileType) => {
-  return new URL(`../images/${type}/${name}`, import.meta.url).href;
-};
