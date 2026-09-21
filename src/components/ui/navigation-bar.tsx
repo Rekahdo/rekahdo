@@ -1,14 +1,7 @@
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "./navigation-menu";
 import { cn } from "cn";
-import { Link } from "./link";
 import { cva, type VariantProps } from "class-variance-authority";
-
-export type NavigationLinkType = {
-    text: string;
-    href: string;
-    active: boolean;
-    onClick?: () => unknown;
-}
+import { AnchorBtn, type PageBtnType } from "./button";
 
 const navigationBarVariants = cva(
     "max-lg:hidden lg:px-6",
@@ -19,15 +12,9 @@ const navigationBarVariants = cva(
                 center: "mx-auto",
                 right: "ms-auto",
             },
-            linkTextCase: {
-                capitalize: "capitalize",
-                lowercase: "lowercase",
-                uppercase: "uppercase",
-            },
         },
         defaultVariants: {
             navbarPosition: "center",
-            linkTextCase: "capitalize",
         },
     }
 );
@@ -38,7 +25,8 @@ export const navigationLinkVariants = cva(
         "font-semibold text-foreground",
         "hover:bg-primary/70 hover:text-primary-foreground",
         "active:bg-primary active:text-primary-foreground",
-        "focus:bg-primary/10 focus:text-foreground"
+        "focus:bg-primary/10 focus:text-foreground",
+        "transition-colors"
     ),
     {
         variants: {
@@ -63,7 +51,7 @@ export const navigationLinkVariants = cva(
                 sm: "px-2!",
                 default: "px-4!",
                 lg: "px-6!",
-                full: "w-full"
+                full: "w-full",
             },
             linkTextCase: {
                 capitalize: "capitalize",
@@ -80,31 +68,32 @@ export const navigationLinkVariants = cva(
     }
 );
 
-export type NavigationType = VariantProps<typeof navigationBarVariants> & VariantProps<typeof navigationLinkVariants> & {
+export type NavigationBarProps = VariantProps<typeof navigationBarVariants> 
+    & VariantProps<typeof navigationLinkVariants> & 
+{
+    links: PageBtnType[];
     className?: string;
-    links: NavigationLinkType[];
     linkClassName?: string;
 }
 
-type NavigationItemType = NavigationLinkType & Omit<NavigationType, "links">
-
 export function NavigationBar({
     links,
+    className,
     navbarPosition,
-    linkTextCase,
     linkClassName,
-    ...props
-}: NavigationType) {
+    ...linkVariants
+}: NavigationBarProps) {
 
     return (
         <NavigationMenu className={cn(navigationBarVariants({
-            navbarPosition, linkTextCase}))}>
+            navbarPosition
+        }))}>
 
             <NavigationMenuList>
                 {links.map((link, i) =>
                     <NavigationItem key={i}
                         {...link}
-                        {...props}
+                        {...linkVariants}
                         className={linkClassName}
                     />
                 )}
@@ -114,22 +103,37 @@ export function NavigationBar({
     )
 }
 
-function NavigationItem({ 
-    text, href, 
+type NavigationItemProps = PageBtnType & Omit<NavigationBarProps, "links" | "className"> & {
+    className?: string;
+};
+
+function NavigationItem({
+    text,
+    href,
+    onClick,
     className,
     linksPosition,
     linkTextSize,
     linkTextHeight,
     linkTextWidth,
-}: NavigationItemType) {
+    linkTextCase,
+}: NavigationItemProps) {
     return (
         <NavigationMenuItem>
             <NavigationMenuLink
-                className={cn(navigationLinkVariants({ 
-                    linksPosition, linkTextSize, 
-                    linkTextHeight, linkTextWidth
-                }), className)}
-                render={<Link text={text} href={href} />}>
+                className={cn(
+                    navigationLinkVariants({
+                        linksPosition,
+                        linkTextSize,
+                        linkTextHeight,
+                        linkTextWidth,
+                        linkTextCase,
+                    }),
+                    className
+                )}
+                render={<AnchorBtn text={text} href={href} 
+                    onClick={onClick} variant={"link"} />
+                }>
             </NavigationMenuLink>
         </NavigationMenuItem>
     )

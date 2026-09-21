@@ -2,10 +2,16 @@ import { Container } from "../../components/ui/container";
 import { useHeader } from "../../hooks/context";
 import { SideBar } from "../../components/ui/side-bar";
 import { Header, HeaderCenter, HeaderLeft, HeaderRight } from "../../components/block/header";
-import { Logo } from "../../components/ui/logo";
+import { Logo, type LogoType } from "../../components/ui/logo";
 import { ThemeToggle } from "../../components/ui/toggle";
-import { DownloadBtn } from "../../components/ui/download-btn";
 import { NavigationBar } from "../../components/ui/navigation-bar";
+import { DownloadBtn, type DownloadBtnType, type PageBtnType } from "../../components/ui/button";
+
+export type HeaderType = {
+  logo: LogoType;
+  links: PageBtnType[];
+  downloadCV: DownloadBtnType;
+};
 
 export const HeaderSection = () => {
 
@@ -17,6 +23,7 @@ export const HeaderSection = () => {
                 data &&
 
                 <Container 
+                    id="header"
                     bd={"bottom"} 
                     sticky={"top"} 
                     bg={"background"}
@@ -30,15 +37,15 @@ export const HeaderSection = () => {
 
                         center={<HeaderCenter 
                             navbar={<NavigationBar 
-                                    links={data.navLink}/>}/>}
+                                    links={data.links}/>}/>}
 
                         right={<HeaderRight 
                             themeToggle={<ThemeToggle />}
-                            downloadBtn={<DownloadBtn {...data.downloadCV} showTextAt="md"/>}/>}
+                            downloadBtn={<DownloadBtn {...data.downloadCV} showTextAt="sm"/>}/>}
 
                         sidebar={<SideBar side="left"
                             logo={<Logo {...data.logo} />}
-                            links={data.navLink}
+                            links={data.links}
                             navClassName="divide-y flex flex-col gap-2"
                             linkTextHeight={'lg'}
                             linkTextWidth={"full"}

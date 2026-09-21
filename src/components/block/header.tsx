@@ -1,75 +1,103 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
-import type { SideBar } from "../ui/side-bar";
 import type { ComponentProps, ReactElement, ReactNode } from "react";
+import type { SideBar } from "../ui/side-bar";
 import type { NavigationBar } from "../ui/navigation-bar";
 import type { Logo } from "../ui/logo";
 import type { ThemeToggle } from "../ui/toggle";
-import type { DownloadBtn } from "../ui/download-btn";
+import type { DownloadBtn } from "../ui/button";
 
-type HeaderLeftType = {
-    logo?: ReactElement<ComponentProps<typeof Logo>, typeof Logo>
-    navbar?: ReactElement<ComponentProps<typeof NavigationBar>, typeof NavigationBar>
+const headerGroupVariants = cva("flex items-center", {
+  variants: {
+    gap: {
+      sm: "gap-3 sm:gap-4",
+      md: "gap-4 sm:gap-6",
+      lg: "gap-6 sm:gap-8",
+    },
+  },
+  defaultVariants: {
+    gap: "lg",
+  },
+});
+
+type HeaderGroupProps = VariantProps<typeof headerGroupVariants> & {
+  children?: ReactNode;
+  className?: string;
+};
+
+function HeaderGroup({ children, className, gap }: HeaderGroupProps) {
+  return (
+    <div className={cn(headerGroupVariants({ gap }), className)}>
+      {children}
+    </div>
+  );
 }
 
-const headerChild = cn(
-  "flex items-center gap-6 sm:gap-8"
-)
-
-// Logo, NavBar
-export function HeaderLeft({ logo, navbar }: HeaderLeftType) {
-    return (
-        <>{
-            (logo || navbar) &&
-            <div className={cn(headerChild)}>
-                {logo}
-                {navbar}
-            </div>
-        }</>
-    );
-}
-
-type HeaderCenterType = {
-    navbar?: ReactElement<ComponentProps<typeof NavigationBar>, typeof NavigationBar>
-    searchField?: ReactNode;
-}
-
-// NavBar, SearchField
-export function HeaderCenter({ navbar, searchField }: HeaderCenterType) {
-    return (
-        <>{
-            (navbar || searchField) &&
-            <div className={cn(headerChild)}>
-                {navbar}
-                {searchField}
-            </div>
-        }</>
-    );
-}
-
-type HeaderRightType = {
-    themeToggle?: ReactElement<ComponentProps<typeof ThemeToggle>, typeof ThemeToggle>;
-    downloadBtn?: ReactElement<ComponentProps<typeof DownloadBtn>, typeof DownloadBtn>;
-}
-
-// UserAction, NavAction
-export function HeaderRight({ themeToggle, downloadBtn }: HeaderRightType) {
-    return (
-        <>{
-            (themeToggle || downloadBtn) &&
-            <div className={cn(headerChild)}>
-                {themeToggle}
-                {downloadBtn}
-            </div>
-        }</>
-    );
-}
 
 // ================================================================================
 // ================================================================================
 // ================================================================================
 
-const headerVariant = cva(
+
+type HeaderLeftProps = {
+  logo?: ReactElement<ComponentProps<typeof Logo>, typeof Logo>;
+  navbar?: ReactElement<ComponentProps<typeof NavigationBar>, typeof NavigationBar>;
+  className?: string;
+};
+
+export function HeaderLeft({ logo, navbar, className }: HeaderLeftProps) {
+  if (!logo && !navbar) return null;
+  return (
+    <HeaderGroup className={className}>
+      {logo}
+      {navbar}
+    </HeaderGroup>
+  );
+}
+
+type HeaderCenterProps = {
+  navbar?: ReactElement<ComponentProps<typeof NavigationBar>, typeof NavigationBar>;
+  searchField?: ReactNode;
+  className?: string;
+};
+
+export function HeaderCenter({ navbar, searchField, className }: HeaderCenterProps) {
+  if (!navbar && !searchField) return null;
+  return (
+    <HeaderGroup className={cn("justify-center", className)}>
+      {navbar}
+      {searchField}
+    </HeaderGroup>
+  );
+}
+
+type HeaderRightProps = {
+  themeToggle?: ReactElement<ComponentProps<typeof ThemeToggle>, typeof ThemeToggle>;
+  downloadBtn?: ReactElement<ComponentProps<typeof DownloadBtn>, typeof DownloadBtn>;
+  className?: string;
+};
+
+export function HeaderRight({ 
+  themeToggle, 
+  downloadBtn, 
+  className 
+}: HeaderRightProps) {
+  if (!themeToggle && !downloadBtn) return null;
+  return (
+    <HeaderGroup className={cn("justify-end", className)}>
+      {themeToggle}
+      {downloadBtn}
+    </HeaderGroup>
+  );
+}
+
+
+// ================================================================================
+// ================================================================================
+// ================================================================================
+
+
+const headerVariants = cva(
   cn(
     "flex items-center",
   ),
@@ -85,12 +113,13 @@ const headerVariant = cva(
   }
 )
 
-export type HeaderCompType = VariantProps<typeof headerVariant> & {
+export type HeaderCompType = VariantProps<typeof headerVariants> & {
   className?: string;
   left?: ReactElement<ComponentProps<typeof HeaderLeft>, typeof HeaderLeft>;
   center?: ReactElement<ComponentProps<typeof HeaderCenter>, typeof HeaderCenter>;
   right?: ReactElement<ComponentProps<typeof HeaderRight>, typeof HeaderRight>;
   sidebar?: ReactElement<ComponentProps<typeof SideBar>, typeof SideBar>;
+  ariaLabel?: string;
 };
 
 export function Header({
@@ -100,10 +129,13 @@ export function Header({
   center,
   right,
   sidebar,
+  ariaLabel = "Site header",
 }: HeaderCompType) {
 
   return (
-    <header className={cn(headerVariant({variant, className}))}>
+    <header aria-label={ariaLabel}
+      className={cn(headerVariants({variant, className}))}>
+        
       {left &&
         <div className={cn("me-auto")}>
           {left}

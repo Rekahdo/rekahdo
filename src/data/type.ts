@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import type { Icon, Position } from "../utils/enum";
 import type { ButtonType } from "../components/ui/button";
-import type { ImageType } from "../components/ui/image";
+import type { ImageEnum } from "../components/ui/image";
 import type { NavigationLinkType } from "../components/ui/navigation-bar";
 import type { LocationType } from "../components/ui/hero-ui";
 import type { ExperienceType } from "../components/ui/experience";
@@ -17,7 +17,7 @@ import type { Provider } from "../hooks/context";
 export type PositionType = (typeof Position)[keyof typeof Position];
 export type IconType = (typeof Icon)[keyof typeof Icon];
 export type ProviderType = (typeof Provider)[keyof typeof Provider];
-export type ImageFileType = typeof import("../utils/enum").ImageType[keyof typeof import("../utils/enum").ImageType];
+export type ImageFileType = typeof import("../utils/enum").ImageEnum[keyof typeof import("../utils/enum").ImageEnum];
 
 // ============================================================================
 // COMPONENT TYPES
@@ -49,7 +49,7 @@ export type ContainerType = {
 
 export type NavBarType = {
   version?: number,
-  logo: ImageType,
+  logo: ImageEnum,
   navLink: NavigationLinkType,
   ctaButton: ButtonType,
 }

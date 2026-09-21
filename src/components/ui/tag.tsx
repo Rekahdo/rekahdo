@@ -3,15 +3,12 @@ import { cn } from "cn";
 import type { ReactNode } from "react";
 import { justify } from "./css-types";
 
-/* ------------------------------------------------------------------ */
-/* Tag                                                                 */
-/* ------------------------------------------------------------------ */
-
 const TagVariant = cva(
-  "inline-flex items-center gap-1.5 whitespace-nowrap font-medium transition-colors",
+  [
+  "inline-flex items-center gap-1.5 whitespace-nowrap font-medium transition-colors", 
+  ],
   {
     variants: {
-      /* Visual style */
       variant: {
         outline:
           "border-2 border-border bg-transparent text-foreground hover:border-primary/50 hover:text-primary",
@@ -30,13 +27,11 @@ const TagVariant = cva(
         danger:
           "border-2 border-transparent bg-destructive/10 text-destructive hover:bg-destructive/15",
       },
-      /* Size */
       size: {
         sm: "text-[0.65rem] px-3 py-0.5 rounded-full",
         md: "text-xs px-4 py-1 rounded-full",
         lg: "text-sm px-5 py-1.5 rounded-full",
       },
-      /* Shape */
       shape: {
         pill: "rounded-full",
         square: "rounded-md",
@@ -49,10 +44,6 @@ const TagVariant = cva(
     },
   }
 );
-
-/* ------------------------------------------------------------------ */
-/* Tags container                                                      */
-/* ------------------------------------------------------------------ */
 
 const TagsVariant = cva("flex flex-wrap items-center", {
   variants: {
@@ -67,10 +58,6 @@ const TagsVariant = cva("flex flex-wrap items-center", {
     gap: "lg",
   },
 });
-
-/* ------------------------------------------------------------------ */
-/* Types                                                               */
-/* ------------------------------------------------------------------ */
 
 export type TagType = {
   text: string;
@@ -87,10 +74,6 @@ type TagsCompType = VariantProps<typeof TagsVariant> &
     tags: TagType[];
     className?: string;
   };
-
-/* ------------------------------------------------------------------ */
-/* Components                                                          */
-/* ------------------------------------------------------------------ */
 
 export function Tag({ text, emoji, variant, size, shape, className }: TagCompType) {
   return (
@@ -109,18 +92,18 @@ export function Tags({
   justify,
   gap,
   className,
-}: TagsCompType) {
+}: TagsCompType & { title?: string }) {
   if (!tags?.length) return null;
 
   return (
-    <div
-      role="list"
-      aria-label="Tags"
-      className={cn(TagsVariant({ justify, gap }), className)}
-    >
-      {tags.map((tag, i) => (
-        <Tag key={`${tag.text}-${i}`} variant={variant} size={size} shape={shape} {...tag} />
-      ))}
-    </div>
+      <div
+        role="list"
+        aria-label="Tags"
+        className={cn(TagsVariant({ justify, gap }), className)}
+      >
+        {tags.map((tag, i) => (
+          <Tag key={`${tag.text}-${i}`} variant={variant} size={size} shape={shape} {...tag} />
+        ))}
+      </div>
   );
 }

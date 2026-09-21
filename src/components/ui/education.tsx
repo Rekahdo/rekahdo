@@ -1,8 +1,9 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
 import { ExternalLink, GraduationCap } from "lucide-react";
-import { OpenBtn } from "./open-btn";
 import { Image } from "./image";
+import { hover, shadow } from "./css-types";
+import { OpenBtn } from "./button";
 
 export type EducationType = {
   institution: string;
@@ -14,7 +15,10 @@ export type EducationType = {
 };
 
 const educationVariants = cva(
-  "group relative flex flex-col overflow-hidden rounded-xl border border-border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md",
+  [
+  "group relative flex flex-col overflow-hidden rounded-xl border border-border bg-card text-card-foreground ",
+  shadow.sm, hover.outline
+  ],
   {
     variants: {
       variant: {
@@ -59,7 +63,7 @@ function Education({
                 className="size-full object-contain"
               />
             </div>
-            
+
             <div className="min-w-0">
               <p className="truncate text-xs font-medium uppercase tracking-wide text-muted-foreground">
                 {institution}
@@ -117,7 +121,7 @@ const educationsVariants = cva("", {
   },
 });
 
-type EducationsType = VariantProps<typeof educationsVariants> & {
+type EducationsProps = VariantProps<typeof educationsVariants> & {
   educations: EducationType[];
   className?: string;
 };
@@ -126,15 +130,15 @@ export function Educations({
   educations,
   className,
   variant,
-}: EducationsType) {
+}: EducationsProps) {
   return (
-    <section
+    <div
       aria-label="Education"
       className={cn(educationsVariants({ variant }), className)}
     >
       {educations.map((edu, i) => (
         <Education key={`${edu.institution}-${i}`} {...edu} />
       ))}
-    </section>
+    </div>
   );
 }

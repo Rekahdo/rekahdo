@@ -17,9 +17,3 @@ export const Icon = {
         position: Position.RIGHT,
     }
 } as const;
-
-export const ImageType = {
-  ICON: 'icons',
-  LOGO: 'logos',
-  ME: 'me',
-} as const;

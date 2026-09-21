@@ -12,18 +12,10 @@ import { StackUsageContext } from "../contexts/StackUsageProvider";
 import { TechStackContext } from "../contexts/TechStackProvider";
 import type { ContactMeType, FooterType, GrowthType, ProjectsType, ResourcesType, ServicesType, StackUsageType  } from "../data/type";
 import type { HeroType } from "../sections/hero/HeroSection";
-import type { LogoType } from "../components/ui/logo";
-import type { DownloadType } from "../components/ui/download-btn";
-import type { NavigationLinkType } from "../components/ui/navigation-bar";
 import type { ContextValueType } from "../contexts/ContextProvider";
 import type { AboutType } from "../sections/about/AboutSection";
 import type { TechStackType } from "../sections/stack/StackSection";
-
-export type HeaderType = {
-  logo: LogoType;
-  navLink: NavigationLinkType[];
-  downloadCV: DownloadType;
-};
+import type { HeaderType } from "../sections/header/HeaderSection";
 
 export const Provider = {
     HERO: "Hero",

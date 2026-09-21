@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "../../hooks/useTheme";
-import { Image, ImageVariants, type ImageType } from "./image";
+import { Image, ImageVariants, type ImageType} from "./image";
 import { themeIsDark } from "../../utils/utils";
 import { cn } from "cn";
 import { Link } from "./link";

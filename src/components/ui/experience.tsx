@@ -1,26 +1,22 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
-
-/* ------------------------------------------------------------------ */
-/* Types                                                               */
-/* ------------------------------------------------------------------ */
+import { hover } from "./css-types";
 
 export type ExperienceType = {
   years: number;
   title: string;
 };
 
-/* ------------------------------------------------------------------ */
-/* Single Experience Item                                              */
-/* ------------------------------------------------------------------ */
-
 const experienceVariants = cva(
-  "group relative flex flex-col items-center justify-center gap-2 rounded-xl border border-border bg-card p-6 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md",
+  [
+    "group relative flex flex-col items-center justify-center gap-2 rounded-xl",
+    "border border-border bg-card p-6 text-center", hover.outline
+  ],
   {
     variants: {
       variant: {
         normal: "",
-        inline: "flex-row items-baseline justify-start gap-3 p-0 border-0 bg-transparent text-left hover:translate-y-0 hover:shadow-none",
+        inline: "flex-row items-baseline justify-start gap-3 p-0 border-0 bg-transparent text-left",
       },
     },
     defaultVariants: {
@@ -40,47 +36,22 @@ function Experience({
   variant,
   className,
 }: ExperienceCompType) {
-  const isInline = variant === "inline";
-
   return (
     <div className={cn(experienceVariants({ variant }), className)}>
-      {/* Years — big number */}
-      <p
-        className={cn(
-          "font-bold tabular-nums tracking-tight text-primary",
-          isInline ? "text-2xl" : "text-4xl sm:text-5xl"
-        )}
-      >
+      {/* Years */}
+      <p className={cn("flex items-center font-bold tabular-nums tracking-tight text-primary text-4xl")}>
         {years}
-        <span className="text-primary/70">+</span>
+
+        <span className="text-primary/70 text-2xl">+</span>
       </p>
 
-      {/* Title — label under the number */}
-      <p
-        className={cn(
-          "font-medium text-muted-foreground",
-          isInline
-            ? "text-base text-foreground"
-            : "text-sm uppercase tracking-wide"
-        )}
-      >
+      {/* Title */}
+      <p className={cn("font-medium text-muted-foreground")}>
         {title}
       </p>
-
-      {/* Decorative accent on hover (card variant only) */}
-      {!isInline && (
-        <span
-          aria-hidden
-          className="absolute inset-x-6 bottom-0 h-0.5 scale-x-0 bg-gradient-to-r from-transparent via-primary to-transparent transition-transform duration-300 group-hover:scale-x-100"
-        />
-      )}
     </div>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/* Experience Grid / List                                              */
-/* ------------------------------------------------------------------ */
 
 const experiencesVariants = cva("", {
   variants: {
@@ -95,7 +66,7 @@ const experiencesVariants = cva("", {
   },
 });
 
-type ExperiencesType = VariantProps<typeof experiencesVariants> & {
+type ExperiencesProps = VariantProps<typeof experiencesVariants> & {
   experiences: ExperienceType[];
   className?: string;
 };
@@ -104,7 +75,7 @@ export function Experiences({
   experiences,
   className,
   variant,
-}: ExperiencesType) {
+}: ExperiencesProps) {
   const itemVariant: VariantProps<typeof experienceVariants>["variant"] =
     variant === "inline" ? "inline" : "normal";
 
@@ -115,7 +86,7 @@ export function Experiences({
       className={cn(experiencesVariants({ variant }), className)}
     >
       {experiences.map((e, i) => (
-        <Experience key={`${e.title}-${i}`} variant={itemVariant} {...e}/>
+        <Experience key={`${e.title}-${i}`} variant={itemVariant} {...e} />
       ))}
     </div>
   );

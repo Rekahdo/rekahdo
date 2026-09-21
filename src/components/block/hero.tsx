@@ -4,9 +4,9 @@ import { cn } from "cn";
 import type { Tags } from "../ui/tag";
 import type { BadgeText, LocationType, SocialProfText } from "../ui/hero-ui";
 import type { HeroImage } from "../ui/hero-image";
-import type { CTA } from "../ui/cta";
 import type { Description, Greeting, Role } from "../ui/hero-content";
 import type { H1 } from "../ui/headings";
+import type { Buttons } from "../ui/button";
 
 const HeroVariant = cva(
     cn(
@@ -91,7 +91,7 @@ type HeroCompType = VariantProps<typeof HeroVariant> & VariantProps<typeof heroI
     role?: ReactElement<ComponentProps<typeof Role>, typeof Role>;
     description?: ReactElement<ComponentProps<typeof Description>, typeof Description>;
     tags?: ReactElement<ComponentProps<typeof Tags>, typeof Tags>;
-    ctaBtns?: ReactElement<ComponentProps<typeof CTA>, typeof CTA>;
+    ctaBtns?: ReactElement<ComponentProps<typeof Buttons>, typeof Buttons>;
     socialProfText?: ReactElement<ComponentProps<typeof SocialProfText>, typeof SocialProfText>;
     heroImage?: ReactElement<ComponentProps<typeof HeroImage>, typeof HeroImage>;
     location?: LocationType;

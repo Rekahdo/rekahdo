@@ -10,7 +10,7 @@ const wrapperVariants = cva("flex flex-col", {
     },
 });
 
-const titleVariants = cva("", {
+const titleVariants = cva("flex items-center gap-4", {
     variants: {
         size: {
             h1: "text-4xl sm:text-5xl",
@@ -27,10 +27,11 @@ const titleVariants = cva("", {
     defaultVariants: {
         weight: "extrabold",
         color: "default",
+        case: 'capitalize',
     },
 });
 
-const subtitleVariants = cva("mt-4 lg:mt-6", {
+const subtitleVariants = cva("mt-2", {
     variants: {
         size: textsize,
         case: textcase,
@@ -45,14 +46,8 @@ const subtitleVariants = cva("mt-4 lg:mt-6", {
     },
 });
 
-/* ------------------------------------------------------------------ */
-/* Types                                                               */
-/* ------------------------------------------------------------------ */
-
-/** Semantic heading levels. */
-export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
-
 export type TitleProps = {
+    icon?: ReactNode;
     title?: ReactNode;
     subtitle?: ReactNode;
     children?: ReactNode;
@@ -62,6 +57,7 @@ export type TitleProps = {
 
     id?: string;
     className?: string;
+    childrenClassName?: string;
     titleClassName?: string;
     subtitleClassName?: string;
 
@@ -80,8 +76,11 @@ export type TitleProps = {
 // ================================================================================================
 
 
+export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
+
 function Heading({
     level,
+    icon,
     title,
     subtitle,
     children,
@@ -89,6 +88,7 @@ function Heading({
     size,
     id,
     className,
+    childrenClassName,
     titleClassName,
     subtitleClassName,
     align,
@@ -108,10 +108,6 @@ function Heading({
     const Tag = (as ?? (`h${level}` as ElementType)) as ElementType;
     const visualSize = size ?? (`h${level}` as const);
 
-    /* A heading with no text is skipped — an empty <h*> is noise
-       for assistive tech and takes a slot in the outline. */
-
-
     return (
         <div className={cn(wrapperVariants({ align, textAlign }), className)}>
             {hasTitle && (
@@ -127,6 +123,11 @@ function Heading({
                         titleClassName
                     )}
                 >
+                    {icon &&
+                        <span className="*:size-8 flex items-center justify-center">
+                            {icon}
+                        </span>
+                    }
                     {title}
                 </Tag>
             )}
@@ -147,21 +148,21 @@ function Heading({
                 </p>
             )}
 
-            {children}
+            {children && 
+                <div className={cn("mt-4", childrenClassName)}>
+                    {children}
+                </div>
+            }
         </div>
     );
 }
-
-/* ------------------------------------------------------------------ */
-/* Public API — one thin wrapper per level                             */
-/* ------------------------------------------------------------------ */
 
 export function H1(props: TitleProps) {
     return <Heading level={1} {...props} />;
 }
 
 export function H2(props: TitleProps) {
-    return <Heading level={2} {...props} />;
+    return <Heading level={2} {...props} align={"center"} />;
 }
 
 export function H3(props: TitleProps) {

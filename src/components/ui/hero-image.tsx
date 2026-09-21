@@ -13,7 +13,7 @@ export function HeroImage({
         <>
             {
                 src &&
-                <Image src={src} alt={alt} fluid={true} {...props} />
+                <Image src={src} alt={alt} fluid={false} {...props} />
             }
         </>
     )

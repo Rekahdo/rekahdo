@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from 'cn'
 import type { ElementType, HTMLAttributes, ReactNode } from 'react';
-import { align, background, border, minHeight, justify, paddingY, sticky, maxWidth, rounded } from './css-types';
+import { align, background, border, minHeight, justify, sticky, maxWidth, rounded } from './css-types';
 
 const containerInnerVariants = cva(
     cn('mx-auto w-full'),
@@ -22,13 +22,13 @@ const containerVariants = cva(
             sticky: sticky,
             py: {
                 none: "",
-                default: "py-15 md:py-20 lg:py-25",
+                section: "py-15 md:py-20 lg:py-25",
                 sm: "py-8 md:py-10 lg:py-12",
                 lg: "py-20 md:py-28 lg:py-32",
             },
             px: {
                 none: "",
-                default: "px-2 sm:px-4 md:px-6 lg:px-8",
+                default: "px-4 sm:px-6 md:px-8 lg:px-10",
                 sm: "px-3 sm:px-5 md:px-7 lg:px-9",
             },
             minWidth: {
@@ -41,8 +41,14 @@ const containerVariants = cva(
             align: align,
             justify: justify,
             rounded: rounded,
+            bgImage: {
+                hero: "bg-[url(/images/bg/r.svg)] bg-no-repeat bg-left-bottom bg-contain",
+                about: "bg-[url(/images/bg/e.svg)] bg-no-repeat bg-right-bottom bg-contain",
+            }
+
         },
         defaultVariants: {
+            bg:'background',
             minWidth: "default",
             px: "default",
             rounded: "none",
@@ -62,7 +68,7 @@ type ContainerProps = VariantProps<typeof containerVariants>
     className?: string;
     innerClassName?: string;
     as?: ElementType;
-    id?: string;
+    id: string;
 } & Omit<HTMLAttributes<HTMLElement>, "id">;
 
 function ContainerInner({
@@ -81,6 +87,7 @@ function ContainerInner({
 }
 
 export function Container({
+    id,
     children,
     className,
     innerClassName,
@@ -94,13 +101,14 @@ export function Container({
     align,
     justify,
     rounded,
+    bgImage,
     as: Tag = "section",
     ...props
 }: ContainerProps) {
     return (
-        <Tag data-slot="container"
+        <Tag data-slot="container" id={id}
             className={cn(containerVariants({
-                sticky, py, px, bg, bd, h, align, justify, rounded
+                sticky, py, px, bg, bd, h, align, justify, rounded, bgImage
             }), className)} {...props}>
 
             <ContainerInner maxWidth={maxWidth} className={innerClassName}>

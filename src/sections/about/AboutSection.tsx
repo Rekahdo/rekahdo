@@ -1,7 +1,7 @@
 import { cn } from "cn"
 import { Container } from "../../components/ui/container"
 import { useAbout } from "../../hooks/context"
-import { H2, H3, H4, H5, H6 } from "../../components/ui/headings";
+import { H2, H3, H4 } from "../../components/ui/headings";
 import { Image, type ImageType } from "../../components/ui/image";
 import { Experiences, type ExperienceType } from "../../components/ui/experience";
 import { Quote, type QuoteType } from "../../components/ui/quote";
@@ -31,43 +31,38 @@ export function AboutSection() {
         <>
             {data &&
                 <Container
-                    bg={"secondary"}
+                    id="aboutMe"
                     h={"hero"}
-                    py={"default"}
-                    px={"lg"}>
+                    py={"section"}
+                    px={"default"}
+                >
 
-                    <section>
-                        <H2 title={data.title} align="center" />
+                    <section className="flex flex-col gap-10 md:gap-15">
+                        <H2 title={data.title} />
 
-                        <div className={cn("grid grid-cols-1 md:grid-cols-3 max-md:gap-10 my-10 md:my-15")}>
-
+                        <div className={cn("grid grid-cols-1 md:grid-cols-3 max-md:gap-10")}>
                             <div className="max-md:w-[40%] max-md:mx-auto">
-                                <Image src={data.me.src} alt={data.me.alt} size={"xxl"} fluid />
+                                <Image src={data.me.src} alt={data.me.alt} />
                             </div>
 
-                            <div className={cn(
-                                "flex flex-col",
-                                "gap-8 lg:gap-10",
-                                "md:ps-10 md:col-span-2",
-                                "max-md:text-center"
-                            )}>
 
-                                <H3 title={data.headline} subtitle={data.bio} />
+                            <H3 title={data.headline}
+                                className={cn("md:ps-10 md:col-span-2 max-md:text-center")}
+                                childrenClassName={cn("flex flex-col gap-8 lg:gap-10")}>
+
+                                <p>{data.bio}</p>
                                 <Experiences experiences={data.experiences} />
                                 <Quote {...data.quote} variant={"normal"} />
-
-                            </div>
+                            </H3>
                         </div>
 
-                        <div>
-                            <H4 title="Education & Certification" />
+                        <H4 title="Education & Certification">
                             <Educations educations={data.educations} />
-                        </div>
+                        </H4>
 
-                        <div className="grid gap-6 max-md:">
-                            <H4 title="core skills" />
+                        <H4 title="core skills">
                             <Tags tags={data.skillTags} />
-                        </div>
+                        </H4>
                     </section>
                 </Container>
             }

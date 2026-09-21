@@ -27,16 +27,18 @@ export function TechStackSection() {
         <>
             {data &&
                 <Container
+                    id="techStack"
                     bg={"secondary"}
                     h={"hero"}
-                    py={"py_10"}>
+                    py={"section"}
+                    >
 
                     <section className={styles}>
                         <H2 title={data.title}/>
 
                         <div>{
                             data.languages.map((lang, i) => (
-                                <div>
+                                <div key={`${lang.name}-${i}`}>
                                     <Image src={lang.icon} alt={lang.name}/>
                                     <H5 title={lang.name}/>
                                     <p>{lang.description}</p>

@@ -1,5 +1,5 @@
 import type { HeroType } from "../sections/hero/HeroSection";
-import { buttonData, downloadCVData } from "./button";
+import { anchorData, downloadCVData } from "./button";
 
 export const heroData: HeroType = {
   badge: "developer that help your business grow",
@@ -22,5 +22,9 @@ export const heroData: HeroType = {
     { text: "Object Oriented" },
     { text: "Component Based" },
   ],
-  buttons: [downloadCVData, ...buttonData],
+  buttons: {
+    downloadCV: downloadCVData, 
+    contact: anchorData.contact,
+    techStack: anchorData.techStack,
+  },
 };

@@ -15,6 +15,7 @@ export const background = {
   background: "bg-background text-foreground",
   muted: "bg-muted text-muted-foreground",
   secondary: "bg-secondary text-secondary-foreground",
+  red: "bg-red-300",
 };
 
 export const foreground = {
@@ -89,10 +90,19 @@ export const textsize = {
 };
 
 export const rounded = {
-      none: "",
-      sm: "rounded-sm",
-      md: "rounded-md",
-      lg: "rounded-lg",
-      xl: "rounded-xl",
-      full: "rounded-full",
-    }
+  none: "",
+  sm: "rounded-sm",
+  md: "rounded-md",
+  lg: "rounded-lg",
+  xl: "rounded-xl",
+  full: "rounded-full",
+};
+
+export const hover = {
+  outline: "transition-all duration-300 hover:border-primary/40 hover:-translate-y-0.5 hover:shadow-md",
+}
+
+export const shadow = {
+  xs: "shadow-xs",
+  sm: "shadow-sm",
+}

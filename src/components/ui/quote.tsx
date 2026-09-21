@@ -9,7 +9,7 @@ export type QuoteType = {
 };
 
 const quoteVariants = cva(
-  "relative p-8 md:p-10 text-xs md:text-sm",
+  "p-8 md:p-10 text-xs md:text-sm",
   {
     variants: {
       variant: {
@@ -28,7 +28,6 @@ const quoteVariants = cva(
     },
     defaultVariants: {
       variant: "normal",
-      size: "base",
       align: "start",
     },
   }
