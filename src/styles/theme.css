@@ -3,7 +3,6 @@
   --max-w: 1700px;
   --mlg: 900px;
   --border-bold: oklch(90.562% 0.02263 254.482);
-  --white: #d3d3d3;
   --background-con: oklch(97% 0.00011 271.152);
   --heading-weight: 700;
   --heading-line-height: 1.5;
@@ -12,7 +11,6 @@
 
 .dark{
   --border-bold: oklch(0.3717 0.1392 257.2870);
-  --white: #e0e0e0;
   --background-con: oklch(33.314% 0.11664 262.839);
 }
 
@@ -23,7 +21,6 @@
   --breakpoint-mlg: 900px;
    
   --color-border-bold: var(--border-bold);
-  --color-white: var(--white);
   --color-background-con: var(--background-con);
   --color-background-blend: var(--background-blend);
 };

@@ -1,5 +1,14 @@
-import { createContext, useContext, type JSX } from "react";
-import type { ProviderType, ContextChildrenType, ContextValueType } from "../data/type";
+import { createContext, useContext, type JSX, type ReactNode } from "react";
+import type { ProviderType } from "../data/type";
+
+export type ContextChildrenType = {
+    children: ReactNode;
+};
+
+export type ContextValueType<T> = {
+    data: T | undefined;
+    reload: () => T;
+} | null;
 
 export class ContextProvider<T> {
 

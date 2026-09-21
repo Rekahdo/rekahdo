@@ -1,22 +1,23 @@
 import { type ComponentProps, type ReactElement } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
-import type { Tag } from "../ui/tag";
+import type { Tags } from "../ui/tag";
 import type { BadgeText, LocationType, SocialProfText } from "../ui/hero-ui";
 import type { HeroImage } from "../ui/hero-image";
-import type { CTA } from "../ui/cta";
-import type { Description, Greeting, Role, Title } from "../ui/hero-content";
+import type { Description, Greeting, Role } from "../ui/hero-content";
+import type { H1 } from "../ui/headings";
+import type { Buttons } from "../ui/button";
 
 const HeroVariant = cva(
     cn(
-        "h-auto py-10",
+        "",
     ),
     {
         variants: {
             variant: {
                 default: cn(
-                    "grid items-center min-h-[92dvh] gap-10",
-                    "lg:px-20 lg:grid-cols-2 md:min-h-[91dvh] lg:max-h-[1000px]",
+                    "grid items-center gap-10",
+                    "lg:px-20 lg:grid-cols-2",
                 )
             },
             size: {
@@ -86,11 +87,11 @@ type HeroCompType = VariantProps<typeof HeroVariant> & VariantProps<typeof heroI
     className?: string;
     badge?: ReactElement<ComponentProps<typeof BadgeText>, typeof BadgeText>;
     greetings?: ReactElement<ComponentProps<typeof Greeting>, typeof Greeting>;
-    title?: ReactElement<ComponentProps<typeof Title>, typeof Title>;
+    title?: ReactElement<ComponentProps<typeof H1>, typeof H1>;
     role?: ReactElement<ComponentProps<typeof Role>, typeof Role>;
     description?: ReactElement<ComponentProps<typeof Description>, typeof Description>;
-    tags?: ReactElement<ComponentProps<typeof Tag>, typeof Tag>;
-    ctaBtns?: ReactElement<ComponentProps<typeof CTA>, typeof CTA>;
+    tags?: ReactElement<ComponentProps<typeof Tags>, typeof Tags>;
+    ctaBtns?: ReactElement<ComponentProps<typeof Buttons>, typeof Buttons>;
     socialProfText?: ReactElement<ComponentProps<typeof SocialProfText>, typeof SocialProfText>;
     heroImage?: ReactElement<ComponentProps<typeof HeroImage>, typeof HeroImage>;
     location?: LocationType;

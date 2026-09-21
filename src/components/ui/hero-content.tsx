@@ -44,47 +44,6 @@ export function Greeting({ text, variant, className }: TextType & ClassNameType 
     )
 }
 
-const TitleVariant = cva(
-    "font-extrabold uppercase",
-    {
-        variants: {
-            variant: {
-                default: cn(
-                    "text-foreground"
-                )
-            },
-            size: {
-                default: cn(
-                    "text-4xl md:text-5xl lg:text-6xl"
-                ),
-                lg: "text-3xl md:text-6xl lg:text-7xl"
-            },
-            style: {
-                default: "",
-                gradient: "bg-gradient-to-tr from-red-500 to-cyan-400 bg-clip-text text-transparent",
-            }
-        },
-        defaultVariants: {
-            variant: "default",
-            size: "default",
-            style: "default",
-        }
-    }
-)
-
-export function Title({ text, variant, size, style, className }: TextType & ClassNameType & VariantProps<typeof TitleVariant>) {
-    return (
-        <>
-            {
-                text &&
-                <h1 className={cn(TitleVariant({ variant, size, style, className }))}>
-                    {text}
-                </h1>
-            }
-        </>
-    )
-}
-
 const RoleVariant = cva(
     "font-medium",
     {

@@ -1,11 +1,16 @@
-import type { HeaderType } from "../hooks/context";
+import type { HeaderType } from "../sections/header/HeaderSection";
 import { downloadCVData } from "./button";
 import { logoData } from "./logo";
-import { navLinksData } from "./navlink";
+import { links } from "./links";
 
 export const headerData: HeaderType = {
-  hidden: false,
   logo: logoData,
-  navLink: navLinksData,
+  links: [
+    links.home, 
+    links.aboutMe, 
+    links.techStack, 
+    links.projects,
+    links.contactMe,
+  ],
   downloadCV: downloadCVData,
 };

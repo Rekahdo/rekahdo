@@ -10,19 +10,26 @@ import { ResourcesContext } from "../contexts/ResourcesProvider";
 import { ServicesContext } from "../contexts/ServicesProvider";
 import { StackUsageContext } from "../contexts/StackUsageProvider";
 import { TechStackContext } from "../contexts/TechStackProvider";
-import type { AboutType, ContactMeType, ContextValueType, FooterType, GrowthType, ProjectsType, ResourcesType, ServicesType, StackUsageType, TechStack } from "../data/type";
-import { Provider } from "../utils/enum";
+import type { ContactMeType, FooterType, GrowthType, ProjectsType, ResourcesType, ServicesType, StackUsageType  } from "../data/type";
 import type { HeroType } from "../sections/hero/HeroSection";
-import type { LogoType } from "../components/ui/logo";
-import type { DownloadType } from "../components/ui/download";
-import type { NavigationLinkType } from "../components/ui/navigation-bar";
+import type { ContextValueType } from "../contexts/ContextProvider";
+import type { AboutType } from "../sections/about/AboutSection";
+import type { TechStackType } from "../sections/stack/StackSection";
+import type { HeaderType } from "../sections/header/HeaderSection";
 
-export type HeaderType = {
-  hidden: boolean;
-  logo: LogoType;
-  navLink: NavigationLinkType[];
-  downloadCV: DownloadType;
-};
+export const Provider = {
+    HERO: "Hero",
+    HEADER: "Header",
+    ABOUT: "About",
+    CONTACT: "Contact",
+    FOOTER: "Footer",
+    GROWTH: "Growth",
+    PROJECTS: "Projects",
+    RESOURCES: "Resources",
+    SERVICES: "Services",
+    STACK_USAGE: "StackUsage",
+    TECH_STACK: "TechStack",
+} as const;
 
 export const useHeader = (): ContextValueType<HeaderType> => {
   const context = useContext(HeaderContext);
@@ -69,6 +76,6 @@ export const useStackUsage = (): ContextValueType<StackUsageType> => {
   return StackUsageContext.context(Provider.STACK_USAGE);
 };
 
-export const useTechStack = (): ContextValueType<TechStack[]> => {
+export const useTechStack = (): ContextValueType<TechStackType> => {
   return TechStackContext.context(Provider.TECH_STACK);
 };

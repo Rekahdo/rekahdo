@@ -1,7 +1,7 @@
 import type { ServicesType } from './type';
 
 export const servicesData: ServicesType = {
-  hidden: false,
+  
   sectionTitle: "Services",
   subtitle: "What I do with my skills",
   description: "As a developer with focused backend experience and ongoing frontend training, I am driven by a passion for creating seamless, user-centered applications that grow alongside evolving needs.",
@@ -15,7 +15,6 @@ export const servicesData: ServicesType = {
       tags: ["Spring Security", "JWT Auth", "REST / JSON", "Swagger Docs"],
       actionLabel: "Learn more",
       actionUrl: "#contact",
-      hidden: false
     },
     {
       id: 2,
@@ -26,7 +25,6 @@ export const servicesData: ServicesType = {
       tags: ["Spring Boot", "React", "Tailwind CSS", "PostgreSQL"],
       actionLabel: "Learn more",
       actionUrl: "#contact",
-      hidden: false
     },
     {
       id: 3,
@@ -37,7 +35,6 @@ export const servicesData: ServicesType = {
       tags: ["Microservices", "SOLID", "JPA / Hibernate", "Docker"],
       actionLabel: "Learn more",
       actionUrl: "#contact",
-      hidden: false
     },
     {
       id: 4,
@@ -48,7 +45,6 @@ export const servicesData: ServicesType = {
       tags: ["Code Review", "Pair Programming", "Documentation", "Agile"],
       actionLabel: "Learn more",
       actionUrl: "#contact",
-      hidden: false
     }
   ]
 }

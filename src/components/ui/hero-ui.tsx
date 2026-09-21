@@ -93,7 +93,6 @@ export function SocialProfText({ count, variant, className }: { count: number } 
 }
 
 export type LocationType = {
-    hidden: boolean;
-    state: string;
+        state: string;
     country: string;
 }

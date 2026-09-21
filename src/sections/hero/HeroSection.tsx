@@ -1,25 +1,28 @@
 import { Hero } from '../../components/block/hero';
-import type { ButtonType } from '../../components/ui/button';
+import { AnchorBtn, Buttons, DownloadBtn, type DownloadBtnType, type PageBtnType } from '../../components/ui/button';
 import { Container } from '../../components/ui/container';
-import { CTA } from '../../components/ui/cta';
-import type { DownloadType } from '../../components/ui/download';
 import { HeroImage } from '../../components/ui/hero-image';
 import { BadgeText, type LocationType } from '../../components/ui/hero-ui';
-import type { ImageType } from '../../components/ui/image';
-import { Tag } from '../../components/ui/tag';
-import { Description, Greeting, Role, Title } from '../../components/ui/hero-content';
+import { Description, Greeting, Role } from '../../components/ui/hero-content';
 import { useHero } from '../../hooks/context'
+import { H1 } from '../../components/ui/headings';
+import { Tags, type TagType } from '../../components/ui/tag';
+import type { ImageType } from '../../components/ui/image';
 
 export type HeroType = {
-    hidden: boolean;
+    badge: string;
     greetings: string;
     fullName: string;
     role: string;
     description: string;
     heroImage: ImageType;
     location: LocationType
-    tags: string[];
-    buttons: [DownloadType, ...ButtonType[]];
+    tags: TagType[];
+    buttons: {
+        downloadCV: DownloadBtnType, 
+        contact: PageBtnType,
+        techStack: PageBtnType
+    };
 }
 
 export const HeroSection = () => {
@@ -28,20 +31,29 @@ export const HeroSection = () => {
 
     return (
         <>
-            {data && !data.hidden &&
-                <Container variant={"hero"}>
+            {data &&
+                <Container 
+                    id="hero"
+                    bg={"background"}
+                    h={'hero'}
+                    align={'center'}
+                    py={"section"}>
+
                     <Hero
-                        badge={<BadgeText text='developer that help your business grow'/>}
+                        badge={<BadgeText text={data.badge}/>}
                         greetings={<Greeting text={data.greetings} />}
-                        title={<Title text={data.fullName} />}
+                        title={<H1 title={data.fullName} />}
                         role={<Role text={data.role} />}
                         description={<Description text={data.description} />}
-                        tags={<Tag texts={data.tags} section={'hero'}/>}
-                        ctaBtns={<CTA btns={data.buttons} width={'fit'} />}
-                        heroImage={<HeroImage {...data.heroImage} size={'lg'} tablet={'xl'}/>}
+                        tags={<Tags tags={data.tags}/>}
+                        ctaBtns={<Buttons btns={[
+                            <DownloadBtn key={data.buttons.downloadCV.href} {...data.buttons.downloadCV} variant={'default'}/>,
+                            <AnchorBtn key={data.buttons.contact.href} {...data.buttons.techStack} variant={'secondary'}/>,
+                            <AnchorBtn key={data.buttons.techStack.href} {...data.buttons.contact} variant={'outline'}/>,
+                        ]} width={'fit'} />}
+                        heroImage={<HeroImage {...data.heroImage} 
+                        size={'xl'} xs={'lg'} sm={'lg'}/>}
                         location={data.location}
-                        align={'center'}
-                        desktopPosition='top'
                     />
                 </Container>
             }

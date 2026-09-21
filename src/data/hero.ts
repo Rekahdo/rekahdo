@@ -1,8 +1,8 @@
 import type { HeroType } from "../sections/hero/HeroSection";
-import { buttonData, downloadCVData } from "./button";
+import { anchorData, downloadCVData } from "./button";
 
 export const heroData: HeroType = {
-  hidden: false,
+  badge: "developer that help your business grow",
   greetings: "Hi there, I'm",
   fullName: "RICHARD T. OKAFOR",
   role: "Full Stack Developer",
@@ -13,10 +13,18 @@ export const heroData: HeroType = {
     src: "/images/me/hero-section.png",
   },
   location: {
-    hidden: false,
+    
     state: "Lagos",
     country: "Nigeria",
   },
-  tags: ["Clean-Code", "Object Oriented"],
-  buttons: [downloadCVData, ...buttonData],
+  tags: [
+    { text: "Clean-Code" }, 
+    { text: "Object Oriented" },
+    { text: "Component Based" },
+  ],
+  buttons: {
+    downloadCV: downloadCVData, 
+    contact: anchorData.contact,
+    techStack: anchorData.techStack,
+  },
 };

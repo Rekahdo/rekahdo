@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { resourcesData } from "../data/resources";
-import { ContextProvider } from "./ContextProvider";
-import type { ContextChildrenType, ResourcesType } from "../data/type";
+import { ContextProvider, type ContextChildrenType } from "./ContextProvider";
+import type { ResourcesType } from "../data/type";
 
 export const ResourcesContext = new ContextProvider<ResourcesType>()
 

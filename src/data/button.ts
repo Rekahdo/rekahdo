@@ -1,23 +1,13 @@
-import type { ButtonType } from "../components/ui/button";
-import type { DownloadType } from "../components/ui/download";
+import type { DownloadBtnType, PageBtnType } from "../components/ui/button";
+import { links } from "./links";
 
-export const buttonData: ButtonType[] = [
-  {
-    text: "Contact Me",
-    src: "#contact",
-  },
-  {
-    text: "Tech-Stack",
-    src: "#tech-stack",
-  },
-  {
-    text: "Send Message",
-    src: "#tech-stack",
-  },
-];
+export const anchorData = {
+  contact: links.contactMe,
+  techStack: links.techStack,
+} as const satisfies Record<string, PageBtnType>;
 
-export const downloadCVData: DownloadType = {
+export const downloadCVData: DownloadBtnType = {
   text: "Download CV",
-  src: "/Richard_Okafor_CV.pdf",
+  href: "/docs/Richard_Okafor_CV.pdf",
   file_name: "Richard_Okafor_CV.pdf",
-};
+} as const;

@@ -1,57 +1,56 @@
-import type { AboutType } from './type';
+import type { AboutType } from "../sections/about/AboutSection";
 
 export const aboutMeData: AboutType = {
-  hidden: false,
-  sectionTitle: "About me",
+  title: "About me",
   headline: "Bridging Backend Stability With Frontend Inspiration",
   bio: "I am a Java backend developer with almost 2 years of experience, specializing in building scalable and robust systems using Spring Boot and microservices architecture. I also have 2 years of experience working in a solar engineering company. I am currently expanding into front-end development.",
-  me: "/images/me/about-me.png",
+  me: {
+    src: "/images/me/richard.svg",
+    alt: "Richard Okafor About Me"
+  },
   experiences: [
     {
-      hidden: false,
       years: 1,
-      text: "Backend",
+      title: "Backend",
     },
     {
-      hidden: false,
       years: 1,
-      text: "Fronted",
+      title: "Fronted",
     },
   ],
   quote: {
-    hidden: false,
     text: "To me, Full-stack development involves engineering robust, scalable systems, bringing back-end stability and front-end inspiration to create seamless user experience.",
   },
-  education: [
+  educations: [
     {
-      id: 1,
-      title: "Software Engineering",
       institution: "NIIT",
-      icon: "/images/icons/niit.svg",
-      hidden: false,
+      course: "Software Engineering ",
+      certification: "/docs/NIIT_Certification.jpg",
+      website: "https://www.niit.com/nigeria/",
+      logo: "/images/icons/niit.svg",
     },
     {
-      id: 2,
-      title: "Spring Boot Certification",
       institution: "Udemy",
-      icon: "/images/icons/udemy.svg",
-      hidden: false,
+      course: "Spring Boot Certification",
+      certification: "/docs/Spring_Boot_Certification.pdf",
+      website: "https://www.udemy.com/share/107zyk3@s_qIkz9IEydVxtT386qxf7AS7Nsxngx0f8X-SVtA6ghsg0cXKOaMBzJDswfjXhBYTQ==/",
+      logo: "/images/icons/udemy.svg",
     },
     {
-      id: 3,
-      title: "Frontend Development",
       institution: "TS Academy",
-      icon: "/images/icons/ts-academy.svg",
-      hidden: false,
+      course: "Frontend Development",
+      certification: "/docs/Frontend_Development_Certification.pdf",
+      website: "https://tsacademyonline.com/",
+      logo: "/images/icons/tsa.svg",
     },
   ],
-  coreSkills: [
-    { id: 1, text: "Teaching", emoji: "🧠", hidden: false },
-    { id: 2, text: "Problem Solving", emoji: "🔧", hidden: false },
-    { id: 3, text: "Communication", emoji: "💬", hidden: false },
-    { id: 4, text: "Collaboration", emoji: "🤝", hidden: false },
-    { id: 5, text: "Team working", emoji: "👥", hidden: false },
-    { id: 6, text: "Version Control", emoji: "🔀", hidden: false },
-    { id: 7, text: "Agile", emoji: "♻️", hidden: false },
+  skillTags: [
+    {text: "Teaching", emoji: "🧠"},
+    {text: "Problem Solving", emoji: "🔧"},
+    {text: "Communication", emoji: "💬"},
+    {text: "Collaboration", emoji: "🤝"},
+    {text: "Team working", emoji: "👥"},
+    {text: "Version Control", emoji: "🔀"},
+    {text: "Agile", emoji: "♻️"},
   ],
 };
