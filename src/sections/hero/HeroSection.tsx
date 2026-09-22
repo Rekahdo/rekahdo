@@ -44,8 +44,7 @@ export const HeroSection = () => {
                         lgPosition={'right'}
 
                         top={
-                            <HeroImage {...data.heroImage} 
-                                lgJustify={'end'}/>
+                            <HeroImage {...data.heroImage} lgJustify={'end'}/>
                         }
 
                         bottom={

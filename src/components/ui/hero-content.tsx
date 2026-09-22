@@ -6,36 +6,17 @@ import type { BadgeText, Description, Greeting, LocationType, Role, SocialProfTe
 import type { HeroImage } from "../ui/hero-image";
 import type { H1 } from "../ui/headings";
 import type { Buttons } from "../ui/button";
+import { justify, lgJustify, mdJustify, smJustify, xsJustify } from "./css-types";
 
 export const heroContentVariants = cva(
     cn("w-full grid gap-6 lg:gap-8"),
     {
         variants: {
-            justify: {
-                start: "text-start justify-items-start",
-                center: "text-center justify-items-center mx-auto",
-                end: "text-end justify-items-end",
-            },
-            xsJustify: {
-                start: "max-sm:text-start max-sm:justify-items-start",
-                center: "max-sm:text-center max-sm:justify-items-center max-sm:mx-auto",
-                end: "max-sm:text-end max-sm:justify-items-end",
-            },
-            smJustify: {
-                start: "sm:max-md:text-start sm:max-md:justify-items-start",
-                center: "sm:max-md:text-center sm:max-md:justify-items-center sm:max-md:mx-auto",
-                end: "sm:max-md:text-end sm:max-md:justify-items-end",
-            },
-            mdJustify: {
-                start: "md:max-lg:text-start md:max-lg:justify-items-start",
-                center: "md:max-lg:text-center md:max-lg:justify-items-center md:max-lg:mx-auto",
-                end: "md:max-lg:text-end md:max-lg:justify-items-end",
-            },
-            lgJustify: {
-                start: "lg:text-start lg:justify-items-start",
-                center: "lg:text-center lg:justify-items-center lg:mx-auto",
-                end: "lg:text-end lg:justify-items-end",
-            },
+            justify: justify,
+            xsJustify: xsJustify,
+            smJustify: smJustify,
+            mdJustify: mdJustify,
+            lgJustify: lgJustify,
         }, 
         defaultVariants: {
             justify:'center',
@@ -57,7 +38,7 @@ type HeroContentCompType = VariantProps<typeof heroContentVariants> & {
 }
 
 export function HeroContent({
-    justify: align, xsJustify: xsJustify, smJustify, mdJustify, lgJustify,
+    justify, xsJustify, smJustify, mdJustify, lgJustify,
     badge,
     greetings,
     title,
@@ -69,7 +50,7 @@ export function HeroContent({
 }: HeroContentCompType) {
     return (
         <div className={cn(heroContentVariants({
-            justify: align, xsJustify: xsJustify, smJustify, mdJustify, lgJustify
+            justify, xsJustify, smJustify, mdJustify, lgJustify
         }))}>
             <div className="grid gap-2 lg:gap-4">
                 {badge}

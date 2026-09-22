@@ -1,12 +1,15 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
 import type { ElementType, ReactNode } from "react";
-import { align, fontWeight, foreground, textAlign, textcase, textsize, } from "./css-types";
+import { align, fontWeight, foreground, lgAlign, mdAlign, smAlign, textcase, textsize, xsAlign, } from "./css-types";
 
 const wrapperVariants = cva("flex flex-col", {
     variants: {
-        align,
-        textAlign,
+        align: align,
+        xsAlign: xsAlign,
+        smAlign: smAlign,
+        mdAlign: mdAlign,
+        lgAlign: lgAlign,
     },
 });
 
@@ -46,7 +49,7 @@ const subtitleVariants = cva("mt-2", {
     },
 });
 
-export type TitleProps = {
+export type TitleProps = VariantProps<typeof wrapperVariants> & {
     icon?: ReactNode;
     title?: ReactNode;
     subtitle?: ReactNode;
@@ -61,8 +64,6 @@ export type TitleProps = {
     titleClassName?: string;
     subtitleClassName?: string;
 
-    align?: VariantProps<typeof wrapperVariants>["align"];
-    textAlign?: VariantProps<typeof wrapperVariants>["textAlign"];
     titleCase?: VariantProps<typeof titleVariants>["case"];
     titleWeight?: VariantProps<typeof titleVariants>["weight"];
     titleForeground?: VariantProps<typeof titleVariants>["color"];
@@ -91,8 +92,8 @@ function Heading({
     childrenClassName,
     titleClassName,
     subtitleClassName,
-    align,
-    textAlign,
+    align, xsAlign, smAlign,
+    mdAlign, lgAlign,
     titleCase,
     titleWeight,
     titleForeground,
@@ -109,46 +110,49 @@ function Heading({
     const visualSize = size ?? (`h${level}` as const);
 
     return (
-        <div className={cn(wrapperVariants({ align, textAlign }), className)}>
-            {hasTitle && (
-                <Tag
-                    id={id}
-                    className={cn(
-                        titleVariants({
-                            size: visualSize,
-                            case: titleCase,
-                            weight: titleWeight,
-                            color: titleForeground,
-                        }),
-                        titleClassName
-                    )}
-                >
-                    {icon &&
-                        <span className="*:size-8 flex items-center justify-center">
-                            {icon}
-                        </span>
-                    }
-                    {title}
-                </Tag>
-            )}
+        <div>
+            <div className={cn(wrapperVariants({
+                align, xsAlign, smAlign, mdAlign, lgAlign,
+            }), className)}>
+                {hasTitle && (
+                    <Tag id={id}
+                        className={cn(
+                            titleVariants({
+                                size: visualSize,
+                                case: titleCase,
+                                weight: titleWeight,
+                                color: titleForeground,
+                            }),
+                            titleClassName
+                        )}
+                    >
+                        {icon &&
+                            <span className="*:size-8 flex items-center justify-center">
+                                {icon}
+                            </span>
+                        }
+                        {title}
+                    </Tag>
+                )}
 
-            {subtitle !== undefined && subtitle !== null && subtitle !== "" && (
-                <p
-                    className={cn(
-                        subtitleVariants({
-                            size: subTitleSize,
-                            case: subTitleCase,
-                            weight: subTitleWeight,
-                            color: subTitleForeground,
-                        }),
-                        subtitleClassName
-                    )}
-                >
-                    {subtitle}
-                </p>
-            )}
+                {subtitle !== undefined && subtitle !== null && subtitle !== "" && (
+                    <p
+                        className={cn(
+                            subtitleVariants({
+                                size: subTitleSize,
+                                case: subTitleCase,
+                                weight: subTitleWeight,
+                                color: subTitleForeground,
+                            }),
+                            subtitleClassName
+                        )}
+                    >
+                        {subtitle}
+                    </p>
+                )}
+            </div>
 
-            {children && 
+            {children &&
                 <div className={cn("mt-4", childrenClassName)}>
                     {children}
                 </div>

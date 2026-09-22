@@ -1,5 +1,5 @@
 import { cn } from "cn";
-import { justify } from "./css-types";
+import { justify, lgJustify, mdJustify, smJustify, xsJustify } from "./css-types";
 import { Image, ImageVariants, type ImageCompType } from "./image"
 import { cva, type VariantProps } from "class-variance-authority";
 
@@ -8,26 +8,10 @@ const heroImageVariants = cva(
     {
         variants: {
             justify: justify,
-            xsJustify: {
-                start: `max-sm:${justify.start}`,
-                center: `max-sm:${justify.center}`,
-                end: `max-sm:${justify.end}`,
-            },
-            smJustify: {
-                start: `sm:max-md:${justify.start}`,
-                center: `sm:max-md:${justify.center}`,
-                end: `sm:max-md:${justify.end}`,
-            },
-            mdJustify: {
-                start: `md:max-lg:${justify.start}`,
-                center: `md:max-lg:${justify.center}`,
-                end: `md:max-lg:${justify.end}`,
-            },
-            lgJustify: {
-                start: `lg:${justify.start}`,
-                center: `lg:${justify.center}`,
-                end: `lg:${justify.end}`,
-            },
+            xsJustify: xsJustify,
+            smJustify: smJustify,
+            mdJustify: mdJustify,
+            lgJustify: lgJustify,
         },
         defaultVariants:{
             justify:'center',

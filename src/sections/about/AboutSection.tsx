@@ -53,11 +53,13 @@ export function AboutSection() {
 
                             bottom={
                                 <H3 title={data.headline}
-                                    className={cn("md:ps-10 md:col-span-2 max-md:text-center")}
-                                    childrenClassName={cn("flex flex-col gap-8 lg:gap-10")}>
+                                    xsAlign={"center"} smAlign={"center"}
+                                    childrenClassName={cn("flex flex-col gap-8 lg:gap-10 max-md:text-center")}
+                                    >
 
                                     <p>{data.bio}</p>
-                                    <Experiences experiences={data.experiences} />
+                                    <Experiences experiences={data.experiences} 
+                                        mdJustify={"start"} lgJustify={"start"} />
                                     <Quote {...data.quote} variant={"normal"} />
                                 </H3>
                             }
