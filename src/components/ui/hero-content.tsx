@@ -2,14 +2,13 @@ import { type ComponentProps, type ReactElement } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
 import type { Tags } from "../ui/tag";
-import type { BadgeText, LocationType, SocialProfText } from "../ui/hero-ui";
+import type { BadgeText, Description, Greeting, LocationType, Role, SocialProfText } from "../ui/hero-ui";
 import type { HeroImage } from "../ui/hero-image";
-import type { Description, Greeting, Role } from "../ui/hero-info";
 import type { H1 } from "../ui/headings";
 import type { Buttons } from "../ui/button";
 
 export const heroContentVariants = cva(
-    cn("grid gap-6 lg:gap-8"),
+    cn("w-full grid gap-6 lg:gap-8"),
     {
         variants: {
             justify: {
