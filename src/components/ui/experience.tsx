@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
-import { hover } from "./css-types";
+import { hover, justify, lgJustify, mdJustify, smJustify, xsJustify } from "./css-types";
 
 export type ExperienceType = {
   years: number;
@@ -8,14 +8,12 @@ export type ExperienceType = {
 };
 
 const experienceVariants = cva(
-  [
-    "group relative flex flex-col items-center justify-center gap-2 rounded-xl",
-    "border border-border bg-card p-6 text-center", hover.outline
-  ],
+  [],
   {
     variants: {
       variant: {
-        normal: "",
+        normal: cn("group flex flex-col items-center justify-center gap-2 rounded-xl", 
+          "border border-border bg-card py-6 px-8 sm:px-10 text-center", hover.outline),
         inline: "flex-row items-baseline justify-start gap-3 p-0 border-0 bg-transparent text-left",
       },
     },
@@ -53,16 +51,16 @@ function Experience({
   );
 }
 
-const experiencesVariants = cva("", {
+const experiencesVariants = cva("w-full flex items-center gap-4", {
   variants: {
-    variant: {
-      normal: "grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4",
-      inline: "flex flex-wrap items-center gap-x-8 gap-y-4",
-      row: "flex flex-wrap justify-center gap-4",
-    },
+    justify: justify,
+    xsJustify: xsJustify,
+    smJustify: smJustify,
+    mdJustify: mdJustify,
+    lgJustify: lgJustify,
   },
   defaultVariants: {
-    variant: "normal",
+    justify: "center",
   },
 });
 
@@ -74,19 +72,17 @@ type ExperiencesProps = VariantProps<typeof experiencesVariants> & {
 export function Experiences({
   experiences,
   className,
-  variant,
+  justify, xsJustify, smJustify, mdJustify, lgJustify,
 }: ExperiencesProps) {
-  const itemVariant: VariantProps<typeof experienceVariants>["variant"] =
-    variant === "inline" ? "inline" : "normal";
 
   return (
-    <div
-      role="list"
-      aria-label="Experience"
-      className={cn(experiencesVariants({ variant }), className)}
-    >
+    <div role="list" aria-label="Experience"
+      className={cn(experiencesVariants({ 
+        justify, xsJustify, smJustify, mdJustify, lgJustify,
+       }), className)}>
+
       {experiences.map((e, i) => (
-        <Experience key={`${e.title}-${i}`} variant={itemVariant} {...e} />
+        <Experience key={`${e.title}-${i}`} {...e} />
       ))}
     </div>
   );

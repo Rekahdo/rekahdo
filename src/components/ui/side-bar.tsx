@@ -71,7 +71,7 @@ export function SideBar({
 
     const [open, setOpen] = useState(false)
     const [hold, setHold] = useState(false)
-    const { large } = useWidthMedia();
+    const { lg: large } = useWidthMedia();
 
     useEffect(() => {
         setHold(false);

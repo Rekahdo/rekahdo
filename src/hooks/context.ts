@@ -8,13 +8,12 @@ import { GrowthContext } from "../contexts/GrowthProvider";
 import { ProjectsContext } from "../contexts/ProjectsProvider";
 import { ResourcesContext } from "../contexts/ResourcesProvider";
 import { ServicesContext } from "../contexts/ServicesProvider";
-import { StackUsageContext } from "../contexts/StackUsageProvider";
 import { TechStackContext } from "../contexts/TechStackProvider";
-import type { ContactMeType, FooterType, GrowthType, ProjectsType, ResourcesType, ServicesType, StackUsageType  } from "../data/type";
+import type { ContactMeType, FooterType, GrowthType, ProjectsType, ResourcesType, ServicesType  } from "../data/type";
 import type { HeroType } from "../sections/hero/HeroSection";
 import type { ContextValueType } from "../contexts/ContextProvider";
 import type { AboutType } from "../sections/about/AboutSection";
-import type { TechStackType } from "../sections/stack/StackSection";
+import type { TechStackType } from "../sections/tech_stack/TechStackSection";
 import type { HeaderType } from "../sections/header/HeaderSection";
 
 export const Provider = {
@@ -70,10 +69,6 @@ export const useResources = (): ContextValueType<ResourcesType> => {
 
 export const useServices = (): ContextValueType<ServicesType> => {
   return ServicesContext.context(Provider.SERVICES);
-};
-
-export const useStackUsage = (): ContextValueType<StackUsageType> => {
-  return StackUsageContext.context(Provider.STACK_USAGE);
 };
 
 export const useTechStack = (): ContextValueType<TechStackType> => {

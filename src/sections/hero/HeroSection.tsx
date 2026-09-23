@@ -1,13 +1,12 @@
 import { AnchorBtn, Buttons, DownloadBtn, type DownloadBtnType, type PageBtnType } from '../../components/ui/button';
 import { Container } from '../../components/ui/container';
 import { HeroImage } from '../../components/ui/hero-image';
-import { BadgeText, type LocationType } from '../../components/ui/hero-ui';
-import { Description, Greeting, Role } from '../../components/ui/hero-info';
+import { BadgeText, Description, Greeting, Role, type LocationType } from '../../components/ui/hero-ui';
 import { useHero } from '../../hooks/context'
 import { H1 } from '../../components/ui/headings';
 import { Tags, type TagType } from '../../components/ui/tag';
 import type { ImageType } from '../../components/ui/image';
-import { Grid } from '../../components/ui/grid';
+import { Grid } from '../../components/ui/layout';
 import { HeroContent } from '../../components/ui/hero-content';
 
 export type HeroType = {
@@ -41,10 +40,14 @@ export const HeroSection = () => {
                     py={"section"}>
 
                     <Grid
-                        position={'bottom'}
-                        lgPosition={'left'}
                         lgCols={'two'}
+                        lgPosition={'right'}
+
                         top={
+                            <HeroImage {...data.heroImage} lgJustify={'end'}/>
+                        }
+
+                        bottom={
                             <HeroContent
                                 lgJustify={'start'}
                                 badge={<BadgeText text={data.badge} />}
@@ -64,10 +67,6 @@ export const HeroSection = () => {
                                         {...data.buttons.techStack} variant={'secondary'} />,
                                 ]} width={'fit'} />}
                             />
-                        }
-
-                        bottom={
-                            <HeroImage {...data.heroImage} />
                         }
                     />
                 </Container>

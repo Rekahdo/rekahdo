@@ -7,6 +7,7 @@ import { Experiences, type ExperienceType } from "../../components/ui/experience
 import { Quote, type QuoteType } from "../../components/ui/quote";
 import { Tags, type TagType } from "../../components/ui/tag";
 import { Educations, type EducationType } from "../../components/ui/education";
+import { Flex } from "../../components/ui/layout";
 
 export type SectionType = {
     title: string;
@@ -40,21 +41,29 @@ export function AboutSection() {
                     <section className="flex flex-col gap-10 md:gap-15">
                         <H2 title={data.title} />
 
-                        <div className={cn("grid grid-cols-1 md:grid-cols-3 max-md:gap-10")}>
-                            <div className="max-md:w-[40%] max-md:mx-auto">
-                                <Image src={data.me.src} alt={data.me.alt} />
-                            </div>
+                        <Flex
+                            mdDirection={"row"}
+                            lgDirection={"row"}
+                            
+                            top={
+                                <div className="h-full flex items-start">
+                                    <Image src={data.me.src} alt={data.me.alt} xsSm={"lg"}/>
+                                </div>
+                            }
 
+                            bottom={
+                                <H3 title={data.headline}
+                                    xsAlign={"center"} smAlign={"center"}
+                                    childrenClassName={cn("flex flex-col gap-8 lg:gap-10 max-md:text-center")}
+                                    >
 
-                            <H3 title={data.headline}
-                                className={cn("md:ps-10 md:col-span-2 max-md:text-center")}
-                                childrenClassName={cn("flex flex-col gap-8 lg:gap-10")}>
-
-                                <p>{data.bio}</p>
-                                <Experiences experiences={data.experiences} />
-                                <Quote {...data.quote} variant={"normal"} />
-                            </H3>
-                        </div>
+                                    <p>{data.bio}</p>
+                                    <Experiences experiences={data.experiences} 
+                                        mdJustify={"start"} lgJustify={"start"} />
+                                    <Quote {...data.quote} variant={"normal"} />
+                                </H3>
+                            }
+                        />
 
                         <H4 title="Education & Certification">
                             <Educations educations={data.educations} />
