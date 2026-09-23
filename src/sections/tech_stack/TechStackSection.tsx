@@ -37,7 +37,8 @@ export function TechStackSection() {
                 <H2 title={data.title} subtitle={data.subtitle} icon={<CodeXml />}
                     childrenClassName="mt-8 space-y-10 flex flex-col relative">
 
-                    <StackToggle onChange={setMode} showTextAt="md" className="mx-auto sticky top-0"/>
+                    <StackToggle onChange={setMode} showTextAt="md" 
+                        className="ms-auto sticky z-10 top-20 sm:top-25 md:top-30"/>
                     <TechCards languages={data.languages} mode={mode}/>
                 </H2>
             </section>
