@@ -5,6 +5,7 @@ import { TechStackProvider } from '../../contexts/TechStackProvider'
 import { AboutSection } from '../../sections/about/AboutSection'
 import { HeaderSection } from '../../sections/header/HeaderSection'
 import { HeroSection } from '../../sections/hero/HeroSection'
+import { TechStackSection } from '../../sections/tech_stack/TechStackSection'
 
 export const Home = () => {
     return (
@@ -18,10 +19,10 @@ export const Home = () => {
                     {/* START */}
                     
                     <HeaderSection />
-                    {/* <HeroSection /> */}
+                    <HeroSection />
                     <main>
                         <AboutSection />
-                        {/* <TechStackSection /> */}
+                        <TechStackSection />
                     </main>
 
                     {/* END */}

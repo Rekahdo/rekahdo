@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { techStacksData } from "../data/tech-stack";
 import { ContextProvider, type ContextChildrenType } from "./ContextProvider";
-import type { TechStackType } from "../sections/stack/StackSection";
+import type { TechStackType } from "../sections/tech_stack/TechStackSection";
 
 export const TechStackContext = new ContextProvider<TechStackType>()
 

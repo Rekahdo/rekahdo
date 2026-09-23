@@ -1,6 +1,9 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
 import { rounded } from "./css-types";
+import { useEffect, useState } from "react";
+import { useTheme } from "../../hooks/useTheme";
+import { themeIsDark } from "../../utils/utils";
 
 const xs = {
     xxs: "max-sm:w-16 max-sm:data-[fluid=true]:w-[10%]",
@@ -195,6 +198,7 @@ export const imageObjectFit = cva("w-full h-full", {
 export type ImageType = {
     name?: string;
     src: string;
+    darkSrc?: string;
     alt: string;
 };
 
@@ -232,8 +236,22 @@ export function Image({
     rounded,
     objectFit,
     src,
+    darkSrc,
     alt,
 }: ImageCompType) {
+    darkSrc = darkSrc ? darkSrc : src
+
+    const { listen, stop } = useTheme();
+    const [imageSrc, setSrc] = useState<string>(themeIsDark() ? darkSrc : src);
+
+    useEffect(() => {
+        const observer = listen(() => setSrc(darkSrc), () => setSrc(src));
+
+        return () => {
+            stop(observer);
+        }
+    }, [])
+
     return (
         <div
             data-fluid={fluid}
@@ -264,7 +282,7 @@ export function Image({
             )}
         >
             <img
-                src={src}
+                src={imageSrc}
                 alt={`${alt}`}
                 className={cn(imageObjectFit({ objectFit }), imgClassName)}
             />

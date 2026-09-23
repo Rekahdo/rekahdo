@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 
 export function useWidthMedia() {
   const queries = {
-    below: "(max-width: 638px)",
-    small: "(min-width: 639px)",
-    medium: "(min-width: 767px)",
-    xMedium: "(min-width: 895px)",
-    large: "(min-width: 1023px)",
-    xLarge: "(min-width: 1279px)",
+    xs: "(max-width: 638px)",
+    belowSm: "(max-width: 639px)",
+    sm: "(min-width: 639px)",
+    belowMd: "(max-width: 767px)",
+    md: "(min-width: 767px)",
+    belowLg: "(max-width: 1023px)",
+    lg: "(min-width: 1023px)",
   };
 
   const checkWidth = (query: string) => {
@@ -18,12 +19,13 @@ export function useWidthMedia() {
   };
 
   const [matches, setMatches] = useState({
-    below: checkWidth(queries.below),
-    small: checkWidth(queries.small),
-    medium: checkWidth(queries.medium),
-    xMedium: checkWidth(queries.xMedium),
-    large: checkWidth(queries.large),
-    xLarge: checkWidth(queries.xLarge),
+    xs: checkWidth(queries.xs),
+    belowSm: checkWidth(queries.belowSm),
+    sm: checkWidth(queries.sm),
+    belowMd: checkWidth(queries.belowMd),
+    md: checkWidth(queries.md),
+    belowLg: checkWidth(queries.belowLg),
+    lg: checkWidth(queries.lg),
   });
 
   useEffect(() => {
@@ -36,12 +38,13 @@ export function useWidthMedia() {
 
     const handleChange = () => {
       setMatches({
-        below: mediaList.find((item) => item.key === "below")!.mql.matches,
-        small: mediaList.find((item) => item.key === "small")!.mql.matches,
-        medium: mediaList.find((item) => item.key === "medium")!.mql.matches,
-        xMedium: mediaList.find((item) => item.key === "xMedium")!.mql.matches,
-        large: mediaList.find((item) => item.key === "large")!.mql.matches,
-        xLarge: mediaList.find((item) => item.key === "xLarge")!.mql.matches,
+        xs: mediaList.find((item) => item.key === "xs")!.mql.matches,
+        belowSm: mediaList.find((item) => item.key === "belowSm")!.mql.matches,
+        sm: mediaList.find((item) => item.key === "sm")!.mql.matches,
+        belowMd: mediaList.find((item) => item.key === "belowMd")!.mql.matches,
+        md: mediaList.find((item) => item.key === "md")!.mql.matches,
+        belowLg: mediaList.find((item) => item.key === "belowLg")!.mql.matches,
+        lg: mediaList.find((item) => item.key === "lg")!.mql.matches,
       });
     };
 

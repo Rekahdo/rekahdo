@@ -70,10 +70,20 @@ export const buttonVariants = cva(
         link: cn(
           "text-foreground underline-offset-4 hover:underline hover:text-background"
         ),
+
+        toggle: cn(
+          "focus-visible:border-0 focus-visible:ring-0 focus-visible:ring-muted",
+          "active:not-aria-[haspopup]:translate-y-0",
+          "disabled:pointer-events-none disabled:opacity-50",
+          "text-xs font-medium border-0 text-muted-foreground transition-all duration-200",
+          "hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground",
+          "data-[active=true]:shadow-sm data-[active=true]:px-4"
+        )
       },
 
       size: {
         default: "h-8 gap-1.5 px-2.5",
+        toggle: "h-7 gap-1 px-2 text-xs",
         xs: "h-6 gap-1 px-2 text-xs rounded-[min(var(--radius-md),10px)] [&_svg:not([class*='size-'])]:size-3",
         sm: "h-10 gap-1 px-2.5 text-[0.8rem] rounded-[min(var(--radius-md),12px)] [&_svg:not([class*='size-'])]:size-3.5",
         lg: "h-12 gap-1.5 px-4",
@@ -99,6 +109,10 @@ export const buttonVariants = cva(
         md: "[&_[data-slot=button-text]]:hidden md:[&_[data-slot=button-text]]:inline",
         lg: "[&_[data-slot=button-text]]:hidden lg:[&_[data-slot=button-text]]:inline",
       },
+      
+      rounded:{
+        full: "rounded-full"
+      }
     },
     defaultVariants: {
       variant: "default",
@@ -117,6 +131,7 @@ type ButtonType = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children">
     icon?: ReactNode;
     iconPosition?: "start" | "end";
     showTextAt?: "all" | "sm" | "md" | "lg";
+    active?: boolean;
   };
 
 export function Button({
@@ -129,6 +144,8 @@ export function Button({
   iconPosition = "start",
   text,
   showTextAt = "all",
+  rounded,
+  active,
   ...props
 }: ButtonType) {
   const hasIcon = Boolean(icon);
@@ -137,12 +154,13 @@ export function Button({
   return (
     <ButtonPrimitive data-slot="button"
       data-icon-position={hasIcon ? iconPosition : undefined}
+      data-active={active}
       className={cn(
         buttonVariants({
           variant,
           size,
           withIcon: hasIcon && hasText,
-          textAt: showTextAt,
+          textAt: showTextAt, rounded,
           fullWidth: Boolean(fullWidth),
         }), className)} {...props} >
 

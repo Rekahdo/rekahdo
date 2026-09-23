@@ -34,7 +34,7 @@ const titleVariants = cva("flex items-center gap-4", {
     },
 });
 
-const subtitleVariants = cva("mt-2", {
+const subtitleVariants = cva("mt-4", {
     variants: {
         size: textsize,
         case: textcase,
@@ -153,7 +153,7 @@ function Heading({
             </div>
 
             {children &&
-                <div className={cn("mt-4", childrenClassName)}>
+                <div className={cn("mt-4 space-y-5", childrenClassName)}>
                     {children}
                 </div>
             }

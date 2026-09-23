@@ -1,3 +1,5 @@
+import { cn } from "cn";
+
 export const textcase = {
   lowercase: "lowercase",
   uppercase: "uppercase",
@@ -87,8 +89,10 @@ export const rounded = {
 };
 
 export const hover = {
-  outline:
-    "transition-all duration-300 hover:border-primary/40 hover:-translate-y-0.5 hover:shadow-md",
+  outline:cn(
+    "transition-all duration-300 hover:border-primary/40 hover:-translate-y-1 hover:shadow-lg",
+  )
+
 };
 
 export const shadow = {
