@@ -48,7 +48,7 @@ const containerVariants = cva(
 
         },
         defaultVariants: {
-            bg:'background',
+            bg: 'background',
             minWidth: "default",
             px: "default",
             rounded: "none",
@@ -60,16 +60,6 @@ type ContainerInnerProps = VariantProps<typeof containerInnerVariants> & {
     children: ReactNode;
     className?: string;
 }
-
-type ContainerProps = VariantProps<typeof containerVariants>
-    & VariantProps<typeof containerInnerVariants> &
-{
-    children: ReactNode;
-    className?: string;
-    innerClassName?: string;
-    as?: ElementType;
-    id: string;
-} & Omit<HTMLAttributes<HTMLElement>, "id">;
 
 function ContainerInner({
     children,
@@ -85,6 +75,16 @@ function ContainerInner({
         </div>
     );
 }
+
+type ContainerProps = VariantProps<typeof containerVariants>
+    & VariantProps<typeof containerInnerVariants> &
+{
+    children: ReactNode;
+    className?: string;
+    innerClassName?: string;
+    as?: ElementType;
+    id: string;
+} & Omit<HTMLAttributes<HTMLElement>, "id">;
 
 export function Container({
     id,

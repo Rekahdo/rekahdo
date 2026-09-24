@@ -18,7 +18,7 @@ export function Logo({
 
     return (
         <Link href="/">
-            <Image {...props} className={cn("cursor-pointer")} 
+            <Image {...props} className={cn("cursor-pointer text-foreground")} 
                 src={light_src} darkSrc={dark_src} alt={alt} 
                 size={"xs"}/>
         </Link>

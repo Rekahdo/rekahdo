@@ -2,8 +2,8 @@ import type { AboutType } from "../sections/about/AboutSection";
 
 export const aboutMeData: AboutType = {
   title: "About me",
-  headline: "Bridging Backend Stability With Frontend Inspiration",
-  bio: "I am a Java backend developer with almost 2 years of experience, specializing in building scalable and robust systems using Spring Boot and microservices architecture. I also have 2 years of experience working in a solar engineering company. I am currently expanding into front-end development.",
+  headline: "Frontend-Focused Engineer with Full-Stack Perspective",
+  bio: "I am a Frontend Developer dedicated to building fast, scalable, and modular web applications using React, TypeScript, and modern CSS Frameworks. My engineering journey began on the backend, where working deeply with Java and Spring Boot instilled a strong foundation in Object-Oriented Programming (OOP) and system design. \n\nThat mindset directly shapes how I write client-side code today. I approach UI development by encapsulating logic and state into clean, reusable, object-like components designed for scalability and maintainability. \n\nBeyond frontend architecture, my background designing RESTful APIs, microservices, and databases allows me to bridge client-side interfaces with backend systems effortlessly. I am currently expanding my modern full-stack toolkit with Next.js, combining interactive React components with server-side capabilities.",
   me: {
     src: "/images/me/richard.svg",
     alt: "Richard Okafor About Me"
@@ -19,7 +19,7 @@ export const aboutMeData: AboutType = {
     },
   ],
   quote: {
-    text: "To me, Full-stack development involves engineering robust, scalable systems, bringing back-end stability and front-end inspiration to create seamless user experience.",
+    text: "To me, great frontend development isn't just about pixel-perfect layouts, it's also about understanding the entire data flow from backend APIs to client interactions to deliver a seamless user experience.",
   },
   educations: [
     {

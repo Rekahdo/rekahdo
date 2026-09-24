@@ -51,7 +51,7 @@ const size = {
 } as const;
 
 export const ImageVariants = cva(
-    "flex overflow-hidden",
+    "flex overflow-hidden text-foreground",
     {
         variants: {
             size: size,
@@ -250,7 +250,7 @@ export function Image({
         return () => {
             stop(observer);
         }
-    }, [])
+    }, [darkSrc, listen, src, stop])
 
     return (
         <div

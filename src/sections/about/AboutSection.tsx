@@ -36,6 +36,7 @@ export function AboutSection() {
                     h={"hero"}
                     py={"section"}
                     px={"default"}
+                    bg={"background"}
                 >
 
                     <section className="flex flex-col gap-10 md:gap-15">
@@ -46,18 +47,19 @@ export function AboutSection() {
                             lgDirection={"row"}
                             
                             top={
-                                <div className="h-full flex items-start">
-                                    <Image src={data.me.src} alt={data.me.alt} xsSm={"lg"}/>
+                                <div className="h-full flex items-start min-w-[40%]">
+                                    <Image src={data.me.src} alt={data.me.alt} xsSm={"lg"} lg={"lg"}/>
                                 </div>
                             }
 
+                            bottomClassName="md:ps-7 lg:ps-10"
                             bottom={
                                 <H3 title={data.headline}
                                     xsAlign={"center"} smAlign={"center"}
                                     childrenClassName={cn("flex flex-col gap-8 lg:gap-10 max-md:text-center")}
                                     >
 
-                                    <p>{data.bio}</p>
+                                    <p className="whitespace-pre-line">{data.bio}</p>
                                     <Experiences experiences={data.experiences} 
                                         mdJustify={"start"} lgJustify={"start"} />
                                     <Quote {...data.quote} variant={"normal"} />

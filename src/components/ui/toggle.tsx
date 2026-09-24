@@ -1,7 +1,6 @@
 import { Switch } from "./switch"
 import { rootDocument, themeIsDark, windowTheme } from "../../utils/utils";
-import { useEffect, useState } from "react";
-import { LayoutGrid, Rows3 } from "lucide-react";
+import { useEffect, useState, type ReactNode } from "react";
 import { cn } from "cn";
 import { Button } from "./button";
 
@@ -57,55 +56,67 @@ export function ThemeToggle() {
 
 
 // =======================================================================
+// =======================================================================
+// =======================================================================
 
 
 
-
-export type StackMode = "Compact" | "Detailed";
-
-type StackToggleType = {
-    mode?: StackMode;
-    onChange: (mode: StackMode) => void;
-    showTextAt?: "all" | "sm" | "md" | "lg";
-    className?: string;
+type MultiToggleType = {
+    text: string;
+    icon?: ReactNode;
 }
 
-export function StackToggle({ onChange, showTextAt, className }: StackToggleType) {
-    const btns = [
-        { icon: <LayoutGrid />, text: "Compact" },
-        { icon: <Rows3 />, text: "Detailed" },
-    ]
+type MultiToggleProps = {
+    rootToggle?: boolean;
+    selectIndex?: number;
+    toggles: MultiToggleType[]
+    className?: string;
+    showTextAt?: "all" | "sm" | "md" | "lg";
+    onChange?: (index: number) => void;
+}
 
-    const [mode, setCurrentMode] = useState<StackMode>('Compact')
+export function MultiToggle({ 
+    selectIndex=0, 
+    toggles, onChange, 
+    showTextAt, 
+    className,
+    rootToggle=false,
+}: MultiToggleProps) {
+    
+    const [selected, setSelected] = useState<number>(selectIndex)
 
     useEffect(() => {
-        onChange(mode);
-    }, [mode])
+        onChange?.(selected);
+    }, [selected])
 
-    function toggle() {
-        setCurrentMode(mode === btns[0].text ? 'Detailed' : 'Compact');
+    function toggle(id?: number) {
+        rootToggle 
+        ? setSelected(s => s+1 < toggles.length ? s+1 : 0)
+        : setSelected(id!);
     }
 
     return (
-        <div onClick={toggle}
+        <div onClick={rootToggle ? () => toggle() : undefined}
             className={cn(
-                "inline-flex items-center gap-1 rounded-full",
-                "border border-border/60 bg-background/60 p-1 backdrop-blur-md",
+                "inline-flex items-center gap-1 rounded-full text-foreground",
+                "border border-border/60 bg-background/10 dark:bg-background/40 p-1 backdrop-blur-md",
                 className
             )}>
 
-            {btns.map((btn, i) =>
+            {toggles.map((btn, index) =>
                 <Button
-                    key={`${btn.text}-${i}`}
+                    key={`${btn.text}-${index}`}
                     icon={btn.icon}
                     text={btn.text}
                     rounded={"full"}
-                    aria-selected={btn.text === mode}
-                    active={btn.text === mode}
+                    aria-selected={index === selected}
+                    active={index === selected}
                     variant={"toggle"} size={"toggle"}
                     showTextAt={showTextAt}
+                    onClick={rootToggle ? undefined : () => toggle(index)}
                 />)
             }
+
         </div>
     )
 }

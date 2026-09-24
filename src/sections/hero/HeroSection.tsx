@@ -60,11 +60,11 @@ export const HeroSection = () => {
                                     <DownloadBtn key={data.buttons.downloadCV.href} size={'lg'}
                                         {...data.buttons.downloadCV} variant={'default'} />,
 
-                                    <AnchorBtn key={data.buttons.contact.href} size={'lg'}
-                                        {...data.buttons.contact} variant={'outline'} />,
-
                                     <AnchorBtn key={data.buttons.techStack.href} size={'lg'}
-                                        {...data.buttons.techStack} variant={'secondary'} />,
+                                        {...data.buttons.techStack} variant={'outline'} />,
+
+                                    <AnchorBtn key={data.buttons.contact.href} size={'lg'}
+                                        {...data.buttons.contact} variant={'secondary'} />,
                                 ]} width={'fit'} />}
                             />
                         }

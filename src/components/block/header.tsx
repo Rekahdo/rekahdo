@@ -7,7 +7,7 @@ import type { Logo } from "../ui/logo";
 import type { ThemeToggle } from "../ui/toggle";
 import type { DownloadBtn } from "../ui/button";
 
-const headerGroupVariants = cva("flex items-center", {
+const headerGroupVariants = cva("flex items-center text-foreground", {
   variants: {
     gap: {
       sm: "gap-3 sm:gap-4",
@@ -99,12 +99,14 @@ export function HeaderRight({
 
 const headerVariants = cva(
   cn(
-    "flex items-center",
+    "flex items-center text-foreground",
   ),
   {
     variants: {
       variant: {
-        default: ''
+        default: 'bg-background/95 backdrop-blur-md text-foreground',
+        transparent: 'bg-transparent text-foreground',
+        card: 'bg-card text-card-foreground border-b border-border',
       }
     },
     defaultVariants: {

@@ -14,7 +14,7 @@ const rootVariants = cva(
     // Validation States
     "aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40",
     // Track Color States
-    "data-checked:bg-primary data-unchecked:bg-primary/30",
+    "data-checked:bg-primary data-unchecked:bg-muted-foreground/30",
     // Disabled State
     "data-disabled:cursor-not-allowed data-disabled:opacity-50",
     // Sizing Variants (Track)
@@ -62,10 +62,8 @@ const rootVariants = cva(
 
 const thumbVariants = cva(
   cn(
-    // Base Layout
-    "flex justify-center items-center pointer-events-none rounded-full bg-background ring-0 transition-transform",
-    // Dark Mode Colors
-    "data-checked:bg-primary-foreground data-unchecked:bg-primary data-checked:text-primary data-unchecked:text-input",
+    // Base Layout & High-Contrast Colors
+    "flex justify-center items-center pointer-events-none rounded-full shadow-md ring-0 transition-transform bg-foreground text-background dark:bg-zinc-100 dark:text-zinc-900",
     // Size
     "size-4"
   ),
@@ -121,8 +119,8 @@ function Switch({ className, variant = "default", size = "default",
         data-slot="switch-thumb"
         className={cn(thumbVariants({ variant }))}>
 
-        {checked && props.onIcon && props.onIcon}
-        {!checked && props.offIcon && props.offIcon}
+        {isChecked && props.onIcon && props.onIcon}
+        {!isChecked && props.offIcon && props.offIcon}
       </SwitchPrimitive.Thumb>
     </SwitchPrimitive.Root>
   )
