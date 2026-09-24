@@ -7,7 +7,6 @@ import { Link } from "./link";
 
 export const buttonVariants = cva(
   cn(
-
     // Base Layout & Alignment
     "group/button inline-flex shrink-0 items-center justify-center select-none cursor-pointer",
 
@@ -34,42 +33,41 @@ export const buttonVariants = cva(
       variant: {
         // Primary filled button
         default: cn(
-          "bg-primary text-primary-foreground border-primary hover:bg-primary/80"
+          "bg-primary text-primary-foreground border-primary hover:bg-primary/90"
         ),
 
         // Translucent background with crisp border
         outline: cn(
-          "bg-primary/10 border-border text-foreground",
-          "hover:bg-primary/25",
-          "aria-expanded:bg-muted aria-expanded:text-foreground",
-          "dark:border-primary dark:bg-primary/5 dark:hover:bg-primary/15"
+          "bg-background border-border text-foreground",
+          "hover:bg-accent hover:text-accent-foreground",
+          "aria-expanded:bg-accent aria-expanded:text-accent-foreground"
         ),
 
         // Secondary subtle background theme
         secondary: cn(
-          "border-white bg-secondary text-secondary-foreground",
-          "hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)]",
-          "aria-expanded:bg-secondary aria-expanded:text-secondary-foreground"
+          "border-transparent bg-secondary text-secondary-foreground",
+          "hover:bg-secondary/80",
+          "aria-expanded:bg-secondary/80 aria-expanded:text-secondary-foreground"
         ),
 
         // Borderless hover-only background
         ghost: cn(
-          "hover:bg-muted hover:text-foreground",
-          "aria-expanded:bg-muted aria-expanded:text-foreground",
-          "dark:hover:bg-muted/50"
+          "hover:bg-accent hover:text-accent-foreground",
+          "aria-expanded:bg-accent aria-expanded:text-accent-foreground"
         ),
 
         // Destructive / Danger actions
         destructive: cn(
-          "bg-destructive text-destructive-foreground hover:bg-destructive/20",
-          "focus-visible:border-destructive/40 focus-visible:ring-destructive/20",
-          "dark:bg-destructive/50 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40"
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+          "focus-visible:border-destructive/40 focus-visible:ring-destructive/20"
         ),
 
         // Inline text link styling
         link: cn(
-          "text-foreground underline-offset-4 hover:underline hover:text-background"
+          "text-forground underline-offset-4 font-semibold",
         ),
+        
+        navlink: cn(),
 
         toggle: cn(
           "focus-visible:border-0 focus-visible:ring-0 focus-visible:ring-muted",
@@ -91,6 +89,10 @@ export const buttonVariants = cva(
         "icon-xs": "size-6 rounded-[min(var(--radius-md),10px)] [&_svg:not([class*='size-'])]:size-3",
         "icon-sm": "size-7 rounded-[min(var(--radius-md),12px)]",
         "icon-lg": "size-9",
+      },
+
+      underline:{
+        hover: "hover:underline",
       },
 
       withIcon: {
@@ -140,6 +142,7 @@ export function Button({
   variant,
   size,
   fullWidth,
+  underline,
   icon,
   iconPosition = "start",
   text,
@@ -158,7 +161,7 @@ export function Button({
       className={cn(
         buttonVariants({
           variant,
-          size,
+          size, underline,
           withIcon: hasIcon && hasText,
           textAt: showTextAt, rounded,
           fullWidth: Boolean(fullWidth),
@@ -189,7 +192,7 @@ type ButtonsType = VariantProps<typeof ButtonsVariants> & {
 
 const ButtonsVariants = cva(
     [
-        "flex flex-wrap gap-6 align-center justify-center",
+        "flex flex-wrap gap-4 md:gap-6 align-center justify-center",
     ],
     {
         variants: {
@@ -228,8 +231,8 @@ export type DownloadBtnType = ButtonType & HrefType & {
 
 export function DownloadBtn({ href, file_name, className, ...props }: DownloadBtnType) {
   return (
-    <a href={href} download={file_name} 
-      className={cn("grow", className)} role="download-btn">
+    <a href={href} download={file_name} tabIndex={-1}
+      className={cn(className)} role="download-btn">
 
       <Button {...props} 
         icon={<Download size={20} />} className="w-full" />
@@ -242,7 +245,7 @@ export type PageBtnType = ButtonType & HrefType & {onClick?: () => void};
 
 export function PageBtn({ href, className, icon, onClick, ...props }: PageBtnType) {
   return (
-    <Link href={href} onClick={onClick}
+    <Link href={href} onClick={onClick} tabIndex={-1}
       className={cn(className)}>
 
       <Button {...props} icon={icon} className="w-full" />
@@ -259,7 +262,7 @@ export function AnchorBtn({ href, className, icon, onClick, ...props }: PageBtnT
 
   return (
     <a href={href} onClick={(e) => {e.preventDefault(); scrollToId()}}
-      className={cn("grow", className)} >
+      className={cn(className)} tabIndex={-1} >
 
       <Button {...props} icon={icon} className="w-full" />
     </a>
@@ -272,7 +275,7 @@ export type OpenBtnType = ButtonType & HrefType;
 export function OpenBtn({ href, className, ...props }: OpenBtnType) {
   return (
     <a href={href} target="_blank" rel="noopener noreferrer"
-      className={cn(className)} >
+      className={cn(className)} tabIndex={-1} >
 
       <Button {...props} 
         icon={<ExternalLink size={20} />} className="w-full" />

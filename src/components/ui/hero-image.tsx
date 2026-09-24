@@ -4,7 +4,7 @@ import { Image, ImageVariants, type ImageCompType } from "./image"
 import { cva, type VariantProps } from "class-variance-authority";
 
 const heroImageVariants = cva(
-    "w-full flex items-center",
+    "w-full flex items-center text-foreground",
     {
         variants: {
             justify: justify,
@@ -32,7 +32,7 @@ export function HeroImage({
     return (
         <div className={cn(heroImageVariants({
             justify, xsJustify, smJustify, mdJustify, lgJustify
-        }))}>
+        }), className)}>
             <Image {...props} src={src} alt={alt} 
                 xsSm={"lg"} md={"sm"} lg={"xxl"} fluid />
         </div>

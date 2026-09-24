@@ -9,7 +9,7 @@ export type QuoteType = {
 };
 
 const quoteVariants = cva(
-  "p-8 md:p-10 text-xs md:text-sm",
+  "p-8 md:p-10 text-xs md:text-sm text-foreground",
   {
     variants: {
       variant: {

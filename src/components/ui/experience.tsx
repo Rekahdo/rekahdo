@@ -13,8 +13,8 @@ const experienceVariants = cva(
     variants: {
       variant: {
         normal: cn("group flex flex-col items-center justify-center gap-2 rounded-xl", 
-          "border border-border bg-card py-6 px-8 sm:px-10 text-center", hover.outline),
-        inline: "flex-row items-baseline justify-start gap-3 p-0 border-0 bg-transparent text-left",
+          "border border-border bg-card text-card-foreground py-6 px-8 sm:px-10 text-center", hover.outline),
+        inline: "flex flex-row items-baseline justify-start gap-3 p-0 border-0 bg-transparent text-left",
       },
     },
     defaultVariants: {

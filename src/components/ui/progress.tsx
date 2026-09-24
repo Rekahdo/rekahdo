@@ -7,17 +7,17 @@ function Progress({
   children,
   value,
   ...props
-}: ProgressPrimitive.Root.Props & {barClassName?: string}) {
+}: ProgressPrimitive.Root.Props & { barClassName?: string }) {
   return (
     <ProgressPrimitive.Root
       value={value}
       data-slot="progress"
-      className={cn("flex flex-wrap gap-3", className)}
+      className={cn("flex flex-wrap gap-3 text-foreground", className)}
       {...props}
     >
       {children}
       <ProgressTrack>
-        <ProgressIndicator className={barClassName}/>
+        <ProgressIndicator className={barClassName} />
       </ProgressTrack>
     </ProgressPrimitive.Root>
   )
@@ -52,7 +52,7 @@ function ProgressIndicator({
 function ProgressLabel({ className, ...props }: ProgressPrimitive.Label.Props) {
   return (
     <ProgressPrimitive.Label
-      className={cn("text-sm font-medium", className)}
+      className={cn("text-sm font-medium text-foreground", className)}
       data-slot="progress-label"
       {...props}
     />

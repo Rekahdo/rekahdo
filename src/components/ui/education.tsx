@@ -16,7 +16,7 @@ export type EducationType = {
 
 const educationVariants = cva(
   [
-  "group relative flex flex-col overflow-hidden rounded-xl border border-border bg-card text-card-foreground ",
+  "group relative flex flex-col overflow-hidden rounded-xl border border-border bg-card text-card-foreground",
   shadow.sm, hover.outline
   ],
   {
@@ -56,7 +56,7 @@ function Education({
 
         <header className="flex justify-between gap-3 items-center">
           <div className="flex items-center gap-3">
-            <div className="flex size-11 shrink-0 items-center justify-center rounded-lg border border-border bg-background p-1.5">
+            <div className="flex size-11 shrink-0 items-center justify-center rounded-lg border border-border bg-muted/50 p-1.5">
               <Image
                 src={logo}
                 alt={`${institution} logo`}
@@ -76,7 +76,7 @@ function Education({
 
         {/* Course title */}
         <div className="space-y-1">
-          <h3 className="flex items-start gap-2 text-base font-semibold leading-snug text-foreground">
+          <h3 className="flex items-start gap-2 text-base font-semibold leading-snug text-card-foreground">
             <GraduationCap className="mt-0.5 size-4 shrink-0 text-primary" />
             <span>{course}</span>
           </h3>
@@ -98,7 +98,7 @@ function Education({
 }
 
 /* ------------------------------------------------------------------ */
-/* Education Grid                                                      */
+/* Education Grid                                                     */
 /* ------------------------------------------------------------------ */
 
 const educationsVariants = cva("", {

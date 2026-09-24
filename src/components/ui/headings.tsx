@@ -3,7 +3,7 @@ import { cn } from "cn";
 import type { ElementType, ReactNode } from "react";
 import { align, fontWeight, foreground, lgAlign, mdAlign, smAlign, textcase, textsize, xsAlign, } from "./css-types";
 
-const wrapperVariants = cva("flex flex-col", {
+const wrapperVariants = cva("flex flex-col text-foreground", {
     variants: {
         align: align,
         xsAlign: xsAlign,
@@ -13,7 +13,7 @@ const wrapperVariants = cva("flex flex-col", {
     },
 });
 
-const titleVariants = cva("flex items-center gap-4", {
+const titleVariants = cva("flex items-center gap-4 text-foreground", {
     variants: {
         size: {
             h1: "text-4xl sm:text-5xl",
@@ -34,7 +34,7 @@ const titleVariants = cva("flex items-center gap-4", {
     },
 });
 
-const subtitleVariants = cva("mt-4", {
+const subtitleVariants = cva("mt-4 text-muted-foreground", {
     variants: {
         size: textsize,
         case: textcase,

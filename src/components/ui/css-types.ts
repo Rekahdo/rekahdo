@@ -17,13 +17,13 @@ export const background = {
   background: "bg-background text-foreground",
   muted: "bg-muted text-muted-foreground",
   secondary: "bg-secondary text-secondary-foreground",
-  red: "bg-red-300",
+  destructive: "bg-destructive text-destructive-foreground",
 };
 
 export const foreground = {
   default: "text-foreground",
   gradient:
-    "bg-gradient-to-tr from-red-500 to-cyan-400 bg-clip-text text-transparent",
+    "bg-gradient-to-tr from-primary to-accent bg-clip-text text-transparent",
 };
 
 export const border = {
@@ -89,10 +89,9 @@ export const rounded = {
 };
 
 export const hover = {
-  outline:cn(
+  outline: cn(
     "transition-all duration-300 hover:border-primary/40 hover:-translate-y-1 hover:shadow-lg",
   )
-
 };
 
 export const shadow = {

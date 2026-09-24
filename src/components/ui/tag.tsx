@@ -5,13 +5,13 @@ import { justify } from "./css-types";
 
 const TagVariant = cva(
   [
-  "inline-flex items-center gap-1.5 whitespace-nowrap font-medium transition-colors", 
+    "inline-flex items-center gap-1.5 whitespace-nowrap font-medium transition-colors text-foreground", 
   ],
   {
     variants: {
       variant: {
         outline:
-          "border-2 border-border bg-transparent text-foreground hover:border-primary/50 hover:text-primary",
+          "border-2 border-border bg-transparent hover:border-primary/50 hover:text-primary",
         filled:
           "border-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/90",
         soft:
@@ -100,14 +100,14 @@ export function Tags({
   if (!tags?.length) return null;
 
   return (
-      <div
-        role="list"
-        aria-label="Tags"
-        className={cn(TagsVariant({ justify, gap }), className)}
-      >
-        {tags.map((tag, i) => (
-          <Tag key={`${tag.text}-${i}`} variant={variant} size={size} shape={shape} {...tag} />
-        ))}
-      </div>
+    <div
+      role="list"
+      aria-label="Tags"
+      className={cn(TagsVariant({ justify, gap }), className)}
+    >
+      {tags.map((tag, i) => (
+        <Tag key={`${tag.text}-${i}`} variant={variant} size={size} shape={shape} {...tag} />
+      ))}
+    </div>
   );
 }

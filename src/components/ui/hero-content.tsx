@@ -9,7 +9,7 @@ import type { Buttons } from "../ui/button";
 import { justify, lgJustify, mdJustify, smJustify, xsJustify } from "./css-types";
 
 export const heroContentVariants = cva(
-    cn("w-full grid gap-6 lg:gap-8"),
+    cn("w-full grid gap-6 lg:gap-8 text-foreground"),
     {
         variants: {
             justify: justify,

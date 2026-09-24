@@ -11,7 +11,7 @@ type ClassNameType = {
 }
 
 const BadgeTextVariant = cva(
-    "font-medium text-primary uppercase ",
+    "font-medium text-primary uppercase",
     {
         variants: {
             variant: {
@@ -73,7 +73,7 @@ export function Greeting({ text, variant, className }: TextType & ClassNameType 
 }
 
 const RoleVariant = cva(
-    "font-medium",
+    "font-medium text-foreground",
     {
         variants: {
             variant: {
@@ -108,7 +108,7 @@ export function Role({ text, variant, className }: TextType & ClassNameType & Va
 }
 
 const DescriptionVariant = cva(
-    "text-foreground/50 max-md:w-[100%] max-lg:w-[80%]",
+    "text-muted-foreground max-md:w-[100%] max-lg:w-[80%]",
     {
         variants: {
             variant: {
@@ -143,7 +143,7 @@ export function Description({ text, variant, className }: TextType & ClassNameTy
 }
 
 const SocialProfTextVariant = cva(
-    "flex items-center flex-wrap max-lg:justify-center gap-4",
+    "flex items-center flex-wrap max-lg:justify-center gap-4 text-foreground",
     {
         variants: {
             variant: {
@@ -170,16 +170,16 @@ export function SocialProfText({ count, variant, className }: { count: number } 
             {
                 <div className={cn(SocialProfTextVariant({ variant, className }))}>
                     <div className="flex -space-x-2">
-                        <img className="w-10 h-10 rounded-full border-2 border-white" src="https://readymadeui.com/team-1.webp"
+                        <img className="w-10 h-10 rounded-full border-2 border-background object-cover" src="https://readymadeui.com/team-1.webp"
                             alt="team img-1" />
-                        <img className="w-10 h-10 rounded-full border-2 border-white" src="https://readymadeui.com/team-2.webp"
+                        <img className="w-10 h-10 rounded-full border-2 border-background object-cover" src="https://readymadeui.com/team-2.webp"
                             alt="team img-2" />
-                        <img className="w-10 h-10 rounded-full border-2 border-white" src="https://readymadeui.com/team-3.webp"
+                        <img className="w-10 h-10 rounded-full border-2 border-background object-cover" src="https://readymadeui.com/team-3.webp"
                             alt="team img-3" />
                     </div>
-                    <div className="text-slate-600 text-base dark:text-slate-400">
+                    <div className="text-muted-foreground text-base">
                         Over
-                        <span className="font-semibold"> {formatNumber(count)} </span>
+                        <span className="font-semibold text-foreground"> {formatNumber(count)} </span>
                         Professionals trust us
                     </div>
                 </div>
@@ -189,6 +189,6 @@ export function SocialProfText({ count, variant, className }: { count: number } 
 }
 
 export type LocationType = {
-        state: string;
+    state: string;
     country: string;
 }

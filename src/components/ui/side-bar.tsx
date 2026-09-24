@@ -9,7 +9,7 @@ import { useWidthMedia } from "../../hooks/useMedia";
 import { AnchorBtn, type PageBtnType } from "./button";
 
 const sideBarVariants = cva(
-    "",
+    "text-foreground",
     {
         variants: {
             variant: {
@@ -23,7 +23,7 @@ const sideBarVariants = cva(
 )
 
 const sideBarTriggerVariants = cva(
-    "inline-flex items-center justify-center rounded-md p-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring hover:bg-accent hover:text-accent-foreground",
+    "inline-flex items-center justify-center rounded-md p-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring hover:bg-accent hover:text-accent-foreground text-foreground",
     {
         variants: {
             size: {
@@ -120,7 +120,7 @@ export function SideBar({
                             {description && <SheetDescription className="ps-4 pb-4">{description}</SheetDescription>}
 
                             {((logo || top || title || description) && links) &&
-                                <hr className="my-4" />}
+                                <hr className="my-4 border-border" />}
 
                             {links &&
                                 <nav aria-label="Mobile navigation links"

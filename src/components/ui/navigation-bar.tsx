@@ -22,11 +22,7 @@ const navigationBarVariants = cva(
 export const navigationLinkVariants = cva(
     cn(
         navigationMenuTriggerStyle(),
-        "font-semibold text-foreground",
-        "hover:bg-primary/70 hover:text-primary-foreground",
-        "active:bg-primary active:text-primary-foreground",
-        "focus:bg-primary/10 focus:text-foreground",
-        "transition-colors"
+        "hover:text-primary hover:bg-primary/5",
     ),
     {
         variants: {
@@ -68,8 +64,8 @@ export const navigationLinkVariants = cva(
     }
 );
 
-export type NavigationBarProps = VariantProps<typeof navigationBarVariants> 
-    & VariantProps<typeof navigationLinkVariants> & 
+export type NavigationBarProps = VariantProps<typeof navigationBarVariants>
+    & VariantProps<typeof navigationLinkVariants> &
 {
     links: PageBtnType[];
     className?: string;
@@ -87,7 +83,7 @@ export function NavigationBar({
     return (
         <NavigationMenu className={cn(navigationBarVariants({
             navbarPosition
-        }))}>
+        }), className)}>
 
             <NavigationMenuList>
                 {links.map((link, i) =>
@@ -131,8 +127,8 @@ function NavigationItem({
                     }),
                     className
                 )}
-                render={<AnchorBtn text={text} href={href} 
-                    onClick={onClick} variant={"link"} />
+                render={<AnchorBtn text={text} href={href}
+                    onClick={onClick} variant={"navlink"} />
                 }>
             </NavigationMenuLink>
         </NavigationMenuItem>

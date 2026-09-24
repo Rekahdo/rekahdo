@@ -1,10 +1,11 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
 import type { ElementType, ReactNode } from "react";
+import { align, justify } from "./css-types";
 
 
 const flexVariants = cva(cn
-    ("flex max-lg:gap-6 lg:gap-8"),
+    ("flex max-lg:gap-6 lg:gap-8 text-foreground"),
     {
         variants: {
             direction: {
@@ -27,9 +28,11 @@ const flexVariants = cva(cn
                 row: "lg:flex-row",
                 col: "lg:flex-col",
             },
+            justify: justify,
+            align: align,
         },
-        defaultVariants:{
-            direction:'col'
+        defaultVariants: {
+            direction: 'col'
         }
     }
 );
@@ -70,7 +73,7 @@ export const flexTopVariants = cva(
             }
         },
         defaultVariants: {
-            position:'top',
+            position: 'top',
         }
     }
 );
@@ -80,34 +83,39 @@ type FlexCompType = VariantProps<typeof flexVariants>
 {
     className?: string;
     top: ReactNode;
+    topClassName?: string;
     bottom?: ReactNode;
+    bottomClassName?: string;
     as?: ElementType;
 }
 
 export function Flex({
     className,
-    top, bottom,
-    as: Tag="section",
+    top, topClassName,
+    bottom, bottomClassName,
+    as: Tag = "section",
+    justify, align,
     direction, xsDirection, smDirection, mdDirection, lgDirection,
     position, xsPosition, smPosition, mdPosition, lgPosition
 }: FlexCompType) {
     return (
         <Tag data-slot="flex-container"
             className={cn(flexVariants({
+                justify, align,
                 direction, xsDirection, smDirection, mdDirection, lgDirection,
             }), className)}>
 
-            {top && 
+            {top &&
                 <div className={cn(flexTopVariants({
-                    position, xsPosition, smPosition, 
+                    position, xsPosition, smPosition,
                     mdPosition, lgPosition
-                }))}>
+                }), topClassName)}>
                     {top}
                 </div>
             }
-            
+
             {bottom &&
-                <div className="flex items-center justify-center">
+                <div className={cn("flex items-center justify-center", bottomClassName)}>
                     {bottom}
                 </div>
             }
@@ -120,7 +128,7 @@ export function Flex({
 
 
 const gridVariants = cva(cn
-    ("max-lg:gap-6 lg:gap-8"),
+    ("max-lg:gap-6 lg:gap-8 text-foreground"),
     {
         variants: {
             cols: {
@@ -143,9 +151,11 @@ const gridVariants = cva(cn
                 one: "lg:flex lg:flex-col",
                 two: "lg:grid lg:grid-cols-2",
             },
+            justify: justify,
+            align: align,
         },
-        defaultVariants:{
-            cols:'one'
+        defaultVariants: {
+            cols: 'one'
         }
     }
 );
@@ -155,34 +165,39 @@ type GridCompType = VariantProps<typeof gridVariants>
 {
     className?: string;
     top: ReactNode;
+    topClassName?: string;
     bottom?: ReactNode;
+    bottomClassName?: string;
     as?: ElementType;
 }
 
 export function Grid({
     className,
-    top, bottom,
-    as: Tag="section",
+    top, topClassName,
+    bottom, bottomClassName,
+    as: Tag = "section",
+    justify, align,
     cols, xsCols, smCols, mdCols, lgCols,
     position, xsPosition, smPosition, mdPosition, lgPosition
 }: GridCompType) {
     return (
         <Tag data-slot="grid-container"
             className={cn(gridVariants({
+                justify, align,
                 cols, xsCols, smCols, mdCols, lgCols,
             }), className)}>
 
-            {top && 
+            {top &&
                 <div className={cn(flexTopVariants({
-                    position, xsPosition, smPosition, 
+                    position, xsPosition, smPosition,
                     mdPosition, lgPosition
-                }))}>
+                }), topClassName)}>
                     {top}
                 </div>
             }
-            
+
             {bottom &&
-                <div className="flex items-center justify-center">
+                <div className={cn("flex items-center justify-center", bottomClassName)}>
                     {bottom}
                 </div>
             }
