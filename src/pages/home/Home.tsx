@@ -19,7 +19,7 @@ export const Home = () => {
 
                     {/* START */}
                     
-                    <InDevelopmentTag position='bottom-right'/>
+                    <InDevelopmentTag />
                     <HeaderSection />
                     <HeroSection />
                     <main>

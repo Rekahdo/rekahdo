@@ -9,7 +9,7 @@ interface InDevelopmentTagProps {
 
 const positionClasses: Record<NonNullable<InDevelopmentTagProps['position']>, string> = {
   'top-left': 'top-5 left-5',
-  'top-right': 'top-5 right-5',
+  'top-right': 'top-20 right-0 md:top-25 md:right-5',
   'bottom-left': 'bottom-5 left-5',
   'bottom-right': 'bottom-5 right-5',
 };
@@ -30,7 +30,7 @@ const InDevelopmentTag: React.FC<InDevelopmentTagProps> = ({
         'flex items-center gap-2',
         'bg-foreground/50 text-background',
         'px-4 py-2 rounded-full',
-        'text-xs max-sm:scale-80 sm:text-sm font-semibold uppercase tracking-wider',
+        'text-xs max-md:scale-80 sm:text-sm font-semibold uppercase tracking-wider',
         'shadow-lg shadow-slate-900/25',
         'border border-white/10 backdrop-blur-sm',
         'pointer-events-none select-none',
