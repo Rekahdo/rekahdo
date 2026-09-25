@@ -99,7 +99,7 @@ export function MultiToggle({
         <div onClick={rootToggle ? () => toggle() : undefined}
             className={cn(
                 "inline-flex items-center gap-1 rounded-full text-foreground",
-                "border border-border/60 bg-background/10 dark:bg-background/40 p-1 backdrop-blur-md",
+                "border border-border/60 bg-background/80 dark:bg-background/40 p-1 backdrop-blur-md",
                 className
             )}>
 
