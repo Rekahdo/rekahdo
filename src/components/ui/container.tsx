@@ -42,8 +42,9 @@ const containerVariants = cva(
             justify: justify,
             rounded: rounded,
             bgImage: {
-                hero: "bg-[url(/images/bg/r.svg)] bg-no-repeat bg-left-bottom bg-contain",
-                about: "bg-[url(/images/bg/e.svg)] bg-no-repeat bg-right-bottom bg-contain",
+                hero: "bg-[url(/images/bg/hero.svg)] bg-no-repeat bg-left-bottom bg-scroll",
+                about: "bg-[url(/images/bg/e.svg)] bg-no-repeat bg-right-bottom bg-scroll",
+                stack: "bg-[url(/images/bg/k.svg)] bg-no-repeat bg-left-bottom bg-fixed",
             }
 
         },

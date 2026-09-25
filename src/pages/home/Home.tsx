@@ -1,3 +1,4 @@
+import InDevelopmentTag from '../../components/ui/in-development'
 import { AboutProvider } from '../../contexts/AboutProvider'
 import { HeaderProvider } from '../../contexts/HeaderProvider'
 import { HeroProvider } from '../../contexts/HeroProvider'
@@ -18,6 +19,7 @@ export const Home = () => {
 
                     {/* START */}
                     
+                    <InDevelopmentTag position='bottom-right'/>
                     <HeaderSection />
                     <HeroSection />
                     <main>

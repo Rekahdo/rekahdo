@@ -270,7 +270,7 @@ export function TechCards({ languages, className }: TechCardsType) {
             top={
                 <div className="flex grow justify-between items-center">
                     <Select items={tiers} defaultValue={tiers[0].value} onValueChange={selectFilter}>
-                        <SelectTrigger className="w-fit sm:min-w-45 border border-border/60 bg-background/10 dark:bg-background/40 backdrop-blur-md">
+                        <SelectTrigger className="w-fit sm:min-w-45 border border-border/60 bg-background/80 dark:bg-background/40 backdrop-blur-md">
                             <SelectValue className={"capitalize text-foreground font-medium"}/>
                         </SelectTrigger>
                         <SelectContent>

@@ -45,6 +45,14 @@ export const techStacksData: TechStackType = {
       usages: ["Utility-First CSS", "CVA Variants", "Design Tokens", "Dark Mode"],
     },
     {
+      name: "Class Variance Authority (CVA)",
+      iconSrc: "/images/stack/cva.svg",
+      percentage: 85,
+      description:
+        "Constructing type-safe, highly composable UI component variants alongside Tailwind CSS and custom component libraries.",
+      usages: ["Component Variants", "Type-Safe Props", "Tailwind Integration", "Design Systems"],
+    },
+    {
       name: "HTML 5",
       iconSrc: "/images/stack/html.svg",
       percentage: 75,
