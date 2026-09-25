@@ -145,12 +145,36 @@ export const techStacksData: TechStackType = {
       usages: ["Relational DB", "Schema Design", "SQL", "Flyway Migrations"],
     },
     {
+      name: "MongoDB",
+      iconSrc: "/images/stack/mongo.svg",
+      percentage: 5,
+      description:
+        "Basic experience with NoSQL document-based database operations, collections, and JSON schema modeling.",
+      usages: ["NoSQL DB", "Document Storage", "Schema Modeling"],
+    },
+    {
       name: "IntelliJ IDEA",
       iconSrc: "/images/stack/intellij.svg",
       percentage: 30,
       description:
         "Primary IDE for Java and Spring Boot development, leveraging built-in profiling, database tools, refactoring features, and Maven/Gradle integration.",
       usages: ["Java / Spring Boot IDE", "Backend Development", "Refactoring & Debugging"],
+    },
+    {
+      name: "WebStorm",
+      iconSrc: "/images/stack/webstorm.svg",
+      percentage: 5,
+      description:
+        "JetBrains IDE environment for JavaScript and TypeScript development, featuring smart code completion and integrated developer tools.",
+      usages: ["Frontend IDE", "JavaScript", "TypeScript"],
+    },
+    {
+      name: "Junie",
+      iconSrc: "/images/stack/junie.svg",
+      percentage: 5,
+      description:
+        "Exploration and integration of Junie tooling into active development workflows for code generation and workspace assistance.",
+      usages: ["AI Coding Assistant", "Developer Tooling", "Workflow Optimization"],
     },
     {
       name: "Java",
