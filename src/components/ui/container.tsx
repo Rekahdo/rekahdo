@@ -32,7 +32,7 @@ const containerVariants = cva(
                 sm: "px-3 sm:px-5 md:px-7 lg:px-9",
             },
             minWidth: {
-                default: "min-w-[300px]",
+                default: "min-w-75",
                 none: "",
             },
             bg: background,
