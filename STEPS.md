@@ -6,3 +6,4 @@ turbopackFileSystemCacheForDev: true
 
 Convex installation
 doc: https://docs.convex.dev/quickstart/nextjs
+after steps: pnpm dlx convex dev
