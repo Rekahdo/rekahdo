@@ -16,3 +16,7 @@ cmd: pnpm dlx shadcn@latest init
 React Hook Form Installation
 doc: https://react-hook-form.com/get-started#Quickstart
 cmd: pnpm install react-hook-form
+
+Lucide React Icon
+doc: https://lucide.dev/icons
+cmd: install lucide-react 
