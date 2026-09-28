@@ -30,6 +30,11 @@ Controller Input: https://react-hook-form.com/get-started#IntegratingControlledI
 Schema Validation: https://react-hook-form.com/get-started#SchemaValidation
 
 
+Zod
+doc: https://zod.dev/
+cmd: install zod
+
+
 Shadcn UI
 Doc: https://ui.shadcn.com/
 

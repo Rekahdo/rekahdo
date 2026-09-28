@@ -17,6 +17,10 @@ React Hook Form Installation
 doc: https://react-hook-form.com/get-started#Quickstart
 cmd: pnpm install react-hook-form
 
+Zod
+doc: https://zod.dev/
+cmd: pnpm install zod
+
 Lucide React Icon
 doc: https://lucide.dev/icons
 cmd: install lucide-react 
