@@ -1,0 +1,21 @@
+{
+  "tailwindCSS.classFunctions": [
+    "cva",
+    "cn",
+    "clsx",
+    "twMerge"
+  ],
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^;]*)[\\);]", "['\"`]([^\"'`]*)[`'\"`]"],
+    ["cn\\(([^)]*)\\)", "['\"`]([^\"'`]*)[`'\"`]"],
+    ["clsx\\(([^)]*)\\)", "['\"`]([^\"'`]*)[`'\"`]"]
+  ],
+  "tailwindCSS.includeLanguages": {
+    "typescript": "javascript",
+    "typescriptreact": "javascript"
+  },
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "tailwindCSS.experimental.configFile": "src/index.css"
+}
