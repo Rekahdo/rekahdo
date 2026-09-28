@@ -7,3 +7,7 @@ turbopackFileSystemCacheForDev: true
 Convex installation
 doc: https://docs.convex.dev/quickstart/nextjs
 after steps: pnpm dlx convex dev
+
+Shadcn UI Installation
+doc: https://ui.shadcn.com/docs/installation/next
+cmd: pnpm dlx shadcn@latest init
