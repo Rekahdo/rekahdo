@@ -1,11 +1,10 @@
-@import "/styles/font.css";
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Baloo+2:wght@400;500;600;700&family=Inknut+Antiqua:wght@500;900&display=swap');
 @import "tailwindcss";
-@import "/styles/theme.css";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/geist";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
 
 :root {
   --background: oklch(0.99 0.005 240);
