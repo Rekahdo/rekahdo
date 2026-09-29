@@ -25,6 +25,10 @@ Lucide React Icon
 doc: https://lucide.dev/icons
 cmd: install lucide-react 
 
+Shadcn Dark Theme
+doc: https://ui.shadcn.com/docs/dark-mode/next
+cmd: pnpm add next-themes
+
 Shadcn UI Component Installation
 button: pnpm dlx shadcn@latest add button
 aspect-ratio: pnpm dlx shadcn@latest add aspect-ratio
