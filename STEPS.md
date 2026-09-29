@@ -5,7 +5,7 @@ Turbor Pack Configuration  ```next.config.ts```
 config: turbopackFileSystemCacheForDev: true
 
 Convex installation
-doc: https://docs.convex.dev/quickstart/nextjs
+doc: https://docs.convex.dev/quickstart/nextjs 
 cmd after steps: pnpm dlx convex dev
 dashboard: https://dashboard.convex.dev/
 
