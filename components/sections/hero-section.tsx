@@ -36,7 +36,7 @@ export const HeroSection = () => {
                     id="hero"
                     py={"section"}
                     min-height={'hero'}
-                    background={'muted'}
+                    background={'background'}
                     className="scroll-mt-20 "
                 >
 

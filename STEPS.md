@@ -52,3 +52,23 @@ sonner: pnpm dlx shadcn@latest add sonner
 avatar: pnpm dlx shadcn@latest add avatar
 skeleton: pnpm dlx shadcn@latest add skeleton
 hover-card: pnpm dlx shadcn@latest add hover-card
+
+
+
+
+
+
+
+
+DEPLOYMENT ON VERCEL
+doc: https://docs.convex.dev/production/hosting/vercel
+1. Navigate to project dashboard on Convex
+2. Navigate to general in settings
+3. Create deploy key and check `deployment:deploy`
+4. Copy deploy key and head to vercel
+5. Create new project deployment 
+6. Expand `Build and Output Settings`
+7. Enable `Build Command` and paste in command `pnpm convex deploy --cmd 'npm run build'`
+8. Expand `Environment Variables`
+9. First variable name `CONVEX_DEPLOY_KEY` and paste copied `Deploy Key` in the value
+10. Import Environment variables from project and deploy
