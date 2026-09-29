@@ -1,6 +1,6 @@
-import type { PageBtnType } from "../components/ui/button";
+import { LinkType } from "@/components/shared-ui/navigation";
 
-export const links = {
+export const linksData = {
   home: {
     text: "Home",
     href: "home",
@@ -21,4 +21,4 @@ export const links = {
     text: "Contact Me",
     href: "contact",
   },
-} as const satisfies Record<string, PageBtnType>;
+} as const satisfies Record<string, LinkType>;

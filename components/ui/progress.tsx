@@ -5,20 +5,21 @@ import { cn } from "cn"
 
 function Progress({
   className,
+  barClassName,
   children,
   value,
   ...props
-}: ProgressPrimitive.Root.Props) {
+}: ProgressPrimitive.Root.Props & { barClassName?: string }) {
   return (
     <ProgressPrimitive.Root
       value={value}
       data-slot="progress"
-      className={cn("flex flex-wrap gap-3", className)}
+      className={cn("flex flex-wrap gap-3 text-foreground", className)}
       {...props}
     >
       {children}
       <ProgressTrack>
-        <ProgressIndicator />
+        <ProgressIndicator className={barClassName} />
       </ProgressTrack>
     </ProgressPrimitive.Root>
   )

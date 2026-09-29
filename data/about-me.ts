@@ -1,6 +1,6 @@
-import type { AboutType } from "../sections/about/AboutSection";
+import { AboutProps } from "@/components/sections/about-section";
 
-export const aboutMeData: AboutType = {
+export const aboutMeData: AboutProps = {
   title: "About me",
   headline: "Frontend-Focused Engineer with Full-Stack Perspective",
   bio: "I am a Frontend Developer dedicated to building fast, scalable, and modular web applications using React, TypeScript, and modern CSS Frameworks. My engineering journey began on the backend, where working deeply with Java and Spring Boot instilled a strong foundation in Object-Oriented Programming (OOP) and system design. \n\nThat mindset directly shapes how I write client-side code today. I approach UI development by encapsulating logic and state into clean, reusable, object-like components designed for scalability and maintainability. \n\nBeyond frontend architecture, my background designing RESTful APIs, microservices, and databases allows me to bridge client-side interfaces with backend systems effortlessly. I am currently expanding my modern full-stack toolkit with Next.js, combining interactive React components with server-side capabilities.",

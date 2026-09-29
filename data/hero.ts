@@ -1,7 +1,7 @@
-import type { HeroType } from "../sections/hero/HeroSection";
-import { anchorData, downloadCVData } from "./button";
+import { HeroProps } from "@/components/sections/hero-section";
+import { headerData } from "./header";
 
-export const heroData: HeroType = {
+export const heroData: HeroProps = {
   badge: "developer that help your business grow",
   greetings: "Hi there, I'm",
   fullName: "RICHARD T. OKAFOR",
@@ -12,19 +12,11 @@ export const heroData: HeroType = {
     alt: "richard okafor",
     src: "/images/me/hero-section.png",
   },
-  location: {
-    
-    state: "Lagos",
-    country: "Nigeria",
-  },
+  location: "Lagos Nigeria",
   tags: [
     { text: "Clean-Code" }, 
     { text: "Object Oriented" },
     { text: "Component Based" },
   ],
-  buttons: {
-    downloadCV: downloadCVData, 
-    contact: anchorData.contact,
-    techStack: anchorData.techStack,
-  },
+  downloadCV: headerData.downloadCV, 
 };

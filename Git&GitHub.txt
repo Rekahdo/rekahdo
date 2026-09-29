@@ -1,0 +1,80 @@
+IF GIT NOT EXIST
+Add / initialize Git to project
+- git init
+
+Rename the current default branch called 'master' to 'main' (Recommended)
+- git branch -m main
+
+Add a new branch to the current branch
+- git branch user
+
+Switch to an existing branch
+- git checkout branch-name
+
+Add a new branch to a branch 'user' in the 'main' branch
+- git branch branch-name user
+
+Add and switch to branch at once
+- git checkout -b branch-name
+
+Add all files to current branch
+- git add .
+
+Add specific file to current branch
+- git add file-name
+
+Commit/save the current branch. -m means message
+- git commit -m "first commit"
+
+Connect project git to GitHub repo
+- git remote add origin github-repo-url
+    
+IF BRANCH EXISTS IN GITHUB? 
+    - git push
+ELSE
+    - git push -u origin current-branch-name
+
+Clone a GitHub repo local storage
+- git clone repo-url
+
+Update the current branch with a GitHub branch
+- git pull origin github-branch-name
+
+Update vs code project 
+- git pull
+
+Update git branch with GitHub branch
+- git fetch origin
+
+
+
+
+
+
+OTHER GIT COMMAND
+View commits in current branch
+- git log
+
+View uncommitted files in current branch		
+- git status
+
+Switch to a commit in the current branch
+- git checkout 'commit-hash'
+
+Merge 2 branches.
+Switch to the branch you want to modify
+- git checkout branch-with-code-error
+- git merge branch-with-code-fixed
+
+Remove last commit
+- git reset --hard HEAD~1
+
+
+
+HOW TO REVERSE COMMIT DELETION
+Note, last commit begins from the 2nd item in the list
+Find removed commit and copy its 7 digit hash code
+- git reflog
+
+Restore that commit with its hash code
+- git reset --hard ccc7ad2
