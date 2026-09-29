@@ -23,12 +23,6 @@ const quoteVariants = cva(
         gradient:
           "rounded-2xl p-6 md:p-8 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-border",
       },
-      size: textsize,
-      align: textAlign,
-    },
-    defaultVariants: {
-      variant: "normal",
-      align: "start",
     },
   }
 );
@@ -43,18 +37,15 @@ export function Quote({
   author,
   role,
   variant,
-  size,
-  align,
   className,
 }: QuoteCompType) {
   const isFilled = variant === "filled";
 
   return (
-    <figure className={cn(quoteVariants({ variant, size, align }), className)}>
+    <figure className={cn(quoteVariants({ variant }), className)}>
       <blockquote
         className={cn(
-          "relative italic",
-          align === "center" && "mx-auto max-w-2xl"
+          "relative italic"
         )}
       >
         <p>

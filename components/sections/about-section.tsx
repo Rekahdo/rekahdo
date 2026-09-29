@@ -8,8 +8,9 @@ import { Educations, EducationType } from "../app-ui/education";
 import { Tags, TagType } from "../app-ui/tag";
 import { useAbout } from "@/contexts/AboutProvider";
 import { Container } from "../shared-ui/container";
-import { H2, H3, H4 } from "../shared-ui/headings";
+import { H2, H3, H4, HeaderVariants as HeaderVariants } from "../shared-ui/headings";
 import { Flex } from "../shared-ui/layout";
+import { textAlign } from "../shared-ui/_css";
 
 export interface SectionProps {
     title: string;
@@ -35,9 +36,9 @@ export function AboutSection() {
             {data &&
                 <Container
                     id="aboutMe"
+                    background={'background'}
                     py={"section"}
-                    px={"default"}
-                    bg={"background"}
+                    className="scroll-mt-20"
                 >
 
                     <section className="flex flex-col gap-10 md:gap-15">
@@ -46,24 +47,27 @@ export function AboutSection() {
                         <Flex
                             mdDirection={"row"}
                             lgDirection={"row"}
+                            className="max-md:gap-8"
 
+                            topClassName="items-start"
                             top={
-                                <div className="h-full flex items-start min-w-[40%]">
-                                    <Image src={data.me.src} alt={data.me.alt} xsSm={"lg"} lg={"lg"} />
-                                </div>
+                                <Image src={data.me.src} alt={data.me.alt} xsSm={"lg"} lg={"lg"} />
                             }
 
                             bottomClassName="md:ps-7 lg:ps-10"
                             bottom={
-                                <H3 title={data.headline}
-                                    xsAlign={"center"} smAlign={"center"}
-                                    childrenClassName={cn("flex flex-col gap-8 lg:gap-10 max-md:text-center")}
-                                >
+                                <H3 title={data.headline} 
+                                    className={"max-md:justify-center max-md:text-center"}>
 
-                                    <p className="whitespace-pre-line">{data.bio}</p>
-                                    <Experiences experiences={data.experiences}
-                                        mdJustify={"start"} lgJustify={"start"} />
-                                    <Quote {...data.quote} variant={"normal"} />
+                                    <p className={cn("whitespace-pre-line max-md:text-center")}>
+                                        {data.bio}
+                                    </p>
+
+                                    <Experiences experiences={data.experiences} 
+                                        className="max-md:justify-center max-md:text-center" />
+
+                                    <Quote {...data.quote} variant={"normal"} 
+                                        className="max-md:justify-center max-md:text-center"/>
                                 </H3>
                             }
                         />

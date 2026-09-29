@@ -27,9 +27,9 @@ export function TechStackSection() {
     return (
         <Container
             id="techStack"
-            bg={"secondary"}
             py={"section"}
-            px={"default"}
+            background={'secondary'}
+            className="scroll-mt-20"
         >
             <section className="flex flex-col gap-10 md:gap-15">
                 <H2 title={data.title} subtitle={data.subtitle} icon={<CodeXml />}

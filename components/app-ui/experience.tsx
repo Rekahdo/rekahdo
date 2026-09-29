@@ -1,6 +1,5 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
-import { hover, justify, lgJustify, mdJustify, smJustify, xsJustify } from "../shared-ui/_css";
 
 export type ExperienceType = {
   years: number;
@@ -13,7 +12,7 @@ const experienceVariants = cva(
     variants: {
       variant: {
         normal: cn("group flex flex-col items-center justify-center gap-2 rounded-xl",
-          "border border-border bg-card text-card-foreground py-6 px-8 sm:px-10 text-center", hover.outline),
+          "border border-border bg-card text-card-foreground py-6 px-8 sm:px-10 text-center hover-1"),
         inline: "flex flex-row items-baseline justify-start gap-3 p-0 border-0 bg-transparent text-left",
       },
     },
@@ -51,20 +50,7 @@ function Experience({
   );
 }
 
-const experiencesVariants = cva("w-full flex items-center gap-4", {
-  variants: {
-    justify: justify,
-    xsJustify: xsJustify,
-    smJustify: smJustify,
-    mdJustify: mdJustify,
-    lgJustify: lgJustify,
-  },
-  defaultVariants: {
-    justify: "center",
-  },
-});
-
-type ExperiencesProps = VariantProps<typeof experiencesVariants> & {
+type ExperiencesProps = {
   experiences: ExperienceType[];
   className?: string;
 };
@@ -72,14 +58,11 @@ type ExperiencesProps = VariantProps<typeof experiencesVariants> & {
 export function Experiences({
   experiences,
   className,
-  justify, xsJustify, smJustify, mdJustify, lgJustify,
 }: ExperiencesProps) {
 
   return (
     <div role="list" aria-label="Experience"
-      className={cn(experiencesVariants({
-        justify, xsJustify, smJustify, mdJustify, lgJustify,
-      }), className)}>
+      className={cn("w-full flex items-center gap-4", className)}>
 
       {experiences.map((e, i) => (
         <Experience key={`${e.title}-${i}`} {...e} />

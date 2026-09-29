@@ -12,7 +12,7 @@ type ButtonsType = VariantProps<typeof ButtonsVariants> & {
 
 const ButtonsVariants = cva(
   [
-    "flex flex-wrap gap-4 md:gap-6 align-center justify-center",
+    "flex flex-wrap gap-4 md:gap-6 items-center",
   ],
   {
     variants: {
@@ -79,13 +79,27 @@ export function AnchorBtn({
 
   const scrollToId = () => {
     if (onClick) onClick();
+
     const element = document.getElementById(href);
-    if (element) element.scrollIntoView({ behavior: 'smooth' })
-  }
+    if (!element) return;
+
+    const OFFSET = 80;
+    const top =
+      element.getBoundingClientRect().top + window.scrollY - OFFSET;
+
+    window.scrollTo({ top, behavior: "smooth" });
+  };
 
   return (
-    <a href={href} onClick={(e) => { e.preventDefault(); scrollToId() }} tabIndex={1}
-      className={cn(buttonVariants({ ...props }), className)} >
+    <a
+      href={href}
+      onClick={(e) => {
+        e.preventDefault();
+        scrollToId();
+      }}
+      tabIndex={1}
+      className={cn(buttonVariants({ ...props }), className)}
+    >
       {text}
     </a>
   );

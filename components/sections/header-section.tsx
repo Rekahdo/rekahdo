@@ -9,6 +9,7 @@ import { Navigation } from "../shared-ui/navigation";
 import { ThemeToggle } from "../shared-ui/toggle";
 import { DownloadType } from "@/lib/prop-types";
 import { useHeader } from "@/contexts/HeaderProvider";
+import { cn } from "cn";
 
 export interface HeaderProps {
     downloadCV: DownloadType,
@@ -24,11 +25,14 @@ export const HeaderSection = () => {
                 data &&
 
                 <Container
-                    sticky={"top"}
+                    id="header"
                     as={"header"}
-                    height={"sm"}
-                    maxWidth={450}
-                    className="bg-background items-center"
+                    height={'header'}
+                    sticky={'top'}
+                    background={'background'}
+                    innerClassName={cn(
+                        "max-w-400",
+                    )}
                 >
 
                     <Header
@@ -47,19 +51,19 @@ export const HeaderSection = () => {
                             </>
                         }
 
-                    sidebar={
-                        <SideSheet
-                            logo={<Logo />}
-                            width="full"
-                            height="lg"
-                            gap="none"
-                            bottom={<DownloadBtn size={"lg"}
-                                text="Download CV"
-                                href={data.downloadCV.href}
-                                name={data.downloadCV.name} />
-                            }
-                        />
-                    }
+                        sidebar={
+                            <SideSheet
+                                logo={<Logo />}
+                                width="full"
+                                height="lg"
+                                gap="none"
+                                bottom={<DownloadBtn size={"lg"}
+                                    text="Download CV"
+                                    href={data.downloadCV.href}
+                                    name={data.downloadCV.name} />
+                                }
+                            />
+                        }
                     />
                 </Container>
             }

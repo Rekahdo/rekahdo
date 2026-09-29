@@ -29,6 +29,10 @@ Shadcn Dark Theme
 doc: https://ui.shadcn.com/docs/dark-mode/next
 cmd: pnpm add next-themes
 
+React Scroll
+doc: https://www.npmjs.com/package/react-scroll?activeTab=readme
+cmd: pnpm install react-scroll
+
 Shadcn UI Component Installation
 button: pnpm dlx shadcn@latest add button
 aspect-ratio: pnpm dlx shadcn@latest add aspect-ratio
