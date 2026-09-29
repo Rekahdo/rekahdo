@@ -30,9 +30,19 @@ Controller Input: https://react-hook-form.com/get-started#IntegratingControlledI
 Schema Validation: https://react-hook-form.com/get-started#SchemaValidation
 
 
+Zod
+doc: https://zod.dev/
+cmd: pnpm install zod
+
+
 Shadcn UI
 Doc: https://ui.shadcn.com/
 
 
 Tailwind CSS
 Doc: https://tailwindcss.com/
+
+
+Vitest for testing in development
+doc: https://testing-library.com/docs/
+cmd: pnpm install --save-dev vitest @testing-library/react @testing-library/jest-dom @testing-library/user-event jsdom
