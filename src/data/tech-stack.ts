@@ -77,6 +77,22 @@ export const techStacksData: TechStackType = {
       usages: ["ES6+", "Async/Await", "DOM Manipulation", "Web APIs"],
     },
     {
+      name: "Convex",
+      iconSrc: "/images/stack/convex.svg",
+      percentage: 60,
+      description:
+        "Backend-as-a-Service providing real-time data synchronization, end-to-end type-safe database queries, and serverless reactive backend functions.",
+      usages: ["Real-time DB", "Reactive Queries", "Serverless Functions", "Type-Safe Backend"],
+    },
+    {
+      name: "Better Auth",
+      iconSrc: "/images/stack/better-auth.svg",
+      percentage: 60,
+      description:
+        "Comprehensive authentication library for modern web applications with built-in support for multiple providers, session management, and plugins.",
+      usages: ["Authentication", "Session Management", "OAuth", "Type-Safe Auth"],
+    },
+    {
       name: "Vitest",
       iconSrc: "/images/stack/vitest.svg",
       percentage: 50,
@@ -128,6 +144,14 @@ export const techStacksData: TechStackType = {
       usages: ["UI/UX Prototyping", "Design Systems", "Wireframing"],
     },
     {
+      name: "Excalidraw",
+      iconSrc: "/images/stack/excalidraw.svg",
+      percentage: 50,
+      description:
+        "Sketching low-fidelity wireframes, system architecture diagrams, and virtual whiteboard brainstorming sessions.",
+      usages: ["Architecture Diagrams", "Wireframing", "Whiteboarding", "System Design"],
+    },
+    {
       name: "AWS",
       iconSrc: "/images/stack/aws.svg",
       iconDarkSrc: "/images/stack/aws-dark.svg",
@@ -169,14 +193,6 @@ export const techStacksData: TechStackType = {
       usages: ["Frontend IDE", "JavaScript", "TypeScript"],
     },
     {
-      name: "Junie",
-      iconSrc: "/images/stack/junie.svg",
-      percentage: 5,
-      description:
-        "Exploration and integration of Junie tooling into active development workflows for code generation and workspace assistance.",
-      usages: ["AI Coding Assistant", "Developer Tooling", "Workflow Optimization"],
-    },
-    {
       name: "Java",
       iconSrc: "/images/stack/java.svg",
       percentage: 30,
@@ -207,6 +223,14 @@ export const techStacksData: TechStackType = {
       description:
         "Containerizing applications, writing Dockerfiles, managing multi-container environments with Docker Compose, and simplifying deployment.",
       usages: ["Containerization", "Docker Compose", "DevOps", "Deployments"],
+    },
+    {
+      name: "Google Antigravity",
+      iconSrc: "/images/stack/antigravity.svg",
+      percentage: 100,
+      description:
+        "Defying the laws of physics and web layouts by un-anchoring DOM elements into an interactive, zero-gravity physics environment.",
+      usages: ["Physics Simulations", "Easter Eggs", "DOM Manipulation", "Gravity Defiance"],
     },
   ],
 };

@@ -58,7 +58,7 @@ npm install tailwindcss @tailwindcss/vite
 doc: https://tailwindcss.com/docs/installation/using-vite
 
 shadcn.ui
-npx shadcn@latest init -t vite
+npx shadcn@latest init
 doc: https://ui.shadcn.com/docs/installation
 
 tweakcn
