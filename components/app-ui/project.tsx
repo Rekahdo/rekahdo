@@ -18,7 +18,7 @@ function Project({ project, className }: ProjectProps) {
 
     return (
         <Card className={cn(hover.outline, "grow basis-1 p-3",
-            "min-w-30",
+            "min-w-40 1xs:min-w-45",
             className
         )}>
             <CardHeader className="p-0">
@@ -27,7 +27,7 @@ function Project({ project, className }: ProjectProps) {
                         src={project.image?.src}
                         alt={project.image.alt}
                         fill
-                        className="rounded-lg object-cover "
+                        className="w-10 rounded-lg object-cover "
                     />
                 </AspectRatio>
 
@@ -56,7 +56,7 @@ export default function Projects({ projects }: ProjectsProps) {
 
     return (
         <Tabs defaultValue={tabs[0]} className={'gap-6'}>
-            <TabsList className={"bg-background gap-2 py-6 px-2 rounded-full"}>
+            <TabsList className={"bg-background gap-2 py-6 px-2 rounded-full max-xs:w-full"}>
                 {tabs.map((tab, i) => (
                     <TabsTrigger key={i} value={tab}
                         className={cn(
