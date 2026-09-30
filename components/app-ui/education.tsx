@@ -74,7 +74,6 @@ function Education({
             aria-label={`Visit ${institution} website`} />
         </header>
 
-        {/* Course title */}
         <div className="space-y-1">
           <h3 className="flex items-start gap-2 text-base font-semibold leading-snug text-card-foreground">
             <GraduationCap className="mt-0.5 size-4 shrink-0 text-primary" />
@@ -88,7 +87,6 @@ function Education({
           )}
         </div>
 
-        {/* Footer action */}
         <div className="mt-auto pt-2">
           <OpenBtn text="View Certification" href={certification} size="lg" className="w-full" />
         </div>
@@ -96,10 +94,6 @@ function Education({
     </article>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/* Education Grid                                                     */
-/* ------------------------------------------------------------------ */
 
 const educationsVariants = cva("", {
   variants: {

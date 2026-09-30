@@ -46,7 +46,7 @@ export const HeaderSection = () => {
 
                         headerRight={
                             <>
-                                <DownloadBtn text="Download CV" {...data.downloadCV} />
+                                {/* <DownloadBtn text="Download CV" {...data.downloadCV} /> */}
                                 <ThemeToggle />
                             </>
                         }

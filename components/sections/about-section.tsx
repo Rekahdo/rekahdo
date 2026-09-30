@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from "cn"
-import { Image, ImageType } from "../shared-ui/image";
+import { Image } from "../shared-ui/image";
 import { Experiences, ExperienceType } from "../app-ui/experience";
 import { Quote, QuoteType } from "../app-ui/quote";
 import { Educations, EducationType } from "../app-ui/education";
@@ -11,6 +11,7 @@ import { Container } from "../shared-ui/container";
 import { H2, H3, H4, HeaderVariants as HeaderVariants } from "../shared-ui/headings";
 import { Flex } from "../shared-ui/layout";
 import { textAlign } from "../shared-ui/_css";
+import { ImageType } from "@/lib/prop-types";
 
 export interface SectionProps {
     title: string;
@@ -42,7 +43,8 @@ export function AboutSection() {
                 >
 
                     <section className="flex flex-col gap-10 md:gap-15">
-                        <H2 title={data.title} />
+                        <H2 title={data.title} className={"justify-center"}
+                            subtitleClassName="text-center" />
 
                         <Flex
                             mdDirection={"row"}
@@ -56,18 +58,18 @@ export function AboutSection() {
 
                             bottomClassName="md:ps-7 lg:ps-10"
                             bottom={
-                                <H3 title={data.headline} 
+                                <H3 title={data.headline}
                                     className={"max-md:justify-center max-md:text-center"}>
 
                                     <p className={cn("whitespace-pre-line max-md:text-center")}>
                                         {data.bio}
                                     </p>
 
-                                    <Experiences experiences={data.experiences} 
+                                    <Experiences experiences={data.experiences}
                                         className="max-md:justify-center max-md:text-center" />
 
-                                    <Quote {...data.quote} variant={"normal"} 
-                                        className="max-md:justify-center max-md:text-center"/>
+                                    <Quote {...data.quote} variant={"normal"}
+                                        className="max-md:justify-center max-md:text-center" />
                                 </H3>
                             }
                         />

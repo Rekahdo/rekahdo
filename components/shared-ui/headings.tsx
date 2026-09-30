@@ -5,7 +5,7 @@ import type { ElementType, ReactNode } from "react";
 export const HeaderVariants = cva("capitalize", {
     variants: {
         size: {
-            h1: "text-4xl sm:text-5xl font-extrabold uppercase",
+            h1: "text-5xl sm:text-6xl font-extrabold uppercase",
             h2: "text-3xl sm:text-4xl font-bold",
             h3: "text-xl sm:text-2xl font-bold",
             h4: "text-lg sm:text-xl font-bold",
@@ -105,8 +105,7 @@ export function H1(props: HeadingProps) {
 }
 
 export function H2(props: HeadingProps) {
-    return <Heading level={2} className={"justify-center"} 
-        subtitleClassName="text-center" {...props} />;
+    return <Heading level={2} {...props} />;
 }
 
 export function H3(props: HeadingProps) {
