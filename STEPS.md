@@ -52,6 +52,7 @@ sonner: pnpm dlx shadcn@latest add sonner
 avatar: pnpm dlx shadcn@latest add avatar
 skeleton: pnpm dlx shadcn@latest add skeleton
 hover-card: pnpm dlx shadcn@latest add hover-card
+tabs: pnpm dlx shadcn@latest add tabs
 
 
 

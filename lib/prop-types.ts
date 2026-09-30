@@ -3,7 +3,12 @@ export type DownloadType = {
     name: string,
 }
 
-
+export type ImageType = {
+    name?: string;
+    src: string;
+    darkSrc?: string;
+    alt: string;
+};
 
 
 

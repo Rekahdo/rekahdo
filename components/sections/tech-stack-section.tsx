@@ -33,6 +33,8 @@ export function TechStackSection() {
         >
             <section className="flex flex-col gap-10 md:gap-15">
                 <H2 title={data.title} subtitle={data.subtitle} icon={<CodeXml />}
+                    className={"justify-center"}
+                    subtitleClassName="text-center"
                     childrenClassName="mt-8 space-y-10 flex flex-col relative">
 
                     <TechCards languages={data.languages} />

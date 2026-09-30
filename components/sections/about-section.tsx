@@ -42,7 +42,8 @@ export function AboutSection() {
                 >
 
                     <section className="flex flex-col gap-10 md:gap-15">
-                        <H2 title={data.title} />
+                        <H2 title={data.title} className={"justify-center"}
+                            subtitleClassName="text-center" />
 
                         <Flex
                             mdDirection={"row"}
@@ -56,18 +57,18 @@ export function AboutSection() {
 
                             bottomClassName="md:ps-7 lg:ps-10"
                             bottom={
-                                <H3 title={data.headline} 
+                                <H3 title={data.headline}
                                     className={"max-md:justify-center max-md:text-center"}>
 
                                     <p className={cn("whitespace-pre-line max-md:text-center")}>
                                         {data.bio}
                                     </p>
 
-                                    <Experiences experiences={data.experiences} 
+                                    <Experiences experiences={data.experiences}
                                         className="max-md:justify-center max-md:text-center" />
 
-                                    <Quote {...data.quote} variant={"normal"} 
-                                        className="max-md:justify-center max-md:text-center"/>
+                                    <Quote {...data.quote} variant={"normal"}
+                                        className="max-md:justify-center max-md:text-center" />
                                 </H3>
                             }
                         />

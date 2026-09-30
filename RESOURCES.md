@@ -46,3 +46,9 @@ Doc: https://tailwindcss.com/
 Vitest for testing in development
 doc: https://testing-library.com/docs/
 cmd: pnpm install --save-dev vitest @testing-library/react @testing-library/jest-dom @testing-library/user-event jsdom
+
+
+
+
+
+AI Tools

@@ -53,6 +53,7 @@ const containerVariants = cva(
             'min-height': {
                 header: "min-h-[8dvh]",
                 hero: "min-h-[92dvh]",
+                half: "min-h-[50dvh]",
             },
             sticky: {
                 top: "sticky top-0 z-50"

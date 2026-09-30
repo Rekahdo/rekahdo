@@ -5,17 +5,9 @@ export const techStacksData: TechStackProps = {
   subtitle: "A comprehensive breakdown of the technologies, frameworks, and tools I use to build scalable full-stack applications.",
   languages: [
     {
-      name: "Google Antigravity IDE",
-      iconSrc: "/images/stack/antigravity.svg",
-      percentage: 100,
-      description:
-        "Defying the laws of physics and web layouts by un-anchoring DOM elements into an interactive, zero-gravity physics environment.",
-      usages: ["Physics Simulations", "Easter Eggs", "DOM Manipulation", "Gravity Defiance"],
-    },
-    {
       name: "VS Code",
       iconSrc: "/images/stack/vscode.svg",
-      percentage: 70,
+      percentage: 100,
       description:
         "Primary development workspace, configured with custom extensions, keybindings, and debugging tooling for optimized productivity.",
       usages: ["Frontend Development", "Debugging", "Workspace Customization"],
@@ -31,7 +23,7 @@ export const techStacksData: TechStackProps = {
     {
       name: "Next.js",
       iconSrc: "/images/stack/nextjs.svg",
-      percentage: 10,
+      percentage: 30,
       description:
         "Developing full-stack React applications with server-side rendering, static site generation, API routes, and optimized routing.",
       usages: ["SSR / SSG", "App Router", "Full-stack React", "SEO Optimization"],
