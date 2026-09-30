@@ -2,7 +2,7 @@
 
 import { useHero } from "@/contexts/HeroProvider";
 import { Tags, TagType } from "../app-ui/tag";
-import { Image, ImageType } from "../shared-ui/image";
+import { Image } from "../shared-ui/image";
 import { Container } from "../shared-ui/container";
 import { Grid } from "../shared-ui/layout";
 import { HeroContent } from "../app-ui/hero-content";
@@ -10,7 +10,7 @@ import { BadgeText, Description, Greeting, Role } from "../app-ui/hero-ui";
 import { H1 } from "../shared-ui/headings";
 import { AnchorBtn, DownloadBtn } from "../shared-ui/buttons";
 import { linksData } from "@/data/links";
-import { DownloadType } from "@/lib/prop-types";
+import { DownloadType, ImageType } from "@/lib/prop-types";
 
 export interface HeroProps {
     badge: string;

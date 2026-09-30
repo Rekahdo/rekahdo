@@ -14,11 +14,14 @@ interface ProjectProps {
     className?: string;
 }
 
-function Project({project, className}: ProjectProps) {
+function Project({ project, className }: ProjectProps) {
 
     return (
-        <Card className={cn(className)}>
-            <CardHeader>
+        <Card className={cn(hover.outline, "grow basis-1 p-3",
+            "min-w-30",
+            className
+        )}>
+            <CardHeader className="p-0">
                 <AspectRatio ratio={16 / 9}>
                     <Image
                         src={project.image?.src}
@@ -33,7 +36,7 @@ function Project({project, className}: ProjectProps) {
                         title={project.title} size={'h6'} />
                 </CardTitle>
 
-                <CardDescription className="max-xs:text-xs">
+                <CardDescription className="text-1xs">
                     {project.description}
                 </CardDescription>
             </CardHeader>
@@ -65,13 +68,10 @@ export default function Projects({ projects }: ProjectsProps) {
             </TabsList>
 
             {tabs.map((tab, i) => (
-                <TabsContent key={i} value={tab} className="flex flex-wrap justify-center gap-6">
+                <TabsContent key={i} value={tab} className="flex flex-wrap justify-center gap-2">
                     {projects?.filter(project => tab === "all" || tab === project.status)
                         .map((project, i) => (
-                            <Project key={i} project={project} className={cn(
-                                hover.outline,
-                                "grow max-xs:min-w-50  sm:min-w-70 basis-1 max-w-100"
-                            )} />
+                            <Project key={i} project={project} />
                         ))}
                 </TabsContent >
             ))}

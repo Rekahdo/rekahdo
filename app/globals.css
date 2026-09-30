@@ -172,29 +172,27 @@
   --tracking-wider: calc(var(--tracking-normal) + 0.05em);
   --tracking-widest: calc(var(--tracking-normal) + 0.1em);
 
-  --breakpoint-3xs: 300px;
   --breakpoint-2xs: 350px;
   --breakpoint-1xs: 400px;
   --breakpoint-xs: 450px;
   --breakpoint-mlg: 900px;
+
+  --text-1xs: 0.6rem;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-
+  
   body {
     @apply bg-background text-foreground;
     letter-spacing: var(--tracking-normal);
   }
-
+  
   html {
     @apply font-sans overflow-x-hidden;
     scrollbar-gutter: stable;
   }
-
-  p, span{
-    /* @apply text-[0.5rem] */
-  }
+  
 }

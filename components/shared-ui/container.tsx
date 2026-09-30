@@ -38,7 +38,7 @@ function ContainerInner({
 }
 
 const containerVariants = cva(
-    'flex rounded-none *:grow min-w-75 items-center',
+    'flex rounded-none *:grow min-w-[350px] items-center',
     {
         variants: {
             bgImage: {

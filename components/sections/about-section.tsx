@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from "cn"
-import { Image, ImageType } from "../shared-ui/image";
+import { Image } from "../shared-ui/image";
 import { Experiences, ExperienceType } from "../app-ui/experience";
 import { Quote, QuoteType } from "../app-ui/quote";
 import { Educations, EducationType } from "../app-ui/education";
@@ -11,6 +11,7 @@ import { Container } from "../shared-ui/container";
 import { H2, H3, H4, HeaderVariants as HeaderVariants } from "../shared-ui/headings";
 import { Flex } from "../shared-ui/layout";
 import { textAlign } from "../shared-ui/_css";
+import { ImageType } from "@/lib/prop-types";
 
 export interface SectionProps {
     title: string;
