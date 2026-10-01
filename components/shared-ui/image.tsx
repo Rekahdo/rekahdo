@@ -205,7 +205,7 @@ type ImageCompType = ImageType &
         imgClassName?: string;
     };
 
-export function Image({
+export function AppImage({
     className,
     imgClassName,
     fluid = false,
@@ -240,11 +240,11 @@ export function Image({
     const [imageSrc, setSrc] = useState<string>(src);
 
     useEffect(() => {
-        if(darkSrc)
+        if (darkSrc)
             var observer = listen(() => setSrc(darkSrc), () => setSrc(src));
 
         return () => {
-            if(darkSrc) stop(observer);
+            if (darkSrc) stop(observer);
         }
     }, [darkSrc, listen, src, stop])
 

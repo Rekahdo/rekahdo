@@ -2,9 +2,9 @@ import { cn } from "cn";
 import { cva, type VariantProps } from "class-variance-authority";
 import { AnchorHTMLAttributes, DetailedHTMLProps, JSXElementConstructor, ReactElement } from "react";
 import { ComponentRenderFn, NavigationMenuLinkState } from "@base-ui/react";
-import { AnchorBtn, PageBtn } from "./buttons";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "../ui/navigation-menu";
 import { linksData } from "@/data/links";
+import { AnchorBtn, PageBtn } from "../implementions/button-impl";
 
 export type LinkType = {
     href: string,
@@ -127,7 +127,7 @@ export function Navigation({
 
                 {!navlinks.pageLink && navlinks.links.map((link, i) => (
                     <NavigationItem key={`${link.text}-${i}`} className={linkClassName} {...linkVariants}
-                        render={<AnchorBtn text={link.text} href={link.href} variant={"ghost"} />} />
+                        render={<AnchorBtn text={link.text} id={link.href} variant={"ghost"} />} />
                 ))}
             </NavigationMenuList>
         </NavigationMenu>

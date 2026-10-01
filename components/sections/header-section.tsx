@@ -1,7 +1,6 @@
 'use client'
 
 import { SideSheet } from "../shared-ui/side-sheet";
-import { DownloadBtn } from "../shared-ui/buttons";
 import { Container } from "../shared-ui/container";
 import { Header } from "../shared-ui/header";
 import { Logo } from "../shared-ui/logo";
@@ -10,6 +9,7 @@ import { ThemeToggle } from "../shared-ui/toggle";
 import { DownloadType } from "@/lib/prop-types";
 import { useHeader } from "@/contexts/HeaderProvider";
 import { cn } from "cn";
+import { DownloadBtn } from "../implementions/button-impl";
 
 export interface HeaderProps {
     downloadCV: DownloadType,
@@ -46,7 +46,7 @@ export const HeaderSection = () => {
 
                         headerRight={
                             <>
-                                {/* <DownloadBtn text="Download CV" {...data.downloadCV} /> */}
+                                <DownloadBtn text="Download CV" {...data.downloadCV} showTextAt="sm" />
                                 <ThemeToggle />
                             </>
                         }
@@ -57,11 +57,7 @@ export const HeaderSection = () => {
                                 width="full"
                                 height="lg"
                                 gap="none"
-                                bottom={<DownloadBtn size={"lg"}
-                                    text="Download CV"
-                                    href={data.downloadCV.href}
-                                    name={data.downloadCV.name} />
-                                }
+                                bottom={<DownloadBtn size={"lg"} text="Download CV" {...data.downloadCV} />}
                             />
                         }
                     />

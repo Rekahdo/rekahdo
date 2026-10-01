@@ -17,5 +17,14 @@
   "editor.quickSuggestions": {
     "strings": "on"
   },
-  "tailwindCSS.experimental.configFile": "app/globals.css"
+  "tailwindCSS.experimental.configFile": "app/globals.css",
+
+  "editor.codeLens": true,
+  "editor.inlayHints.enabled": "on",
+
+  "typescript.referencesCodeLens.enabled": true,
+  "typescript.implementationsCodeLens.enabled": true,
+
+  "javascript.referencesCodeLens.enabled": true,
+  "javascript.implementationsCodeLens.enabled": true
 }

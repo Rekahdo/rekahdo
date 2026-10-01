@@ -1,6 +1,6 @@
 export type DownloadType = {
     href: string,
-    name: string,
+    filename: string,
 }
 
 export type ImageType = {

@@ -26,6 +26,10 @@ const TagVariant = cva(
           "border-2 border-transparent bg-amber-500/10 text-amber-600 hover:bg-amber-500/15 dark:text-amber-400",
         danger:
           "border-2 border-transparent bg-destructive/10 text-destructive hover:bg-destructive/15",
+        frontend:
+          "border-2 border-transparent bg-sky-500/10 text-sky-600 hover:bg-sky-500/15 dark:text-sky-400",
+        backend:
+          "border-2 border-transparent bg-violet-500/10 text-violet-600 hover:bg-violet-500/15 dark:text-violet-400",
       },
       size: {
         sm: "text-[0.65rem] px-3 py-0.5 rounded-full",
@@ -64,9 +68,7 @@ export function Tag({ text, emoji, variant, size, shape, className }: TagCompTyp
   );
 }
 
-
 // ====================================================================================
-
 
 const TagsVariant = cva("flex flex-wrap items-center", {
   variants: {
@@ -107,6 +109,68 @@ export function Tags({
     >
       {tags.map((tag, i) => (
         <Tag key={`${tag.text}-${i}`} variant={variant} size={size} shape={shape} {...tag} />
+      ))}
+    </div>
+  );
+}
+
+// ====================================================================================
+// Stack tags — map a stack value to a variant so callers don't need to know colors.
+// ====================================================================================
+
+export type StackType = "Frontend" | "Backend";
+
+const STACK_VARIANT: Record<StackType, NonNullable<VariantProps<typeof TagVariant>["variant"]>> = {
+  Frontend: "frontend",
+  Backend: "backend",
+};
+
+export type StackTagType = {
+  stack: StackType;
+  className?: string;
+};
+
+export function StackTag({ stack, className }: StackTagType) {
+  return (
+    <Tag
+      text={stack}
+      variant={STACK_VARIANT[stack]}
+      size="sm"
+      shape="pill"
+      className={className}
+    />
+  );
+}
+
+export function StackTags({
+  stacks,
+  className,
+  justify,
+  gap = "sm",
+  size = "sm",
+  shape = "pill",
+}: {
+  stacks: StackType[];
+  className?: string;
+  size?: VariantProps<typeof TagVariant>["size"];
+  shape?: VariantProps<typeof TagVariant>["shape"];
+} & Pick<VariantProps<typeof TagsVariant>, "justify" | "gap">) {
+  if (!stacks?.length) return null;
+
+  return (
+    <div
+      role="list"
+      aria-label="Stacks"
+      className={cn(TagsVariant({ justify, gap }), className)}
+    >
+      {stacks.map((stack) => (
+        <Tag
+          key={stack}
+          text={stack}
+          variant={STACK_VARIANT[stack]}
+          size={size}
+          shape={shape}
+        />
       ))}
     </div>
   );

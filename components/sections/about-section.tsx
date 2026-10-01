@@ -1,14 +1,14 @@
 'use client'
 
 import { cn } from "cn"
-import { Image } from "../shared-ui/image";
+import { AppImage } from "../shared-ui/image";
 import { Experiences, ExperienceType } from "../app-ui/experience";
 import { Quote, QuoteType } from "../app-ui/quote";
 import { Educations, EducationType } from "../app-ui/education";
 import { Tags, TagType } from "../app-ui/tag";
 import { useAbout } from "@/contexts/AboutProvider";
 import { Container } from "../shared-ui/container";
-import { H2, H3, H4, HeaderVariants as HeaderVariants } from "../shared-ui/headings";
+import { H2, H3, H4 } from "../shared-ui/headings";
 import { Flex } from "../shared-ui/layout";
 import { ImageType } from "@/lib/prop-types";
 
@@ -52,7 +52,8 @@ export function AboutSection() {
 
                             topClassName="items-start"
                             top={
-                                <Image src={data.me.src} alt={data.me.alt} xsSm={"lg"} lg={"lg"} />
+                                <AppImage src={data.me.src} alt={data.me.alt} xsSm={"lg"} 
+                                    lg={"lg"} className="rounded-full"/>
                             }
 
                             bottomClassName="md:ps-7 lg:ps-10"
