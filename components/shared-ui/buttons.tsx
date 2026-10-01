@@ -1,9 +1,10 @@
 import { cva, VariantProps } from "class-variance-authority";
 import { cn } from "cn";
 import Link from "next/link";
-import { ReactNode } from "react";
+import { ElementType, MouseEvent, ReactNode } from "react";
 import { buttonVariants } from "../ui/button";
-import { Download, DownloadIcon, ExternalLink } from "lucide-react";
+import { DownloadIcon, ExternalLink } from "lucide-react";
+
 
 type ButtonsType = VariantProps<typeof ButtonsVariants> & {
   className?: string;
@@ -40,11 +41,13 @@ export function Buttons({ btns, width, className }: ButtonsType) {
 // ======================================================================================================
 // ======================================================================================================
 
-export type WebBtnType = VariantProps<typeof buttonVariants> & {
+export interface WebBtnType extends VariantProps<typeof buttonVariants> {
   text?: string;
   href: string;
   visible?: boolean;
   className?: string;
+  icon?: ReactNode;
+  side?: 'left' | 'right';
   onClick?: () => void
 }
 
@@ -112,6 +115,8 @@ export function OpenBtn({
   visible = true,
   className,
   onClick,
+  icon = <ExternalLink />,
+  side = "left",
   ...props
 }: WebBtnType) {
   if (!visible) return null;
@@ -119,8 +124,9 @@ export function OpenBtn({
   return (
     <a href={href} target="_blank" rel="noopener noreferrer"
       className={cn(buttonVariants({ ...props }), className)} >
-      <ExternalLink />
+      {side === 'left' && icon}
       {text}
+      {side === 'right' && icon}
     </a>
   );
 }

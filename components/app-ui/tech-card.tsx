@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from "cn";
-import { Image } from "../shared-ui/image";
+import { AppImage } from "../shared-ui/image";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "../ui/hover-card";
 import { useMemo, useState, type ElementType } from "react";
 import { hover } from "../shared-ui/_css";
@@ -110,7 +110,7 @@ function CardIcon({
                 tierFor(percentage).shadow,
                 className)}>
 
-            <Image src={iconSrc} darkSrc={iconDarkSrc} alt={`${name} tech stack`} fluid size={"sm"} />
+            <AppImage src={iconSrc} darkSrc={iconDarkSrc} alt={`${name} tech stack`} fluid size={"sm"} />
         </div>
     )
 }

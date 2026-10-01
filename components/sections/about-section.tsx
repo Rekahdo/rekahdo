@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from "cn"
-import { Image } from "../shared-ui/image";
+import { AppImage } from "../shared-ui/image";
 import { Experiences, ExperienceType } from "../app-ui/experience";
 import { Quote, QuoteType } from "../app-ui/quote";
 import { Educations, EducationType } from "../app-ui/education";
@@ -52,7 +52,7 @@ export function AboutSection() {
 
                             topClassName="items-start"
                             top={
-                                <Image src={data.me.src} alt={data.me.alt} xsSm={"lg"} lg={"lg"} />
+                                <AppImage src={data.me.src} alt={data.me.alt} xsSm={"lg"} lg={"lg"} />
                             }
 
                             bottomClassName="md:ps-7 lg:ps-10"

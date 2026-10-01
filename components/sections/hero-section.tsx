@@ -2,7 +2,7 @@
 
 import { useHero } from "@/contexts/HeroProvider";
 import { Tags, TagType } from "../app-ui/tag";
-import { Image } from "../shared-ui/image";
+import { AppImage } from "../shared-ui/image";
 import { Container } from "../shared-ui/container";
 import { Grid } from "../shared-ui/layout";
 import { HeroContent } from "../app-ui/hero-content";
@@ -46,12 +46,12 @@ export const HeroSection = () => {
 
                         topClassName="flex "
                         top={
-                            <Image {...data.heroImage} xsSm={"lg"} md={"xl"} lg={"xl"} className="lg:ms-auto"/>
+                            <AppImage {...data.heroImage} xsSm={"lg"} md={"xl"} lg={"xl"} className="lg:ms-auto" />
                         }
 
                         bottom={
                             <HeroContent className="max-lg:text-center max-lg:justify-center"
-                                badge={<BadgeText text={data.badge}/>}
+                                badge={<BadgeText text={data.badge} />}
                                 greetings={<Greeting text={data.greetings} />}
                                 title={<H1 title={data.fullName} />}
                                 role={<Role text={data.role} />}
@@ -65,7 +65,7 @@ export const HeroSection = () => {
                                         {...links.techStack} />,
 
                                     <AnchorBtn key={`hero-btn-3`} size={'lg'} variant={'secondary'}
-                                        {...links.contactMe} /> ]} />
+                                        {...links.contactMe} />]} />
                         }
                     />
                 </Container>

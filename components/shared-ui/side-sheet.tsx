@@ -7,7 +7,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { cn } from "cn";
 import { useWidthMedia } from "../../hooks/useMedia";
 import { navigationLinkVariants, NavigationProps, navlinks } from "./navigation";
-import { AnchorBtn, PageBtn } from "./buttons";
+import { AnchorBtn, PageBtn } from "../implementions/button-impl";
 
 const sideSheetVariants = cva(
     "",
@@ -134,8 +134,8 @@ export function SideSheet({
                                 ))}
 
                                 {!nav.pageLink && nav.links.map((link, i) => (
-                                    <AnchorBtn key={`${link.text}-${i}`} onClick={() => openSheet(false)} {...link} variant={"ghost"}
-                                        className={cn(navigationLinkVariants({ ...navigationProps }))} />
+                                    <AnchorBtn key={`${link.text}-${i}`} id={link.href} onClick={() => openSheet(false)} {...link} 
+                                        variant={"ghost"} className={cn(navigationLinkVariants({ ...navigationProps }))} />
                                 ))}
                             </nav>
                         </SheetHeader>

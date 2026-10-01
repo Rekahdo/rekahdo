@@ -84,7 +84,7 @@ export const rounded = {
 
 export const hover = {
   outline: cn(
-    "transition-all duration-300 hover:border-primary/40 hover:-translate-y-1 hover:shadow-lg",
+    "transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:scale-102",
   )
 };
 
