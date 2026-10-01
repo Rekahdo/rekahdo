@@ -8,9 +8,11 @@ import { Grid } from "../shared-ui/layout";
 import { HeroContent } from "../app-ui/hero-content";
 import { BadgeText, Description, Greeting, Role } from "../app-ui/hero-ui";
 import { H1 } from "../shared-ui/headings";
-import { AnchorBtn, DownloadBtn } from "../shared-ui/buttons";
 import { linksData } from "@/data/links";
 import { DownloadType, ImageType } from "@/lib/prop-types";
+import { AnchorBtn, DownloadBtn } from "../implementions/button-impl";
+import { PingTag } from "../shared-ui/ping";
+import { cn } from "cn";
 
 export interface HeroProps {
     badge: string;
@@ -37,8 +39,15 @@ export const HeroSection = () => {
                     py={"section"}
                     min-height={'hero'}
                     background={'background'}
-                    className="scroll-mt-20 "
+                    className="scroll-mt-20"
+                    innerClassName="relative max-xs:pt-25"
                 >
+                    <PingTag className={cn(
+                        "absolute left-0 top-4",
+                        "ms-6 sm:ms-8 lg:ms-10",)}
+                    >
+                        Available For Work
+                    </PingTag>
 
                     <Grid
                         lgCols={'two'}
@@ -46,14 +55,17 @@ export const HeroSection = () => {
 
                         topClassName="flex "
                         top={
-                            <AppImage {...data.heroImage} xsSm={"lg"} md={"xl"} lg={"xl"} className="lg:ms-auto" />
+                            <AppImage {...data.heroImage} xsSm={"lg"} md={"xl"} lg={"xl"} className="lg:ms-auto rounded-full" />
                         }
 
                         bottom={
                             <HeroContent className="max-lg:text-center max-lg:justify-center"
                                 badge={<BadgeText text={data.badge} />}
                                 greetings={<Greeting text={data.greetings} />}
-                                title={<H1 title={data.fullName} />}
+                                title={<H1 title={<>
+                                    <span>I'M </span>
+                                    <span className="text-primary">{data.fullName}</span>
+                                </>} className="max-lg:text-center max-lg:justify-center" />}
                                 role={<Role text={data.role} />}
                                 description={<Description text={data.description} className="max-lg:text-center max-lg:w-[80%] mx-auto" />}
                                 tags={<Tags tags={data.tags} className='w-fit justify-center max-lg:mx-auto' />}
@@ -62,10 +74,10 @@ export const HeroSection = () => {
                                         text="Download CV" {...data.downloadCV} />,
 
                                     <AnchorBtn key={`hero-btn-2`} size={'lg'} variant={'outline'}
-                                        {...links.techStack} />,
+                                        id={links.techStack.href} {...links.techStack} />,
 
                                     <AnchorBtn key={`hero-btn-3`} size={'lg'} variant={'secondary'}
-                                        {...links.contactMe} />]} />
+                                        id={links.contactMe.href} {...links.contactMe} />]} />
                         }
                     />
                 </Container>

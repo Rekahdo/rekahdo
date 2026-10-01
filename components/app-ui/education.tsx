@@ -3,7 +3,7 @@ import { cn } from "cn";
 import { GraduationCap } from "lucide-react";
 import { hover, shadow } from "../shared-ui/_css";
 import { AppImage } from "../shared-ui/image";
-import { OpenBtn } from "../shared-ui/buttons";
+import { OpenBtn } from "../implementions/button-impl";
 
 export type EducationType = {
   institution: string;

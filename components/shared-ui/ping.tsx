@@ -23,7 +23,7 @@ export function Ping({ bg = "bg-primary", size = "size-2", animate=true }: PingP
 }
 
 export interface PingTagProps {
-    text: string;
+    text?: string;
     fg?: string;
     bg?: string;
     bd?: string;
@@ -32,6 +32,7 @@ export interface PingTagProps {
     pingSize?: string;
     side?: 'left' | 'right';
     className?: string;
+    children?: ReactNode;
 }
 
 export function PingTag({ 
@@ -44,13 +45,13 @@ export function PingTag({
     pingSize = "size-2",
     ping = <Ping bg={pingBg} size={pingSize} />,
     className,
+    children,
  }: PingTagProps) {
     return (
-        <span className={cn("py-1 px-2 rounded-lg flex items-center gap-2",
+        <span className={cn("py-1 px-4 rounded-lg flex items-center gap-2",
             fg, bg, bd, className)}>
-
             {side === "left" && ping }
-            {text}
+            {text}{children}
             {side === "right" && ping}
         </span>
     );

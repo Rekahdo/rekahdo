@@ -10,7 +10,7 @@ const containerInnerVariants = cva(
                 section: "py-15 md:py-20 lg:py-25",
             },
             px: {
-                section: "px-4 sm:px-6 lg:px-10",
+                section: "px-6 sm:px-8 lg:px-10",
             },
         },
         defaultVariants: {

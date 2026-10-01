@@ -11,7 +11,6 @@ import { PingTag } from "../shared-ui/ping";
 import { OpenBtn } from "../implementions/button-impl";
 import Image from "next/image";
 import { AppImage } from "../shared-ui/image";
-import { text } from "stream/consumers";
 
 interface ProjectProps {
     project: ProjectType;
@@ -32,7 +31,7 @@ function Project({ project, className }: ProjectProps) {
                     <Image
                         src={project.image?.src}
                         alt={project.image.alt}
-                        fill
+                        fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="object-cover transition-transform duration-300 ease-out  group-hover:scale-110"
                     />
                 </AspectRatio>

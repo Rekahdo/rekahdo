@@ -112,9 +112,8 @@ class ButtonImpl {
                 {...downloadProps}
                 {...scrollProps}
                 className={cn(
-                    "space-x-2",
                     buttonVariants({ ...this.btnProps }),
-                    this.className,
+                    "flex gap-2", this.className,
                 )}
             >
                 {this.side === 'left' && this.icon}

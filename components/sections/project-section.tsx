@@ -70,7 +70,7 @@ export default function ProjectsSection() {
 
     return (
         <Container
-            id="project"
+            id="projects"
             py={'section'}
             background={'muted'}
         >

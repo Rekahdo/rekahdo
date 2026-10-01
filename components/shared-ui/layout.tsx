@@ -161,6 +161,7 @@ const gridVariants = cva(cn
 type GridCompType = VariantProps<typeof gridVariants>
     & VariantProps<typeof flexTopVariants> &
 {
+    children?: ReactNode;
     className?: string;
     top: ReactNode;
     topClassName?: string;
@@ -170,6 +171,7 @@ type GridCompType = VariantProps<typeof gridVariants>
 }
 
 export function Grid({
+    children,
     className,
     top, topClassName,
     bottom, bottomClassName,
@@ -197,6 +199,8 @@ export function Grid({
                     {bottom}
                 </div>
             }
+            
+            {children}
         </Tag>
     )
 }
