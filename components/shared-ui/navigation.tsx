@@ -1,26 +1,16 @@
 import { cn } from "cn";
 import { cva, type VariantProps } from "class-variance-authority";
-import { AnchorHTMLAttributes, DetailedHTMLProps, JSXElementConstructor, ReactElement } from "react";
-import { ComponentRenderFn, NavigationMenuLinkState } from "@base-ui/react";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "../ui/navigation-menu";
-import { linksData } from "@/data/links";
-import { AnchorBtn, PageBtn } from "../implementions/button-impl";
+import { ReactElement } from "react";
+import { ButtonImpl } from "./button-impl";
 
-export type LinkType = {
-    href: string,
-    text: string,
-}
-
-export const navlinks: { pageLink: boolean, links: LinkType[] } = {
-    pageLink: false,
-    links: [
-        linksData.home,
-        linksData.aboutMe,
-        linksData.techStack,
-        linksData.projects,
-        linksData.contactMe,
-    ]
-} as const;
+export const navlinks: ReactElement[] = [
+    <ButtonImpl text={"Home"} href="home" variant={"ghost"} scroll />,
+    <ButtonImpl text={"About Me"} href="aboutMe" variant={"ghost"} />,
+    <ButtonImpl text={"Tech-Stack"} href="techStack" variant={"ghost"} />,
+    <ButtonImpl text={"Projects"} href="projects" variant={"ghost"} />,
+    <ButtonImpl text={"Contact Me"} href="contact" variant={"ghost"} />,
+];
 
 const navigationVariants = cva(
     "flex flex-col",
@@ -120,14 +110,8 @@ export function Navigation({
         }), className)}>
 
             <NavigationMenuList className={cn(navigationMenuVariants({ gap }))}>
-                {navlinks.pageLink && navlinks.links.map((link, i) => (
-                    <NavigationItem key={`${link.text}-${i}`} className={linkClassName} {...linkVariants}
-                        render={<PageBtn text={link.text} href={link.href} variant={"ghost"} />} />
-                ))}
-
-                {!navlinks.pageLink && navlinks.links.map((link, i) => (
-                    <NavigationItem key={`${link.text}-${i}`} className={linkClassName} {...linkVariants}
-                        render={<AnchorBtn text={link.text} id={link.href} variant={"ghost"} />} />
+                {navlinks.map((link, i) => (
+                    <NavigationItem key={`nav-item-${i}`} className={linkClassName} link={link} />
                 ))}
             </NavigationMenuList>
         </NavigationMenu>
@@ -136,9 +120,7 @@ export function Navigation({
 
 type NavigationItemProps = Omit<NavigationProps, "links" | "className"> & {
     className?: string;
-    render?: ReactElement<unknown, string | JSXElementConstructor<any>>
-    | ComponentRenderFn<DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>, NavigationMenuLinkState>
-    | undefined;
+    link: ReactElement;
 };
 
 function NavigationItem({
@@ -147,7 +129,7 @@ function NavigationItem({
     textCase,
     height,
     width,
-    render,
+    link,
 }: NavigationItemProps) {
     return (
         <NavigationMenuItem>
@@ -161,7 +143,7 @@ function NavigationItem({
                     }),
                     className
                 )}
-                render={render}>
+                render={link}>
             </NavigationMenuLink>
         </NavigationMenuItem>
     )

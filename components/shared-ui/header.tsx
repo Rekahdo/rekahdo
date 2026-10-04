@@ -81,7 +81,6 @@ export type HeaderCompType = VariantProps<typeof headerVariants> & {
   headerLeft?: ReactNode;
   headerCenter?: ReactNode;
   headerRight?: ReactNode;
-  sidebar?: ReactNode;
   ariaLabel?: string;
 };
 
@@ -90,7 +89,6 @@ export function Header({
   headerLeft,
   headerCenter,
   headerRight,
-  sidebar,
   ariaLabel = "Site header",
 }: HeaderCompType) {
 
@@ -115,8 +113,6 @@ export function Header({
           {headerRight}
         </HeaderRight>
       }
-
-      {sidebar}
 
     </header>
   )

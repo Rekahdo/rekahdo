@@ -1,7 +1,7 @@
 Next.js Initialization
 cmd: pnpm create next-app@latest rekahdo
 
-Turbor Pack Configuration  ```next.config.ts```
+Turbor Pack Configuration  `next.config.ts`
 config: turbopackFileSystemCacheForDev: true
 
 Convex installation
@@ -9,8 +9,15 @@ doc: https://docs.convex.dev/quickstart/nextjs
 cmd after steps: pnpm dlx convex dev
 dashboard: https://dashboard.convex.dev/
 
+Convex with Better Auth
+doc: https://labs.convex.dev/better-auth/framework-guides/next
+cmd: pnpm install @convex-dev/better-auth-
+
+Generate a secret for encryption and generating hashes
+cmd: pnpm convex env set BETTER_AUTH_SECRET=$(node -e "console.log(crypto.randomBytes(32).toString('base64'))")
+
 Shadcn UI Installation
-doc: https://ui.shadcn.com/docs/installation/next
+doc: https://ui.shadcn.com/docs/installation/next,ik8
 cmd: pnpm dlx shadcn@latest init
 
 React Hook Form Installation
@@ -47,7 +54,7 @@ progress: pnpm dlx shadcn@latest add progress
 switch: pnpm dlx shadcn@latest add switch
 combobox: pnpm dlx shadcn@latest add combobox
 select: pnpm dlx shadcn@latest add select
-spinner: pnpm dlx shadcn@latest add spinner
+spinner: pnpm dlx shadcn@latest add spinner'    
 sonner: pnpm dlx shadcn@latest add sonner
 avatar: pnpm dlx shadcn@latest add avatar
 skeleton: pnpm dlx shadcn@latest add skeleton
@@ -55,8 +62,24 @@ hover-card: pnpm dlx shadcn@latest add hover-card
 tabs: pnpm dlx shadcn@latest add tabs
 
 
+Create Schema Validation with Zod library
 
+Create convex database schemas
+[doc](https://docs.convex.dev/database/schemas)
 
+Create convex functions (Query, Mutation)
+[doc](https://docs.convex.dev/functions/overview)
+[query](https://docs.convex.dev/functions/query-functions)
+[mutation](https://docs.convex.dev/functions/mutation-functions)
+
+`NOTE:` Authenticate user convex functions before mutating data.
+[authComponent.getAuthUser(ctx)](https://labs.convex.dev/better-auth/basic-usage/authorization)
+
+Create Route Handlers for API endpoints
+[doc](https://nextjs.org/docs/app/getting-started/route-handlers)
+
+Create Server Function to mutate form data in server side
+[mutate](https://nextjs.org/docs/app/getting-started/mutating-data)
 
 
 

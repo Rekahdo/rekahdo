@@ -14,9 +14,9 @@ export const heroData: HeroProps = {
   },
   location: "Lagos Nigeria",
   tags: [
-    { text: "Clean-Code" }, 
-    { text: "Object Oriented" },
-    { text: "Component Based" },
+    { title: "Clean-Code" },
+    { title: "Object Oriented" },
+    { title: "Component Based" },
   ],
-  downloadCV: headerData.downloadCV, 
+  downloadCV: headerData.downloadCV,
 };

@@ -8,7 +8,7 @@ import { H3 } from "../shared-ui/headings";
 import { cn } from "cn";
 import { Tags } from "./tag";
 import { PingTag } from "../shared-ui/ping";
-import { OpenBtn } from "../implementions/button-impl";
+import { OpenBtn } from "../shared-ui/button-impl";
 import Image from "next/image";
 import { AppImage } from "../shared-ui/image";
 

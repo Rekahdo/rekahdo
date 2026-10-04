@@ -9,7 +9,7 @@ import { ThemeToggle } from "../shared-ui/toggle";
 import { DownloadType } from "@/lib/prop-types";
 import { useHeader } from "@/contexts/HeaderProvider";
 import { cn } from "cn";
-import { DownloadBtn } from "../implementions/button-impl";
+import { DownloadBtn } from "../shared-ui/button-impl";
 
 export interface HeaderProps {
     downloadCV: DownloadType,
@@ -27,12 +27,10 @@ export const HeaderSection = () => {
                 <Container
                     id="header"
                     as={"header"}
+                    width={'w400'}
                     height={'header'}
                     sticky={'top'}
                     background={'background'}
-                    innerClassName={cn(
-                        "max-w-400",
-                    )}
                 >
 
                     <Header
@@ -47,18 +45,15 @@ export const HeaderSection = () => {
                         headerRight={
                             <>
                                 <DownloadBtn text="Download CV" {...data.downloadCV} showTextAt="sm" />
-                                <ThemeToggle />
+                                <ThemeToggle className="max-sm:hidden" />
+                                <SideSheet
+                                    logo={<Logo />}
+                                    width="full"
+                                    height="lg"
+                                    gap="none"
+                                    bottom={<DownloadBtn size={"lg"} text="Download CV" {...data.downloadCV} />}
+                                />
                             </>
-                        }
-
-                        sidebar={
-                            <SideSheet
-                                logo={<Logo />}
-                                width="full"
-                                height="lg"
-                                gap="none"
-                                bottom={<DownloadBtn size={"lg"} text="Download CV" {...data.downloadCV} />}
-                            />
                         }
                     />
                 </Container>

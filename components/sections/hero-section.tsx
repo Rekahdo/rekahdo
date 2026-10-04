@@ -8,9 +8,8 @@ import { Grid } from "../shared-ui/layout";
 import { HeroContent } from "../app-ui/hero-content";
 import { BadgeText, Description, Greeting, Role } from "../app-ui/hero-ui";
 import { H1 } from "../shared-ui/headings";
-import { linksData } from "@/data/links";
 import { DownloadType, ImageType } from "@/lib/prop-types";
-import { AnchorBtn, DownloadBtn } from "../implementions/button-impl";
+import { AnchorBtn, DownloadBtn } from "../shared-ui/button-impl";
 import { PingTag } from "../shared-ui/ping";
 import { cn } from "cn";
 
@@ -29,7 +28,7 @@ export interface HeroProps {
 export const HeroSection = () => {
 
     const { data } = useHero()!;
-    const links = linksData;
+    // const links = linksData;
 
     return (
         <>
@@ -37,10 +36,9 @@ export const HeroSection = () => {
                 <Container
                     id="hero"
                     py={"section"}
-                    min-height={'hero'}
+                    height={'hero'}
                     background={'background'}
-                    className="scroll-mt-20"
-                    innerClassName="relative max-xs:pt-25"
+                    className="scroll-mt-20 relative max-xs:pt-25"
                 >
                     <PingTag className={cn(
                         "absolute left-0 top-4",
@@ -62,22 +60,23 @@ export const HeroSection = () => {
                             <HeroContent className="max-lg:text-center max-lg:justify-center"
                                 badge={<BadgeText text={data.badge} />}
                                 greetings={<Greeting text={data.greetings} />}
-                                title={<H1 title={<>
+                                title={<H1 size={'heroH1'} title={<>
                                     <span>I'M </span>
                                     <span className="text-primary">{data.fullName}</span>
                                 </>} className="max-lg:text-center max-lg:justify-center" />}
                                 role={<Role text={data.role} />}
                                 description={<Description text={data.description} className="max-lg:text-center max-lg:w-[80%] mx-auto" />}
                                 tags={<Tags tags={data.tags} className='w-fit justify-center max-lg:mx-auto' />}
-                                ctaBtns={[
-                                    <DownloadBtn key={`hero-btn-1`} size={'lg'} variant={'default'}
-                                        text="Download CV" {...data.downloadCV} />,
+                                // ctaBtns={[
+                                //     <DownloadBtn key={`hero-btn-1`} size={'lg'} variant={'default'}
+                                //         text="Download CV" {...data.downloadCV} className="shadow-md" />,
 
-                                    <AnchorBtn key={`hero-btn-2`} size={'lg'} variant={'outline'}
-                                        id={links.techStack.href} {...links.techStack} />,
+                                //     <AnchorBtn key={`hero-btn-2`} size={'lg'} variant={'outline'}
+                                //         id={v5links.techStack.href} {...links.techStack} />,
 
-                                    <AnchorBtn key={`hero-btn-3`} size={'lg'} variant={'secondary'}
-                                        id={links.contactMe.href} {...links.contactMe} />]} />
+                                //     <AnchorBtn key={`hero-btn-3`} size={'lg'} variant={'secondary'}
+                                //         id={links.contactMe.href} {...links.contactMe} />]} 
+                                        />
                         }
                     />
                 </Container>

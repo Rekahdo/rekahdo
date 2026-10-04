@@ -50,7 +50,7 @@ const TagVariant = cva(
 );
 
 export type TagType = {
-  text: string;
+  title: string;
   emoji?: ReactNode;
 };
 
@@ -59,7 +59,7 @@ type TagCompType = TagType &
     className?: string;
   };
 
-export function Tag({ text, emoji, variant, size, shape, className }: TagCompType) {
+export function Tag({ title: text, emoji, variant, size, shape, className }: TagCompType) {
   return (
     <span className={cn(TagVariant({ variant, size, shape }), className)}>
       {text}
@@ -108,7 +108,7 @@ export function Tags({
       className={cn(TagsVariant({ justify, gap }), className)}
     >
       {tags.map((tag, i) => (
-        <Tag key={`${tag.text}-${i}`} variant={variant} size={size} shape={shape} {...tag} />
+        <Tag key={`${tag.title}-${i}`} variant={variant} size={size} shape={shape} {...tag} />
       ))}
     </div>
   );
@@ -133,7 +133,7 @@ export type StackTagType = {
 export function StackTag({ stack, className }: StackTagType) {
   return (
     <Tag
-      text={stack}
+      title={stack}
       variant={STACK_VARIANT[stack]}
       size="sm"
       shape="pill"
@@ -166,7 +166,7 @@ export function StackTags({
       {stacks.map((stack) => (
         <Tag
           key={stack}
-          text={stack}
+          title={stack}
           variant={STACK_VARIANT[stack]}
           size={size}
           shape={shape}

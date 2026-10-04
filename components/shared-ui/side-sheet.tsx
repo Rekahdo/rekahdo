@@ -2,148 +2,95 @@
 
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet';
-import { cva, type VariantProps } from "class-variance-authority";
-import { useEffect, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { cn } from "cn";
 import { useWidthMedia } from "../../hooks/useMedia";
 import { navigationLinkVariants, NavigationProps, navlinks } from "./navigation";
-import { AnchorBtn, PageBtn } from "../implementions/button-impl";
+import { AnchorBtn, PageBtn } from "./button-impl";
+import { Button } from "../ui/button";
+import { Logo } from "./logo";
+import { ThemeToggle } from "./toggle";
 
-const sideSheetVariants = cva(
-    "",
-    {
-        variants: {
-            variant: {
-                default: ""
-            },
-        },
-        defaultVariants: {
-        }
-    }
-)
-
-const sideSheetTriggerVariants = cva(
-    cn(
-        "inline-flex items-center justify-center rounded-md p-2",
-        "transition-colors focus-visible:outline-none focus-visible:ring-2",
-        "focus-visible:ring-ring hover:bg-accent hover:text-accent-foreground text-foreground",
-    ),
-    {
-        variants: {
-            size: {
-                sm: "size-8",
-                md: "size-9",
-                lg: "size-10",
-            },
-        },
-        defaultVariants: {
-            size: "md",
-        },
-    }
-);
-
-type SideBarType = VariantProps<typeof sideSheetVariants> &
-    VariantProps<typeof sideSheetTriggerVariants> & NavigationProps & {
-        side?: "left" | "top" | "right" | "bottom";
-        trigger?: ReactNode;
-        triggerLabel?: string;
-        logo?: ReactNode
-        title?: string;
-        description?: string;
-        top?: ReactNode;
-        bottom?: ReactNode;
-        className?: string;
-        navClassName?: string;
-    }
+type SideBarType = NavigationProps & {
+    side?: "left" | "top" | "right" | "bottom";
+    trigger?: ReactNode;
+    triggerLabel?: string;
+    logo?: ReactNode
+    themeToggle?: ReactNode
+    title?: string;
+    description?: string;
+    top?: ReactNode;
+    bottom?: ReactNode;
+    className?: string;
+    navClassName?: string;
+}
 
 export function SideSheet({
-    size,
     side = "left",
     trigger = <Menu />,
     triggerLabel = "Open menu",
-    logo,
+    logo = <Logo />,
     title,
     description,
     top,
     bottom,
     className,
-    navClassName,
     ...navigationProps
 }: SideBarType) {
 
     const [open, setOpen] = useState(false)
-    const [hold, setHold] = useState(false)
+    const media = useWidthMedia().maxMd;
     const [nav] = useState(navlinks)
-    const { md } = useWidthMedia();
-
-    useEffect(() => {
-        setHold(false);
-    }, [])
-
-    useEffect(() => {
-        if (md && open && hold)
-            setOpen(false)
-        if (hold && !md)
-            setOpen(true)
-    }, [md, open]);
-
-    function openSheet(value: boolean) {
-        if (value) setHold(value);
-        else setHold(false);
-        setOpen(value);
-    }
 
     return (
-        <nav aria-label="Mobile navigation"
-            className={cn("ml-auto flex items-center mlg:hidden")}>
+        <>{
+            media &&
+            <section aria-label="Mobile navigation"
+                className={cn("ml-auto flex items-center")}>
 
-            <Sheet open={open} onOpenChange={openSheet}>
-                <SheetTrigger
-                    aria-label={triggerLabel}
-                    className={cn(sideSheetTriggerVariants({ size }), "ms-0 sm:ms-2")}>
-                    {trigger}
-                </SheetTrigger>
+                <Sheet open={open} onOpenChange={setOpen}>
+                    <SheetTrigger aria-label={triggerLabel}
+                        render={<Button variant={"outline"}>{trigger}</Button>}>
+                    </SheetTrigger>
 
-                <SheetContent
-                    showCloseButton={false}
-                    side={side}
-                    className={cn(sideSheetVariants({ className }), "")}>
-                    {(logo || top || title || description || nav.links) &&
-                        <SheetHeader className="pt-2">
-                            {logo &&
-                                <div className="p-2 me-auto" onClick={() => openSheet(false)}>
-                                    {logo}
-                                </div>
-                            }
+                    <SheetContent side={side} showCloseButton={false}>
+                        {(logo || top || title || description || nav) &&
 
-                            {top && <div className="p-2">{top}</div>}
+                            <SheetHeader className="pt-2">
+                                {logo &&
+                                    <div className="p-2 me-auto flex justify-between items-center w-full">
+                                        <span onClick={() => setOpen(false)}>{logo}</span>
+                                        <ThemeToggle />
+                                    </div>
+                                }
 
-                            {title && <SheetTitle className="p-2">{title}</SheetTitle>}
+                                {top && <div className="p-2">{top}</div>}
 
-                            {description && <SheetDescription className="ps-2 pb-2">{description}</SheetDescription>}
+                                {title && <SheetTitle className="p-2">{title}</SheetTitle>}
 
-                            {((logo || top || title || description) && nav.links) &&
-                                <hr className="my-2 border-border" />}
+                                {description && <SheetDescription className="ps-2 pb-2">{description}</SheetDescription>}
 
-                            <nav aria-label="Mobile navigation links"
-                                className={cn("flex flex-col", navClassName)}>
+                                {((logo || top || title || description) && nav) &&
+                                    <hr className="my-2 border-border" />}
 
-                                {nav.pageLink && nav.links.map((link, i) => (
-                                    <PageBtn key={`${link.text}-${i}`} onClick={() => openSheet(false)} {...link} variant={"ghost"}
-                                        className={cn(navigationLinkVariants({ ...navigationProps }))} />
-                                ))}
+                                <nav aria-label="Mobile navigation links"
+                                    className={cn("flex flex-col")}>
 
-                                {!nav.pageLink && nav.links.map((link, i) => (
-                                    <AnchorBtn key={`${link.text}-${i}`} id={link.href} onClick={() => openSheet(false)} {...link} 
-                                        variant={"ghost"} className={cn(navigationLinkVariants({ ...navigationProps }))} />
-                                ))}
-                            </nav>
-                        </SheetHeader>
-                    }
+                                    <ul>
+                                        {nav.map((link, i) =>
+                                            <li className="*:py-6 " key={i} onClick={() => setOpen(false)}>
+                                                {link}
+                                            </li>
+                                        )}
+                                    </ul>
+                                </nav>
+                            </SheetHeader>
+                        }
 
-                    {bottom && <SheetFooter className="p-2">{bottom}</SheetFooter>}
-                </SheetContent>
-            </Sheet>
-        </nav>
+                        {bottom && <SheetFooter className="p-2">{bottom}</SheetFooter>}
+                    </SheetContent>
+                </Sheet>
+            </section>
+        }</>
     )
 }
