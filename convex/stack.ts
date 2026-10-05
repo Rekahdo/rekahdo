@@ -1,5 +1,5 @@
-import { mutation } from "../_generated/server";
-import { stackTable } from "../schema";
+import { mutation } from "./_generated/server";
+import { stackTable } from "./schema";
 
 export const createStack = mutation({
     args: {

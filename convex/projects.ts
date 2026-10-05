@@ -1,5 +1,5 @@
-import { mutation } from "../_generated/server";
-import { projectTable } from "../schema";
+import { mutation } from "./_generated/server";
+import { projectTable } from "./schema";
 
 export const createProjects = mutation({
     args: {

@@ -73,8 +73,7 @@ export const projectTable = {
     status: v.union(
         v.literal("development"),
         v.literal("deployed"),
-        v.literal("archived"),
-        v.literal("planned"),
+        v.literal("maintainance"),
     ),
 }
 

@@ -32,7 +32,7 @@ export const heroSchema = z.object({
     tags: z.optional(z.array(tagValidator)),
 })
 
-export const aboutSchema = {
+export const aboutSchema = z.object({
     headline: z.optional(z.string()),
     bio: z.optional(z.string()),
     me: z.optional(imageValidator),
@@ -51,15 +51,15 @@ export const aboutSchema = {
         logo: z.string(),
     }))),
     skillTags: z.optional(z.array(tagValidator)),
-}
+})
 
-export const stackSchema = {
+export const stackSchema = z.object({
     languages: z.optional(z.array(stackValidator)),
     tools: z.optional(z.array(stackValidator)),
     resources: z.optional(z.array(stackValidator)),
-}
+})
 
-export const projectSchema = {
+export const projectSchema = z.object({
     title: z.string(),
     description: z.string(),
     image: imageValidator,
@@ -68,8 +68,8 @@ export const projectSchema = {
     technologies: z.array(z.object({
         title: z.string(),
     })),
-    status: z.enum(["development", "deployed", "maintainance", "planned"]),
-}
+    status: z.enum(["development", "deployed", "maintainance"]),
+})
 
 export const contactSchema = z.object({
     name: z.string().min(3).max(30),
