@@ -86,7 +86,7 @@ const TagsVariant = cva("flex flex-wrap items-center", {
 
 type TagsCompType = VariantProps<typeof TagsVariant> &
   VariantProps<typeof TagVariant> & {
-    tags: TagType[];
+    tags: TagType[] | undefined;
     className?: string;
   };
 

@@ -28,9 +28,16 @@ export const roleTable = {
     ),
 }
 
-export const headerTable = {
-    downloadCv: v.string(),
+export const documentTable = {
+    href: v.string(),
     name: v.string(),
+    type: v.union(
+        v.literal('cv'),
+    )
+}
+
+export const headerTable = {
+    downloadCv: v.object(documentTable),
 }
 
 export const heroTable = {
@@ -88,7 +95,7 @@ export const projectTable = {
     status: v.union(
         v.literal("development"),
         v.literal("deployed"),
-        v.literal("maintainance"),
+        v.literal("maintenance"),
     ),
 }
 
@@ -122,6 +129,10 @@ export const footerTable = {
 }
 
 export default defineSchema({
+    document: defineTable({
+        ...documentTable
+    }).index("by_type", ["type"]),
+
     role: defineTable({
         ...roleTable
     }),

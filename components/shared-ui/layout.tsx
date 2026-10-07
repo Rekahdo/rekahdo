@@ -82,7 +82,7 @@ type FlexCompType = VariantProps<typeof flexVariants>
     & VariantProps<typeof flexTopVariants> &
 {
     className?: string;
-    top: ReactNode;
+    top?: ReactNode;
     topClassName?: string;
     bottom?: ReactNode;
     bottomClassName?: string;
@@ -105,12 +105,14 @@ export function Flex({
                 direction, xsDirection, smDirection, mdDirection, lgDirection,
             }), className)}>
 
-            <div className={cn(flexTopVariants({
-                position, xsPosition, smPosition,
-                mdPosition, lgPosition
-            }), topClassName)}>
-                {top}
-            </div>
+            {top &&
+                <div className={cn(flexTopVariants({
+                    position, xsPosition, smPosition,
+                    mdPosition, lgPosition
+                }), topClassName)}>
+                    {top}
+                </div>
+            }
 
             {bottom &&
                 <div className={cn("flex items-center justify-center", bottomClassName)}>
@@ -163,7 +165,7 @@ type GridCompType = VariantProps<typeof gridVariants>
 {
     children?: ReactNode;
     className?: string;
-    top: ReactNode;
+    top?: ReactNode;
     topClassName?: string;
     bottom?: ReactNode;
     bottomClassName?: string;
@@ -187,19 +189,21 @@ export function Grid({
                 cols, xsCols, smCols, mdCols, lgCols,
             }), className)}>
 
-            <div className={cn(flexTopVariants({
-                position, xsPosition, smPosition,
-                mdPosition, lgPosition
-            }), topClassName)}>
-                {top}
-            </div>
+            {top &&
+                <div className={cn(flexTopVariants({
+                    position, xsPosition, smPosition,
+                    mdPosition, lgPosition
+                }), topClassName)}>
+                    {top}
+                </div>
+            }
 
             {bottom &&
                 <div className={cn("flex items-center justify-center", bottomClassName)}>
                     {bottom}
                 </div>
             }
-            
+
             {children}
         </Tag>
     )

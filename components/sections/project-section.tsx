@@ -8,6 +8,7 @@ import Projects from "../app-ui/project";
 import { ImageType } from "@/lib/types";
 import { TagType } from "../app-ui/tag";
 
+
 export const StatusArray = [
     "deployed",
     "development",
@@ -64,13 +65,15 @@ export interface ProjectsProps extends SectionProps {
     projects: ProjectType[];
 };
 
+export const PROJECT_ID = "project";
+
 export default function ProjectsSection() {
 
     const { data } = useProjects()!;
 
     return (
         <Container
-            id="projects"
+            id={PROJECT_ID}
             py={'section'}
             background={'muted'}
         >

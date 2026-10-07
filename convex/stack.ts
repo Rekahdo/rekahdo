@@ -19,7 +19,7 @@ export const update = mutation({
     },
 });
 
-export const getAll = query({
+export const findAll = query({
     args: {},
     handler: async (ctx, args) => {
         return await ctx.db.query("stack").order("desc").collect();

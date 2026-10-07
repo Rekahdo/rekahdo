@@ -12,6 +12,7 @@ import type * as about from "../about.js";
 import type * as auth from "../auth.js";
 import type * as contact from "../contact.js";
 import type * as contactMe from "../contactMe.js";
+import type * as document from "../document.js";
 import type * as errors from "../errors.js";
 import type * as footer from "../footer.js";
 import type * as header from "../header.js";
@@ -32,6 +33,7 @@ declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   contact: typeof contact;
   contactMe: typeof contactMe;
+  document: typeof document;
   errors: typeof errors;
   footer: typeof footer;
   header: typeof header;

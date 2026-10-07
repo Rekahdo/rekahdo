@@ -20,13 +20,15 @@ export interface TechStackProps extends SectionProps {
     languages: LanguageType[];
 };
 
-export function TechStackSection() {
+export const STACK_ID = "stack";
+
+export function StackSection() {
     const { data } = useTechStack()!;
     if (!data) return null;
 
     return (
         <Container
-            id="techStack"
+            id={STACK_ID}
             py={"section"}
             background={'secondary'}
             className="scroll-mt-20"

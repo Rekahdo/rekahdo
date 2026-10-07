@@ -27,6 +27,8 @@ export interface AboutProps extends SectionProps {
     skillTags: TagType[];
 };
 
+export const ABOUT_ID = "aboutMe";
+
 export function AboutSection() {
 
     const { data } = useAbout()!;
@@ -35,7 +37,7 @@ export function AboutSection() {
         <>
             {data &&
                 <Container
-                    id="aboutMe"
+                    id={ABOUT_ID}
                     background={'background'}
                     py={"section"}
                     className="scroll-mt-20"

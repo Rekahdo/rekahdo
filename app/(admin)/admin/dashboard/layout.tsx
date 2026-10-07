@@ -12,13 +12,23 @@ import { useConvexAuth } from "convex/react";
 import { redirect, RedirectType } from "next/navigation";
 import { toast } from "sonner";
 import { ADMIN_AUTH, ADMIN_DASHBOARD } from "../layout";
+import { Spinner } from "@/components/ui/spinner";
 
 export interface LayoutProps {
     children: ReactNode;
 }
 
 export default function Layout(props: LayoutProps) {
-    const { isAuthenticated } = useConvexAuth()
+    const { isAuthenticated, isLoading } = useConvexAuth()
+
+    if (isLoading) {
+        return (
+            <div className="flex min-h-screen items-center justify-center">
+                <Spinner className="size-8" />
+            </div>
+        );
+    }
+
     if (!isAuthenticated) {
         toast.success("Login to continue to dashboard")
         redirect(ADMIN_AUTH, RedirectType.push);

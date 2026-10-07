@@ -31,9 +31,14 @@ export const loginSchema = z.object({
     password: z.string().nonempty(),
 })
 
+export const documentSchema = z.object({
+    href: z.string(),
+    name: z.string().nonempty().max(50),
+    type: z.enum(['cv'])
+})
+
 export const headerSchema = z.object({
-    downloadCv: z.string(),
-    name: z.string().min(4).max(50),
+    downloadCv: documentSchema,
 })
 
 export const heroSchema = z.object({
