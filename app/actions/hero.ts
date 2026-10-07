@@ -15,7 +15,7 @@ export async function createHeroAction(data: z.infer<typeof heroSchema>) {
     if (!token) throw notAuthenticated();
 
     await fetchMutation(
-        api.hero.createHero,
+        api.hero.save,
         { ...parsed.data },
         { token }
     )

@@ -10,11 +10,14 @@
 
 import type * as about from "../about.js";
 import type * as auth from "../auth.js";
+import type * as contact from "../contact.js";
+import type * as contactMe from "../contactMe.js";
 import type * as errors from "../errors.js";
+import type * as footer from "../footer.js";
 import type * as header from "../header.js";
 import type * as hero from "../hero.js";
 import type * as http from "../http.js";
-import type * as projects from "../projects.js";
+import type * as project from "../project.js";
 import type * as role from "../role.js";
 import type * as stack from "../stack.js";
 
@@ -27,11 +30,14 @@ import type {
 declare const fullApi: ApiFromModules<{
   about: typeof about;
   auth: typeof auth;
+  contact: typeof contact;
+  contactMe: typeof contactMe;
   errors: typeof errors;
+  footer: typeof footer;
   header: typeof header;
   hero: typeof hero;
   http: typeof http;
-  projects: typeof projects;
+  project: typeof project;
   role: typeof role;
   stack: typeof stack;
 }>;

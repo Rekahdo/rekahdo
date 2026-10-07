@@ -8,7 +8,7 @@ export const imageValidator = v.object({
 
 export const tagValidator = v.object({
     title: v.string(),
-    emoji: v.string(),
+    emoji: v.optional(v.string()),
 });
 
 export const stackValidator = v.object({
@@ -69,11 +69,13 @@ export const aboutTable = {
     }))),
     skillTags: v.optional(v.array(tagValidator)),
 }
+
 export const stackTable = {
     languages: v.optional(v.array(stackValidator)),
     tools: v.optional(v.array(stackValidator)),
     resources: v.optional(v.array(stackValidator)),
 }
+
 export const projectTable = {
     title: v.string(),
     description: v.string(),
@@ -88,6 +90,35 @@ export const projectTable = {
         v.literal("deployed"),
         v.literal("maintainance"),
     ),
+}
+
+export const contactTable = {
+    email: v.string(),
+    phone: v.string(),
+    github: v.string(),
+    linkedIn: v.string(),
+    x: v.string(),
+    instagram: v.string(),
+}
+
+export const contactMeTable = {
+    name: v.string(),
+    email: v.string(),
+    subject: v.string(),
+    message: v.string(),
+}
+
+export const footerTable = {
+    name: v.string(),
+    tagline: v.optional(v.string()),
+    email: v.optional(v.string()),
+    phone: v.optional(v.string()),
+    location: v.optional(v.string()),
+    github: v.optional(v.string()),
+    linkedIn: v.optional(v.string()),
+    x: v.optional(v.string()),
+    instagram: v.optional(v.string()),
+    copyright: v.optional(v.string()),
 }
 
 export default defineSchema({
@@ -107,11 +138,23 @@ export default defineSchema({
         ...aboutTable
     }),
 
-    stacks: defineTable({
+    stack: defineTable({
         ...stackTable
     }),
 
-    projects: defineTable({
+    project: defineTable({
         ...projectTable
+    }),
+
+    contact: defineTable({
+        ...contactTable
+    }),
+
+    contactMe: defineTable({
+        ...contactMeTable
+    }),
+
+    footer: defineTable({
+        ...footerTable
     }),
 });

@@ -7,7 +7,7 @@ const imageValidator = z.object({
 
 const tagValidator = z.object({
     title: z.string(),
-    emoji: z.string(),
+    emoji: z.optional(z.string()),
 });
 
 const stackValidator = z.object({
@@ -89,6 +89,30 @@ export const projectSchema = z.object({
 })
 
 export const contactSchema = z.object({
-    name: z.string().min(3).max(30),
     email: z.email(),
+    phone: z.string(),
+    github: z.string(),
+    linkedIn: z.string(),
+    x: z.string(),
+    instagram: z.string(),
+})
+
+export const contactMeSchema = z.object({
+    name: z.string(),
+    email: z.email(),
+    subject: z.string(),
+    message: z.string(),
+})
+
+export const footerSchema = z.object({
+    name: z.string().min(2).max(50),
+    tagline: z.optional(z.string()),
+    email: z.optional(z.email()),
+    phone: z.optional(z.string()),
+    location: z.optional(z.string()),
+    github: z.optional(z.string()),
+    linkedIn: z.optional(z.string()),
+    x: z.optional(z.string()),
+    instagram: z.optional(z.string()),
+    copyright: z.optional(z.string()),
 })

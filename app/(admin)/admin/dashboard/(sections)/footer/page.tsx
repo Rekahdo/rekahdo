@@ -1,13 +1,12 @@
 'use client'
 
-import { createHeaderAction } from "@/app/actions/header";
+import { createFooterAction } from "@/app/actions/footer";
 import { ButtonImpl } from "@/components/shared-ui/button-impl";
 import { H1 } from "@/components/shared-ui/headings";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { headerSchema } from "@/schemas/zod-schemas";
+import { footerSchema } from "@/schemas/zod-schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -23,29 +22,37 @@ export default function Page(props: PageProps) {
     const [isPending, startTransition] = useTransition();
 
     const { handleSubmit, control } = useForm({
-        resolver: zodResolver(headerSchema),
+        resolver: zodResolver(footerSchema),
         defaultValues: {
-            name: 'Richard_Okafor_CV.pdf',
-            downloadCv: '/docs/Richard_Okafor_CV.pdf',
-        }
+            name: "Richard Okafor",
+            tagline: "Frontend Engineer | Full-Stack Perspective",
+            email: "okaforrichard76@gmail.com",
+            phone: "+234 905 940 5621",
+            location: "Lagos, Nigeria",
+            github: "https://github.com/Rekahdo",
+            linkedIn: "https://www.linkedin.com/in/richard-okafor",
+            x: "https://x.com/rekahdo",
+            instagram: "https://instagram.com/rekahdo",
+            copyright: `© ${new Date().getFullYear()} Richard Okafor. All rights reserved. Built with passion`,
+        },
     })
 
-    function submit(data: z.infer<typeof headerSchema>) {
+    function submit(data: z.infer<typeof footerSchema>) {
         startTransition(async () => {
-            await createHeaderAction(data);
-            toast.success("Cv Uploaded Successfully");
+            await createFooterAction(data);
+            toast.success("Footer Uploaded Successfully");
         })
     }
 
     return (
-        <div className="flex flex-col gap-6 max-w-lg">
-            <H1 title="Header"
-                subtitle="Upload your CV so visitors can download it from your portfolio."
+        <div className="flex flex-col gap-6 max-w-6xl">
+            <H1 title="Footer"
+                subtitle="Update the footer content shown at the bottom of your portfolio."
                 className="text-center items-center" />
 
             <Card>
                 <form onSubmit={handleSubmit(submit)}>
-                    <CardContent className="grid gap-4">
+                    <CardContent className="grid md:grid-cols-2 gap-4">
                         <Controller
                             name="name" control={control} render={({ field, fieldState }) => (
                                 <Field>
@@ -57,9 +64,89 @@ export default function Page(props: PageProps) {
                         />
 
                         <Controller
-                            name="downloadCv" control={control} render={({ field, fieldState }) => (
+                            name="tagline" control={control} render={({ field, fieldState }) => (
                                 <Field>
-                                    <FieldLabel>Download CV</FieldLabel>
+                                    <FieldLabel>Tagline</FieldLabel>
+                                    <Input type="text" aria-invalid={fieldState.invalid} {...field} />
+                                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                </Field>
+                            )}
+                        />
+
+                        <Controller
+                            name="email" control={control} render={({ field, fieldState }) => (
+                                <Field>
+                                    <FieldLabel>Email</FieldLabel>
+                                    <Input type="email" aria-invalid={fieldState.invalid} {...field} />
+                                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                </Field>
+                            )}
+                        />
+
+                        <Controller
+                            name="phone" control={control} render={({ field, fieldState }) => (
+                                <Field>
+                                    <FieldLabel>Phone</FieldLabel>
+                                    <Input type="tel" aria-invalid={fieldState.invalid} {...field} />
+                                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                </Field>
+                            )}
+                        />
+
+                        <Controller
+                            name="location" control={control} render={({ field, fieldState }) => (
+                                <Field>
+                                    <FieldLabel>Location</FieldLabel>
+                                    <Input type="text" aria-invalid={fieldState.invalid} {...field} />
+                                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                </Field>
+                            )}
+                        />
+
+                        <Controller
+                            name="github" control={control} render={({ field, fieldState }) => (
+                                <Field>
+                                    <FieldLabel>GitHub</FieldLabel>
+                                    <Input type="url" aria-invalid={fieldState.invalid} {...field} />
+                                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                </Field>
+                            )}
+                        />
+
+                        <Controller
+                            name="linkedIn" control={control} render={({ field, fieldState }) => (
+                                <Field>
+                                    <FieldLabel>LinkedIn</FieldLabel>
+                                    <Input type="url" aria-invalid={fieldState.invalid} {...field} />
+                                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                </Field>
+                            )}
+                        />
+
+                        <Controller
+                            name="x" control={control} render={({ field, fieldState }) => (
+                                <Field>
+                                    <FieldLabel>X (Twitter)</FieldLabel>
+                                    <Input type="url" aria-invalid={fieldState.invalid} {...field} />
+                                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                </Field>
+                            )}
+                        />
+
+                        <Controller
+                            name="instagram" control={control} render={({ field, fieldState }) => (
+                                <Field>
+                                    <FieldLabel>Instagram</FieldLabel>
+                                    <Input type="url" aria-invalid={fieldState.invalid} {...field} />
+                                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                </Field>
+                            )}
+                        />
+
+                        <Controller
+                            name="copyright" control={control} render={({ field, fieldState }) => (
+                                <Field>
+                                    <FieldLabel>Copyright</FieldLabel>
                                     <Input type="text" aria-invalid={fieldState.invalid} {...field} />
                                     {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                                 </Field>

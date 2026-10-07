@@ -4,14 +4,14 @@ import z from "zod";
 import { validateZodData } from "./about";
 import { fetchMutation } from "convex/nextjs";
 import { api } from "@/convex/_generated/api";
-import { stackSchema } from "@/schemas/zod-schemas";
+import { footerSchema } from "@/schemas/zod-schemas";
 
-export async function createStackAction(data: z.infer<typeof stackSchema>) {
+export async function createFooterAction(data: z.infer<typeof footerSchema>) {
 
-    const { parsed, token } = await validateZodData(stackSchema, data)
+    const { parsed, token } = await validateZodData(footerSchema, data)
 
     await fetchMutation(
-        api.stack.insert,
+        api.footer.save,
         { ...parsed },
         { token }
     )

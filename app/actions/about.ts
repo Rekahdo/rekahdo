@@ -30,7 +30,7 @@ export async function createAboutAction(data: z.infer<typeof aboutSchema>) {
     const { parsed, token } = await validateZodData(aboutSchema, data)
 
     await fetchMutation(
-        api.about.createAbout,
+        api.about.save,
         { ...parsed },
         { token }
     )

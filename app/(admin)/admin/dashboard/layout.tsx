@@ -1,7 +1,6 @@
 'use client'
 
 import { ReactNode } from "react";
-import { ADMIN_DASHBOARD, ADMIN_AUTH } from "../auth/page";
 import { Header } from "@/components/shared-ui/header";
 import { Logo } from "@/components/shared-ui/logo";
 import { Container } from "@/components/shared-ui/container";
@@ -12,6 +11,7 @@ import { SideSheet } from "@/components/shared-ui/side-sheet";
 import { useConvexAuth } from "convex/react";
 import { redirect, RedirectType } from "next/navigation";
 import { toast } from "sonner";
+import { ADMIN_AUTH, ADMIN_DASHBOARD } from "../layout";
 
 export interface LayoutProps {
     children: ReactNode;

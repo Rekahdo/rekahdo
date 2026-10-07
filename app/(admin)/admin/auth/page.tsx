@@ -5,32 +5,12 @@ import { H1 } from "@/components/shared-ui/headings";
 import { ThemeToggle } from "@/components/shared-ui/toggle";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { cn } from "cn";
-import { useConvexAuth } from "convex/react";
+import { ADMIN_DASHBOARD, ADMIN_SIGNUP, ADMIN_LOGIN } from "../layout";
+import { cn } from "@/lib/utils";
 import { ShieldCheck, LogIn, UserPlus } from "lucide-react";
 import Link from "next/link";
 import { redirect, RedirectType } from "next/navigation";
-
-export const ADMIN_ROUTES = {
-    auth: "/admin/auth",
-    login: "/admin/auth/login",
-    signup: "/admin/auth/signup",
-    dashboard: {
-        root: "/admin/dashboard",
-        about: "/admin/dashboard/about",
-        contact: "/admin/dashboard/contact",
-        footer: "/admin/dashboard/footer",
-        header: "/admin/dashboard/header",
-        hero: "/admin/dashboard/hero",
-        projects: "/admin/dashboard/projects",
-        stack: "/admin/dashboard/stack",
-    },
-} as const;
-
-export const ADMIN_AUTH = ADMIN_ROUTES.auth;
-export const ADMIN_SIGNUP = ADMIN_ROUTES.signup;
-export const ADMIN_LOGIN = ADMIN_ROUTES.login;
-export const ADMIN_DASHBOARD = ADMIN_ROUTES.dashboard;
+import { useConvexAuth } from "convex/react";
 
 export default function Page() {
 

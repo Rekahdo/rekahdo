@@ -10,7 +10,7 @@ export interface LayoutProps {
 export default function Layout(props: LayoutProps) {
 
     return (
-        <Container id="" py={'section'} height={'hero'}
+        <Container id="" py={'section'} px={'section'} height={'hero'}
             place={'center'} className="*:w-full">
 
             {props.children}
