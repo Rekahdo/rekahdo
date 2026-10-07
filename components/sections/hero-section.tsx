@@ -8,7 +8,7 @@ import { Grid } from "../shared-ui/layout";
 import { HeroContent } from "../app-ui/hero-content";
 import { BadgeText, Description, Greeting, Role } from "../app-ui/hero-ui";
 import { H1 } from "../shared-ui/headings";
-import { DownloadType, ImageType } from "@/lib/prop-types";
+import { DownloadType, ImageType } from "@/lib/types";
 import { AnchorBtn, DownloadBtn } from "../shared-ui/button-impl";
 import { PingTag } from "../shared-ui/ping";
 import { cn } from "cn";
@@ -67,16 +67,16 @@ export const HeroSection = () => {
                                 role={<Role text={data.role} />}
                                 description={<Description text={data.description} className="max-lg:text-center max-lg:w-[80%] mx-auto" />}
                                 tags={<Tags tags={data.tags} className='w-fit justify-center max-lg:mx-auto' />}
-                                // ctaBtns={[
-                                //     <DownloadBtn key={`hero-btn-1`} size={'lg'} variant={'default'}
-                                //         text="Download CV" {...data.downloadCV} className="shadow-md" />,
+                            // ctaBtns={[
+                            //     <DownloadBtn key={`hero-btn-1`} size={'lg'} variant={'default'}
+                            //         text="Download CV" {...data.downloadCV} className="shadow-md" />,
 
-                                //     <AnchorBtn key={`hero-btn-2`} size={'lg'} variant={'outline'}
-                                //         id={v5links.techStack.href} {...links.techStack} />,
+                            //     <AnchorBtn key={`hero-btn-2`} size={'lg'} variant={'outline'}
+                            //         id={v5links.techStack.href} {...links.techStack} />,
 
-                                //     <AnchorBtn key={`hero-btn-3`} size={'lg'} variant={'secondary'}
-                                //         id={links.contactMe.href} {...links.contactMe} />]} 
-                                        />
+                            //     <AnchorBtn key={`hero-btn-3`} size={'lg'} variant={'secondary'}
+                            //         id={links.contactMe.href} {...links.contactMe} />]} 
+                            />
                         }
                     />
                 </Container>

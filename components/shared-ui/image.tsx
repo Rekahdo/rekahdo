@@ -5,7 +5,7 @@ import { cn } from "cn";
 import { rounded } from "./_css";
 import { useEffect, useState } from "react";
 import { useTheme } from "../../hooks/useTheme";
-import { ImageType } from "@/lib/prop-types";
+import { ImageType } from "@/lib/types";
 
 const xs = {
     xxs: "max-sm:w-16 max-sm:data-[fluid=true]:w-[10%]",

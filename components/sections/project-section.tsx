@@ -5,7 +5,7 @@ import { Container } from "../shared-ui/container";
 import { SectionProps } from "./about-section";
 import { H2 } from "../shared-ui/headings";
 import Projects from "../app-ui/project";
-import { ImageType } from "@/lib/prop-types";
+import { ImageType } from "@/lib/types";
 import { TagType } from "../app-ui/tag";
 
 export const StatusArray = [

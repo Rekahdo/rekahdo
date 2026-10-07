@@ -7,7 +7,7 @@ import { HeroProvider } from "@/contexts/HeroProvider"
 import { ProjectsProvider } from "@/contexts/ProjectsProvider"
 import { TechStackProvider } from "@/contexts/TechStackProvider"
 
-export default function Home() {
+export default function Page() {
     return (
         <div id='home'>
             <HeroProvider>

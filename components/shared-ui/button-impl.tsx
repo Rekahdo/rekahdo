@@ -1,9 +1,14 @@
 import { cva, VariantProps } from "class-variance-authority";
 import { cn } from "cn";
 import Link from "next/link";
-import { ButtonHTMLAttributes, ElementType, MouseEvent, ReactNode } from "react";
+import { ButtonHTMLAttributes, ElementType, MouseEvent, ReactNode, useTransition } from "react";
 import { buttonVariants } from "../ui/button";
-import { Download, ExternalLink, Loader, } from "lucide-react";
+import { Download, ExternalLink, Loader, LogIn, LogOut, } from "lucide-react";
+import { Authenticated, Unauthenticated } from "convex/react";
+import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "sonner";
+import { ErrorType } from "@/lib/types";
 
 const buttonImplVariants = cva(
     cn("flex gap-2 "),
@@ -17,7 +22,7 @@ const buttonImplVariants = cva(
     }
 )
 
-interface ButtonImplProps extends VariantProps<typeof buttonVariants>, 
+interface ButtonImplProps extends VariantProps<typeof buttonVariants>,
     VariantProps<typeof buttonImplVariants> {
     href?: string;
     text?: ReactNode;
@@ -112,7 +117,7 @@ export function ButtonImpl({
             {...scrollAttributes}
             className={cn(
                 buttonVariants({ ...btnProps }),
-                buttonImplVariants({height}), 
+                buttonImplVariants({ height }),
                 className,
             )}
         >
@@ -145,4 +150,64 @@ export function DownloadBtn({ icon = <Download />, ...props }: ButtonImplProps) 
 
 export function OpenBtn({ icon = <ExternalLink />, ...props }: ButtonImplProps) {
     return <ButtonImpl icon={icon} className="shadow-md" {...props} open />;
+}
+
+export function SignUpBtn(props: ButtonImplProps) {
+    return (
+        <Unauthenticated>
+            <ButtonImpl
+                {...props}
+                href="/auth/signup"
+                text="Signup"
+            />
+        </Unauthenticated>
+    )
+}
+
+export function LoginBtn(props: ButtonImplProps) {
+    return (
+        <Unauthenticated>
+            <ButtonImpl
+                {...props}
+                href="/auth/login"
+                text="Login"
+                icon={<LogIn />}
+            />
+        </Unauthenticated>
+    )
+}
+
+export function LogoutBtn(props: ButtonImplProps) {
+    const [isPending, startTransition] = useTransition();
+    const router = useRouter();
+
+    function logout() {
+        startTransition(async () => {
+            await authClient.signOut({
+                fetchOptions: {
+                    onSuccess: () => {
+                        toast.success("Logged out successfully");
+                        router.push('/')
+                    },
+                    onError: (error: ErrorType) => {
+                        toast.error(error.error.message)
+                    }
+                }
+            })
+        })
+    }
+
+    return (
+        // <Authenticated>
+        <ButtonImpl
+            {...props}
+            href="/auth/login"
+            text="Logout"
+            variant={'outline'}
+            onClick={logout}
+            isPending={isPending}
+            icon={<LogOut />}
+        />
+        // </Authenticated>
+    )
 }

@@ -20,6 +20,19 @@ export const stackValidator = v.object({
     usages: v.array(v.string()),
 })
 
+export const roleTable = {
+    userId: v.string(),
+    role: v.union(
+        v.literal('admin'),
+        v.literal('editor'),
+    ),
+}
+
+export const headerTable = {
+    downloadCv: v.string(),
+    name: v.string(),
+}
+
 export const heroTable = {
     badge: v.optional(v.string()),
     greetings: v.optional(v.string()),
@@ -78,6 +91,14 @@ export const projectTable = {
 }
 
 export default defineSchema({
+    role: defineTable({
+        ...roleTable
+    }),
+
+    header: defineTable({
+        ...headerTable
+    }),
+
     hero: defineTable({
         ...heroTable
     }),

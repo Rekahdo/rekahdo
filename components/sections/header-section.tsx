@@ -4,11 +4,10 @@ import { SideSheet } from "../shared-ui/side-sheet";
 import { Container } from "../shared-ui/container";
 import { Header } from "../shared-ui/header";
 import { Logo } from "../shared-ui/logo";
-import { Navigation } from "../shared-ui/navigation";
+import { Navigation, NavItem } from "../shared-ui/navigation";
 import { ThemeToggle } from "../shared-ui/toggle";
-import { DownloadType } from "@/lib/prop-types";
+import { DownloadType } from "@/lib/types";
 import { useHeader } from "@/contexts/HeaderProvider";
-import { cn } from "cn";
 import { DownloadBtn } from "../shared-ui/button-impl";
 
 export interface HeaderProps {
@@ -18,6 +17,14 @@ export interface HeaderProps {
 export const HeaderSection = () => {
 
     const { data } = useHeader()!;
+
+    const navItems: NavItem[] = [
+        { link: { type: "scroll", href: "home", label: "Dashboard" } },
+        { link: { type: "scroll", href: "aboutMe", label: "About Me" } },
+        { link: { type: "scroll", href: "techStack", label: "Tech-Stack" } },
+        { link: { type: "scroll", href: "projects", label: "Projects" } },
+        { link: { type: "scroll", href: "contact", label: "Contact Me" } },
+    ]
 
     return (
         <>
@@ -39,7 +46,7 @@ export const HeaderSection = () => {
                         }
 
                         headerCenter={
-                            <Navigation width={"sm"} gap={"none"} className="max-mlg:hidden" />
+                            <Navigation navItems={navItems} width={"sm"} gap={"none"} className="max-mlg:hidden" />
                         }
 
                         headerRight={
@@ -48,9 +55,7 @@ export const HeaderSection = () => {
                                 <ThemeToggle className="max-sm:hidden" />
                                 <SideSheet
                                     logo={<Logo />}
-                                    width="full"
-                                    height="lg"
-                                    gap="none"
+                                    navigation={<Navigation navItems={navItems} width={"sm"} gap={"none"} className="max-mlg:hidden" />}
                                     bottom={<DownloadBtn size={"lg"} text="Download CV" {...data.downloadCV} />}
                                 />
                             </>

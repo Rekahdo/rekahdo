@@ -1,57 +1,58 @@
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
+import { cva, VariantProps } from "class-variance-authority";
 import { cn } from "cn";
-import { cva, type VariantProps } from "class-variance-authority";
-import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "../ui/navigation-menu";
 import { ReactElement } from "react";
 import { ButtonImpl } from "./button-impl";
+import Link from "next/link";
+import { ElementType, MouseEvent, ReactNode } from "react";
 
-export const navlinks: ReactElement[] = [
-    <ButtonImpl text={"Home"} href="home" variant={"ghost"} scroll />,
-    <ButtonImpl text={"About Me"} href="aboutMe" variant={"ghost"} />,
-    <ButtonImpl text={"Tech-Stack"} href="techStack" variant={"ghost"} />,
-    <ButtonImpl text={"Projects"} href="projects" variant={"ghost"} />,
-    <ButtonImpl text={"Contact Me"} href="contact" variant={"ghost"} />,
-];
+interface NavLinkBase {
+    href: string;
+    label: string;
+    icon?: ReactNode;
+    description?: string;
+    disabled?: boolean;
+}
 
-const navigationVariants = cva(
-    "flex flex-col",
-    {
-        variants: {
-            justify: {
-                start: "me-auto",
-                center: "mx-auto",
-                end: "ms-auto",
-            },
-        },
-        defaultVariants: {
-            justify: "center",
-        },
-    }
-);
+interface NavPageLink extends NavLinkBase {
+    type: "page";
+}
 
-const navigationMenuVariants = cva(
-    "",
-    {
-        variants: {
-            gap: {
-                none: "gap-0",
-                xxs: "gap-1",
-                xs: "gap-2",
-                sm: "gap-4",
-                md: "gap-6",
-                lg: "gap-8",
-            }
-        },
-        defaultVariants: {
-            gap: "sm",
-        },
-    }
-);
+interface NavScrollLink extends NavLinkBase {
+    type: "scroll";
+    offset?: number | 60;
+}
 
-export const navigationLinkVariants = cva(
-    cn(
-        navigationMenuTriggerStyle(),
-        "hover:text-primary hover:bg-primary/5",
-    ),
+interface NavDownloadLink extends NavLinkBase {
+    type: "download";
+    filename: string;
+}
+
+interface NavExternalLink extends NavLinkBase {
+    type: "external";
+}
+
+type NavLink =
+    | NavPageLink
+    | NavScrollLink
+    | NavDownloadLink
+    | NavExternalLink;
+
+export interface NavItem {
+    label?: string;
+    link?: NavLink;
+    links?: NavLink[];
+}
+
+interface NavigationProps {
+    className?: string;
+    side?: 'start' | 'center' | 'end';
+    navItems: NavItem[];
+    onNavigate?: () => void;
+}
+
+export const navigationVariants = cva(
+    cn(),
     {
         variants: {
             textSize: {
@@ -65,6 +66,11 @@ export const navigationLinkVariants = cva(
                 lowercase: "lowercase",
                 uppercase: "uppercase",
             },
+            textAlign: {
+                start: "text-start justify-start",
+                center: "text-center justify-center",
+                end: "text-end justify-end",
+            },
             height: {
                 none: "py-0!",
                 xs: "py-2!",
@@ -77,74 +83,152 @@ export const navigationLinkVariants = cva(
                 xs: "px-2!",
                 sm: "px-4!",
                 lg: "px-6!",
-                full: "w-full text-start",
+                full: "w-full",
             },
-        },
-        defaultVariants: {
-            textSize: "sm",
-            height: "sm",
-            width: "sm",
+            gap: {
+                none: "gap-0",
+                xxs: "gap-1",
+                xs: "gap-2",
+                sm: "gap-4",
+                md: "gap-6",
+                lg: "gap-8",
+            },
+            orientation: {
+                vertical: "flex flex-col",
+                horizontal: "flex flex-row",
+            },
+            side: {
+                start: "data-[orie=horizontal]:justify-start data-[orie=vertical]:items-start",
+                center: "data-[orie=horizontal]:justify-center data-[orie=vertical]:items-center",
+                end: "data-[orie=horizontal]:justify-end data-[orie=vertical]:items-end",
+            }
         },
     }
 );
 
-export type NavigationProps = VariantProps<typeof navigationVariants>
-    & VariantProps<typeof navigationLinkVariants>
-    & VariantProps<typeof navigationMenuVariants> &
-{
-    className?: string;
-    linkClassName?: string;
-}
+export function Navigation({ className, side, navItems, onNavigate, ...variants }:
+    NavigationProps & VariantProps<typeof navigationVariants>) {
 
-export function Navigation({
-    className,
-    justify,
-    gap,
-    linkClassName,
-    ...linkVariants
-}: NavigationProps) {
+    const noLabel = navItems.findIndex(item => Boolean(item.links) && !Boolean(item.label));
+    if (noLabel !== -1) throw new Error(`Nav link with index '${noLabel}' must have a label`)
+
+    const noLink = navItems.find(item => !Boolean(item.link) && !Boolean(item.links))
+    if (noLink) throw new Error(`${noLink.label} nav has neither a link or a list of links`)
 
     return (
-        <NavigationMenu className={cn(navigationVariants({
-            justify
-        }), className)}>
+        <NavigationMenu className={cn("w-full flex max-w-full", className)}>
+            <NavigationMenuList data-side={side} data-orie={variants.orientation}
+                className={cn(navigationVariants({
+                    gap: variants.gap, orientation: variants.orientation, side
+                }), "flex-wrap")}>
 
-            <NavigationMenuList className={cn(navigationMenuVariants({ gap }))}>
-                {navlinks.map((link, i) => (
-                    <NavigationItem key={`nav-item-${i}`} className={linkClassName} link={link} />
+                {navItems.map((item, i) => (
+                    <NavigationMenuItem key={i} className={variants.width === 'full' ? "w-full" : "w-fit"}>
+
+                        {Boolean(item.links) ?
+                            <>
+                                <NavigationMenuTrigger className={"hover:text-primary hover:bg-primary/5"}>
+                                    {item.label}
+                                </NavigationMenuTrigger>
+
+                                <NavigationMenuContent>
+                                    <ul>
+                                        {item.links?.map((link, i) => (
+                                            <li key={i}>
+                                                {<LinkTag fromList={true} link={link} onNavigate={onNavigate}
+                                                    width={variants.width} height={variants.height}
+                                                    textCase={variants.textCase} textSize={variants.textSize}
+                                                    textAlign={variants.textAlign} />}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </NavigationMenuContent>
+                            </> :
+
+                            <LinkTag fromList={false} link={item.link!} onNavigate={onNavigate}
+                                width={variants.width} height={variants.height}
+                                textCase={variants.textCase} textSize={variants.textSize}
+                                textAlign={variants.textAlign} />
+                        }
+
+                    </NavigationMenuItem>
                 ))}
             </NavigationMenuList>
         </NavigationMenu>
     )
+
 }
 
-type NavigationItemProps = Omit<NavigationProps, "links" | "className"> & {
-    className?: string;
-    link: ReactElement;
-};
+function LinkTag({ link, onNavigate, width, height, textAlign, fromList }: {
+    fromList: boolean;
+    link: NavLink; onNavigate?: () => void;
+    width?: VariantProps<typeof navigationVariants>['width'];
+    height?: VariantProps<typeof navigationVariants>['height'];
+    textCase?: VariantProps<typeof navigationVariants>['textCase'];
+    textSize?: VariantProps<typeof navigationVariants>['textSize'];
+    textAlign?: VariantProps<typeof navigationVariants>['textAlign'];
+}) {
 
-function NavigationItem({
-    className,
-    textSize,
-    textCase,
-    height,
-    width,
-    link,
-}: NavigationItemProps) {
+    const scrollToId = (e: MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        e.preventDefault();
+        onNavigate?.();
+
+        if (link!.href) return;
+
+        const element = document.getElementById(link!.href);
+        if (!element) return;
+
+        const OFFSET = 80;
+        const top = element.getBoundingClientRect().top + window.scrollY - OFFSET;
+
+        window.scrollTo({ top, behavior: "smooth" });
+    };
+
+    const Tag = (link.type === "download" ? 'a' : Link) as ElementType
+    const downloadAttributes = link.type === "download" ? { download: link.filename } : {};
+    const externalAttributes = link.type === "external" ? { target: "_blank", rel: "noopener noreferrer" } : {};
+    const scrollAttributes = link.type === "scroll" ? { onClick: scrollToId } : { onClick: onNavigate };
+    const hrefAttributes = link.type === "scroll" ? { href: `#${link.href}` } : { href: link.href };
+
     return (
-        <NavigationMenuItem>
-            <NavigationMenuLink
-                className={cn(
-                    navigationLinkVariants({
-                        textSize,
-                        textCase,
-                        height,
-                        width,
-                    }),
-                    className
-                )}
-                render={link}>
-            </NavigationMenuLink>
-        </NavigationMenuItem>
+        <NavigationMenuLink
+            className={cn(
+                navigationMenuTriggerStyle(),
+                navigationVariants({ width, height }),
+                "w-full"
+            )}
+            render={
+                <Tag
+                    {...downloadAttributes}
+                    {...externalAttributes}
+                    {...scrollAttributes}
+                    {...hrefAttributes}
+                    className={cn(
+                        navigationVariants({ textAlign }),
+                        "flex flex-row gap-2 transition-colors",
+                        "hover:bg-primary/1 hover:text-primary",
+                        "focus-visible:bg-primary/5 focus-visible:text-primary",
+                    )}
+                >
+                    {link.icon && (
+                        <span className="size-4">
+                            {link.icon}
+                        </span>
+                    )}
+
+                    <div className="flex flex-col items-start text-start gap-2 text-sm max-w-lg">
+                        <p className="leading-none font-medium">
+                            {link.label}
+                        </p>
+
+                        {(fromList && link.description) && (
+                            <p className="line-clamp-2">
+                                {link.description}
+                            </p>
+                        )}
+                    </div>
+                </Tag>
+            }
+        />
     )
 }

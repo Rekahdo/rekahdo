@@ -23,6 +23,7 @@ cmd: pnpm dlx shadcn@latest init
 React Hook Form Installation
 doc: https://react-hook-form.com/get-started#Quickstart
 cmd: pnpm install react-hook-form
+cmd: pnpm add @hookform/resolvers
 
 Zod
 doc: https://zod.dev/
@@ -66,7 +67,6 @@ Create Schema Validation with Zod library
 [doc](https://zod.dev/api)
 
 
-
 Create convex database schemas
 [doc](https://docs.convex.dev/database/schemas)
 
@@ -85,7 +85,7 @@ In convex functions inside handler
 - perform function action if authenticated
 
 
-Create Route Handlers for API endpoints
+Create Route Handlers for API endpoints if needed in project
 [doc](https://nextjs.org/docs/app/getting-started/route-handlers)
 
 

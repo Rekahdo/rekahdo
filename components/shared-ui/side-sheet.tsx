@@ -5,13 +5,12 @@ import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetT
 import { useState, type ReactNode } from "react";
 import { cn } from "cn";
 import { useWidthMedia } from "../../hooks/useMedia";
-import { navigationLinkVariants, NavigationProps, navlinks } from "./navigation";
-import { AnchorBtn, PageBtn } from "./button-impl";
 import { Button } from "../ui/button";
 import { Logo } from "./logo";
 import { ThemeToggle } from "./toggle";
+import { Navigation, NavItem } from "./navigation";
 
-type SideBarType = NavigationProps & {
+type SideBarType = {
     side?: "left" | "top" | "right" | "bottom";
     trigger?: ReactNode;
     triggerLabel?: string;
@@ -22,7 +21,7 @@ type SideBarType = NavigationProps & {
     top?: ReactNode;
     bottom?: ReactNode;
     className?: string;
-    navClassName?: string;
+    navItems: NavItem[];
 }
 
 export function SideSheet({
@@ -35,12 +34,11 @@ export function SideSheet({
     top,
     bottom,
     className,
-    ...navigationProps
+    navItems,
 }: SideBarType) {
 
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(false);
     const media = useWidthMedia().maxMd;
-    const [nav] = useState(navlinks)
 
     return (
         <>{
@@ -53,8 +51,8 @@ export function SideSheet({
                         render={<Button variant={"outline"}>{trigger}</Button>}>
                     </SheetTrigger>
 
-                    <SheetContent side={side} showCloseButton={false}>
-                        {(logo || top || title || description || nav) &&
+                    <SheetContent side={side} showCloseButton={false} className={cn(className)}>
+                        {(logo || top || title || description || navItems) &&
 
                             <SheetHeader className="pt-2">
                                 {logo &&
@@ -70,20 +68,16 @@ export function SideSheet({
 
                                 {description && <SheetDescription className="ps-2 pb-2">{description}</SheetDescription>}
 
-                                {((logo || top || title || description) && nav) &&
+                                {((logo || top || title || description) && navItems) &&
                                     <hr className="my-2 border-border" />}
 
-                                <nav aria-label="Mobile navigation links"
-                                    className={cn("flex flex-col")}>
-
-                                    <ul>
-                                        {nav.map((link, i) =>
-                                            <li className="*:py-6 " key={i} onClick={() => setOpen(false)}>
-                                                {link}
-                                            </li>
-                                        )}
-                                    </ul>
-                                </nav>
+                                {<Navigation
+                                    navItems={navItems}
+                                    onNavigate={() => setOpen(false)}
+                                    orientation={'vertical'}
+                                    width={'full'}
+                                    height={'lg'}
+                                />}
                             </SheetHeader>
                         }
 

@@ -4,8 +4,6 @@ import { api } from "@/convex/_generated/api";
 import { aboutSchema } from "@/schemas/zod-schemas";
 import { fetchMutation } from "convex/nextjs";
 import z, { ZodObject, ZodRawShape } from "zod";
-import { redirect, RedirectType } from "next/navigation";
-import { ADMIN_DASHBOARD } from "@/lib/routes";
 import { notAuthenticated, somethingWentWrong } from "@/convex/errors";
 import { getToken } from "@/lib/auth-server";
 
@@ -36,7 +34,4 @@ export async function createAboutAction(data: z.infer<typeof aboutSchema>) {
         { ...parsed },
         { token }
     )
-
-    redirect(ADMIN_DASHBOARD, RedirectType.push)
-
 }

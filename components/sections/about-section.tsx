@@ -10,7 +10,7 @@ import { useAbout } from "@/contexts/AboutProvider";
 import { Container } from "../shared-ui/container";
 import { H2, H3, H4 } from "../shared-ui/headings";
 import { Flex } from "../shared-ui/layout";
-import { ImageType } from "@/lib/prop-types";
+import { ImageType } from "@/lib/types";
 
 export interface SectionProps {
     title: string;
@@ -52,8 +52,8 @@ export function AboutSection() {
 
                             topClassName="items-start"
                             top={
-                                <AppImage src={data.me.src} alt={data.me.alt} xsSm={"lg"} 
-                                    lg={"lg"} className="rounded-full"/>
+                                <AppImage src={data.me.src} alt={data.me.alt} xsSm={"lg"}
+                                    lg={"lg"} className="rounded-full" />
                             }
 
                             bottomClassName="md:ps-7 lg:ps-10"

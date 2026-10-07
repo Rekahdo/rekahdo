@@ -2,66 +2,8 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from 'cn'
 import type { ElementType, HTMLAttributes, ReactNode } from 'react';
 
-const containerInnerWidthVariants = cva(
-    cn("mx-auto flex items-center justify-center *:grow"),
-    {
-        variants: {
-            width: {
-                w350: "max-w-350",
-                w400: "max-w-400",
-            },
-        },
-        defaultVariants: {
-            width: 'w350',
-        }
-    }
-)
-
-const containerInnerVariants = cva(
-    cn("flex flex-col justify-center gap-2"),
-    {
-        variants: {
-            py: {
-                section: "py-10 md:py-15 lg:py-20",
-            },
-            px: {
-                section: "px-6 sm:px-8 lg:px-10",
-            },
-            height: {
-                header: "py-2",
-                hero: "max-md:aspect-4/5 md:aspect-square lg:aspect-16/10",
-            },
-        },
-        defaultVariants: {
-            px: 'section',
-        }
-    }
-)
-
-type ContainerInnerProps = VariantProps<typeof containerInnerWidthVariants> &
-    VariantProps<typeof containerInnerVariants> & {
-        children: ReactNode;
-        className?: string;
-    }
-
-function ContainerInner({
-    children,
-    className,
-    px, py, width, height,
-}: ContainerInnerProps) {
-    return (
-        <div data-slot="container-inner"
-            className={cn(containerInnerWidthVariants({ width }))}>
-
-            <div className={cn(containerInnerVariants({ px, py, height }), className)}>
-                {children}
-            </div>
-        </div>
-    );
-}
-
 const containerVariants = cva(
-    'flex rounded-none *:grow min-w-87.5 items-center',
+    cn(''),
     {
         variants: {
             bgImage: {
@@ -76,16 +18,75 @@ const containerVariants = cva(
                 background: "bg-background text-foreground",
                 secondary: "bg-secondary text-secondary-foreground",
                 muted: "bg-muted text-muted-foreground",
+            },
+            py: {
+                section: "py-10 md:py-15 lg:py-20",
+            },
+            px: {
+                section: "px-6 sm:px-8 lg:px-10",
+            },
+            height: {
+                header: "py-1",
+                hero: "max-md:aspect-4/5 md:aspect-square lg:aspect-16/10",
+                full: 'h-dvh',
+                fit: 'h-fit',
+            },
+            width: {
+                w350: "max-w-350",
+                w400: "max-w-400",
+            },
+            place: {
+                center: "justify-center items-center",
+                top: "justify-start items-center",
+                bottom: "justify-end items-center",
+                left: "justify-center items-start",
+                right: "justify-center items-end",
+                topLeft: "justify-start items-start",
+                topRight: "justify-start items-end",
+                bottomLeft: "justify-end items-start",
+                bottomRight: "justify-end items-end",
             }
         },
     }
 )
 
+type ContainerInnerProps = {
+    children: ReactNode;
+    className?: string;
+    py?: VariantProps<typeof containerVariants>['py'];
+    px?: VariantProps<typeof containerVariants>['px'];
+    width?: VariantProps<typeof containerVariants>['width'];
+    height?: VariantProps<typeof containerVariants>['height'];
+    place?: VariantProps<typeof containerVariants>['place'];
+}
+
+function ContainerInner({
+    children,
+    className,
+    px,
+    py,
+    width = 'w350',
+    height,
+    place,
+}: ContainerInnerProps) {
+    return (
+        <div data-slot="container-inner"
+            className={cn("mx-auto flex items-center justify-center *:grow",
+                containerVariants({ width, height }))}>
+
+            <div className={cn("flex flex-col gap-2",
+                containerVariants({ px, py, height, place }), className)}>
+                {children}
+            </div>
+        </div>
+    );
+}
+
 type ContainerProps = VariantProps<typeof containerVariants>
     & ContainerInnerProps &
 {
     as?: ElementType;
-    id: string;
+    id?: string;
 
     children: ReactNode;
     className?: string;
@@ -98,13 +99,18 @@ export function Container({
     className,
     px, py,
     width, height,
+    place,
     ...props
 }: ContainerProps) {
+
     return (
         <Tag data-slot="container" id={id}
-            className={cn(containerVariants({ ...props }))}>
+            className={cn("flex rounded-none *:grow min-w-87.5 items-center",
+                containerVariants({ background: 'background', ...props }))}>
 
-            <ContainerInner className={className} px={px} py={py} width={width} height={height}>
+            <ContainerInner className={className} px={px} py={py} width={width}
+                height={height} place={place}>
+
                 {children}
             </ContainerInner>
         </Tag>

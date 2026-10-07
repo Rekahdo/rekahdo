@@ -19,6 +19,23 @@ const stackValidator = z.object({
     usages: z.array(z.string()),
 })
 
+export const signUpSchema = z.object({
+    name: z.string().min(3).max(30),
+    email: z.email(),
+    password: z.string().min(8).max(30),
+    adminApiKey: z.string().nonempty(),
+})
+
+export const loginSchema = z.object({
+    email: z.email(),
+    password: z.string().nonempty(),
+})
+
+export const headerSchema = z.object({
+    downloadCv: z.string(),
+    name: z.string().min(4).max(50),
+})
+
 export const heroSchema = z.object({
     badge: z.optional(z.string()),
     greetings: z.optional(z.string()),
