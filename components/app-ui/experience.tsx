@@ -51,7 +51,7 @@ function Experience({
 }
 
 type ExperiencesProps = {
-  experiences: ExperienceType[];
+  experiences: ExperienceType[] | undefined;
   className?: string;
 };
 
@@ -64,7 +64,7 @@ export function Experiences({
     <div role="list" aria-label="Experience"
       className={cn("w-full flex items-center gap-4", className)}>
 
-      {experiences.map((e, i) => (
+      {experiences?.map((e, i) => (
         <Experience key={`${e.title}-${i}`} {...e} />
       ))}
     </div>

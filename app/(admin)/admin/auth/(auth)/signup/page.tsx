@@ -14,7 +14,7 @@ import { ButtonImpl, SignUpBtn } from "@/components/shared-ui/button-impl";
 import { loginSchema, signUpSchema } from "@/schemas/zod-schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ErrorType } from "@/lib/types";
-import { ADMIN_DASHBOARD, ADMIN_LOGIN } from "../../page";
+import { ADMIN_DASHBOARD, ADMIN_LOGIN } from "../../../layout";
 import { somethingWentWrong } from "@/convex/errors";
 import { fetchMutation } from "convex/nextjs";
 import { api } from "@/convex/_generated/api";

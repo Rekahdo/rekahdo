@@ -14,6 +14,12 @@ const TagVariant = cva(
           "border-2 border-border bg-transparent hover:border-primary/50 hover:text-primary",
         filled:
           "border-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/90",
+        filledMuted: cn(
+          "rounded-md border border-border/60 bg-muted/50",
+          "px-2 py-0.5 hover:border-primary/30",
+          "transition-colors duration-200",
+          "text-[11px] font-medium text-muted-foreground",
+        ),
         soft:
           "border-2 border-transparent bg-primary/10 text-primary hover:bg-primary/15",
         muted:
@@ -115,7 +121,7 @@ export function Tags({
 }
 
 // ====================================================================================
-// Stack tags — map a stack value to a variant so callers don't need to know colors.
+// ====================================================================================
 // ====================================================================================
 
 export type StackType = "Frontend" | "Backend";

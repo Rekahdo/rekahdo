@@ -9,6 +9,11 @@ import { api } from "@/convex/_generated/api";
 import { Download } from "lucide-react";
 import { buttonVariants } from "../ui/button";
 import { cn } from "cn";
+import { HERO_ID } from "./hero-section";
+import { ABOUT_ID } from "./about-section";
+import { STACK_ID } from "./stack-section";
+import { PROJECT_ID } from "./project-section";
+import { CONTACT_ID } from "./contact-section";
 
 export const HEADER_ID = "header";
 
@@ -17,21 +22,21 @@ export const HeaderSection = async () => {
     const cv = await fetchQuery(api.document.findByType, { type: 'cv' });
 
     const navItems: NavItem[] = [
-        { link: { type: "scroll", href: "home", label: "Home" } },
-        { link: { type: "scroll", href: "aboutMe", label: "About Me" } },
-        { link: { type: "scroll", href: "techStack", label: "Tech-Stack" } },
-        { link: { type: "scroll", href: "projects", label: "Projects" } },
-        { link: { type: "scroll", href: "contact", label: "Contact Me" } },
+        { link: { type: "scroll", href: HERO_ID, label: "Home" } },
+        { link: { type: "scroll", href: ABOUT_ID, label: "About Me" } },
+        { link: { type: "scroll", href: STACK_ID, label: "Stack" } },
+        { link: { type: "scroll", href: PROJECT_ID, label: "Projects" } },
+        { link: { type: "scroll", href: CONTACT_ID, label: "Contact Me" } },
     ]
 
     return (
         <Container
             id={HEADER_ID}
             as={"header"}
+            px={'section'}
             width={'w400'}
             height={'header'}
             sticky={'top'}
-            background={'background'}
         >
 
             <Header
@@ -48,7 +53,7 @@ export const HeaderSection = async () => {
                         <a href={cv?.href} download={cv?.name} key={`hero-btn-1`}
                             className={cn(buttonVariants({ size: 'lg' }), "shadow-md")}>
                             <Download />
-                            Download CV
+                            <span className=" max-sm:hidden">Download CV</span>
                         </a>
 
                         <ThemeToggle className="max-sm:hidden" />

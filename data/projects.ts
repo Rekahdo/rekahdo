@@ -1,9 +1,6 @@
 import { ProjectsProps } from "@/components/sections/project-section";
 
 export const projectsData: ProjectsProps = {
-    title: "projects",
-    subtitle:
-        "A collection of frontend applications, full-stack tools, and real-time platforms powered by Convex, modern web frameworks, and backend services.",
     projects: [
         {
             title: "Portfolio — Personal Developer Showcase",

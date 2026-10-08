@@ -1,30 +1,22 @@
 import { AboutSection } from "@/components/sections/about-section"
+import ContactSection from "@/components/sections/contact-section"
 import { HeroSection } from "@/components/sections/hero-section"
 import ProjectsSection from "@/components/sections/project-section"
-import { StackSection } from "@/components/sections/tech-stack-section"
-import { AboutProvider } from "@/contexts/AboutProvider"
-import { HeroProvider } from "@/contexts/HeroProvider"
+import { StackSection } from "@/components/sections/stack-section"
 import { ProjectsProvider } from "@/contexts/ProjectsProvider"
-import { TechStackProvider } from "@/contexts/TechStackProvider"
 
 export default function Page() {
     return (
-        <div id='home'>
-            <HeroProvider>
-                <HeroSection />
-            </HeroProvider>
-
-            <AboutProvider>
-                <AboutSection />
-            </AboutProvider>
-
-            <TechStackProvider>
-                <StackSection />
-            </TechStackProvider>
+        <>
+            <HeroSection />
+            <AboutSection />
+            <StackSection />
 
             <ProjectsProvider>
                 <ProjectsSection />
             </ProjectsProvider>
-        </div>
+
+            <ContactSection />
+        </>
     )
 }

@@ -1,91 +1,88 @@
-'use client'
-
 import { cn } from "cn"
-import { AppImage } from "../shared-ui/image";
 import { Experiences, ExperienceType } from "../app-ui/experience";
 import { Quote, QuoteType } from "../app-ui/quote";
 import { Educations, EducationType } from "../app-ui/education";
 import { Tags, TagType } from "../app-ui/tag";
-import { useAbout } from "@/contexts/AboutProvider";
 import { Container } from "../shared-ui/container";
 import { H2, H3, H4 } from "../shared-ui/headings";
 import { Flex } from "../shared-ui/layout";
-import { ImageType } from "@/lib/types";
-
-export interface SectionProps {
-    title: string;
-    subtitle?: string;
-}
-
-export interface AboutProps extends SectionProps {
-    headline: string;
-    bio: string;
-    me: ImageType;
-    experiences: ExperienceType[];
-    quote: QuoteType
-    educations: EducationType[];
-    skillTags: TagType[];
-};
+import { AppImageType } from "@/lib/types";
+import { fetchQuery } from "convex/nextjs";
+import { api } from "@/convex/_generated/api";
+import Image from "next/image";
+import { section } from "@/data/section";
 
 export const ABOUT_ID = "aboutMe";
 
-export function AboutSection() {
+export async function AboutSection() {
 
-    const { data } = useAbout()!;
+    const data = await fetchQuery(api.about.get);
+    if (!data) return null;
+
+    const sec = section.about;
 
     return (
-        <>
-            {data &&
-                <Container
-                    id={ABOUT_ID}
-                    background={'background'}
-                    py={"section"}
-                    className="scroll-mt-20"
-                >
+        <Container
+            id={ABOUT_ID}
+            px={'section'}
+            py={"section"}
+        >
 
-                    <section className="flex flex-col gap-10 md:gap-15">
-                        <H2 title={data.title} className={"justify-center"}
-                            subtitleClassName="text-center" />
+            <section className="flex flex-col gap-10 md:gap-15">
+                <H2 title={sec.title} className={"justify-center"} />
 
-                        <Flex
-                            mdDirection={"row"}
-                            lgDirection={"row"}
-                            className="max-md:gap-8"
+                <Flex
+                    mdDirection={"row"}
+                    lgDirection={"row"}
+                    className="max-md:gap-8"
 
-                            topClassName="items-start"
-                            top={
-                                <AppImage src={data.me.src} alt={data.me.alt} xsSm={"lg"}
-                                    lg={"lg"} className="rounded-full" />
+                    topClassName="items-start w-full"
+                    top={
+                        <>{(data.me && data.me.src) &&
+                            <Image
+                                src={data.me.src}
+                                alt={data.me?.alt ?? "profile image of richard"}
+                                width={1000} height={1000}
+                                className="w-full rounded-full shadow-2xl"
+                            />
+                        }</>
+                    }
+
+                    bottomClassName="md:ps-7 lg:ps-10"
+                    bottom={
+                        <H3 title={data.headline}
+                            className={"max-md:justify-center max-md:text-center"}>
+
+                            <p className={cn("whitespace-pre-line max-md:text-center")}>
+                                {data.bio}
+                            </p>
+
+                            {data.experiences &&
+                                <Experiences experiences={data.experiences}
+                                    className="max-md:justify-center max-md:text-center" />
                             }
 
-                            bottomClassName="md:ps-7 lg:ps-10"
-                            bottom={
-                                <H3 title={data.headline}
-                                    className={"max-md:justify-center max-md:text-center"}>
-
-                                    <p className={cn("whitespace-pre-line max-md:text-center")}>
-                                        {data.bio}
-                                    </p>
-
-                                    <Experiences experiences={data.experiences}
-                                        className="max-md:justify-center max-md:text-center" />
-
-                                    <Quote {...data.quote} variant={"normal"}
-                                        className="max-md:justify-center max-md:text-center" />
-                                </H3>
+                            {data.quote &&
+                                <Quote {...data.quote} variant={"normal"}
+                                    className="max-md:justify-center max-md:text-center" />
                             }
-                        />
+                        </H3>
+                    }
+                />
 
-                        <H4 title="Education & Certification">
-                            <Educations educations={data.educations} />
-                        </H4>
+                {data.educations &&
+                    <H4 title="Education & Certification">
+                        <Educations educations={data.educations} />
+                    </H4>
+                }
 
-                        <H4 title="core skills">
-                            <Tags tags={data.skillTags} />
-                        </H4>
-                    </section>
-                </Container>
-            }
-        </>
+                {data.skillTags &&
+                    <H4 title="core skills">
+                        <Tags tags={data.skillTags} />
+                    </H4>
+                }
+
+            </section>
+        </Container>
     )
 }

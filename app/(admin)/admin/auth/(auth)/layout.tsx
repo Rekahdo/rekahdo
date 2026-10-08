@@ -6,8 +6,8 @@ import { useConvexAuth } from "convex/react";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { ReactNode } from "react";
-import { ADMIN_DASHBOARD, ADMIN_AUTH } from "../page";
 import { redirect, RedirectType } from "next/navigation";
+import { ADMIN_AUTH, ADMIN_DASHBOARD } from "../../layout";
 
 interface LayoutProps {
     children: ReactNode;

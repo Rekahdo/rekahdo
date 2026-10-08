@@ -33,9 +33,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           disableTransitionOnChange
         >
           <ConvexClientProvider>{children}</ConvexClientProvider>
+          <Toaster />
         </ThemeProvider>
-        
-        <Toaster />
       </body>
     </html>
   );

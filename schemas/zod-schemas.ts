@@ -10,15 +10,6 @@ const tagValidator = z.object({
     emoji: z.optional(z.string()),
 });
 
-const stackValidator = z.object({
-    name: z.string(),
-    iconSrc: z.string(),
-    iconDarkSrc: z.optional(z.string()),
-    percentage: z.number(),
-    description: z.string(),
-    usages: z.array(z.string()),
-})
-
 export const signUpSchema = z.object({
     name: z.string().min(3).max(30),
     email: z.email(),
@@ -76,9 +67,13 @@ export const aboutSchema = z.object({
 })
 
 export const stackSchema = z.object({
-    languages: z.optional(z.array(stackValidator)),
-    tools: z.optional(z.array(stackValidator)),
-    resources: z.optional(z.array(stackValidator)),
+    name: z.string(),
+    iconSrc: z.string(),
+    iconDarkSrc: z.optional(z.string()),
+    percentage: z.number(),
+    description: z.string(),
+    usages: z.array(tagValidator),
+    type: z.enum(["language", "tool", "resource"])
 })
 
 export const projectSchema = z.object({
@@ -87,10 +82,8 @@ export const projectSchema = z.object({
     image: imageValidator,
     github: z.string(),
     deployment: z.optional(z.string()),
-    technologies: z.array(z.object({
-        title: z.string(),
-    })),
-    status: z.enum(["development", "deployed", "maintainance"]),
+    technologies: z.array(tagValidator),
+    status: z.enum(["development", "deployed", "maintenance"]),
 })
 
 export const contactSchema = z.object({

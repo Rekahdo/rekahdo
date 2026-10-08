@@ -16,3 +16,8 @@ export async function createProjectAction(data: z.infer<typeof projectSchema>) {
         { token }
     )
 }
+
+export async function createProjectsAction(data: z.infer<typeof projectSchema>[]) {
+    const parsed = z.array(projectSchema).parse(data);
+    return await fetchMutation(api.project.insertMany, { projects: parsed });
+}

@@ -11,15 +11,6 @@ export const tagValidator = v.object({
     emoji: v.optional(v.string()),
 });
 
-export const stackValidator = v.object({
-    name: v.string(),
-    iconSrc: v.string(),
-    iconDarkSrc: v.optional(v.string()),
-    percentage: v.number(),
-    description: v.string(),
-    usages: v.array(v.string()),
-})
-
 export const roleTable = {
     userId: v.string(),
     role: v.union(
@@ -78,9 +69,17 @@ export const aboutTable = {
 }
 
 export const stackTable = {
-    languages: v.optional(v.array(stackValidator)),
-    tools: v.optional(v.array(stackValidator)),
-    resources: v.optional(v.array(stackValidator)),
+    name: v.string(),
+    iconSrc: v.string(),
+    iconDarkSrc: v.optional(v.string()),
+    percentage: v.number(),
+    description: v.string(),
+    usages: v.array(tagValidator),
+    type: v.union(
+        v.literal("language"),
+        v.literal("tool"),
+        v.literal("resource"),
+    )
 }
 
 export const projectTable = {
@@ -89,9 +88,7 @@ export const projectTable = {
     image: imageValidator,
     github: v.string(),
     deployment: v.optional(v.string()),
-    technologies: v.array(v.object({
-        title: v.string(),
-    })),
+    technologies: v.array(tagValidator),
     status: v.union(
         v.literal("development"),
         v.literal("deployed"),

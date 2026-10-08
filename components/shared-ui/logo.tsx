@@ -1,6 +1,6 @@
-import { AppImage } from "./image";
 import { cn } from "cn";
 import Link from "next/link";
+import Image from "./image";
 
 export function Logo() {
 
@@ -9,9 +9,9 @@ export function Logo() {
     const alt = "Rekahdo.dev Logo";
 
     return (
-        <Link href="/">
-            <AppImage className={cn("cursor-pointer text-foreground")}
-                src={light} darkSrc={dark} alt={alt} size={"xs"} />
+        <Link href="/" className="w-25 sm:w-30 aspect-10/4">
+            <Image
+                src={light} srcDark={dark} alt={alt} width={100} />
         </Link>
     )
 }

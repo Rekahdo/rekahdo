@@ -5,7 +5,7 @@ import type { ElementType, ReactNode } from "react";
 export const HeaderVariants = cva("capitalize", {
     variants: {
         size: {
-            heroH1: "text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold uppercase",
+            hero: "text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold uppercase",
             h1: "text-4xl lg:text-5xl font-extrabold",
             h2: "text-3xl sm:text-4xl font-bold",
             h3: "text-xl sm:text-2xl font-bold",

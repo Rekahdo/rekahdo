@@ -16,3 +16,8 @@ export async function createStackAction(data: z.infer<typeof stackSchema>) {
         { token }
     )
 }
+
+export async function createStacksAction(data: z.infer<typeof stackSchema>[]) {
+    const parsed = z.array(stackSchema).parse(data);
+    return await fetchMutation(api.stack.insertMany, { stacks: parsed });
+}

@@ -32,7 +32,7 @@ export default function Page(props: PageProps) {
             role: "Full Stack Web Engineer",
             description:
                 "Welcome to my portfolio! I specialize in crafting fast, responsive, and engaging user interfaces using React, TypeScript, and modern web technologies. I build scalable web applications focused on performance, clean code, and great user experience",
-            availableForWork: false,
+            availableForWork: true,
             image: {
                 src: "/images/me/richard.svg",
                 alt: "richard okafor",

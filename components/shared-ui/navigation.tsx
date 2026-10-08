@@ -3,8 +3,9 @@
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { cva, VariantProps } from "class-variance-authority";
 import { cn } from "cn";
-import Link from "next/link";
+import NextLink from "next/link";
 import { ElementType, MouseEvent, ReactNode } from "react";
+import { HEADER_ID } from "../sections/header-section";
 
 interface NavLinkBase {
     href: string;
@@ -20,7 +21,6 @@ interface NavPageLink extends NavLinkBase {
 
 interface NavScrollLink extends NavLinkBase {
     type: "scroll";
-    offset?: number | 60;
 }
 
 interface NavDownloadLink extends NavLinkBase {
@@ -135,20 +135,43 @@ export function Navigation({ className, side, navItems, onNavigate, ...variants 
                                     <ul>
                                         {item.links?.map((link, i) => (
                                             <li key={i}>
-                                                {<LinkTag fromList={true} link={link} onNavigate={onNavigate}
-                                                    width={variants.width} height={variants.height}
-                                                    textCase={variants.textCase} textSize={variants.textSize}
-                                                    textAlign={variants.textAlign} />}
+                                                {
+                                                    <NavigationMenuLink
+                                                        className={cn(
+                                                            navigationMenuTriggerStyle(),
+                                                            navigationVariants({
+                                                                width: variants.width,
+                                                                height: variants.height,
+                                                            }),
+                                                            "w-full",
+                                                        )}
+                                                        render={
+                                                            <NavigationLink fromList={true} link={link} onNavigate={onNavigate}
+                                                                textCase={variants.textCase} textSize={variants.textSize}
+                                                                textAlign={variants.textAlign} />
+                                                        } />
+                                                }
                                             </li>
                                         ))}
                                     </ul>
                                 </NavigationMenuContent>
                             </> :
 
-                            <LinkTag fromList={false} link={item.link!} onNavigate={onNavigate}
-                                width={variants.width} height={variants.height}
-                                textCase={variants.textCase} textSize={variants.textSize}
-                                textAlign={variants.textAlign} />
+                            <NavigationMenuLink
+                                className={cn(
+                                    navigationMenuTriggerStyle(),
+                                    navigationVariants({
+                                        width: variants.width,
+                                        height: variants.height,
+                                    }),
+                                    "w-full",
+                                )}
+                                render={
+                                    <NavigationLink fromList={false} link={item.link!} onNavigate={onNavigate}
+                                        textCase={variants.textCase} textSize={variants.textSize}
+                                        textAlign={variants.textAlign} />
+                                } />
+
                         }
 
                     </NavigationMenuItem>
@@ -159,9 +182,12 @@ export function Navigation({ className, side, navItems, onNavigate, ...variants 
 
 }
 
-function LinkTag({ link, onNavigate, width, height, textAlign, fromList }: {
-    fromList: boolean;
-    link: NavLink; onNavigate?: () => void;
+
+export function NavigationLink({ className, link, onNavigate, width, height, textAlign, fromList, }: {
+    className?: string;
+    fromList?: boolean;
+    link: NavLink;
+    onNavigate?: () => void;
     width?: VariantProps<typeof navigationVariants>['width'];
     height?: VariantProps<typeof navigationVariants>['height'];
     textCase?: VariantProps<typeof navigationVariants>['textCase'];
@@ -173,62 +199,53 @@ function LinkTag({ link, onNavigate, width, height, textAlign, fromList }: {
         e.preventDefault();
         onNavigate?.();
 
-        if (link!.href) return;
-
-        const element = document.getElementById(link!.href);
+        const element = document.getElementById(link.href);
         if (!element) return;
 
-        const OFFSET = 80;
+        const OFFSET = document.getElementById(HEADER_ID)?.getBoundingClientRect().height ?? 0;
         const top = element.getBoundingClientRect().top + window.scrollY - OFFSET;
 
         window.scrollTo({ top, behavior: "smooth" });
     };
 
-    const Tag = (link.type === "download" ? 'a' : Link) as ElementType
+    const Tag = (link.type === "download" ? 'a' : NextLink) as ElementType
     const downloadAttributes = link.type === "download" ? { download: link.filename } : {};
     const externalAttributes = link.type === "external" ? { target: "_blank", rel: "noopener noreferrer" } : {};
-    const scrollAttributes = link.type === "scroll" ? { onClick: scrollToId } : { onClick: onNavigate };
     const hrefAttributes = link.type === "scroll" ? { href: `#${link.href}` } : { href: link.href };
+    const scrollAttributes = link.type === "scroll" ? { onClick: scrollToId } : { onClick: onNavigate };
 
     return (
-        <NavigationMenuLink
+
+        <Tag
+            {...downloadAttributes}
+            {...externalAttributes}
+            {...hrefAttributes}
+            {...scrollAttributes}
             className={cn(
-                navigationMenuTriggerStyle(),
-                navigationVariants({ width, height }),
-                "w-full"
+                navigationVariants({ textAlign, width, height }),
+                "flex flex-row gap-2 transition-colors",
+                "hover:bg-primary/1 hover:text-primary",
+                "focus-visible:bg-primary/5 focus-visible:text-primary",
+                className
             )}
-            render={
-                <Tag
-                    {...downloadAttributes}
-                    {...externalAttributes}
-                    {...scrollAttributes}
-                    {...hrefAttributes}
-                    className={cn(
-                        navigationVariants({ textAlign }),
-                        "flex flex-row gap-2 transition-colors",
-                        "hover:bg-primary/1 hover:text-primary",
-                        "focus-visible:bg-primary/5 focus-visible:text-primary",
-                    )}
-                >
-                    {link.icon && (
-                        <span className="size-4">
-                            {link.icon}
-                        </span>
-                    )}
+        >
+            {link.icon && (
+                <span className="size-4">
+                    {link.icon}
+                </span>
+            )}
 
-                    <div className="flex flex-col items-start text-start gap-2 text-sm max-w-lg">
-                        <p className="leading-none font-medium">
-                            {link.label}
-                        </p>
+            <div className="flex flex-col items-start text-start gap-2 text-sm max-w-lg">
+                <p className="leading-none font-medium">
+                    {link.label}
+                </p>
 
-                        {(fromList && link.description) && (
-                            <p className="line-clamp-2">
-                                {link.description}
-                            </p>
-                        )}
-                    </div>
-                </Tag>
-            }
-        />
+                {(fromList && link.description) && (
+                    <p className="line-clamp-2">
+                        {link.description}
+                    </p>
+                )}
+            </div>
+        </Tag>
     )
 }
