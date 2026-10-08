@@ -1,9 +1,6 @@
 import { ProjectsProps } from "@/components/sections/project-section";
 
 export const projectsData: ProjectsProps = {
-    title: "projects",
-    subtitle:
-        "A collection of frontend applications, full-stack tools, and real-time platforms powered by Convex, modern web frameworks, and backend services.",
     projects: [
         {
             title: "Portfolio — Personal Developer Showcase",
@@ -16,12 +13,12 @@ export const projectsData: ProjectsProps = {
             github: "https://github.com/Rekahdo/rekahdo",
             deployment: "https://rekahdo.vercel.app",
             technologies: [
-                { text: "Next.js" },
-                { text: "TypeScript" },
-                { text: "Tailwind CSS" },
-                { text: "Shadcn UI" },
-                { text: "Base UI" },
-                { text: "Convex" },
+                { title: "Next.js" },
+                { title: "TypeScript" },
+                { title: "Tailwind CSS" },
+                { title: "Shadcn UI" },
+                { title: "Base UI" },
+                { title: "Convex" },
             ],
             status: "development",
         },
@@ -35,13 +32,13 @@ export const projectsData: ProjectsProps = {
             },
             github: "https://github.com/Rekahdo/glog",
             technologies: [
-                { text: "Next.js" },
-                { text: "TypeScript" },
-                { text: "Tailwind CSS" },
-                { text: "Shadcn UI" },
-                { text: "Base UI" },
-                { text: "Convex" },
-                { text: "Better Auth" },
+                { title: "Next.js" },
+                { title: "TypeScript" },
+                { title: "Tailwind CSS" },
+                { title: "Shadcn UI" },
+                { title: "Base UI" },
+                { title: "Convex" },
+                { title: "Better Auth" },
             ],
             status: "development",
         },
@@ -56,10 +53,10 @@ export const projectsData: ProjectsProps = {
             github: "https://github.com/Eclipse-017/SolStat",
             deployment: "https://solstat.vercel.app/",
             technologies: [
-                { text: "HTML" },
-                { text: "CSS" },
-                { text: "Javascript" },
-                { text: "React" },
+                { title: "HTML" },
+                { title: "CSS" },
+                { title: "Javascript" },
+                { title: "React" },
             ],
             status: "deployed",
         },
@@ -74,8 +71,8 @@ export const projectsData: ProjectsProps = {
             github: "https://github.com/Rekahdo/delight-learning",
             deployment: "https://rekahdo-delight-learning.vercel.app/",
             technologies: [
-                { text: "HTML" },
-                { text: "CSS" },
+                { title: "HTML" },
+                { title: "CSS" },
             ],
             status: "deployed",
         },

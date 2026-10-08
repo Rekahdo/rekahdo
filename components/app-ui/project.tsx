@@ -8,9 +8,8 @@ import { H3 } from "../shared-ui/headings";
 import { cn } from "cn";
 import { Tags } from "./tag";
 import { PingTag } from "../shared-ui/ping";
-import { OpenBtn } from "../implementions/button-impl";
-import Image from "next/image";
-import { AppImage } from "../shared-ui/image";
+import { OpenBtn } from "../shared-ui/button-impl";
+import Image from "../shared-ui/image";
 
 interface ProjectProps {
     project: ProjectType;
@@ -56,14 +55,16 @@ function Project({ project, className }: ProjectProps) {
 
             <CardFooter className="*:grow *:py-6 gap-4 mt-auto">
                 <OpenBtn text={"GitHub"} icon={
-                    <AppImage src={"images/stack/github.svg"}
-                        darkSrc={"images/stack/github-dark.svg"}
+                    <Image 
+                        src={"images/stack/github.svg"}
+                        srcDark={"images/stack/github-dark.svg"}
                         alt={`${project.title} gitHub button`}
+                        width={20}
                         className="w-4"
                     />
                 } href={project.github} variant={'secondary'} />
 
-                <OpenBtn text={"Live"} disabled={!Boolean(project.deployment)} href={project.deployment} />
+                {/* <OpenBtn text={"Live"} disabled={!Boolean(project.deployment)} href={project.deployment} /> */}
             </CardFooter>
         </Card>
     );

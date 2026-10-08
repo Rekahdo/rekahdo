@@ -1,5 +1,4 @@
 import { HeaderSection } from "@/components/sections/header-section";
-import { HeaderProvider } from "@/contexts/HeaderProvider";
 import { ReactNode } from "react";
 
 export interface LayoutProps {
@@ -10,9 +9,7 @@ export default function Layout({ children }: LayoutProps) {
 
     return (
         <>
-            <HeaderProvider>
-                <HeaderSection />
-            </HeaderProvider>
+            <HeaderSection />
 
             <main>{children}</main>
 

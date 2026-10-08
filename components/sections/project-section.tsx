@@ -2,11 +2,12 @@
 
 import { useProjects } from "@/contexts/ProjectsProvider";
 import { Container } from "../shared-ui/container";
-import { SectionProps } from "./about-section";
 import { H2 } from "../shared-ui/headings";
 import Projects from "../app-ui/project";
-import { ImageType } from "@/lib/prop-types";
+import { AppImageType } from "@/lib/types";
 import { TagType } from "../app-ui/tag";
+import { section } from "@/data/section";
+
 
 export const StatusArray = [
     "deployed",
@@ -53,28 +54,30 @@ export const Status: StatusType = {
 export type ProjectType = {
     title: string;
     description: string;
-    image: ImageType;
+    image: AppImageType;
     github: string;
     deployment?: string;
     technologies: TagType[];
     status: StatusKey;
 };
 
-export interface ProjectsProps extends SectionProps {
+export interface ProjectsProps {
     projects: ProjectType[];
 };
+
+export const PROJECT_ID = "project";
 
 export default function ProjectsSection() {
 
     const { data } = useProjects()!;
+    const sec = section.project;
 
     return (
         <Container
-            id="projects"
+            id={PROJECT_ID}
             py={'section'}
-            background={'muted'}
         >
-            <H2 title={data?.title} subtitle={data?.subtitle}>
+            <H2 title={sec.title} subtitle={sec.subtitle}>
                 <Projects projects={data?.projects} />
             </H2>
         </Container>

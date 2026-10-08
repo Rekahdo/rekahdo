@@ -1,9 +1,11 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
-import { GraduationCap } from "lucide-react";
+import { ExternalLink, GraduationCap } from "lucide-react";
 import { hover, shadow } from "../shared-ui/_css";
-import { AppImage } from "../shared-ui/image";
-import { OpenBtn } from "../implementions/button-impl";
+import Image from "../shared-ui/image";
+import { OpenBtn } from "../shared-ui/button-impl";
+import Link from "next/link";
+import { buttonVariants } from "../ui/button";
 
 export type EducationType = {
   institution: string;
@@ -57,8 +59,9 @@ function Education({
         <header className="flex justify-between gap-3 items-center">
           <div className="flex items-center gap-3">
             <div className="flex size-11 shrink-0 items-center justify-center rounded-lg border border-border bg-muted/50 p-1.5">
-              <AppImage
+              <Image
                 src={logo}
+                width={50}
                 alt={`${institution} logo`}
               />
             </div>
@@ -70,8 +73,10 @@ function Education({
             </div>
           </div>
 
-          <OpenBtn href={website} variant={"ghost"}
-            aria-label={`Visit ${institution} website`} />
+          <Link href={website} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${institution} website`}
+            className={cn(buttonVariants({ variant: 'ghost' }))}>
+            <ExternalLink />
+          </Link>
         </header>
 
         <div className="space-y-1">
@@ -88,7 +93,11 @@ function Education({
         </div>
 
         <div className="mt-auto pt-2">
-          <OpenBtn text="View Certification" href={certification} size="lg" className="w-full" />
+          <Link href={certification} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${institution} website`}
+            className={cn(buttonVariants({ size: 'lg' }), 'w-full')}>
+            <ExternalLink />
+            View Certification
+          </Link>
         </div>
       </div>
     </article>
