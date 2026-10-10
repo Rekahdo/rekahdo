@@ -40,3 +40,10 @@ export const findAll = query({
         return await ctx.db.query("project").order("desc").collect();
     },
 });
+
+export const findFour = query({
+    args: {},
+    handler: async (ctx, args) => {
+        return await ctx.db.query("project").take(4);
+    },
+});

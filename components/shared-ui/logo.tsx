@@ -10,8 +10,8 @@ export function Logo() {
 
     return (
         <Link href="/" className="w-25 sm:w-30 aspect-10/4">
-            <Image
-                src={light} srcDark={dark} alt={alt} width={100} />
+            <Image src={light} srcDark={dark} alt={alt} 
+                width={100} />
         </Link>
     )
 }

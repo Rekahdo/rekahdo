@@ -184,15 +184,15 @@
   * {
     @apply border-border outline-ring/50;
   }
-  
+
   body {
     @apply bg-background text-foreground;
     letter-spacing: var(--tracking-normal);
   }
-  
+
   html {
     @apply font-sans overflow-x-hidden;
     scrollbar-gutter: stable;
   }
-  
+
 }

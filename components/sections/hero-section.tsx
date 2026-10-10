@@ -1,27 +1,27 @@
-import { Tags, TagType } from "../app-ui/tag";
+import { Tags } from "../app-ui/tag";
 import { Container } from "../shared-ui/container";
 import { Grid } from "../shared-ui/layout";
 import { HeroContent } from "../app-ui/hero-content";
 import { BadgeText, Description, Greeting, Role } from "../app-ui/hero-ui";
 import { H1 } from "../shared-ui/headings";
-import { DownloadType, AppImageType } from "@/lib/types";
 import { PingTag } from "../shared-ui/ping";
 import { cn } from "cn";
 import { fetchQuery } from "convex/nextjs";
 import { api } from "@/convex/_generated/api";
-import Image from "next/image";
 import { buttonVariants } from "../ui/button";
-import Link from "next/link";
 import { Download } from "lucide-react";
 import { STACK_ID } from "./stack-section";
 import { NavigationLink } from "../shared-ui/navigation";
 import { CONTACT_ID } from "./contact-section";
+import { heroData } from "@/data/hero";
+import Image from "../shared-ui/image";
 
 export const HERO_ID = "hero";
 
 export const HeroSection = async () => {
 
-    const data = await fetchQuery(api.hero.get);
+    // const data = await fetchQuery(api.hero.get);
+    const data = await heroData;
     if (!data) return null;
 
     const cv = await fetchQuery(api.document.findByType, { type: 'cv' });
@@ -48,7 +48,7 @@ export const HeroSection = async () => {
                 lgCols={'two'}
                 lgPosition={'right'}
 
-                topClassName="flex"
+                topClassName="flex justify-center"
                 top={
                     <>
                         {(data.image && data.image.src) &&
@@ -56,7 +56,11 @@ export const HeroSection = async () => {
                                 src={data.image.src}
                                 alt={data.image?.alt ?? "hero image"}
                                 width={1000} height={1000}
-                                className="w-full rounded-full shadow-2xl"
+                                maxMdSize={'s80'}
+                                mdSize={'s50'}
+                                lgSize={'s100'}
+                                rounded={'full'}
+                                className="flex justify-center"
                             />
                         }
                     </>
@@ -67,9 +71,9 @@ export const HeroSection = async () => {
                         badge={<BadgeText text={data.badge} />}
                         greetings={<Greeting text={data.greetings} />}
                         title={<H1 size={'hero'} title={<>
-                            <span>{data.introduction}</span>
+                            <span>{data.introduction}{" "}</span>
                             <span className="text-primary">{data.name}</span>
-                        </>} className="max-lg:text-center max-lg:justify-center" />}
+                        </>} className="max-lg:text-center" />}
                         role={<Role text={data.role} />}
                         description={<Description text={data.description} className="max-lg:text-center max-lg:w-[80%] mx-auto" />}
                         tags={<Tags tags={data.tags} className='w-fit justify-center max-lg:mx-auto' />}
@@ -83,7 +87,7 @@ export const HeroSection = async () => {
                                     icon: <Download />,
                                     filename: cv!.name
                                 }}
-                                className={cn(buttonVariants({ size: 'lg'}), "shadow-sm")}
+                                className={cn(buttonVariants({ size: 'lg' }), "shadow-sm")}
                             />,
 
                             <NavigationLink

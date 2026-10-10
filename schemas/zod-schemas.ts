@@ -10,6 +10,12 @@ const tagValidator = z.object({
     emoji: z.optional(z.string()),
 });
 
+const socialLinkValidator = z.object({
+    platform: z.string(),
+    url: z.string(),
+    icon: z.string(),
+});
+
 export const signUpSchema = z.object({
     name: z.string().min(3).max(30),
     email: z.email(),
@@ -89,11 +95,9 @@ export const projectSchema = z.object({
 export const contactSchema = z.object({
     email: z.email(),
     phone: z.string(),
-    github: z.string(),
-    linkedIn: z.string(),
-    x: z.string(),
-    instagram: z.string(),
-})
+    location: z.string(),
+    socialLinks: z.array(socialLinkValidator),
+});
 
 export const contactMeSchema = z.object({
     name: z.string(),

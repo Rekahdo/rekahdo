@@ -11,6 +11,12 @@ export const tagValidator = v.object({
     emoji: v.optional(v.string()),
 });
 
+export const socialLinkValidator = v.object({
+    platform: v.string(),
+    url: v.string(),
+    icon: v.string(),
+});
+
 export const roleTable = {
     userId: v.string(),
     role: v.union(
@@ -99,10 +105,8 @@ export const projectTable = {
 export const contactTable = {
     email: v.string(),
     phone: v.string(),
-    github: v.string(),
-    linkedIn: v.string(),
-    x: v.string(),
-    instagram: v.string(),
+    location: v.string(),
+    socialLinks: v.array(socialLinkValidator),
 }
 
 export const contactMeTable = {

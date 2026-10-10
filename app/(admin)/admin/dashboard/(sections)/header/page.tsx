@@ -22,11 +22,14 @@ export default function Page(props: PageProps) {
 
     const [isPending, startTransition] = useTransition();
 
-    const { handleSubmit, control } = useForm({
+    const { handleSubmit, control } = useForm<z.infer<typeof headerSchema>>({
         resolver: zodResolver(headerSchema),
         defaultValues: {
-            name: 'Richard_Okafor_CV.pdf',
-            downloadCv: '/docs/Richard_Okafor_CV.pdf',
+            downloadCv: {
+                name: 'Richard_Okafor_CV.pdf',
+                href: '/docs/Richard_Okafor_CV.pdf',
+                type: "cv"
+            }
         }
     })
 
@@ -47,7 +50,7 @@ export default function Page(props: PageProps) {
                 <form onSubmit={handleSubmit(submit)}>
                     <CardContent className="grid gap-4">
                         <Controller
-                            name="name" control={control} render={({ field, fieldState }) => (
+                            name="downloadCv.name" control={control} render={({ field, fieldState }) => (
                                 <Field>
                                     <FieldLabel>Name</FieldLabel>
                                     <Input type="text" aria-invalid={fieldState.invalid} {...field} />
@@ -57,7 +60,7 @@ export default function Page(props: PageProps) {
                         />
 
                         <Controller
-                            name="downloadCv" control={control} render={({ field, fieldState }) => (
+                            name="downloadCv.href" control={control} render={({ field, fieldState }) => (
                                 <Field>
                                     <FieldLabel>Download CV</FieldLabel>
                                     <Input type="text" aria-invalid={fieldState.invalid} {...field} />

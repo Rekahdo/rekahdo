@@ -61,27 +61,34 @@ function Heading({
                 {hasTitle && (
                     <Tag
                         id={id}
-                        className={cn("flex items-center gap-4 text-foreground",
+                        className={cn(
+                            "flex items-center gap-4 text-foreground",
+
+                            (className?.includes("text-start") ? "justify-start"
+                                : className?.includes("text-center") ? "justify-center"
+                                    : className?.includes("text-end") ? "justify-end'" : ""),
+
                             HeaderVariants({
                                 ...props,
                                 size: visualSize
                             }),
+
                             className,
                         )}
                     >
-                        {icon && iconPosition === "left" && (
+                        {(icon && iconPosition === "left") &&
                             <span className="*:size-8 flex items-center justify-center">
                                 {icon}
                             </span>
-                        )}
+                        }
 
                         {title}
 
-                        {icon && iconPosition === "right" && (
+                        {(icon && iconPosition === "right") &&
                             <span className="*:size-8 flex items-center justify-center">
                                 {icon}
                             </span>
-                        )}
+                        }
                     </Tag>
                 )}
 

@@ -20,4 +20,8 @@ export const section = {
         title: "Contact",
         subtitle: "Have a project in mind or just want to say hi? I'd love to hear from you.",
     },
+    service: {
+        title: "Services",
+        subtitle: "Have a project in mind or just want to say hi? I'd love to hear from you.",
+    },
 } as Record<string, SectionProps>

@@ -3,7 +3,6 @@ import ContactSection from "@/components/sections/contact-section"
 import { HeroSection } from "@/components/sections/hero-section"
 import ProjectsSection from "@/components/sections/project-section"
 import { StackSection } from "@/components/sections/stack-section"
-import { ProjectsProvider } from "@/contexts/ProjectsProvider"
 
 export default function Page() {
     return (
@@ -11,11 +10,7 @@ export default function Page() {
             <HeroSection />
             <AboutSection />
             <StackSection />
-
-            <ProjectsProvider>
-                <ProjectsSection />
-            </ProjectsProvider>
-
+            <ProjectsSection />
             <ContactSection />
         </>
     )

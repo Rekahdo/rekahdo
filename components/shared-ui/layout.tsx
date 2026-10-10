@@ -5,7 +5,7 @@ import { align, justify } from "./_css";
 
 
 const flexVariants = cva(cn
-    ("flex max-lg:gap-4 lg:gap-8 text-foreground"),
+    ("flex max-lg:gap-6 lg:gap-8 text-foreground"),
     {
         variants: {
             direction: {

@@ -172,14 +172,13 @@ export function Container({
     place,
     ...props
 }: ContainerProps) {
-
     return (
         <Tag data-slot="container" id={id}
             className={cn("flex rounded-none *:grow min-w-87.5 items-center",
                 containerVariants({
                     background: 'background',
-                    bgGradient: 'grid',
-                    bgAttach: 'fixed',
+                    // bgGradient: 'grid',
+                    // bgAttach: 'fixed',
                     ...props
                 }))}>
 

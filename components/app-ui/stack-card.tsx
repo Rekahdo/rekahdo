@@ -33,6 +33,7 @@ export const StackTier = {
 } as const;
 
 type StackMode = "Compact" | "Detailed";
+
 type Stack = Omit<Doc<'stack'>, "_id" | "_creationTime">;
 
 type StackCardsType = {
@@ -136,7 +137,6 @@ const tierFor = (p: number) =>
     p >= 85
         ? {
             bar: "bg-emerald-500",
-            afterBar: "after:bg-emerald-500",
             text: "text-emerald-600 dark:text-emerald-400",
             ring: "ring-emerald-500/20",
             shadow: "hover:shadow-lg hover:shadow-emerald-500/20 hover:ring-1 hover:ring-emerald-500/30",
@@ -145,7 +145,6 @@ const tierFor = (p: number) =>
         : p >= 70
             ? {
                 bar: "bg-blue-500",
-                afterBar: "after:bg-blue-500",
                 text: "text-blue-600 dark:text-blue-400",
                 ring: "ring-blue-500/20",
                 shadow: "hover:shadow-lg hover:shadow-blue-500/20 hover:ring-1 hover:ring-blue-500/30",
@@ -154,7 +153,6 @@ const tierFor = (p: number) =>
             : p >= 46
                 ? {
                     bar: "bg-cyan-500",
-                    afterBar: "after:bg-cyan-500",
                     text: "text-cyan-600 dark:text-cyan-400",
                     ring: "ring-cyan-500/20",
                     shadow: "hover:shadow-lg hover:shadow-cyan-500/20 hover:ring-1 hover:ring-cyan-500/30",
@@ -163,7 +161,6 @@ const tierFor = (p: number) =>
                 : p >= 25
                     ? {
                         bar: "bg-amber-500",
-                        afterBar: "after:bg-amber-500",
                         text: "text-amber-600 dark:text-amber-400",
                         ring: "ring-amber-500/20",
                         shadow: "hover:shadow-lg hover:shadow-amber-500/20 hover:ring-1 hover:ring-amber-500/30",
@@ -171,7 +168,6 @@ const tierFor = (p: number) =>
                     }
                     : {
                         bar: "bg-slate-500/60",
-                        afterBar: "after:bg-slate-500/60",
                         text: "text-slate-600 dark:text-slate-400",
                         ring: "ring-slate-500/20",
                         shadow: "hover:shadow-lg hover:shadow-slate-500/15 hover:ring-1 hover:ring-slate-500/20",
@@ -274,7 +270,6 @@ function CardIcon({
             data-size={size}
             className={cn(
                 cardIconStyle,
-                tier.afterBar,
                 tier.ring,
                 tier.shadow,
                 className,
@@ -285,7 +280,7 @@ function CardIcon({
                 src={iconSrc}
                 srcDark={iconDarkSrc}
                 alt={`${name} tech stack`}
-                fill
+                width={50}
                 size={'s50'}
             />
         </div>
@@ -323,7 +318,6 @@ function CardContent({
     return (
         <div data-mode={mode} data-size={size}
             className={cn(cardContentStyle, mode === "Detailed" ? (
-                tierFor(percentage).afterBar,
                 tierFor(percentage).ring,
                 tierFor(percentage).shadow) : "",
                 className)}>

@@ -1,16 +1,15 @@
-'use client'
-
-import { fetchQuery } from "convex/nextjs";
 import { Container } from "../shared-ui/container";
 import { H2 } from "../shared-ui/headings";
 import { section } from "@/data/section";
-import { api } from "@/convex/_generated/api";
+import { Flex } from "../shared-ui/layout";
+import { contactMeData } from "@/data/contact-me";
 
 export const CONTACT_ID = "contact";
 
 export default async function ContactSection() {
 
-    const data = await fetchQuery(api.contact.get)!;
+    // const data = await fetchQuery(api.contact.get)
+    const data = await contactMeData;
     const sec = section.contact;
 
     return (
@@ -18,9 +17,21 @@ export default async function ContactSection() {
             id={CONTACT_ID}
             py={'section'}
         >
-            <H2 title={sec.title} subtitle={sec.subtitle}>
+            <H2 title={sec.title} subtitle={sec.subtitle} />
 
-            </H2>
+            <Flex 
+                top={
+                    <>
+                    
+                    </>
+                }
+
+                bottom={
+                    <>
+                    
+                    </>
+                }
+            />
         </Container>
     );
 }
