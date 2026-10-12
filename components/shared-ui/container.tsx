@@ -178,8 +178,8 @@ export function Container({
             className={cn("flex rounded-none *:grow min-w-87.5 items-center",
                 containerVariants({
                     background: 'background',
-                    bgGradient: 'grid',
-                    bgAttach: 'fixed',
+                    // bgGradient: 'grid',
+                    // bgAttach: 'fixed',
                     ...props
                 }))}>
 
