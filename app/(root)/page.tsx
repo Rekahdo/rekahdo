@@ -1,30 +1,17 @@
 import { AboutSection } from "@/components/sections/about-section"
+import ContactSection from "@/components/sections/contact-section"
 import { HeroSection } from "@/components/sections/hero-section"
 import ProjectsSection from "@/components/sections/project-section"
-import { TechStackSection } from "@/components/sections/tech-stack-section"
-import { AboutProvider } from "@/contexts/AboutProvider"
-import { HeroProvider } from "@/contexts/HeroProvider"
-import { ProjectsProvider } from "@/contexts/ProjectsProvider"
-import { TechStackProvider } from "@/contexts/TechStackProvider"
+import { StackSection } from "@/components/sections/stack-section"
 
-export default function Home() {
+export default function Page() {
     return (
-        <div id='home'>
-            <HeroProvider>
-                <HeroSection />
-            </HeroProvider>
-
-            <AboutProvider>
-                <AboutSection />
-            </AboutProvider>
-
-            <TechStackProvider>
-                <TechStackSection />
-            </TechStackProvider>
-
-            <ProjectsProvider>
-                <ProjectsSection />
-            </ProjectsProvider>
-        </div>
+        <>
+            <HeroSection />
+            <AboutSection />
+            <StackSection />
+            <ProjectsSection />
+            <ContactSection />
+        </>
     )
 }

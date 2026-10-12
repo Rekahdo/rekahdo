@@ -1,8 +1,15 @@
-import { HeaderProps } from "@/components/sections/header-section";
-
-export const headerData: HeaderProps = {
-  downloadCV: {
-    href: "/docs/Richard_Okafor_CV.pdf",
-    filename: "Richard_Okafor_CV.pdf",
-  },
+export type HeaderData = {
+    downloadCv: {
+        name: string;
+        href: string;
+        type: "cv";
+    };
 };
+
+export const headerData: Promise<HeaderData> = Promise.resolve({
+    downloadCv: {
+        name: "Richard_Okafor_CV.pdf",
+        href: "/docs/CV - Okafor Richard.pdf",
+        type: "cv",
+    },
+});

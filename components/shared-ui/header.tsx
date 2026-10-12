@@ -2,7 +2,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
 import { ReactNode } from "react";
 
-const headerGroupVariants = cva("flex items-center", {
+const headerGroupVariants = cva("flex", {
   variants: {
     gap: {
       sm: "gap-3 sm:gap-4",
@@ -36,7 +36,7 @@ function HeaderGroup({ children, className, gap }: HeaderGroupProps) {
 
 function HeaderLeft({ children }: { children?: ReactNode }) {
   return (
-    <HeaderGroup className={cn("me-auto")} gap={"sm"}>
+    <HeaderGroup className={cn("me-auto items-start")} gap={"sm"}>
       {children}
     </HeaderGroup>
   );
@@ -44,7 +44,7 @@ function HeaderLeft({ children }: { children?: ReactNode }) {
 
 function HeaderCenter({ children }: { children?: ReactNode }) {
   return (
-    <HeaderGroup className={"mx-auto w-full px-4"} gap={"sm"}>
+    <HeaderGroup className={"mx-auto w-full px-4 items-center *:grow"} gap={"sm"}>
       {children}
     </HeaderGroup>
   );
@@ -52,7 +52,7 @@ function HeaderCenter({ children }: { children?: ReactNode }) {
 
 function HeaderRight({ children }: { children?: ReactNode }) {
   return (
-    <HeaderGroup className={"ms-auto"} gap={"sm"}>
+    <HeaderGroup className={"ms-auto items-end"} gap={"sm"}>
       {children}
     </HeaderGroup>
   );
@@ -81,7 +81,6 @@ export type HeaderCompType = VariantProps<typeof headerVariants> & {
   headerLeft?: ReactNode;
   headerCenter?: ReactNode;
   headerRight?: ReactNode;
-  sidebar?: ReactNode;
   ariaLabel?: string;
 };
 
@@ -90,7 +89,6 @@ export function Header({
   headerLeft,
   headerCenter,
   headerRight,
-  sidebar,
   ariaLabel = "Site header",
 }: HeaderCompType) {
 
@@ -115,8 +113,6 @@ export function Header({
           {headerRight}
         </HeaderRight>
       }
-
-      {sidebar}
 
     </header>
   )

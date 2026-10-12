@@ -1,22 +1,33 @@
-import { HeroProps } from "@/components/sections/hero-section";
-import { headerData } from "./header";
-
-export const heroData: HeroProps = {
-  badge: "developer that help your business grow",
-  greetings: "Hi there",
-  fullName: "RICHARD",
-  role: "Frontend Engineer | Full-Stack Perspective",
-  description:
-    "Welcome to my portfolio! I specialize in crafting fast, responsive, and engaging user interfaces using React, TypeScript, and modern web technologies. I build scalable web applications focused on performance, clean code, and great user experience",
-  heroImage: {
-    alt: "richard okafor",
-    src: "/images/me/richard.svg",
-  },
-  location: "Lagos Nigeria",
-  tags: [
-    { text: "Clean-Code" }, 
-    { text: "Object Oriented" },
-    { text: "Component Based" },
-  ],
-  downloadCV: headerData.downloadCV, 
+export type HeroData = {
+    badge: string;
+    greetings: string;
+    introduction: string;
+    name: string;
+    headline: string;
+    role: string;
+    description: string;
+    availableForWork: boolean;
+    image: { src: string; alt: string };
+    tags: { title: string; emoji?: string }[];
 };
+
+export const heroData: Promise<HeroData> = Promise.resolve({
+    badge: "developer that help your business grow",
+    greetings: "Hi there",
+    introduction: "I'M",
+    name: "RICHARD",
+    headline: "",
+    role: "Next.js Web Engineer",
+    description:
+        "I build scalable web applications, custom UI components, and high-converting websites that give businesses strong online visibility. Beyond writing clean, modern frontend code with React and Next.js, I love breaking down complex programming concepts into simple, accessible ideas for developers who are just starting out.",
+    availableForWork: true,
+    image: {
+        src: "/images/me/hero.svg",
+        alt: "richard okafor",
+    },
+    tags: [
+        { title: "Component Driven" },
+        { title: "Web Visibility" },
+        { title: "Technical Mentorship" },
+    ],
+});

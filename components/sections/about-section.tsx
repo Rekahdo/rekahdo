@@ -1,89 +1,89 @@
-'use client'
-
 import { cn } from "cn"
-import { AppImage } from "../shared-ui/image";
-import { Experiences, ExperienceType } from "../app-ui/experience";
-import { Quote, QuoteType } from "../app-ui/quote";
-import { Educations, EducationType } from "../app-ui/education";
-import { Tags, TagType } from "../app-ui/tag";
-import { useAbout } from "@/contexts/AboutProvider";
+import { Experiences } from "../app-ui/experience";
+import { Quote } from "../app-ui/quote";
+import { Educations } from "../app-ui/education";
+import { Tags } from "../app-ui/tag";
 import { Container } from "../shared-ui/container";
 import { H2, H3, H4 } from "../shared-ui/headings";
 import { Flex } from "../shared-ui/layout";
-import { ImageType } from "@/lib/prop-types";
+import { section } from "@/data/section";
+import { aboutData } from "@/data/about";
+import AppImage from "../shared-ui/image";
 
-export interface SectionProps {
-    title: string;
-    subtitle?: string;
-}
+export const ABOUT_ID = "aboutMe";
 
-export interface AboutProps extends SectionProps {
-    headline: string;
-    bio: string;
-    me: ImageType;
-    experiences: ExperienceType[];
-    quote: QuoteType
-    educations: EducationType[];
-    skillTags: TagType[];
-};
+export async function AboutSection() {
 
-export function AboutSection() {
+    // const data = await fetchQuery(api.about.get);
+    const data = await aboutData
+    if (!data) return null;
 
-    const { data } = useAbout()!;
+    const sec = section.about;
 
     return (
-        <>
-            {data &&
-                <Container
-                    id="aboutMe"
-                    background={'background'}
-                    py={"section"}
-                    className="scroll-mt-20"
-                >
+        <Container
+            id={ABOUT_ID}
+            px={'section'}
+            py={"section"}
+        >
 
-                    <section className="flex flex-col gap-10 md:gap-15">
-                        <H2 title={data.title} className={"justify-center"}
-                            subtitleClassName="text-center" />
+            <section className="flex flex-col gap-10 md:gap-15">
+                <H2 title={sec.title} className={"mx-auto"} />
 
-                        <Flex
-                            mdDirection={"row"}
-                            lgDirection={"row"}
-                            className="max-md:gap-8"
+                <Flex
+                    lgDirection={"row"}
+                    className="max-lg:gap-8"
 
-                            topClassName="items-start"
-                            top={
-                                <AppImage src={data.me.src} alt={data.me.alt} xsSm={"lg"} 
-                                    lg={"lg"} className="rounded-full"/>
+                    topClassName="flex justify-center sm:max-w-[35%] items-start mx-auto"
+                    top={
+                        <>{(data.me && data.me.src) &&
+                            <AppImage
+                                src={data.me.src}
+                                alt={data.me?.alt ?? "profile image of richard"}
+                                width={1000} height={1000}
+                                size={'s100'}
+                                maxSmSize={'s80'}
+                                rounded={'full'}
+
+                            />
+                        }</>
+                    }
+
+                    bottomClassName="lg:ps-10 w-full"
+                    bottom={
+                        <H3 title={data.headline}
+                            className={"max-md:text-center"}>
+
+                            <p className={cn("whitespace-pre-line max-md:text-center")}>
+                                {data.bio}
+                            </p>
+
+                            {data.experiences &&
+                                <Experiences experiences={data.experiences}
+                                    className="max-md:justify-center max-md:text-center" />
                             }
 
-                            bottomClassName="md:ps-7 lg:ps-10"
-                            bottom={
-                                <H3 title={data.headline}
-                                    className={"max-md:justify-center max-md:text-center"}>
-
-                                    <p className={cn("whitespace-pre-line max-md:text-center")}>
-                                        {data.bio}
-                                    </p>
-
-                                    <Experiences experiences={data.experiences}
-                                        className="max-md:justify-center max-md:text-center" />
-
-                                    <Quote {...data.quote} variant={"normal"}
-                                        className="max-md:justify-center max-md:text-center" />
-                                </H3>
+                            {data.quote &&
+                                <Quote {...data.quote} variant={"normal"}
+                                    className="max-md:justify-center max-md:text-center" />
                             }
-                        />
+                        </H3>
+                    }
+                />
 
-                        <H4 title="Education & Certification">
-                            <Educations educations={data.educations} />
-                        </H4>
+                {data.educations &&
+                    <H4 title="Education & Certification">
+                        <Educations educations={data.educations} />
+                    </H4>
+                }
 
-                        <H4 title="core skills">
-                            <Tags tags={data.skillTags} />
-                        </H4>
-                    </section>
-                </Container>
-            }
-        </>
+                {data.skillTags &&
+                    <H4 title="core skills">
+                        <Tags tags={data.skillTags} />
+                    </H4>
+                }
+
+            </section>
+        </Container>
     )
 }

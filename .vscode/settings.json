@@ -5,10 +5,51 @@
     "clsx",
     "twMerge"
   ],
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "ngClass",
+    "topClassName",
+    "bottomClassName",
+    "leftClassName",
+    "rightClassName",
+    "centerClassName",
+    "imgClassName",
+    "wrapperClassName",
+    "innerClassName",
+    "outerClassName",
+    "labelClassName",
+    "inputClassName",
+    "errorClassName",
+    "containerClassName",
+    "contentClassName",
+    "titleClassName",
+    "subtitleClassName",
+    "iconClassName",
+    "badgeClassName",
+  ],
   "tailwindCSS.experimental.classRegex": [
-    ["cva\\(([^;]*)[\\);]", "['\"`]([^\"'`]*)[`'\"`]"],
-    ["cn\\(([^)]*)\\)", "['\"`]([^\"'`]*)[`'\"`]"],
-    ["clsx\\(([^)]*)\\)", "['\"`]([^\"'`]*)[`'\"`]"]
+    [
+      "cva\\(([^;]*)[\\);]",
+      "['\"`]([^\"'`]*)[`'\"`]"
+    ],
+    [
+      "cn\\(([^)]*)\\)",
+      "['\"`]([^\"'`]*)[`'\"`]"
+    ],
+    [
+      "clsx\\(([^)]*)\\)",
+      "['\"`]([^\"'`]*)[`'\"`]"
+    ],
+    [
+      "`([^`]*)`"
+    ], // Template literals: `...`
+    [
+      "'([^']*)'"
+    ], // Single quotes: '...'
+    [
+      "\"([^\"]*)\""
+    ] // Double quotes: "..."s
   ],
   "tailwindCSS.includeLanguages": {
     "typescript": "javascript",
@@ -18,13 +59,10 @@
     "strings": "on"
   },
   "tailwindCSS.experimental.configFile": "app/globals.css",
-
   "editor.codeLens": true,
   "editor.inlayHints.enabled": "on",
-
   "typescript.referencesCodeLens.enabled": true,
   "typescript.implementationsCodeLens.enabled": true,
-
   "javascript.referencesCodeLens.enabled": true,
   "javascript.implementationsCodeLens.enabled": true
 }

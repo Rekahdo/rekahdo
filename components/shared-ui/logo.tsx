@@ -1,6 +1,7 @@
-import { AppImage } from "./image";
 import { cn } from "cn";
-import Link from "next/link";
+import AppImage from "./image";
+import { NavigationLink } from "./navigation";
+import { HERO_ID } from "../sections/hero-section";
 
 export function Logo() {
 
@@ -9,9 +10,17 @@ export function Logo() {
     const alt = "Rekahdo.dev Logo";
 
     return (
-        <Link href="/">
-            <AppImage className={cn("cursor-pointer text-foreground")}
-                src={light} darkSrc={dark} alt={alt} size={"xs"} />
-        </Link>
+        <NavigationLink
+            className={cn(
+                "w-25 sm:w-30 aspect-10/4"
+            )}
+            key={"hero-btn-3"}
+            link={{
+                href: HERO_ID,
+                type: 'scroll',
+                label: <AppImage src={light} srcDark={dark} alt={alt}
+                    width={100} />,
+            }}
+        />
     )
 }

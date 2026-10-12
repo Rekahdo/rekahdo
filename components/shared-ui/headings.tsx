@@ -5,7 +5,8 @@ import type { ElementType, ReactNode } from "react";
 export const HeaderVariants = cva("capitalize", {
     variants: {
         size: {
-            h1: "text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold uppercase",
+            hero: "text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold uppercase",
+            h1: "text-4xl sm:text-5xl font-extrabold",
             h2: "text-3xl sm:text-4xl font-bold",
             h3: "text-xl sm:text-2xl font-bold",
             h4: "text-lg sm:text-xl font-bold",
@@ -60,27 +61,30 @@ function Heading({
                 {hasTitle && (
                     <Tag
                         id={id}
-                        className={cn("flex items-center gap-4 text-foreground",
+                        className={cn(
+                            "flex items-center gap-4 text-foreground",
+
                             HeaderVariants({
                                 ...props,
                                 size: visualSize
                             }),
+
                             className,
                         )}
                     >
-                        {icon && iconPosition === "left" && (
+                        {(icon && iconPosition === "left") &&
                             <span className="*:size-8 flex items-center justify-center">
                                 {icon}
                             </span>
-                        )}
+                        }
 
                         {title}
 
-                        {icon && iconPosition === "right" && (
+                        {(icon && iconPosition === "right") &&
                             <span className="*:size-8 flex items-center justify-center">
                                 {icon}
                             </span>
-                        )}
+                        }
                     </Tag>
                 )}
 
