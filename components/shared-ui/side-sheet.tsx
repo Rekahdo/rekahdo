@@ -38,7 +38,7 @@ export function SideSheet({
 }: SideBarType) {
 
     const [open, setOpen] = useState(false);
-    const media = useWidthMedia().maxMd;
+    const media = useWidthMedia().maxMlg;
 
     return (
         <>{

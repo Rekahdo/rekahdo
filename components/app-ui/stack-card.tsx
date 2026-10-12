@@ -21,7 +21,7 @@ import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { hover } from "../shared-ui/_css";
 import { H3 } from "../shared-ui/headings";
 import { Progress } from "../ui/progress";
-import Image from "../shared-ui/image";
+import AppImage from "../shared-ui/image";
 import { Tags } from "./tag";
 
 export const StackTier = {
@@ -81,11 +81,11 @@ export function StackCards({ className, data }: StackCardsType) {
     }
 
     return (
-        <Flex className={cn()}
+        <Flex className={cn("max-sm:gap-8 gap-10")}
             topClassName="sticky top-20 z-10 md:top-25 lg:top-25"
             top={
-                <div className="flex grow justify-between max-sm:items-start items-center">
-                    <div className="flex gap-4 max-sm:flex-col">
+                <div className="flex grow justify-between items-center">
+                    <div className="flex gap-4 max-md:flex-col">
                         <FilterSelect
                             items={stacks}
                             onValueChange={selectStack}
@@ -276,7 +276,7 @@ function CardIcon({
             )}
         >
 
-            <Image
+            <AppImage
                 src={iconSrc}
                 srcDark={iconDarkSrc}
                 alt={`${name} tech stack`}

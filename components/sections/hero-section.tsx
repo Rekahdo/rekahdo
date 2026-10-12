@@ -2,29 +2,29 @@ import { Tags } from "../app-ui/tag";
 import { Container } from "../shared-ui/container";
 import { Grid } from "../shared-ui/layout";
 import { HeroContent } from "../app-ui/hero-content";
-import { BadgeText, Description, Greeting, Role } from "../app-ui/hero-ui";
+import { Description, Greeting, Role } from "../app-ui/hero-ui";
 import { H1 } from "../shared-ui/headings";
 import { PingTag } from "../shared-ui/ping";
 import { cn } from "cn";
-import { fetchQuery } from "convex/nextjs";
-import { api } from "@/convex/_generated/api";
 import { buttonVariants } from "../ui/button";
 import { Download } from "lucide-react";
 import { STACK_ID } from "./stack-section";
 import { NavigationLink } from "../shared-ui/navigation";
 import { CONTACT_ID } from "./contact-section";
 import { heroData } from "@/data/hero";
-import Image from "../shared-ui/image";
+import AppImage from "../shared-ui/image";
+import { headerData } from "@/data/header";
 
 export const HERO_ID = "hero";
 
 export const HeroSection = async () => {
 
     // const data = await fetchQuery(api.hero.get);
+    // const cv = await fetchQuery(api.document.findByType, { type: 'cv' });
     const data = await heroData;
     if (!data) return null;
 
-    const cv = await fetchQuery(api.document.findByType, { type: 'cv' });
+    const cv = (await headerData).downloadCv;
 
     return (
         <Container
@@ -33,16 +33,7 @@ export const HeroSection = async () => {
             px={'section'}
             place={'center'}
             height={'hero'}
-            className="scroll-mt-20 relative max-xs:pt-25"
         >
-            {data.availableForWork &&
-                <PingTag className={cn(
-                    "absolute left-0 top-4",
-                    "ms-6 sm:ms-8 lg:ms-10",)}
-                >
-                    Available For Work
-                </PingTag>
-            }
 
             <Grid
                 lgCols={'two'}
@@ -52,13 +43,13 @@ export const HeroSection = async () => {
                 top={
                     <>
                         {(data.image && data.image.src) &&
-                            <Image
+                            <AppImage
                                 src={data.image.src}
                                 alt={data.image?.alt ?? "hero image"}
                                 width={1000} height={1000}
                                 maxMdSize={'s80'}
                                 mdSize={'s50'}
-                                lgSize={'s100'}
+                                lgSize={'s90'}
                                 rounded={'full'}
                                 className="flex justify-center"
                             />
@@ -68,15 +59,43 @@ export const HeroSection = async () => {
 
                 bottom={
                     <HeroContent className="max-lg:text-center max-lg:justify-center"
-                        badge={<BadgeText text={data.badge} />}
                         greetings={<Greeting text={data.greetings} />}
-                        title={<H1 size={'hero'} title={<>
-                            <span>{data.introduction}{" "}</span>
-                            <span className="text-primary">{data.name}</span>
-                        </>} className="max-lg:text-center" />}
                         role={<Role text={data.role} />}
                         description={<Description text={data.description} className="max-lg:text-center max-lg:w-[80%] mx-auto" />}
                         tags={<Tags tags={data.tags} className='w-fit justify-center max-lg:mx-auto' />}
+
+                        title={
+                            <H1 size={'hero'}
+                                title={<>
+                                    <span>{data.introduction}{" "}</span>
+                                    <span className="text-primary">{data.name}</span>
+                                </>}
+                                className="max-lg:text-center"
+                            />
+                        }
+
+                        badge={
+                            <>{
+                                data.availableForWork &&
+                                <NavigationLink
+                                    className={cn(
+                                        "my-4 max-lg:mx-auto w-fit"
+                                    )}
+                                    key={"hero-btn-3"}
+                                    link={{
+                                        href: CONTACT_ID,
+                                        type: 'scroll',
+                                        label: <PingTag
+                                            className="gap-4 shadow-sm"
+                                            pingSize="size-3"
+                                            text={"Available For Remote / Hybrid Roles"}
+                                            description="Open to remote & hybrid roles"
+                                        />,
+                                    }}
+                                />
+                            }</>
+                        }
+
                         ctaBtns={[
                             <NavigationLink
                                 key={"hero-btn-1"}

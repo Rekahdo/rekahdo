@@ -9,7 +9,6 @@ import { PingTag } from "../shared-ui/ping";
 import { buttonVariants } from "../ui/button";
 import { AspectRatio } from "../ui/aspect-ratio";
 import Link from "next/link";
-import Image from "next/image";
 import { Tags } from "./tag";
 import {
     ProjectType,
@@ -17,6 +16,8 @@ import {
     Status,
 } from "../sections/project-section";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import Image from "next/image";
+import AppImage from "../shared-ui/image";
 
 interface ProjectsTabsProps {
     projects: ProjectType[];
@@ -45,7 +46,10 @@ export function ProjectsTabs({ projects }: ProjectsTabsProps) {
                 <TabsContent
                     key={tab}
                     value={tab}
-                    className="flex flex-wrap max-md:justify-center gap-4 sm:gap-6 md:gap-8"
+                    className={cn(
+                        "flex flex-wrap md:justify-center gap-4 sm:gap-6 md:gap-8",
+                        "max-md:grid max-sm:grid-cols-1 sm:grid-cols-2"
+                    )}
                 >
                     {projects
                         .filter((p) => tab === "all" || p.status === tab)
@@ -70,13 +74,12 @@ export function Project({ project, className }: ProjectProps) {
         <Card
             className={cn(
                 "group shadow-lg grow basis-1 p-0 gap-0",
-                "min-w-60 max-w-120 max-sm:min-w-full md:min-w-80",
+                "grow85 w-full md:min-w-70 md:max-w-100",
                 className,
             )}
         >
             <CardHeader className="p-0 gap-4 relative">
-                <AspectRatio
-                    ratio={16 / 9}
+                <AspectRatio ratio={16 / 9}
                     className="overflow-hidden duration-300 motion-reduce:duration-0"
                 >
                     <Image
@@ -116,8 +119,9 @@ export function Project({ project, className }: ProjectProps) {
                     rel="noopener noreferrer"
                     className={cn(buttonVariants({ variant: "secondary" }), "gap-2")}
                 >
-                    <Image
+                    <AppImage
                         src={"images/stack/github.svg"}
+                        srcDark={"images/stack/github-dark.svg"}
                         alt={`${project.title} gitHub button`}
                         width={20}
                         height={20}

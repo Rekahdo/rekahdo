@@ -6,7 +6,7 @@ export const HeaderVariants = cva("capitalize", {
     variants: {
         size: {
             hero: "text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold uppercase",
-            h1: "text-4xl lg:text-5xl font-extrabold",
+            h1: "text-4xl sm:text-5xl font-extrabold",
             h2: "text-3xl sm:text-4xl font-bold",
             h3: "text-xl sm:text-2xl font-bold",
             h4: "text-lg sm:text-xl font-bold",
@@ -63,10 +63,6 @@ function Heading({
                         id={id}
                         className={cn(
                             "flex items-center gap-4 text-foreground",
-
-                            (className?.includes("text-start") ? "justify-start"
-                                : className?.includes("text-center") ? "justify-center"
-                                    : className?.includes("text-end") ? "justify-end'" : ""),
 
                             HeaderVariants({
                                 ...props,

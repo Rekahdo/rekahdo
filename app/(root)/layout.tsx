@@ -13,7 +13,7 @@ export default function Layout({ children }: LayoutProps) {
 
             <main>{children}</main>
 
-            <footer>FOOTER</footer>
+            {/* <footer>FOOTER</footer> */}
         </>
     );
 }

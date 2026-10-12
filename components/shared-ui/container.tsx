@@ -49,11 +49,12 @@ const containerVariants = cva(
                 hero: "bg-[url(/images/bg/hero.svg)] bg-no-repeat bg-left-bottom bg-scroll",
                 about: "bg-[url(/images/bg/e.svg)] bg-no-repeat bg-right-bottom bg-scroll",
                 stack: "bg-[url(/images/bg/k.svg)] bg-no-repeat bg-left-bottom bg-fixed",
+                bgImage: "bg-[url(/images/bg/bg-image.svg)] bg-no-repeat bg-top-left bg-fixed",
             },
             bgGradient: {
                 // ── Additive patterns ─────────────────────────────────────────────
                 grid: cn(
-                    "bg-[linear-gradient(to_right,color-mix(in_oklab,var(--border)_60%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_oklab,var(--border)_60%,transparent)_1px,transparent_1px)]",
+                    "bg-[linear-gradient(to_right,color-mix(in_oklab,var(--border)_20%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_oklab,var(--border)_20%,transparent)_1px,transparent_1px)]",
                     "bg-[size:32px_32px]",
                 ),
                 "grid-sm": cn(
@@ -177,8 +178,8 @@ export function Container({
             className={cn("flex rounded-none *:grow min-w-87.5 items-center",
                 containerVariants({
                     background: 'background',
-                    // bgGradient: 'grid',
-                    // bgAttach: 'fixed',
+                    bgGradient: 'grid',
+                    bgAttach: 'fixed',
                     ...props
                 }))}>
 

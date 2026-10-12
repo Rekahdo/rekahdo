@@ -8,7 +8,7 @@ import { H2, H3, H4 } from "../shared-ui/headings";
 import { Flex } from "../shared-ui/layout";
 import { section } from "@/data/section";
 import { aboutData } from "@/data/about";
-import Image from "../shared-ui/image";
+import AppImage from "../shared-ui/image";
 
 export const ABOUT_ID = "aboutMe";
 
@@ -28,27 +28,28 @@ export async function AboutSection() {
         >
 
             <section className="flex flex-col gap-10 md:gap-15">
-                <H2 title={sec.title} className={"text-center"} />
+                <H2 title={sec.title} className={"mx-auto"} />
 
                 <Flex
                     lgDirection={"row"}
                     className="max-lg:gap-8"
 
-                    topClassName="flex justify-center"
+                    topClassName="flex justify-center sm:max-w-[35%] items-start mx-auto"
                     top={
                         <>{(data.me && data.me.src) &&
-                            <Image
+                            <AppImage
                                 src={data.me.src}
                                 alt={data.me?.alt ?? "profile image of richard"}
                                 width={1000} height={1000}
                                 size={'s100'}
                                 maxSmSize={'s80'}
                                 rounded={'full'}
+
                             />
                         }</>
                     }
 
-                    bottomClassName="lg:ps-10 w-full lg:w-[60%]"
+                    bottomClassName="lg:ps-10 w-full"
                     bottom={
                         <H3 title={data.headline}
                             className={"max-md:text-center"}>

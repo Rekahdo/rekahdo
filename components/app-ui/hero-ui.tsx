@@ -21,7 +21,7 @@ export function BadgeText({ text, className }: TextType & ClassNameType) {
 
 export function Greeting({ text, className }: TextType & ClassNameType) {
     return (
-        <p className={cn("font-medium text-foreground", className)}>
+        <p className={cn("font-medium text-foreground text-lg sm:text-xl", className)}>
             {text}
         </p>
     )

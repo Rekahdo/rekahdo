@@ -9,7 +9,7 @@ import { HEADER_ID } from "../sections/header-section";
 
 interface NavLinkBase {
     href: string;
-    label: string;
+    label: ReactNode;
     icon?: ReactNode;
     description?: string;
     disabled?: boolean;
@@ -236,9 +236,9 @@ export function NavigationLink({ className, link, onNavigate, width, height, tex
             )}
 
             <div className="flex flex-col items-start text-start gap-2 text-sm max-w-lg">
-                <p className="leading-none font-medium">
+                <div className="leading-none font-medium">
                     {link.label}
-                </p>
+                </div>
 
                 {(fromList && link.description) && (
                     <p className="line-clamp-2">

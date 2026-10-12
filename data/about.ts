@@ -16,9 +16,15 @@ export type AboutData = {
 
 export const aboutData: Promise<AboutData> = Promise.resolve({
     headline: "Frontend-Focused Engineer with Full-Stack Perspective",
-    bio: "I am a Frontend Developer dedicated to building fast, scalable, and modular web applications using React, TypeScript, and modern CSS Frameworks. My engineering journey began on the backend, where working deeply with Java and Spring Boot instilled a strong foundation in Object-Oriented Programming (OOP) and system design. \n\nThat mindset directly shapes how I write client-side code today. I approach UI development by encapsulating logic and state into clean, reusable, object-like components designed for scalability and maintainability. \n\nBeyond frontend architecture, my background designing RESTful APIs, microservices, and databases allows me to bridge client-side interfaces with backend systems effortlessly. I am currently expanding my modern full-stack toolkit with Next.js, combining interactive React components with server-side capabilities.",
+    bio: `
+        I am a Frontend Developer focused on building fast, reliable, and responsive web applications using React, Next.js, and TypeScript. My tech journey began in UI/UX design before I transitioned into frontend engineering, which gave me a practical eye for clean layout structure, design consistency, and solid user flows.
+
+        My main focus is creating modular, reusable UI components and building clear, conversion-ready landing pages that help businesses get visible online. I structure my client-side code around solid engineering principles, keeping state management clean and making sure frontend components integrate cleanly with backend APIs.
+
+        Beyond building client-side apps, I enjoy technical teaching and mentorship. I regularly break down hard coding concepts into simple, clear steps for junior developers and beginners, focusing entirely on clean component code, reliable user interfaces, and helping businesses grow their web presence.
+    `,
     me: {
-        src: "/images/me/profile.svg",
+        src: "/images/me/about.svg",
         alt: "Richard Okafor About Me",
     },
     experiences: [
@@ -26,39 +32,42 @@ export const aboutData: Promise<AboutData> = Promise.resolve({
         { years: 1, title: "frontend" },
     ],
     quote: {
-        text: "To me, great frontend development isn't just about pixel-perfect layouts, it's also about understanding the entire data flow from backend APIs to client interactions to deliver a seamless user experience.",
+        text: "To me, great frontend work isn't just about pixel-perfect layouts, it's about building maintainable code, giving businesses a real online presence, and breaking down tough concepts so others can grow.",
     },
     educations: [
         {
             institution: "NIIT",
             course: "Software Engineering ",
-            certification: "/docs/NIIT_Certification.jpg",
+            certification: "/docs/NIIT_Diploma_and_Transcript_Okafor_Richard.pdf",
             website: "https://www.niit.com/nigeria/",
             logo: "/images/icons/niit.svg",
         },
         {
             institution: "Udemy",
             course: "Spring Boot Certification",
-            certification: "/docs/Spring_Boot_Certification.pdf",
+            certification: "/docs/Spring_Boot_Certification - Okafor Richard.pdf",
             website: "https://www.udemy.com/share/107zyk3@s_qIkz9IEydVxtT386qxf7AS7Nsxngx0f8X-SVtA6ghsg0cXKOaMBzJDswfjXhBYTQ==/",
             logo: "/images/icons/udemy.svg",
         },
         {
             institution: "TS Academy",
             course: "Frontend Development",
-            certification: "/docs/Frontend_Development_Certification.pdf",
+            certification: "/docs/Frontend_Development_Certification - Okafor Richard.pdf",
             website: "https://tsacademyonline.com/",
             logo: "/images/icons/tsa.svg",
         },
     ],
     skillTags: [
-        { title: "Teaching", emoji: "🧠" },
-        { title: "Problem Solving", emoji: "🧩" },
-        { title: "Logic Reasoning", emoji: "🔧" },
-        { title: "Communication", emoji: "💬" },
-        { title: "Collaboration", emoji: "🤝" },
-        { title: "Team working", emoji: "👥" },
+        { title: "Web Visibility", emoji: "🌐" },
+        { title: "Component Design", emoji: "🧩" },
+        { title: "Technical Mentorship", emoji: "🧠" },
+        { title: "Clean Code", emoji: "✨" },
         { title: "Version Control", emoji: "🔀" },
-        { title: "Agile", emoji: "♻️" },
+        { title: "Patient & Approachable", emoji: "😊" },
+        { title: "Friendly & Open", emoji: "💬" },
+        { title: "People Person", emoji: "👥" },
+        { title: "Problem Solving", emoji: "⚡" },
+        { title: "Agile Workflow", emoji: "🔄" },
+        { title: "Easy to Collaborate With", emoji: "🤝" },
     ],
 });

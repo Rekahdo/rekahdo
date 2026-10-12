@@ -17,17 +17,17 @@ export const heroData: Promise<HeroData> = Promise.resolve({
     introduction: "I'M",
     name: "RICHARD",
     headline: "",
-    role: "Full Stack Web Engineer",
+    role: "Next.js Web Engineer",
     description:
-        "Welcome to my portfolio! I specialize in crafting fast, responsive, and engaging user interfaces using React, TypeScript, and modern web technologies. I build scalable web applications focused on performance, clean code, and great user experience",
+        "I build scalable web applications, custom UI components, and high-converting websites that give businesses strong online visibility. Beyond writing clean, modern frontend code with React and Next.js, I love breaking down complex programming concepts into simple, accessible ideas for developers who are just starting out.",
     availableForWork: true,
     image: {
-        src: "/images/me/richard.svg",
+        src: "/images/me/hero.svg",
         alt: "richard okafor",
     },
     tags: [
-        { title: "Clean-Code" },
-        { title: "Object Oriented" },
-        { title: "Component Based" },
+        { title: "Component Driven" },
+        { title: "Web Visibility" },
+        { title: "Technical Mentorship" },
     ],
 });

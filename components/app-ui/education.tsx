@@ -2,7 +2,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
 import { ExternalLink, GraduationCap } from "lucide-react";
 import { hover, shadow } from "../shared-ui/_css";
-import Image from "../shared-ui/image";
+import AppImage from "../shared-ui/image";
 import { OpenBtn } from "../shared-ui/button-impl";
 import Link from "next/link";
 import { buttonVariants } from "../ui/button";
@@ -59,7 +59,7 @@ function Education({
         <header className="flex justify-between gap-3 items-center">
           <div className="flex items-center gap-3">
             <div className="flex size-11 shrink-0 items-center justify-center rounded-lg border border-border bg-muted/50 p-1.5">
-              <Image
+              <AppImage
                 src={logo}
                 width={50}
                 alt={`${institution} logo`}

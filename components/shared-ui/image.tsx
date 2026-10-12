@@ -245,7 +245,7 @@ type ImageType = VariantProps<typeof imageVariants> & {
     priority?: boolean;
 };
 
-export default function Image({
+export default function AppImage({
     imgClassName,
     className,
     src,

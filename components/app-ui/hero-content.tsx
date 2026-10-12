@@ -16,14 +16,14 @@ export const heroContentVariants = cva(
 );
 
 type HeroContentCompType = VariantProps<typeof heroContentVariants> & {
-    badge?: ReactElement<ComponentProps<typeof BadgeText>, typeof BadgeText>;
-    greetings?: ReactElement<ComponentProps<typeof Greeting>, typeof Greeting>;
-    title?: ReactElement<ComponentProps<typeof H1>, typeof H1>;
-    role?: ReactElement<ComponentProps<typeof Role>, typeof Role>;
-    description?: ReactElement<ComponentProps<typeof Description>, typeof Description>;
-    tags?: ReactElement<ComponentProps<typeof Tags>, typeof Tags>;
+    badge?: ReactNode;
+    greetings?: ReactNode;
+    title?: ReactNode;
+    role?: ReactNode;
+    description?: ReactNode;
+    tags?: ReactNode;
     ctaBtns?: ReactNode[];
-    socialProfText?: ReactElement<ComponentProps<typeof SocialProfText>, typeof SocialProfText>;
+    socialProfText?: ReactNode;
     heroImage?: ReactNode;
     location?: string;
     className?: string;

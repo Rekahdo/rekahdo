@@ -16,16 +16,15 @@ export async function StackSection() {
     const data = await stacksData
     const sec = section.stack;
 
-    return ( 
+    return (
         <Container
             id={STACK_ID}
             py={"section"}
             px={'section'}
         >
-            <section className="flex flex-col gap-4 md:gap-6">
+            <section className="flex flex-col gap-8">
                 <H2 title={sec.title} subtitle={sec.subtitle} icon={<CodeXml />}
-                    className={"text-center"}
-                    subtitleClassName="text-center" />
+                    className={"mx-auto text-center"} />
 
                 <StackCards data={data} />
             </section>
