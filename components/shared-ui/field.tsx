@@ -11,8 +11,25 @@ import {
     InputGroupTextarea,
 } from "../ui/input-group";
 import { X } from "lucide-react";
+import { cva, VariantProps } from "class-variance-authority";
 
-interface InputProps {
+const inputVariants = cva(cn(), {
+    variants: {
+        textcase: {
+            capitalize: "capitalize",
+            uppercase: "uppercase",
+            lowercase: "lowercase",
+        },
+        align: {
+            "inline-start": "inline-start",
+            "inline-end": "inline-end",
+            "block-start": "block-start",
+            "block-end": "inline-end",
+        }
+    }
+})
+
+interface InputProps extends VariantProps<typeof inputVariants> {
     className?: string;
     label: string;
     important?: boolean;
@@ -21,7 +38,6 @@ interface InputProps {
     isPending?: boolean;
     placeholder?: string;
     as?: "input" | "textarea";
-    align?: "inline-start" | "inline-end" | "block-start" | "block-end" | null;
     alignLabel?: string;
     startIcon?: ReactNode;
     endIcon?: ReactNode;
@@ -44,6 +60,7 @@ export default function AppInput({
     endIcon,
     clearable = true,
     height,
+    ...props
 }: InputProps) {
 
     const isInput = as === "input";
@@ -53,8 +70,8 @@ export default function AppInput({
 
     const hasValue = field.value !== undefined && field.value !== null && String(field.value).length > 0;
     const showClearButton = clearable && hasValue && !isPending;
-    
-    const isBlock = align === "block-start" || align === "inline-end";
+
+    const isBlock = align === "block-start" || align === "block-end";
 
     const resolvedMinHeight = height !== undefined
         ? (typeof height === "number" ? `${height}rem` : height)
@@ -87,7 +104,7 @@ export default function AppInput({
                     "hover:border-ring/50 hover:bg-background",
                     isBlock && "gap-1"
                 )}
-                style={{minHeight: resolvedMinHeight }}
+                style={{ minHeight: resolvedMinHeight }}
             >
                 {hasAddon && (
                     <InputGroupAddon align={align}
@@ -123,7 +140,7 @@ export default function AppInput({
                         disabled={isPending}
                         placeholder={placeholder}
                         row={40}
-                        className={cn("min-h-full p-0!")}
+                        className={cn("min-h-full p-0!", inputVariants({ ...props }))}
                     />
 
                     {showClearButton && (

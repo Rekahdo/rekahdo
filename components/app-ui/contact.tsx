@@ -64,7 +64,8 @@ function ContactInfo({ icon, title, description, allowCopy }: {
     const [copy, copied] = useCopyToClipboard();
 
     return (
-        <div className={cn("flex items-center gap-3.5 group")}>
+        <div onClick={async () => await copy(description)}
+            className={cn("flex items-center gap-3.5 group", allowCopy && "hover:cursor-pointer")}>
             {icon && (
                 <div className={cn(
                     "size-10 flex items-center justify-center rounded-xl",
@@ -79,7 +80,7 @@ function ContactInfo({ icon, title, description, allowCopy }: {
                 <dt className="text-xs font-semibold uppercase tracking-wider text-muted-foreground select-none">
                     {title}
                 </dt>
-                <dd className="truncate text-sm font-medium text-foreground">
+                <dd className="truncate text-sm font-medium text-foreground select-none">
                     {description}
                 </dd>
             </dl>

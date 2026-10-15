@@ -44,6 +44,10 @@ cmd: pnpm install react-scroll
 Shadcn.io hooks, icons and more
 https://www.shadcn.io
 
+React Resend Email
+resend official doc: https://resend.com/blog/react-email-6
+react resend guide doc: https://react.email/docs/integrations/resend
+
 Shadcn UI Component Installation
 button: pnpm dlx shadcn@latest add button
 aspect-ratio: pnpm dlx shadcn@latest add aspect-ratio

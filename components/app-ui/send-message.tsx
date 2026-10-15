@@ -10,20 +10,21 @@ import { cn } from "cn";
 import { ButtonImpl } from "../shared-ui/button-impl";
 import { CheckCircle2, Clock, Mail, RotateCcw, Send, Sparkles, Tag, TagPlus, User } from "lucide-react";
 import { useState, useTransition } from "react";
-import { createContactMeAction as createSendMessageAction } from "@/app/actions/contact";
 import { toast } from "sonner";
 import { Ping } from "../shared-ui/ping";
 import { H2, H3 } from "../shared-ui/headings";
 import AppInput from "../shared-ui/field";
+import { createSendMessageAction } from "@/app/actions/contact";
 
 interface SendMessageFormProps {
     className?: string;
     title?: string;
     subtitle?: string;
+    from: string;
 }
 
 export default function SendMessageForm({
-    className, title, subtitle
+    className, title, subtitle, from
 }: SendMessageFormProps) {
     const [sent, setSent] = useState(false);
 
@@ -47,7 +48,7 @@ export default function SendMessageForm({
 
             {sent
                 ? <Sent onSendAgain={() => setSent(false)} />
-                : <NotSent onSent={() => setSent(true)} />}
+                : <NotSent onSent={() => setSent(true)} from={from} />}
         </Card>
     );
 }
@@ -85,13 +86,13 @@ function Sent({ onSendAgain }: { onSendAgain: () => void }) {
     );
 }
 
-function NotSent({ onSent }: { onSent: () => void }) {
+function NotSent({ onSent, from }: { onSent: () => void, from: string }) {
     const [isPending, startTransition] = useTransition();
 
     const { handleSubmit, control, reset } = useForm<z.infer<typeof sendMessageSchema>>({
         resolver: zodResolver(sendMessageSchema),
         defaultValues: {
-            name: "Richard Okafor",
+            name: "richard okafor",
             email: "okaforrichard76@gmail.com",
             subject: "Hire",
             message: "Hi, i want to hire you for a job",
@@ -100,11 +101,14 @@ function NotSent({ onSent }: { onSent: () => void }) {
 
     function submit(data: z.infer<typeof sendMessageSchema>) {
         startTransition(async () => {
-            const response = await createSendMessageAction(data);
-            if (response.success) {
-                toast.success(response.message);
-                reset();
-                onSent();
+            try {
+                const response = await createSendMessageAction({ data, from });
+                if (response.success) {
+                    toast.success(response.message);
+                    reset(); onSent();
+                }
+            } catch (e: any) {
+                toast.error(e.message)
             }
         })
     }
@@ -120,6 +124,7 @@ function NotSent({ onSent }: { onSent: () => void }) {
                             render={({ field, fieldState }) => (
                                 <AppInput
                                     label="Name"
+                                    textcase={'capitalize'}
                                     important
                                     field={field}
                                     fieldState={fieldState}
@@ -136,6 +141,7 @@ function NotSent({ onSent }: { onSent: () => void }) {
                             render={({ field, fieldState }) => (
                                 <AppInput
                                     label="Email Address"
+                                    textcase={'capitalize'}
                                     important
                                     field={field}
                                     fieldState={fieldState}
@@ -153,6 +159,7 @@ function NotSent({ onSent }: { onSent: () => void }) {
                         render={({ field, fieldState }) => (
                             <AppInput
                                 label="Subject"
+                                textcase={'capitalize'}
                                 important
                                 field={field}
                                 fieldState={fieldState}
@@ -180,14 +187,22 @@ function NotSent({ onSent }: { onSent: () => void }) {
                     />
                 </FieldGroup>
 
-                <ButtonImpl
-                    type="submit"
-                    className="ms-auto"
-                    text="Send Message"
-                    icon={<Send />}
-                    height={'md'}
-                    isPending={isPending}
-                />
+                <div className="flex items-center justify-between max-sm:flex-col gap-6">
+                    <div className="inline-flex items-center gap-2.5 rounded-full border border-border/60 bg-muted/30 px-4 py-2 text-xs text-muted-foreground">
+                        <Clock className="size-3.5 text-primary" />
+                        <span>Typical response time: <strong className="font-semibold text-foreground">Under 24 hours</strong></span>
+                    </div>
+
+                    <ButtonImpl
+                        type="submit"
+                        text="Send Message"
+                        className="max-sm:min-w-5/10"
+                        icon={<Send />}
+                        height={'md'}
+                        isPending={isPending}
+                    />
+                </div>
+
             </CardContent>
         </form>
     );
