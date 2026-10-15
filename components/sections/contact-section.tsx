@@ -1,6 +1,6 @@
 import { Container } from "../shared-ui/container";
 import { section } from "@/data/section";
-import SendMessageForm from "../app-ui/send-message-form";
+import SendMessageForm from "../app-ui/send-message";
 import Contact from "../app-ui/contact";
 import { Layout } from "../shared-ui/layout";
 import { contactData } from "@/data/contact";
@@ -32,7 +32,7 @@ export default async function ContactSection() {
 
                 bottomClassName="flex w-full lg:w-7/10"
                 bottom={
-                    <SendMessageForm title={sec.title} subtitle={sec.subtitle} />
+                    <SendMessageForm title={sec.title} subtitle={sec.subtitle} from={data.email} />
                 }
             />
         </Container>
