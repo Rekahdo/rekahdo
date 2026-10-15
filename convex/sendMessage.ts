@@ -1,19 +1,19 @@
 import { ConvexError, v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { authenticateUser } from "./hero";
-import { contactMeTable } from "./schema";
+import { sendMessageTable } from "./schema";
 
 export const insert = mutation({
-    args: { ...contactMeTable },
+    args: { ...sendMessageTable },
     handler: async (ctx, args) => {
         await authenticateUser(ctx)
-        return await ctx.db.insert("contactMe", { ...args });
+        return await ctx.db.insert("sendMessage", { ...args });
     },
 });
 
 export const getAll = query({
     args: {},
     handler: async (ctx, args) => {
-        return await ctx.db.query("contactMe").order("desc").collect();
+        return await ctx.db.query("sendMessage").order("desc").collect();
     },
 });

@@ -57,7 +57,7 @@ function Heading({
 
     return (
         <div>
-            <div className={cn("flex flex-col text-foreground", className)}>
+            <div className={cn("flex flex-col text-foreground gap-4", className)}>
                 {hasTitle && (
                     <Tag
                         id={id}
@@ -89,7 +89,7 @@ function Heading({
                 )}
 
                 {subtitle !== undefined && subtitle !== null && subtitle !== "" && (
-                    <p className={cn("mt-4 text-muted-foreground", subtitleClassName)}>
+                    <p className={cn("text-muted-foreground", subtitleClassName)}>
                         {subtitle}
                     </p>
                 )}

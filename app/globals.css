@@ -187,8 +187,6 @@
 
   body {
     @apply bg-background text-foreground;
-    @apply bg-[linear-gradient(to_right,color-mix(in_oklab,var(--border)_20%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_oklab,var(--border)_20%,transparent)_1px,transparent_1px)];
-    @apply bg-[size:32px_32px];
     letter-spacing: var(--tracking-normal);
   }
 
@@ -197,4 +195,10 @@
     scrollbar-gutter: stable;
   }
 
+}
+
+@layer utilities {
+  .animate-into-view{
+    @apply animate-in fade-in-50 zoom-in-90 duration-200
+  }
 }

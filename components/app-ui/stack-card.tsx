@@ -3,7 +3,7 @@
 import { fetchQuery } from "convex/nextjs";
 import { api } from "@/convex/_generated/api";
 import { ElementType, useEffect, useState } from "react";
-import { Flex } from "../shared-ui/layout";
+import { Flex } from "../shared-ui/layout2";
 import { FilterSelect } from "../shared-ui/filter-select";
 import { cn } from "cn";
 import z from "zod";
@@ -347,7 +347,8 @@ function CardContent({
             <p className="text-[14px] w-full text-foreground">{description}</p>
 
             <Progress value={percentage} barClassName={cn(
-                tierFor(percentage).bar
+                tierFor(percentage).bar,
+                "duration-200"
             )} />
 
             <Tags tags={usages} variant={'filledMuted'} className="flex flex-wrap gap-1.5" />

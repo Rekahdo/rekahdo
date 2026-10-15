@@ -1,86 +1,93 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
 import type { ElementType, ReactNode } from "react";
-import { align, justify } from "./_css";
 
-
-const flexVariants = cva(cn
-    ("flex gap-8 text-foreground"),
+const layoutVariants = cva(
+    cn(""),
     {
         variants: {
-            direction: {
-                row: "flex-row",
-                col: "flex-col",
+            type: {
+                flex: "flex justify-between",
+                grid: "grid",
             },
-            xsDirection: {
-                row: "max-sm:flex-row",
-                col: "max-sm:flex-col",
-            },
-            smDirection: {
-                row: "sm:max-md:flex-row",
-                col: "sm:max-md:flex-col",
-            },
-            mdDirection: {
-                row: "md:max-lg:flex-row",
-                col: "md:max-lg:flex-col",
-            },
-            lgDirection: {
-                row: "lg:flex-row",
-                col: "lg:flex-col",
-            },
-            justify: justify,
-            align: align,
-        },
-        defaultVariants: {
-            direction: 'col'
-        }
-    }
-);
 
-export const flexTopVariants = cva(
-    cn("flex items-center justify-center"),
-    {
-        variants: {
-            position: {
+            axis: {
+                y: "flex-col grid-cols-1",
+                x: "flex-row grid-cols-2",
+            },
+            maxSmAxis: {
+                y: "max-sm:flex-col max-sm:grid-cols-1",
+                x: "max-sm:flex-row max-sm:grid-cols-2",
+            },
+            smAxis: {
+                y: "sm:flex-col sm:grid-cols-1",
+                x: "sm:flex-row sm:grid-cols-2",
+            },
+            maxMdAxis: {
+                y: "max-md:flex-col max-md:grid-cols-1",
+                x: "max-md:flex-row max-md:grid-cols-2",
+            },
+            mdAxis: {
+                y: "md:flex-col md:grid-cols-1",
+                x: "md:flex-row md:grid-cols-2",
+            },
+            maxLgAxis: {
+                y: "max-lg:flex-col max-lg:grid-cols-1",
+                x: "max-lg:flex-row max-lg:grid-cols-2",
+            },
+            lgAxis: {
+                y: "lg:flex-col lg:grid-cols-1",
+                x: "lg:flex-row lg:grid-cols-2",
+            },
+
+            // TOP
+            place: {
                 top: "order-0",
                 bottom: "order-1",
                 right: "order-last",
                 left: "order-first",
             },
-            xsPosition: {
+            maxSmPlace: {
                 top: "max-sm:order-0",
                 bottom: "max-sm:order-1",
                 right: "max-sm:order-last",
                 left: "max-sm:order-first",
             },
-            smPosition: {
-                top: "sm:max-md:order-0",
-                bottom: "sm:max-md:order-1",
-                right: "sm:max-md:order-last",
-                left: "sm:max-md:order-first",
+            smPlace: {
+                top: "sm:order-0",
+                bottom: "sm:order-1",
+                right: "sm:order-last",
+                left: "sm:order-first",
             },
-            mdPosition: {
-                top: "md:max-lg:order-0",
-                bottom: "md:max-lg:order-1",
-                right: "md:max-lg:order-last",
-                left: "md:max-lg:order-first",
+            maxMdPlace: {
+                top: "max-md:order-0",
+                bottom: "max-md:order-1",
+                right: "max-md:order-last",
+                left: "max-md:order-first",
             },
-            lgPosition: {
+            mdPlace: {
+                top: "md:order-0",
+                bottom: "md:order-1",
+                right: "md:order-last",
+                left: "md:order-first",
+            },
+            maxLgPlace: {
+                top: "max-lg:order-0",
+                bottom: "max-lg:order-1",
+                right: "max-lg:order-last",
+                left: "max-lg:order-first",
+            },
+            lgPlace: {
                 top: "lg:order-0",
                 bottom: "lg:order-1",
                 right: "lg:order-last",
                 left: "lg:order-first",
-            }
+            },
         },
-        defaultVariants: {
-            position: 'top',
-        }
     }
 );
 
-type FlexCompType = VariantProps<typeof flexVariants>
-    & VariantProps<typeof flexTopVariants> &
-{
+type LayoutProps = VariantProps<typeof layoutVariants> & {
     className?: string;
     top?: ReactNode;
     topClassName?: string;
@@ -89,122 +96,48 @@ type FlexCompType = VariantProps<typeof flexVariants>
     as?: ElementType;
 }
 
-export function Flex({
+export function Layout({
     className,
     top, topClassName,
     bottom, bottomClassName,
     as: Tag = "section",
-    justify, align,
-    direction, xsDirection, smDirection, mdDirection, lgDirection,
-    position, xsPosition, smPosition, mdPosition, lgPosition
-}: FlexCompType) {
+    place, maxSmPlace, smPlace,
+    maxMdPlace, mdPlace, maxLgPlace,
+    lgPlace,
+    type = "flex",
+    axis,
+    ...props
+}: LayoutProps) {
     return (
-        <Tag data-slot="flex-container"
-            className={cn(flexVariants({
-                justify, align,
-                direction, xsDirection, smDirection, mdDirection, lgDirection,
-            }), className)}>
+        <Tag data-slot={`${type}-layout`} className={cn(
+            "gap-6 lg:gap-8",
+
+            layoutVariants({
+                type,
+                axis: type === "flex" ? 'x' : 'y',
+                ...props
+            }),
+
+            className
+        )}>
 
             {top &&
-                <div className={cn(flexTopVariants({
-                    position, xsPosition, smPosition,
-                    mdPosition, lgPosition
-                }), topClassName)}>
+                <div className={cn(
+                    layoutVariants({
+                        place, maxSmPlace, smPlace,
+                        maxMdPlace, mdPlace, maxLgPlace,
+                        lgPlace,
+                    }), topClassName)}>
+
                     {top}
                 </div>
             }
 
             {bottom &&
-                <div className={cn("flex items-center justify-center", bottomClassName)}>
+                <div className={cn(bottomClassName)}>
                     {bottom}
                 </div>
             }
-        </Tag>
-    )
-}
-
-
-// =======================================================================
-
-
-const gridVariants = cva(cn
-    ("max-lg:gap-6 lg:gap-8 text-foreground"),
-    {
-        variants: {
-            cols: {
-                one: "flex flex-col",
-                two: "grid grid-cols-2",
-            },
-            xsCols: {
-                one: "max-sm:flex max-sm:flex-col",
-                two: "max-sm:grid max-sm:grid-cols-2",
-            },
-            smCols: {
-                one: "sm:max-md:flex sm:max-md:flex-col",
-                two: "sm:max-md:grid sm:max-md:grid-cols-2",
-            },
-            mdCols: {
-                one: "md:max-lg:flex md:max-lg:flex-col",
-                two: "md:max-lg:grid md:max-lg:grid-cols-2",
-            },
-            lgCols: {
-                one: "lg:flex lg:flex-col",
-                two: "lg:grid lg:grid-cols-2",
-            },
-            justify: justify,
-            align: align,
-        },
-        defaultVariants: {
-            cols: 'one'
-        }
-    }
-);
-
-type GridCompType = VariantProps<typeof gridVariants>
-    & VariantProps<typeof flexTopVariants> &
-{
-    children?: ReactNode;
-    className?: string;
-    top?: ReactNode;
-    topClassName?: string;
-    bottom?: ReactNode;
-    bottomClassName?: string;
-    as?: ElementType;
-}
-
-export function Grid({
-    children,
-    className,
-    top, topClassName,
-    bottom, bottomClassName,
-    as: Tag = "section",
-    justify, align,
-    cols, xsCols, smCols, mdCols, lgCols,
-    position, xsPosition, smPosition, mdPosition, lgPosition
-}: GridCompType) {
-    return (
-        <Tag data-slot="grid-container"
-            className={cn(gridVariants({
-                justify, align,
-                cols, xsCols, smCols, mdCols, lgCols,
-            }), className)}>
-
-            {top &&
-                <div className={cn(flexTopVariants({
-                    position, xsPosition, smPosition,
-                    mdPosition, lgPosition
-                }), topClassName)}>
-                    {top}
-                </div>
-            }
-
-            {bottom &&
-                <div className={cn("flex items-center justify-center", bottomClassName)}>
-                    {bottom}
-                </div>
-            }
-
-            {children}
         </Tag>
     )
 }

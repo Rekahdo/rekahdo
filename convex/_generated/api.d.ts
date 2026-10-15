@@ -11,7 +11,7 @@
 import type * as about from "../about.js";
 import type * as auth from "../auth.js";
 import type * as contact from "../contact.js";
-import type * as contactMe from "../contactMe.js";
+import type * as contactMe from "../sendMessage.js";
 import type * as document from "../document.js";
 import type * as errors from "../errors.js";
 import type * as footer from "../footer.js";

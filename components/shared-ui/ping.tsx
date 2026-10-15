@@ -1,30 +1,41 @@
+'use client'
+
 import { cn } from "cn";
-import { ReactNode } from "react";
+import { ElementType, MouseEvent, ReactNode } from "react";
 import { hover } from "./_css";
+import { NavigationLink, scrollToId } from "./navigation";
+import { CONTACT_ID } from "../sections/contact-section";
+import Link from "next/link";
 
 export interface PingProps {
     bg?: string;
+    waveBg?: string;
     size?: string;
     animate?: boolean;
+    icon?: ReactNode;
+    className?: string;
 }
 
 export function Ping({
-    bg = "bg-green-400",
+    bg = "bg-emerald-600 dark:bg-emerald-400",
+    waveBg = bg,
     size = "size-2",
     animate = true,
+    icon,
+    className,
 }: PingProps) {
     return (
-        <span className={cn("relative flex", size)}>
+        <span className={cn("relative flex", size, className)}>
             {animate && (
-                <span
-                    className={cn(
-                        bg,
-                        "absolute inline-flex h-full w-full animate-ping rounded-full opacity-75",
-                    )}
-                />
+                <span className={cn(waveBg,
+                    "absolute inline-flex h-full w-full animate-ping rounded-full opacity-75",
+                )} />
             )}
 
-            <span className={cn(bg, size, "relative inline-flex rounded-full")} />
+            <span className={cn(bg, size,
+                "relative inline-flex rounded-full justify-center items-center *:size-5/10")}>
+                {icon}
+            </span>
         </span>
     );
 }
@@ -32,53 +43,94 @@ export function Ping({
 export interface PingTagProps {
     text?: string;
     description?: string;
-    fg?: string;
+    textFg?: string;
     descriptionFg?: string;
     bg?: string;
     bd?: string;
-    ping?: ReactNode;
     pingBg?: string;
+    pingWaveBg?: string;
     pingSize?: string;
+    pingIcon?: ReactNode;
     side?: "left" | "right";
     hasHover?: boolean;
     className?: string;
+    width?: "fit" | "full";
+    onClick?: (e: MouseEvent<HTMLElement>) => void;
 }
 
 export function PingTag({
     text,
+    textFg = "text-foreground",
     description,
-    fg = "text-foreground",
     descriptionFg = "text-foreground/50",
     bg = "bg-primary/10",
     bd,
     side = "left",
-    pingBg = "bg-green-500",
-    pingSize = "size-2",
-    ping = <Ping bg={pingBg} size={pingSize} />,
+    pingBg,
+    pingWaveBg,
+    pingSize,
+    pingIcon,
     hasHover = false,
     className,
+    width = "fit",
+    onClick,
 }: PingTagProps) {
+
     return (
-        <span
+        <span onClick={onClick}
             className={cn(
-                "py-2 px-4 rounded-lg flex items-center gap-3",
-                fg,
-                bg,
-                bd,
-                hasHover && ["shadow-sm", hover.outline],
+                "py-2 px-4 rounded-lg flex items-center gap-4 select-none",
+                textFg, bg, bd, hasHover && ["shadow-sm", hover.outline],
+                width === 'fit' ? "w-fit" : "w-full",
                 className,
             )}
         >
-            {side === "left" && ping}
+            {side === "left" &&
+                <Ping bg={pingBg} size={pingSize} icon={pingIcon}
+                    waveBg={pingWaveBg} />
+            }
 
-            <span className="flex flex-col justify-center">
-                <span className="font-bold text-sm">{text}</span>
+            <dl className="flex flex-col justify-center">
+                <dt className="font-bold text-sm">{text}</dt>
                 {description && (
-                    <span className={cn("text-xs", descriptionFg)}>{description}</span>
+                    <dd className={cn("text-xs", descriptionFg)}>{description}</dd>
                 )}
-            </span>
+            </dl>
 
-            {side === "right" && ping}
+            {side === "right" &&
+                <Ping bg={pingBg} size={pingSize} icon={pingIcon}
+                    waveBg={pingWaveBg} className="ms-auto" />
+            }
         </span>
+    );
+}
+
+
+// ============================================
+
+
+export function AvailableForWork({width}: Pick<PingTagProps, 'width'>) {
+    const date = new Date();
+    return (
+        <PingTag
+            onClick={(e) => scrollToId({ id: CONTACT_ID })}
+            width={width}
+            className="gap-4 shadow-sm cursor-pointer"
+            pingSize="size-3"
+            text={"Available For Work"}
+            description="Open to remote & hybrid roles"
+        />
+    );
+}
+
+
+export function StillInDevelopment() {
+    const date = new Date();
+    return (
+        <div className="flex justify-center mt-10">
+            <PingTag className="p-6 px-8 gap-8" pingSize="size-4"
+                text="Still In Development" description={`Last Updated: ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`}
+            />
+        </div>
     );
 }

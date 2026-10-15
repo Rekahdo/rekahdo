@@ -17,8 +17,8 @@ export const section = {
         subtitle: "A collection of frontend applications, full-stack tools, and real-time platforms powered by Convex, modern web frameworks, and backend services.",
     },
     contact: {
-        title: "Contact",
-        subtitle: "Have a project in mind or just want to say hi? I'd love to hear from you.",
+        title: "Let's connect",
+        subtitle: "Have an idea, project, or opportunity in mind? Send me a note and I'll get back to you shortly.",
     },
     service: {
         title: "Services",

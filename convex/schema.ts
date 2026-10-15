@@ -106,10 +106,14 @@ export const contactTable = {
     email: v.string(),
     phone: v.string(),
     location: v.string(),
-    socialLinks: v.array(socialLinkValidator),
+    github: v.string(),
+    linkedin: v.string(),
+    x: v.string(),
 }
 
-export const contactMeTable = {
+export const contactValidator = v.object(contactTable)
+
+export const sendMessageTable = {
     name: v.string(),
     email: v.string(),
     subject: v.string(),
@@ -162,8 +166,8 @@ export default defineSchema({
         ...contactTable
     }),
 
-    contactMe: defineTable({
-        ...contactMeTable
+    sendMessage: defineTable({
+        ...sendMessageTable
     }),
 
     footer: defineTable({

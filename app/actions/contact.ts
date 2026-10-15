@@ -1,6 +1,6 @@
 'use server'
 
-import { contactMeSchema, contactSchema } from "@/schemas/zod-schemas";
+import { sendMessageSchema, contactSchema } from "@/schemas/zod-schemas";
 import z from "zod";
 import { fetchMutation } from "convex/nextjs";
 import { api } from "@/convex/_generated/api";
@@ -17,12 +17,17 @@ export async function createContactAction(data: z.infer<typeof contactSchema>) {
     )
 }
 
-export async function createContactMeAction(data: z.infer<typeof contactMeSchema>) {
-    const parsed = contactMeSchema.safeParse(data);
+export async function createContactMeAction(data: z.infer<typeof sendMessageSchema>, save: boolean = false) {
+    const parsed = sendMessageSchema.safeParse(data);
     if (!parsed.success) throw somethingWentWrong();
 
-    await fetchMutation(
-        api.contactMe.insert,
-        { ...parsed.data },
-    )
+    if (save) {
+        await fetchMutation(
+            api.contactMe.insert,
+            { ...parsed.data },
+        )
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    return { success: true, message: "Message Sent" };
 }
