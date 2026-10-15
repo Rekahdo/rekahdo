@@ -12,7 +12,7 @@ export function Logo() {
     return (
         <NavigationLink
             className={cn(
-                "w-25 sm:w-30 aspect-10/4"
+                "w-25 sm:w-30 aspect-10/4 select-none"
             )}
             key={"hero-btn-3"}
             link={{

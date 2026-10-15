@@ -3,7 +3,7 @@ import { cn } from 'cn'
 import type { ElementType, HTMLAttributes, ReactNode } from 'react';
 
 
-const containerVariants = cva(
+export const containerVariants = cva(
     cn(''),
     {
         variants: {

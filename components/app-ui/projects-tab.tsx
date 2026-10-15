@@ -92,7 +92,7 @@ export function Project({ project, className }: ProjectProps) {
                 </AspectRatio>
 
                 <PingTag
-                    fg={status.fg}
+                    textFg={status.fg}
                     bg={status.bg}
                     bd={status.bd}
                     pingBg={status.ping}

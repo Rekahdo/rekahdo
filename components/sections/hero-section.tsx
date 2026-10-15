@@ -1,10 +1,10 @@
 import { Tags } from "../app-ui/tag";
 import { Container } from "../shared-ui/container";
-import { Grid } from "../shared-ui/layout";
+import { Grid } from "../shared-ui/layout2";
 import { HeroContent } from "../app-ui/hero-content";
 import { Description, Greeting, Role } from "../app-ui/hero-ui";
 import { H1 } from "../shared-ui/headings";
-import { PingTag } from "../shared-ui/ping";
+import { AvailableForWork, PingTag } from "../shared-ui/ping";
 import { cn } from "cn";
 import { buttonVariants } from "../ui/button";
 import { Download } from "lucide-react";
@@ -77,22 +77,7 @@ export const HeroSection = async () => {
                         badge={
                             <>{
                                 data.availableForWork &&
-                                <NavigationLink
-                                    className={cn(
-                                        "my-4 max-lg:mx-auto w-fit"
-                                    )}
-                                    key={"hero-btn-3"}
-                                    link={{
-                                        href: CONTACT_ID,
-                                        type: 'scroll',
-                                        label: <PingTag
-                                            className="gap-4 shadow-sm"
-                                            pingSize="size-3"
-                                            text={"Available For Remote / Hybrid Roles"}
-                                            description="Open to remote & hybrid roles"
-                                        />,
-                                    }}
-                                />
+                                <AvailableForWork />
                             }</>
                         }
 

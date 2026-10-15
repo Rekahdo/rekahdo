@@ -5,7 +5,7 @@ import { Educations } from "../app-ui/education";
 import { Tags } from "../app-ui/tag";
 import { Container } from "../shared-ui/container";
 import { H2, H3, H4 } from "../shared-ui/headings";
-import { Flex } from "../shared-ui/layout";
+import { Flex } from "../shared-ui/layout2";
 import { section } from "@/data/section";
 import { aboutData } from "@/data/about";
 import AppImage from "../shared-ui/image";

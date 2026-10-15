@@ -41,6 +41,9 @@ React Scroll
 doc: https://www.npmjs.com/package/react-scroll?activeTab=readme
 cmd: pnpm install react-scroll
 
+Shadcn.io hooks, icons and more
+https://www.shadcn.io
+
 Shadcn UI Component Installation
 button: pnpm dlx shadcn@latest add button
 aspect-ratio: pnpm dlx shadcn@latest add aspect-ratio

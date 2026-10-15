@@ -106,14 +106,32 @@ export const navigationVariants = cva(
     }
 );
 
+export function scrollToId({ id, onNavigate, e }: {
+    id: string;
+    onNavigate?: () => void;
+    e?: MouseEvent<HTMLElement>;
+}) {
+    e?.preventDefault();
+    onNavigate?.();
+
+    const targetId = id.startsWith("#") ? id.slice(1) : id;
+    const element = document.getElementById(targetId);
+    if (!element) return;
+
+    const OFFSET = document.getElementById(HEADER_ID)?.getBoundingClientRect().height ?? 0;
+    const top = element.getBoundingClientRect().top + window.scrollY - OFFSET;
+
+    window.scrollTo({ top, behavior: "smooth" });
+}
+
 export function Navigation({ className, side, navItems, onNavigate, ...variants }:
     NavigationProps & VariantProps<typeof navigationVariants>) {
 
     const noLabel = navItems.findIndex(item => Boolean(item.links) && !Boolean(item.label));
-    if (noLabel !== -1) throw new Error(`Nav link with index '${noLabel}' must have a label`)
+    if (noLabel !== -1) throw new Error(`Nav link with index '${noLabel}' must have a label`);
 
-    const noLink = navItems.find(item => !Boolean(item.link) && !Boolean(item.links))
-    if (noLink) throw new Error(`${noLink.label} nav has neither a link or a list of links`)
+    const noLink = navItems.find(item => !Boolean(item.link) && !Boolean(item.links));
+    if (noLink) throw new Error(`${noLink.label} nav has neither a link or a list of links`);
 
     return (
         <NavigationMenu className={cn("w-full flex max-w-full", className)}>
@@ -178,10 +196,8 @@ export function Navigation({ className, side, navItems, onNavigate, ...variants 
                 ))}
             </NavigationMenuList>
         </NavigationMenu>
-    )
-
+    );
 }
-
 
 export function NavigationLink({ className, link, onNavigate, width, height, textAlign, fromList, }: {
     className?: string;
@@ -195,27 +211,15 @@ export function NavigationLink({ className, link, onNavigate, width, height, tex
     textAlign?: VariantProps<typeof navigationVariants>['textAlign'];
 }) {
 
-    const scrollToId = (e: MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        e.preventDefault();
-        onNavigate?.();
-
-        const element = document.getElementById(link.href);
-        if (!element) return;
-
-        const OFFSET = document.getElementById(HEADER_ID)?.getBoundingClientRect().height ?? 0;
-        const top = element.getBoundingClientRect().top + window.scrollY - OFFSET;
-
-        window.scrollTo({ top, behavior: "smooth" });
-    };
-
-    const Tag = (link.type === "download" ? 'a' : NextLink) as ElementType
+    const Tag = (link.type === "download" ? 'a' : NextLink) as ElementType;
     const downloadAttributes = link.type === "download" ? { download: link.filename } : {};
     const externalAttributes = link.type === "external" ? { target: "_blank", rel: "noopener noreferrer" } : {};
-    const hrefAttributes = link.type === "scroll" ? { href: `#${link.href}` } : { href: link.href };
-    const scrollAttributes = link.type === "scroll" ? { onClick: scrollToId } : { onClick: onNavigate };
+    const hrefAttributes = link.type === "scroll" ? { href: `#${link.href.replace(/^#/, "")}` } : { href: link.href };
+    const scrollAttributes = link.type === "scroll"
+        ? { onClick: (e: MouseEvent<HTMLAnchorElement>) => scrollToId({id: link.href, onNavigate, e}) }
+        : { onClick: onNavigate };
 
     return (
-
         <Tag
             {...downloadAttributes}
             {...externalAttributes}
@@ -247,5 +251,5 @@ export function NavigationLink({ className, link, onNavigate, width, height, tex
                 )}
             </div>
         </Tag>
-    )
+    );
 }
