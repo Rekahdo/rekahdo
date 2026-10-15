@@ -11,7 +11,6 @@
 import type * as about from "../about.js";
 import type * as auth from "../auth.js";
 import type * as contact from "../contact.js";
-import type * as contactMe from "../sendMessage.js";
 import type * as document from "../document.js";
 import type * as errors from "../errors.js";
 import type * as footer from "../footer.js";
@@ -20,6 +19,7 @@ import type * as hero from "../hero.js";
 import type * as http from "../http.js";
 import type * as project from "../project.js";
 import type * as role from "../role.js";
+import type * as sendMessage from "../sendMessage.js";
 import type * as stack from "../stack.js";
 
 import type {
@@ -32,7 +32,6 @@ declare const fullApi: ApiFromModules<{
   about: typeof about;
   auth: typeof auth;
   contact: typeof contact;
-  contactMe: typeof contactMe;
   document: typeof document;
   errors: typeof errors;
   footer: typeof footer;
@@ -41,6 +40,7 @@ declare const fullApi: ApiFromModules<{
   http: typeof http;
   project: typeof project;
   role: typeof role;
+  sendMessage: typeof sendMessage;
   stack: typeof stack;
 }>;
 
