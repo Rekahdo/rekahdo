@@ -23,7 +23,7 @@ export async function createContactMeAction(data: z.infer<typeof sendMessageSche
 
     if (save) {
         await fetchMutation(
-            api.contactMe.insert,
+            api.sendMessage.insert,
             { ...parsed.data },
         )
     }

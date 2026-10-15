@@ -10,7 +10,7 @@ import { cn } from "cn";
 import { ButtonImpl } from "../shared-ui/button-impl";
 import { CheckCircle2, Clock, Mail, RotateCcw, Send, Sparkles, Tag, TagPlus, User } from "lucide-react";
 import { useState, useTransition } from "react";
-import { createContactMeAction } from "@/app/actions/contact";
+import { createContactMeAction as createSendMessageAction } from "@/app/actions/contact";
 import { toast } from "sonner";
 import { Ping } from "../shared-ui/ping";
 import { H2, H3 } from "../shared-ui/headings";
@@ -100,7 +100,7 @@ function NotSent({ onSent }: { onSent: () => void }) {
 
     function submit(data: z.infer<typeof sendMessageSchema>) {
         startTransition(async () => {
-            const response = await createContactMeAction(data);
+            const response = await createSendMessageAction(data);
             if (response.success) {
                 toast.success(response.message);
                 reset();
