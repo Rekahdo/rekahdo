@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
 import { useEffect, useState } from "react";
 import { useTheme } from "../../hooks/useTheme";
-import NextImage from "next/image";
+import NextImage, { type ImageProps as NextImageProps } from "next/image";
 
 export const imageVariants = cva("", {
     variants: {
@@ -15,125 +15,125 @@ export const imageVariants = cva("", {
             none: "object-none",
             scale: "object-scale-down",
         },
-        size: {
-            s10: "size-1/10",
-            s20: "size-2/10",
-            s30: "size-3/10",
-            s40: "size-4/10",
-            s50: "size-5/10",
-            s60: "size-6/10",
-            s70: "size-7/10",
-            s80: "size-8/10",
-            s90: "size-9/10",
-            s100: "size-full",
+        variantWidth: {
+            w10: "w-1/10",
+            w20: "w-2/10",
+            w30: "w-3/10",
+            w40: "w-4/10",
+            w50: "w-5/10",
+            w60: "w-6/10",
+            w70: "w-7/10",
+            w80: "w-8/10",
+            w90: "w-9/10",
+            w100: "w-full",
         },
-        smSize: {
-            s10: "sm:size-1/10",
-            s20: "sm:size-2/10",
-            s30: "sm:size-3/10",
-            s40: "sm:size-4/10",
-            s50: "sm:size-5/10",
-            s60: "sm:size-6/10",
-            s70: "sm:size-7/10",
-            s80: "sm:size-8/10",
-            s90: "sm:size-9/10",
-            s100: "sm:size-full",
+        smWidth: {
+            w10: "sm:w-1/10",
+            w20: "sm:w-2/10",
+            w30: "sm:w-3/10",
+            w40: "sm:w-4/10",
+            w50: "sm:w-5/10",
+            w60: "sm:w-6/10",
+            w70: "sm:w-7/10",
+            w80: "sm:w-8/10",
+            w90: "sm:w-9/10",
+            w100: "sm:w-full",
         },
-        mdSize: {
-            s10: "md:size-1/10",
-            s20: "md:size-2/10",
-            s30: "md:size-3/10",
-            s40: "md:size-4/10",
-            s50: "md:size-5/10",
-            s60: "md:size-6/10",
-            s70: "md:size-7/10",
-            s80: "md:size-8/10",
-            s90: "md:size-9/10",
-            s100: "md:size-full",
+        mdWidth: {
+            w10: "md:w-1/10",
+            w20: "md:w-2/10",
+            w30: "md:w-3/10",
+            w40: "md:w-4/10",
+            w50: "md:w-5/10",
+            w60: "md:w-6/10",
+            w70: "md:w-7/10",
+            w80: "md:w-8/10",
+            w90: "md:w-9/10",
+            w100: "md:w-full",
         },
-        lgSize: {
-            s10: "lg:size-1/10",
-            s20: "lg:size-2/10",
-            s30: "lg:size-3/10",
-            s40: "lg:size-4/10",
-            s50: "lg:size-5/10",
-            s60: "lg:size-6/10",
-            s70: "lg:size-7/10",
-            s80: "lg:size-8/10",
-            s90: "lg:size-9/10",
-            s100: "lg:size-full",
+        lgWidth: {
+            w10: "lg:w-1/10",
+            w20: "lg:w-2/10",
+            w30: "lg:w-3/10",
+            w40: "lg:w-4/10",
+            w50: "lg:w-5/10",
+            w60: "lg:w-6/10",
+            w70: "lg:w-7/10",
+            w80: "lg:w-8/10",
+            w90: "lg:w-9/10",
+            w100: "lg:w-full",
         },
-        xlSize: {
-            s10: "xl:size-1/10",
-            s20: "xl:size-2/10",
-            s30: "xl:size-3/10",
-            s40: "xl:size-4/10",
-            s50: "xl:size-5/10",
-            s60: "xl:size-6/10",
-            s70: "xl:size-7/10",
-            s80: "xl:size-8/10",
-            s90: "xl:size-9/10",
-            s100: "xl:size-full",
+        xlWidth: {
+            w10: "xl:w-1/10",
+            w20: "xl:w-2/10",
+            w30: "xl:w-3/10",
+            w40: "xl:w-4/10",
+            w50: "xl:w-5/10",
+            w60: "xl:w-6/10",
+            w70: "xl:w-7/10",
+            w80: "xl:w-8/10",
+            w90: "xl:w-9/10",
+            w100: "xl:w-full",
         },
-        xxlSize: {
-            s10: "2xl:size-1/10",
-            s20: "2xl:size-2/10",
-            s30: "2xl:size-3/10",
-            s40: "2xl:size-4/10",
-            s50: "2xl:size-5/10",
-            s60: "2xl:size-6/10",
-            s70: "2xl:size-7/10",
-            s80: "2xl:size-8/10",
-            s90: "2xl:size-9/10",
-            s100: "2xl:size-full",
+        xxlWidth: {
+            w10: "2xl:w-1/10",
+            w20: "2xl:w-2/10",
+            w30: "2xl:w-3/10",
+            w40: "2xl:w-4/10",
+            w50: "2xl:w-5/10",
+            w60: "2xl:w-6/10",
+            w70: "2xl:w-7/10",
+            w80: "2xl:w-8/10",
+            w90: "2xl:w-9/10",
+            w100: "2xl:w-full",
         },
-        maxSmSize: {
-            s10: "max-sm:size-1/10",
-            s20: "max-sm:size-2/10",
-            s30: "max-sm:size-3/10",
-            s40: "max-sm:size-4/10",
-            s50: "max-sm:size-5/10",
-            s60: "max-sm:size-6/10",
-            s70: "max-sm:size-7/10",
-            s80: "max-sm:size-8/10",
-            s90: "max-sm:size-9/10",
-            s100: "max-sm:size-full",
+        maxSmWidth: {
+            w10: "max-sm:w-1/10",
+            w20: "max-sm:w-2/10",
+            w30: "max-sm:w-3/10",
+            w40: "max-sm:w-4/10",
+            w50: "max-sm:w-5/10",
+            w60: "max-sm:w-6/10",
+            w70: "max-sm:w-7/10",
+            w80: "max-sm:w-8/10",
+            w90: "max-sm:w-9/10",
+            w100: "max-sm:w-full",
         },
-        maxMdSize: {
-            s10: "max-md:size-1/10",
-            s20: "max-md:size-2/10",
-            s30: "max-md:size-3/10",
-            s40: "max-md:size-4/10",
-            s50: "max-md:size-5/10",
-            s60: "max-md:size-6/10",
-            s70: "max-md:size-7/10",
-            s80: "max-md:size-8/10",
-            s90: "max-md:size-9/10",
-            s100: "max-md:size-full",
+        maxMdWidth: {
+            w10: "max-md:w-1/10",
+            w20: "max-md:w-2/10",
+            w30: "max-md:w-3/10",
+            w40: "max-md:w-4/10",
+            w50: "max-md:w-5/10",
+            w60: "max-md:w-6/10",
+            w70: "max-md:w-7/10",
+            w80: "max-md:w-8/10",
+            w90: "max-md:w-9/10",
+            w100: "max-md:w-full",
         },
-        maxLgSize: {
-            s10: "max-lg:size-1/10",
-            s20: "max-lg:size-2/10",
-            s30: "max-lg:size-3/10",
-            s40: "max-lg:size-4/10",
-            s50: "max-lg:size-5/10",
-            s60: "max-lg:size-6/10",
-            s70: "max-lg:size-7/10",
-            s80: "max-lg:size-8/10",
-            s90: "max-lg:size-9/10",
-            s100: "max-lg:size-full",
+        maxLgWidth: {
+            w10: "max-lg:w-1/10",
+            w20: "max-lg:w-2/10",
+            w30: "max-lg:w-3/10",
+            w40: "max-lg:w-4/10",
+            w50: "max-lg:w-5/10",
+            w60: "max-lg:w-6/10",
+            w70: "max-lg:w-7/10",
+            w80: "max-lg:w-8/10",
+            w90: "max-lg:w-9/10",
+            w100: "max-lg:w-full",
         },
-        maxXlSize: {
-            s10: "max-xl:size-1/10",
-            s20: "max-xl:size-2/10",
-            s30: "max-xl:size-3/10",
-            s40: "max-xl:size-4/10",
-            s50: "max-xl:size-5/10",
-            s60: "max-xl:size-6/10",
-            s70: "max-xl:size-7/10",
-            s80: "max-xl:size-8/10",
-            s90: "max-xl:size-9/10",
-            s100: "max-xl:size-full",
+        maxXlWidth: {
+            w10: "max-xl:w-1/10",
+            w20: "max-xl:w-2/10",
+            w30: "max-xl:w-3/10",
+            w40: "max-xl:w-4/10",
+            w50: "max-xl:w-5/10",
+            w60: "max-xl:w-6/10",
+            w70: "max-xl:w-7/10",
+            w80: "max-xl:w-8/10",
+            w90: "max-xl:w-9/10",
+            w100: "max-xl:w-full",
         },
         rounded: {
             none: "rounded-none",
@@ -226,100 +226,65 @@ export const imageVariants = cva("", {
             full: "rounded-br-full",
         },
     },
-    defaultVariants: {
-        objectFit: "contain",
-        size: "s100",
-    },
 });
 
-type ImageType = VariantProps<typeof imageVariants> & {
-    className?: string;
-    imgClassName?: string;
-    src: string;
-    srcDark?: string;
-    alt: string;
-    width?: number;
-    height?: number;
-    fill?: boolean;
-    sizes?: string;
-    priority?: boolean;
-};
+type ImageProps = Omit<NextImageProps, "src" | "alt" | "loading" | "objectFit"> &
+    VariantProps<typeof imageVariants> & {
+        className?: string;
+        src: NextImageProps["src"];
+        srcDark?: NextImageProps["src"];
+        alt: string;
+        eager?: boolean;
+        onClick?: () => void;
+    };
 
 export default function AppImage({
-    imgClassName,
     className,
     src,
-    srcDark = src,
+    srcDark,
     alt,
     width,
-    height = width,
+    height,
     fill,
     sizes,
-    priority,
+    onClick,
+    eager,
     objectFit,
-    rounded,
-    roundedT,
-    roundedB,
-    roundedL,
-    roundedR,
-    roundedTL,
-    roundedTR,
-    roundedBL,
-    roundedBR,
     ...props
-}: ImageType) {
+}: ImageProps) {
     const { listen, stop } = useTheme();
-    const [imageSrc, setSrc] = useState<string>(src);
+    const [imageSrc, setImageSrc] = useState<NextImageProps["src"]>(src);
 
     useEffect(() => {
-        setSrc(src);
+        setImageSrc(src);
+    }, [src]);
+
+    useEffect(() => {
+        if (!srcDark) return;
+
         const observer = listen(
-            () => setSrc(srcDark),
-            () => setSrc(src),
+            () => setImageSrc(srcDark),
+            () => setImageSrc(src),
         );
         return () => stop(observer);
-    }, [srcDark, src, listen, stop]);
+    }, [src, srcDark]);
 
     return (
-        <div className={cn("flex justify-center",
-            className,
-            // "bg-red-300",
-        )}>
-            <div
-                className={cn(
-                    imageVariants({
-                        ...props
-                    }),
-                    className,
-                    // "bg-green-300",
-                )}
-            >
-                <NextImage
-                    src={imageSrc}
-                    alt={alt}
-                    fill={fill}
-                    width={width}
-                    height={height}
-                    sizes={sizes}
-                    priority={priority}
-                    className={cn(
-                        "relative",
-                        imageVariants({
-                            objectFit,
-                            rounded,
-                            roundedT,
-                            roundedB,
-                            roundedL,
-                            roundedR,
-                            roundedTL,
-                            roundedTR,
-                            roundedBL,
-                            roundedBR,
-                        }),
-                        imgClassName,
-                    )}
-                />
-            </div>
+        <div className={cn(imageVariants({
+            ...props
+        }), "flex justify-center items-center overflow-hidden")}>
+
+            <NextImage
+                src={imageSrc}
+                alt={alt}
+                fill={fill}
+                width={fill ? undefined : width}
+                height={fill ? undefined : height}
+                sizes={sizes}
+                onClick={onClick}
+                loading={eager ? "eager" : undefined}
+                className={cn("relative", imageVariants({ objectFit }), className)}
+            />
         </div>
     );
 }

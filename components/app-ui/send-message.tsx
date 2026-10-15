@@ -36,7 +36,7 @@ export default function SendMessageForm({
             className
         )}>
             {!sent && (
-                <CardHeader className="p-6! md:p-8! border-b border-border/40 bg-muted/40 animate-into-view gap-2 md:gap-3">
+                <CardHeader className="p-6! md:p-8! border-b border-border/40 bg-muted/40 gap-2 md:gap-3">
                     <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary">
                         <Sparkles className="size-3.5" />
                         <span>Get in touch</span>
@@ -92,10 +92,10 @@ function NotSent({ onSent, from }: { onSent: () => void, from: string }) {
     const { handleSubmit, control, reset } = useForm<z.infer<typeof sendMessageSchema>>({
         resolver: zodResolver(sendMessageSchema),
         defaultValues: {
-            name: "richard okafor",
-            email: "okaforrichard76@gmail.com",
-            subject: "Hire",
-            message: "Hi, i want to hire you for a job",
+            name: "",
+            email: "",
+            subject: "",
+            message: "",
         }
     })
 
@@ -115,9 +115,9 @@ function NotSent({ onSent, from }: { onSent: () => void, from: string }) {
 
     return (
         <form onSubmit={handleSubmit(submit)}>
-            <CardContent className="grid gap-6 md:gap-8 p-6 md:p-8 animate-into-view">
+            <CardContent className="grid gap-6 md:gap-8 p-6 md:p-8">
                 <FieldGroup className="gap-6 md:gap-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
                         <Controller
                             name="name"
                             control={control}
@@ -141,7 +141,7 @@ function NotSent({ onSent, from }: { onSent: () => void, from: string }) {
                             render={({ field, fieldState }) => (
                                 <AppInput
                                     label="Email Address"
-                                    textcase={'capitalize'}
+                                    textcase={'lowercase'}
                                     important
                                     field={field}
                                     fieldState={fieldState}
@@ -196,7 +196,7 @@ function NotSent({ onSent, from }: { onSent: () => void, from: string }) {
                     <ButtonImpl
                         type="submit"
                         text="Send Message"
-                        className="max-sm:min-w-5/10"
+                        className="max-sm:min-w-5/10 shadow-lg"
                         icon={<Send />}
                         height={'md'}
                         isPending={isPending}

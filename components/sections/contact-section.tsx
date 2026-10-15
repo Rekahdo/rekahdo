@@ -1,7 +1,7 @@
 import { Container } from "../shared-ui/container";
 import { section } from "@/data/section";
 import SendMessageForm from "../app-ui/send-message";
-import Contact from "../app-ui/contact";
+import ContactInfo from "../app-ui/contact-info";
 import { Layout } from "../shared-ui/layout";
 import { contactData } from "@/data/contact";
 
@@ -19,15 +19,16 @@ export default async function ContactSection() {
             id={CONTACT_ID}
             py={'section'}
             px={'section'}
+            className="justify-center min-h-[90dvh] "
         >
             <Layout
                 type={'flex'}
-                maxLgAxis={'y'}
-                className="max-lg:gap-8"
+                maxMdAxis={'y'}
+                className="max-md:gap-8"
 
-                topClassName="flex grow items-start"
+                topClassName="justify-start"
                 top={
-                    <Contact data={data} />
+                    <ContactInfo data={data} />
                 }
 
                 bottomClassName="flex w-full lg:w-7/10"

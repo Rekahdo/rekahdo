@@ -7,11 +7,11 @@ import { StackSection } from "@/components/sections/stack-section"
 export default function Page() {
     return (
         <>
-            <ContactSection />
             <HeroSection />
             <AboutSection />
             <StackSection />
             <ProjectsSection />
+            <ContactSection />
         </>
     )
 }

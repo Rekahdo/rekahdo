@@ -5,7 +5,7 @@ import { justify } from "../shared-ui/_css";
 
 const TagVariant = cva(
   [
-    "inline-flex items-center gap-1.5 whitespace-nowrap font-medium transition-colors text-foreground",
+    "inline-flex items-center gap-1.5 whitespace-nowrap font-medium transition-colors text-foreground select-none",
   ],
   {
     variants: {

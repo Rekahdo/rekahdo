@@ -1,9 +1,12 @@
-import { ReactNode, type ComponentProps, type ReactElement } from "react";
+import { ReactNode } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
-import type { Tags } from "./tag";
-import type { BadgeText, Description, Greeting, Role, SocialProfText } from "./hero-ui";
-import type { H1 } from "../shared-ui/headings";
+import { buttonVariants } from "../ui/button";
+import { STACK_ID } from "../sections/stack-section";
+import { scrollToId } from "../shared-ui/navigation";
+import { CONTACT_ID } from "../sections/contact-section";
+import { Download } from "lucide-react";
+import { headerData } from "@/data/header";
 
 export const heroContentVariants = cva(
     cn("w-full flex flex-col gap-6 lg:gap-8 text-foreground"),
@@ -22,42 +25,36 @@ type HeroContentCompType = VariantProps<typeof heroContentVariants> & {
     role?: ReactNode;
     description?: ReactNode;
     tags?: ReactNode;
-    ctaBtns?: ReactNode[];
+    ctaBtns?: ReactNode;
     socialProfText?: ReactNode;
     heroImage?: ReactNode;
     location?: string;
     className?: string;
 }
 
-export function HeroContent({
+export async function HeroContent({
     badge,
     greetings,
     title,
     role,
     description,
     tags,
-    ctaBtns,
     socialProfText,
+    ctaBtns,
     className,
 }: HeroContentCompType) {
+
+    const cv = (await headerData).downloadCv;
+
     return (
         <div className={cn(heroContentVariants(), className)}>
-            <div className={cn("grid gap-2 lg:gap-4", className)}>
-                {badge}
-                {greetings}
-                {title}
-                {role}
-            </div>
-
+            {badge}
+            {greetings}
+            {title}
+            {role}
             {description}
             {tags}
-
-            {ctaBtns &&
-                <div className={cn("flex flex-wrap gap-4 items-center", className)}>
-                    {ctaBtns.map((btn) => (btn))}
-                </div>
-            }
-
+            {ctaBtns}
             {socialProfText}
         </div>
     )

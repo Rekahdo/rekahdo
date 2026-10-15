@@ -2,9 +2,9 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
 import type { ElementType, ReactNode } from "react";
 
-export const HeaderVariants = cva("capitalize", {
+export const HeaderVariants = cva("", {
     variants: {
-        size: {
+        titleSize: {
             hero: "text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold uppercase",
             h1: "text-4xl sm:text-5xl font-extrabold",
             h2: "text-3xl sm:text-4xl font-bold",
@@ -12,6 +12,9 @@ export const HeaderVariants = cva("capitalize", {
             h4: "text-lg sm:text-xl font-bold",
             h5: "text-base sm:text-lg font-bold",
             h6: "text-sm sm:text-base font-bold",
+        },
+        subtitleSize: {
+            hero: "font-semibold text-foreground capitalize text-xl md:text-3xl lg:text-4xl underline",
         },
     },
 });
@@ -46,27 +49,27 @@ function Heading({
     subtitleClassName,
     children,
     childrenClassName,
-    ...props
+    titleSize,
+    subtitleSize,
 }: HeadingProps) {
     const hasTitle = title !== undefined && title !== null && title !== "";
 
     if (!hasTitle) return null;
 
     const Tag = (as ?? (`h${level}` as ElementType)) as ElementType;
-    const visualSize = props.size ?? (`h${level}` as const);
+    const visualSize = titleSize ?? (`h${level}` as const);
 
     return (
         <div>
-            <div className={cn("flex flex-col text-foreground gap-4", className)}>
+            <div className={cn("flex flex-col text-foreground gap-4 select-none", className)}>
                 {hasTitle && (
                     <Tag
                         id={id}
                         className={cn(
-                            "flex items-center gap-4 text-foreground",
+                            "flex items-center gap-4 text-foreground capitalize",
 
                             HeaderVariants({
-                                ...props,
-                                size: visualSize
+                                titleSize: visualSize
                             }),
 
                             className,
@@ -81,7 +84,7 @@ function Heading({
                         {title}
 
                         {(icon && iconPosition === "right") &&
-                            <span className="*:size-8 flex items-center justify-center">
+                            <span className={cn("*:size-8 flex items-center justify-center")}>
                                 {icon}
                             </span>
                         }
@@ -89,7 +92,11 @@ function Heading({
                 )}
 
                 {subtitle !== undefined && subtitle !== null && subtitle !== "" && (
-                    <p className={cn("text-muted-foreground", subtitleClassName)}>
+                    <p className={cn("text-muted-foreground", subtitleClassName,
+                        HeaderVariants({
+                            subtitleSize
+                        }))}>
+
                         {subtitle}
                     </p>
                 )}

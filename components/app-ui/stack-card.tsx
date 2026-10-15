@@ -280,8 +280,8 @@ function CardIcon({
                 src={iconSrc}
                 srcDark={iconDarkSrc}
                 alt={`${name} tech stack`}
-                width={50}
-                size={'s50'}
+                width={50} height={50}
+                variantWidth={'w50'}
             />
         </div>
     );
@@ -327,7 +327,7 @@ function CardContent({
                     percentage={percentage} mode={mode} size={size} />
 
                 <div className="flex flex-col gap-1">
-                    <H3 title={name} size={"h6"} />
+                    <H3 title={name} titleSize={"h6"} />
 
                     <div className="flex items-center gap-2">
                         <span className={cn(
