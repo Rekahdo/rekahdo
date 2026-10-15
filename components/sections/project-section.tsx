@@ -62,7 +62,12 @@ export default async function ProjectsSection() {
     const sec = section.project;
 
     return (
-        <Container id={PROJECT_ID} py={"section"} px={'section'}>
+        <Container
+            id={PROJECT_ID}
+            py={"section"}
+            px={'section'}
+            background={'secondary'}>
+
             <H2 title={sec.title} subtitle={sec.subtitle} />
             <ProjectsTabs projects={data.slice(0, 4) ?? []} />
         </Container>

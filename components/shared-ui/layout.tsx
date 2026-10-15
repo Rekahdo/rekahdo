@@ -122,7 +122,7 @@ export function Layout({
         )}>
 
             {top &&
-                <div className={cn(
+                <div className={cn("flex flex-col justify-center items-center",
                     layoutVariants({
                         place, maxSmPlace, smPlace,
                         maxMdPlace, mdPlace, maxLgPlace,
@@ -134,7 +134,7 @@ export function Layout({
             }
 
             {bottom &&
-                <div className={cn(bottomClassName)}>
+                <div className={cn("flex flex-col justify-center items-center", bottomClassName)}>
                     {bottom}
                 </div>
             }

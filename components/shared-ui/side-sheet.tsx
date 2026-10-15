@@ -7,7 +7,7 @@ import { cn } from "cn";
 import { useWidthMedia } from "../../hooks/useMedia";
 import { Button } from "../ui/button";
 import { Logo } from "./logo";
-import { ThemeToggle } from "./toggle";
+import { ModeToggle } from "./toggle";
 import { Navigation, NavItem } from "./navigation";
 
 type SideBarType = {
@@ -58,7 +58,7 @@ export function SideSheet({
                                 {logo &&
                                     <div className="p-2 me-auto flex justify-between items-center w-full">
                                         <span onClick={() => setOpen(false)}>{logo}</span>
-                                        <ThemeToggle />
+                                        <ModeToggle />
                                     </div>
                                 }
 

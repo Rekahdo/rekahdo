@@ -2,7 +2,7 @@
 
 import { Container } from "@/components/shared-ui/container";
 import { H1 } from "@/components/shared-ui/headings";
-import { ThemeToggle } from "@/components/shared-ui/toggle";
+import { ModeToggle } from "@/components/shared-ui/toggle";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ADMIN_DASHBOARD, ADMIN_SIGNUP, ADMIN_LOGIN } from "../layout";
@@ -21,7 +21,7 @@ export default function Page() {
     return (
         <Container id="admin" height={'full'} place={"center"} px={'section'}
             className="items-center relative">
-            <ThemeToggle className="max-sm:hidden absolute top-4 right-4" />
+            <ModeToggle className="max-sm:hidden absolute top-4 right-4" />
 
             <Card className="max-w-2xl w-full p-0 gap-8">
                 <CardHeader className="text-center gap-8 p-0 pt-8  px-6">

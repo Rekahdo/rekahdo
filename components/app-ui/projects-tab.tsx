@@ -28,7 +28,7 @@ export function ProjectsTabs({ projects }: ProjectsTabsProps) {
 
     return (
         <Tabs defaultValue={tabs[0]} className={"gap-6"}>
-            <TabsList className={"bg-background gap-2 py-6 px-2 rounded-full max-xs:w-full sticky top-20 z-10"}>
+            <TabsList className={"bg-background/80 dark:bg-background/40 backdrop-blur-md gap-2 py-6 px-2 rounded-full max-xs:w-full sticky top-20 z-10"}>
                 {tabs.map((tab) => (
                     <TabsTrigger
                         key={tab}
@@ -103,7 +103,7 @@ export function Project({ project, className }: ProjectProps) {
 
             <CardContent className="grid p-4 gap-2">
                 <CardTitle>
-                    <H3 title={project.title} size={"h5"} />
+                    <H3 title={project.title} titleSize={"h5"} />
                 </CardTitle>
 
                 <div className="grid gap-4">

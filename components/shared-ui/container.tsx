@@ -16,7 +16,7 @@ export const containerVariants = cva(
                 muted: "bg-muted text-muted-foreground",
             },
             py: {
-                section: "py-10 md:py-15 lg:py-20",
+                section: "py-20 md:py-26 lg:py-30",
             },
             px: {
                 section: "px-6 sm:px-8 lg:px-10",

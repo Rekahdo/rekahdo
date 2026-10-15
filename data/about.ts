@@ -16,8 +16,7 @@ export type AboutData = {
 
 export const aboutData: Promise<AboutData> = Promise.resolve({
     headline: "Frontend-Focused Engineer with Full-Stack Perspective",
-    bio: `
-        I am a Frontend Developer focused on building fast, reliable, and responsive web applications using React, Next.js, and TypeScript. My tech journey began in UI/UX design before I transitioned into frontend engineering, which gave me a practical eye for clean layout structure, design consistency, and solid user flows.
+    bio: `I am a Frontend Developer focused on building fast, reliable, and responsive web applications using React, Next.js, and TypeScript. My tech journey began in UI/UX design before I transitioned into frontend engineering, which gave me a practical eye for clean layout structure, design consistency, and solid user flows.
 
         My main focus is creating modular, reusable UI components and building clear, conversion-ready landing pages that help businesses get visible online. I structure my client-side code around solid engineering principles, keeping state management clean and making sure frontend components integrate cleanly with backend APIs.
 

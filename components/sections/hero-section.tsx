@@ -1,19 +1,14 @@
 import { Tags } from "../app-ui/tag";
 import { Container } from "../shared-ui/container";
-import { Grid } from "../shared-ui/layout2";
 import { HeroContent } from "../app-ui/hero-content";
 import { Description, Greeting, Role } from "../app-ui/hero-ui";
 import { H1 } from "../shared-ui/headings";
 import { AvailableForWork, PingTag } from "../shared-ui/ping";
-import { cn } from "cn";
-import { buttonVariants } from "../ui/button";
-import { Download } from "lucide-react";
-import { STACK_ID } from "./stack-section";
-import { NavigationLink } from "../shared-ui/navigation";
-import { CONTACT_ID } from "./contact-section";
 import { heroData } from "@/data/hero";
 import AppImage from "../shared-ui/image";
 import { headerData } from "@/data/header";
+import { Layout } from "../shared-ui/layout";
+import CtaBtns from "../app-ui/cta-btns";
 
 export const HERO_ID = "hero";
 
@@ -35,11 +30,12 @@ export const HeroSection = async () => {
             height={'hero'}
         >
 
-            <Grid
-                lgCols={'two'}
-                lgPosition={'right'}
+            <Layout
+                type={'grid'}
+                lgAxis={'x'}
+                lgPlace={'right'}
+                className="gap-12"
 
-                topClassName="flex justify-center"
                 top={
                     <>
                         {(data.image && data.image.src) &&
@@ -47,29 +43,31 @@ export const HeroSection = async () => {
                                 src={data.image.src}
                                 alt={data.image?.alt ?? "hero image"}
                                 width={1000} height={1000}
-                                maxMdSize={'s80'}
-                                mdSize={'s50'}
-                                lgSize={'s90'}
+                                eager
                                 rounded={'full'}
-                                className="flex justify-center"
+                                maxSmWidth={'w80'}
+                                smWidth={'w60'}
+                                lgWidth={'w90'}
                             />
                         }
                     </>
                 }
 
                 bottom={
-                    <HeroContent className="max-lg:text-center max-lg:justify-center"
-                        greetings={<Greeting text={data.greetings} />}
-                        role={<Role text={data.role} />}
+                    <HeroContent className="max-lg:text-center max-lg:*:mx-auto lg:relative"
+                        greetings={<Greeting text={data.greetings} className="-mb-6" />}
                         description={<Description text={data.description} className="max-lg:text-center max-lg:w-[80%] mx-auto" />}
                         tags={<Tags tags={data.tags} className='w-fit justify-center max-lg:mx-auto' />}
 
                         title={
-                            <H1 size={'hero'}
+                            <H1
                                 title={<>
                                     <span>{data.introduction}{" "}</span>
                                     <span className="text-primary">{data.name}</span>
                                 </>}
+                                titleSize={'hero'}
+                                subtitle={data.role}
+                                subtitleSize={'hero'}
                                 className="max-lg:text-center"
                             />
                         }
@@ -77,43 +75,13 @@ export const HeroSection = async () => {
                         badge={
                             <>{
                                 data.availableForWork &&
-                                <AvailableForWork />
+                                <AvailableForWork className="lg:absolute -top-18" />
                             }</>
                         }
 
-                        ctaBtns={[
-                            <NavigationLink
-                                key={"hero-btn-1"}
-                                link={{
-                                    href: STACK_ID,
-                                    label: "Download CV",
-                                    type: 'download',
-                                    icon: <Download />,
-                                    filename: cv!.name
-                                }}
-                                className={cn(buttonVariants({ size: 'lg' }), "shadow-sm")}
-                            />,
-
-                            <NavigationLink
-                                key={"hero-btn-2"}
-                                link={{
-                                    href: STACK_ID,
-                                    label: "Tech Stack",
-                                    type: 'scroll',
-                                }}
-                                className={cn(buttonVariants({ size: 'lg', variant: 'secondary' }), "shadow-sm")}
-                            />,
-
-                            <NavigationLink
-                                key={"hero-btn-3"}
-                                link={{
-                                    href: CONTACT_ID,
-                                    label: "Contact Me",
-                                    type: 'scroll',
-                                }}
-                                className={cn(buttonVariants({ size: 'lg', variant: 'outline' }), "shadow-sm")}
-                            />,
-                        ]}
+                        ctaBtns={
+                            <CtaBtns {...cv} className=""/>
+                        }
                     />
                 }
             />

@@ -15,28 +15,31 @@ import z from "zod";
 import { sendMessageSchema } from "@/schemas/zod-schemas";
 import { Infer } from "convex/values";
 import { contactTable, contactValidator } from "@/convex/schema";
+import { useWidthMedia } from "@/hooks/useMedia";
 
 interface ContactInfoProps {
     data: Infer<typeof contactValidator>
 }
 
-export default function Contact({ data }: ContactInfoProps) {
+export default function ContactInfo({ data }: ContactInfoProps) {
     return (
         <Layout
             lgAxis={'y'}
             maxSmAxis={'y'}
-            className="justify-between flex-wrap max-lg:w-full"
+            className="justify-between flex-wrap w-full items-start"
 
+            topClassName="gap-6 w-full *:w-full items-start sm:w-fit md:w-full"
             top={
-                <div className="grid gap-6">
-                    <ContactInfo title="Email" description={data.email} icon={<Mail />} allowCopy />
-                    <ContactInfo title="Phone" description={`+${data.phone}`} icon={<Phone />} allowCopy />
-                    <ContactInfo title="Location" description={data.location} icon={<MapPin />} />
-                </div>
+                <>
+                    <Info title="Email" description={data.email} icon={<Mail />} allowCopy />
+                    <Info title="Phone" description={`+${data.phone}`} icon={<Phone />} allowCopy />
+                    <Info title="Location" description={data.location} icon={<MapPin />} />
+                </>
             }
 
+            bottomClassName="gap-6 w-full items-start sm:w-fit sm:items-end md:w-full md:items-start"
             bottom={
-                <div className="flex flex-col gap-6">
+                <>
                     <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground select-none">
                         Find me online</p>
 
@@ -46,15 +49,15 @@ export default function Contact({ data }: ContactInfoProps) {
                         <FindMeOnline url={data.x} icon={<XFillIcon />} />
                     </div>
 
-                    <AvailableForWork width="full" />
-                </div>
+                    <AvailableForWork width="full"/>
+                </>
             }
         />
     );
 }
 
 
-function ContactInfo({ icon, title, description, allowCopy }: {
+function Info({ icon, title, description, allowCopy }: {
     icon?: ReactNode;
     title: string;
     description: string;
@@ -62,10 +65,11 @@ function ContactInfo({ icon, title, description, allowCopy }: {
 }) {
 
     const [copy, copied] = useCopyToClipboard();
+    const media = useWidthMedia().md;
 
     return (
-        <div onClick={async () => await copy(description)}
-            className={cn("flex items-center gap-3.5 group", allowCopy && "hover:cursor-pointer")}>
+        <div onClick={async () => {if(media) await copy(description)}}
+            className={cn("flex items-center gap-3.5 group", allowCopy && "md:hover:cursor-pointer")}>
             {icon && (
                 <div className={cn(
                     "size-10 flex items-center justify-center rounded-xl",

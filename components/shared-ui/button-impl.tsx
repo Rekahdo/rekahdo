@@ -10,7 +10,7 @@ import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
 import { ErrorType } from "@/lib/types";
 
-const buttonImplVariants = cva(
+export const buttonImplVariants = cva(
     cn("flex gap-2 "),
     {
         variants: {

@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import { Header } from "@/components/shared-ui/header";
 import { Logo } from "@/components/shared-ui/logo";
 import { Container } from "@/components/shared-ui/container";
-import { ThemeToggle } from "@/components/shared-ui/toggle";
+import { ModeToggle } from "@/components/shared-ui/toggle";
 import { Navigation, NavItem } from "@/components/shared-ui/navigation";
 import { LogoutBtn } from "@/components/shared-ui/button-impl";
 import { SideSheet } from "@/components/shared-ui/side-sheet";
@@ -82,7 +82,7 @@ export default function Layout(props: LayoutProps) {
                     headerRight={
                         <>
                             <LogoutBtn />
-                            <ThemeToggle />
+                            <ModeToggle />
                             <SideSheet
                                 navItems={navItems}
                             />

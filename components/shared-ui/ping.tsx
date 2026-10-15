@@ -109,13 +109,13 @@ export function PingTag({
 // ============================================
 
 
-export function AvailableForWork({width}: Pick<PingTagProps, 'width'>) {
+export function AvailableForWork({width, className}: Pick<PingTagProps, 'width' | 'className'>) {
     const date = new Date();
     return (
         <PingTag
-            onClick={(e) => scrollToId({ id: CONTACT_ID })}
+            onClick={() => scrollToId({ id: CONTACT_ID })}
             width={width}
-            className="gap-4 shadow-sm cursor-pointer"
+            className={cn("gap-4 shadow-sm cursor-pointer", className)}
             pingSize="size-3"
             text={"Available For Work"}
             description="Open to remote & hybrid roles"

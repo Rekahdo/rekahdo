@@ -61,6 +61,7 @@ function Education({
             <div className="flex size-11 shrink-0 items-center justify-center rounded-lg border border-border bg-muted/50 p-1.5">
               <AppImage
                 src={logo}
+                height={50}
                 width={50}
                 alt={`${institution} logo`}
               />

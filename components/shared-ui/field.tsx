@@ -140,7 +140,7 @@ export default function AppInput({
                         disabled={isPending}
                         placeholder={placeholder}
                         row={40}
-                        className={cn("min-h-full p-0!", inputVariants({ ...props }))}
+                        className={cn("min-h-full p-0! text-sm sm:text-base", inputVariants({ ...props }))}
                     />
 
                     {showClearButton && (

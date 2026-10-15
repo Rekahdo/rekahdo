@@ -9,6 +9,7 @@ import { Flex } from "../shared-ui/layout2";
 import { section } from "@/data/section";
 import { aboutData } from "@/data/about";
 import AppImage from "../shared-ui/image";
+import { Layout } from "../shared-ui/layout";
 
 export const ABOUT_ID = "aboutMe";
 
@@ -25,34 +26,38 @@ export async function AboutSection() {
             id={ABOUT_ID}
             px={'section'}
             py={"section"}
+            background={'muted'}
         >
 
-            <section className="flex flex-col gap-10 md:gap-15">
+            <section className="flex flex-col gap-20 md:gap-26">
                 <H2 title={sec.title} className={"mx-auto"} />
 
-                <Flex
-                    lgDirection={"row"}
-                    className="max-lg:gap-8"
+                <Layout
+                    lgAxis={"x"}
+                    maxLgAxis={'y'}
+                    className="gap-12 lg:gap-4"
 
-                    topClassName="flex justify-center sm:max-w-[35%] items-start mx-auto"
+                    topClassName="lg:items-start shrink"
                     top={
                         <>{(data.me && data.me.src) &&
+
                             <AppImage
                                 src={data.me.src}
                                 alt={data.me?.alt ?? "profile image of richard"}
                                 width={1000} height={1000}
-                                size={'s100'}
-                                maxSmSize={'s80'}
-                                rounded={'full'}
-
+                                eager
+                                maxSmWidth={'w80'}
+                                maxLgWidth={'w50'}
+                                lgWidth={'w90'}
                             />
                         }</>
                     }
 
-                    bottomClassName="lg:ps-10 w-full"
+                    bottomClassName="w-full justify-start lg:items-start gap-6"
                     bottom={
-                        <H3 title={data.headline}
-                            className={"max-md:text-center"}>
+                        <>
+                            <H3 title={data.headline}
+                                className={"max-md:text-center"} />
 
                             <p className={cn("whitespace-pre-line max-md:text-center")}>
                                 {data.bio}
@@ -60,16 +65,16 @@ export async function AboutSection() {
 
                             {data.experiences &&
                                 <Experiences experiences={data.experiences}
-                                    className="max-md:justify-center max-md:text-center" />
+                                    className="max-md:justify-center max-md:text-center mt-10 lg:mt-2 gap-8!" />
                             }
-
-                            {data.quote &&
-                                <Quote {...data.quote} variant={"normal"}
-                                    className="max-md:justify-center max-md:text-center" />
-                            }
-                        </H3>
+                        </>
                     }
                 />
+
+                {data.quote &&
+                    <Quote {...data.quote} variant={"normal"}
+                        className="max-md:justify-center max-md:text-center lg:max-w-6/10 ms-auto" />
+                }
 
                 {data.educations &&
                     <H4 title="Education & Certification">
