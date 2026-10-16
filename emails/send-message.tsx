@@ -70,7 +70,7 @@ export default function SendMessage({
       <Head />
       <Preview>New portfolio message from {name}: {subject}</Preview>
         <Body className="bg-canvas font-sans text-foreground my-0 mx-auto py-10 px-4">
-          <Container className="bg-surface border border-solid border-border rounded-2xl max-w-[580px] mx-auto overflow-hidden shadow-sm">
+          <Container className="bg-surface border border-solid border-border rounded-2xl max-w-145 mx-auto overflow-hidden shadow-sm">
             <div className="p-8">
               {/* Header Badge & Title */}
               <Section className="mb-6">
@@ -88,7 +88,7 @@ export default function SendMessage({
                   <tbody>
                     <tr>
                       <td className="w-12 align-middle">
-                        <div className="mx-auto w-10 h-10 rounded-full bg-primary text-white text-sm font-semibold flex items-center justify-center text-center leading-[40px]">
+                        <div className="mx-auto w-10 h-10 rounded-full bg-primary text-white text-sm font-semibold flex items-center justify-center text-center leading-10">
                           {initials}
                         </div>
                       </td>

@@ -310,7 +310,7 @@ function CardContent({
     const cardContentStyle = cn(
         "transition-all rounded-lg space-y-4 text-foreground", mode === "Detailed" ? (hover.outline, "hover:scale-105") : "",
         "p-2 data-[size=sheet]:p-8",
-        "data-[mode=Detailed]:bg-background dark:data-[mode=Detailed]:bg-background/100 data-[mode=Detailed]:border-border/60",
+        "data-[mode=Detailed]:bg-background dark:data-[mode=Detailed]:bg-background data-[mode=Detailed]:border-border/60",
         "data-[mode=Detailed]:w-full data-[mode=Detailed]:h-full data-[mode=Detailed]:p-6",
         "flex flex-col justify-between",
     );

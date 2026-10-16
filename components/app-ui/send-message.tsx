@@ -31,7 +31,7 @@ export default function SendMessageForm({
     return (
         <Card className={cn("w-full",
             "border-none py-0 bg-transparent backdrop-blur-lg gap-0",
-            "rounded-3xl bg-gradient-to-b from-card/100 via-card/60 to-card/10",
+            "rounded-3xl bg-linear-to-b from-card via-card/60 to-card/10",
             "backdrop-blur-xl shadow-2xl ring-1 ring-black/10",
             className
         )}>
