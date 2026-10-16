@@ -3,7 +3,6 @@ import { cn } from "cn";
 import type { ElementType, ReactNode } from "react";
 import { align, justify } from "./_css";
 
-
 const flexVariants = cva(cn
     ("flex gap-8 text-foreground"),
     {
@@ -122,10 +121,6 @@ export function Flex({
         </Tag>
     )
 }
-
-
-// =======================================================================
-
 
 const gridVariants = cva(cn
     ("max-lg:gap-6 lg:gap-8 text-foreground"),

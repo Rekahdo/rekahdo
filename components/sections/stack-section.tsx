@@ -12,7 +12,6 @@ export const STACK_ID = "stack";
 
 export async function StackSection() {
 
-    // const data = await fetchQuery(api.stack.findAll);
     const data = await stacksData
     const sec = section.stack;
 
@@ -21,10 +20,17 @@ export async function StackSection() {
             id={STACK_ID}
             py={"section"}
             px={'section'}
+            bgGradient={'dots'}
+            wrapperClassName="relative overflow-visible"
+            className="relative"
         >
-            <section className="flex flex-col gap-8">
-                <H2 title={sec.title} subtitle={sec.subtitle} icon={<CodeXml />}
-                    className={"mx-auto text-center"} />
+            <section className="flex flex-col gap-10 w-full relative z-10">
+                <H2
+                    title={sec.title}
+                    subtitle={sec.subtitle}
+                    icon={<CodeXml className="text-primary size-6" />}
+                    className={"mx-auto text-center tracking-tight"}
+                />
 
                 <StackCards data={data} />
             </section>

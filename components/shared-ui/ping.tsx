@@ -105,10 +105,6 @@ export function PingTag({
     );
 }
 
-
-// ============================================
-
-
 export function AvailableForWork({width, className}: Pick<PingTagProps, 'width' | 'className'>) {
     const date = new Date();
     return (
@@ -122,7 +118,6 @@ export function AvailableForWork({width, className}: Pick<PingTagProps, 'width' 
         />
     );
 }
-
 
 export function StillInDevelopment() {
     const date = new Date();

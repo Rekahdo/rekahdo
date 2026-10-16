@@ -1,9 +1,8 @@
 "use client"
 
 import { AvailableForWork } from "../shared-ui/ping";
-import { Layout } from "../shared-ui/layout";
 import { ReactNode } from "react";
-import { Check, Copy, Mail, Map, MapPin, Phone } from "lucide-react";
+import { Check, Copy, Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 import { Button, buttonVariants } from "../ui/button";
 import { cn } from "cn";
@@ -11,10 +10,8 @@ import { LinkedinIcon } from "../icons/lucide-linkedin";
 import { GithubIcon } from "../icons/lucide-github";
 import { XFillIcon } from "../icons/akar-icons-x-fill";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
-import z from "zod";
-import { sendMessageSchema } from "@/schemas/zod-schemas";
 import { Infer } from "convex/values";
-import { contactTable, contactValidator } from "@/convex/schema";
+import { contactValidator } from "@/convex/schema";
 import { useWidthMedia } from "@/hooks/useMedia";
 
 interface ContactInfoProps {
@@ -23,40 +20,35 @@ interface ContactInfoProps {
 
 export default function ContactInfo({ data }: ContactInfoProps) {
     return (
-        <Layout
-            axis={'y'}
-            maxSmAxis={'y'}
-            maxMdAxis={'x'}
-            className="grow w-full"
+        <div className="flex flex-col justify-between h-full w-full gap-8">
+            
+            <div className="flex flex-col gap-3.5 w-full">
+                <Info title="Email" description={data.email} icon={<Mail />} allowCopy />
+                <Info title="Phone" description={`+${data.phone}`} icon={<Phone />} allowCopy />
+                <Info title="Location" description={data.location} icon={<MapPin />} />
+            </div>
 
-            topClassName="*:w-full grow gap-4"
-            top={
-                <>
-                    <Info title="Email" description={data.email} icon={<Mail />} allowCopy />
-                    <Info title="Phone" description={`+${data.phone}`} icon={<Phone />} allowCopy />
-                    <Info title="Location" description={data.location} icon={<MapPin />} />
-                </>
-            }
-
-            bottomClassName="items-start justify-start grow gap-4 h-full sm:max-md:items-end"
-            bottom={
-                <>
+            
+            <div className="flex flex-col gap-5 pt-4 border-t border-border/50">
+                <div className="flex flex-col gap-3">
                     <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground select-none">
-                        Find me online</p>
+                        Find me online
+                    </p>
 
-                    <div className="flex gap-4">
-                        <FindMeOnline url={data.linkedin} icon={<LinkedinIcon />} />
-                        <FindMeOnline url={data.github} icon={<GithubIcon />} />
-                        <FindMeOnline url={data.x} icon={<XFillIcon />} />
+                    <div className="flex items-center gap-3">
+                        <FindMeOnline url={data.linkedin} icon={<LinkedinIcon />} label="LinkedIn" />
+                        <FindMeOnline url={data.github} icon={<GithubIcon />} label="GitHub" />
+                        <FindMeOnline url={data.x} icon={<XFillIcon />} label="X (Twitter)" />
                     </div>
+                </div>
 
-                    <AvailableForWork width="full" className="mt-auto" />
-                </>
-            }
-        />
+                <div className="pt-2">
+                    <AvailableForWork width="full" className="shadow-xs backdrop-blur-md" />
+                </div>
+            </div>
+        </div>
     );
 }
-
 
 function Info({ icon, title, description, allowCopy }: {
     icon?: ReactNode;
@@ -64,28 +56,35 @@ function Info({ icon, title, description, allowCopy }: {
     description: string;
     allowCopy?: boolean;
 }) {
-
     const [copy, copied] = useCopyToClipboard();
     const media = useWidthMedia().md;
 
     return (
-        <div onClick={async () => { if (media) await copy(description) }}
-            className={cn("flex items-center gap-3.5 group", allowCopy && "md:hover:cursor-pointer")}>
+        <div
+            onClick={async () => { if (media && allowCopy) await copy(description) }}
+            className={cn(
+                "group relative flex items-center gap-4 p-4 rounded-2xl",
+                "border border-border/70 bg-card/75 dark:bg-card/45 backdrop-blur-sm",
+                "shadow-[0_2px_12px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_16px_rgba(0,0,0,0.2)]",
+                "transition-all duration-200",
+                allowCopy && "hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md md:cursor-pointer"
+            )}
+        >
             {icon && (
                 <div className={cn(
-                    "size-10 flex items-center justify-center rounded-xl",
-                    "border border-border/60 bg-muted/40 text-muted-foreground transition-colors",
-                    "group-hover:border-border group-hover:text-foreground [&_svg]:size-4"
+                    "size-11 shrink-0 flex items-center justify-center rounded-xl",
+                    "border border-border/70 bg-background/90 text-primary shadow-xs",
+                    "transition-transform duration-200 group-hover:scale-105 [&_svg]:size-4.5"
                 )}>
                     {icon}
                 </div>
             )}
 
-            <dl className="grow leading-snug">
-                <dt className="text-xs font-semibold uppercase tracking-wider text-muted-foreground select-none">
+            <dl className="grow leading-snug min-w-0">
+                <dt className="text-[0.7rem] font-semibold uppercase tracking-wider text-muted-foreground select-none">
                     {title}
                 </dt>
-                <dd className="truncate text-sm font-medium text-foreground select-none">
+                <dd className="truncate text-sm font-medium text-foreground select-none pt-0.5">
                     {description}
                 </dd>
             </dl>
@@ -94,14 +93,16 @@ function Info({ icon, title, description, allowCopy }: {
                 <Button
                     variant="ghost"
                     size="icon"
-                    onClick={async () => await copy(description)}
+                    onClick={async (e) => {
+                        e.stopPropagation();
+                        await copy(description);
+                    }}
                     aria-label={`Copy ${title}`}
-                    className="size-8 shrink-0 rounded-lg text-muted-foreground hover:text-foreground transition-colors"
+                    className="size-8.5 shrink-0 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors"
                 >
-                    {
-                        copied
-                            ? <Check className="size-4 text-emerald-500 animate-into-view" />
-                            : <Copy className="size-4 animate-into-view" />
+                    {copied
+                        ? <Check className="size-4 text-emerald-500 animate-into-view" />
+                        : <Copy className="size-4 animate-into-view" />
                     }
                 </Button>
             )}
@@ -109,18 +110,24 @@ function Info({ icon, title, description, allowCopy }: {
     );
 }
 
-
-function FindMeOnline({ icon, url }: {
+function FindMeOnline({ icon, url, label }: {
     icon?: ReactNode;
     url: string;
+    label?: string;
 }) {
     return (
-        <Link href={url} target="_blank" rel="noopener noreferrer"
+        <Link
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={label}
             className={cn(
-                buttonVariants({ size: 'icon-lg', variant: 'secondary' }),
-                "*:text-muted-foreground hover:*:text-foreground! size-12"
-            )}>
-
+                buttonVariants({ size: 'icon', variant: 'outline' }),
+                "size-11 rounded-xl border-border/70 bg-card/80 backdrop-blur-sm",
+                "shadow-xs text-muted-foreground hover:text-foreground hover:border-primary/40 hover:-translate-y-0.5 hover:shadow-sm",
+                "transition-all duration-200 [&_svg]:size-5"
+            )}
+        >
             {icon}
         </Link>
     );

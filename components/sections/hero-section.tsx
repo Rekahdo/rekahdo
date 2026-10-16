@@ -14,12 +14,9 @@ import { aboutData } from "@/data/about";
 export const HERO_ID = "hero";
 
 export const HeroSection = async () => {
-
-    // const data = await fetchQuery(api.hero.get);
-    // const cv = await fetchQuery(api.document.findByType, { type: 'cv' });
     const data = await heroData;
     if (!data) return null;
-    
+
     const about = await aboutData;
     const cv = (await documentData).cv;
 
@@ -31,27 +28,31 @@ export const HeroSection = async () => {
             place={'center'}
             height={'hero'}
         >
-
             <Layout
                 type={'grid'}
                 lgAxis={'x'}
                 lgPlace={'right'}
-                className="gap-12"
+                className="gap-12 items-center"
 
                 top={
                     <>
-                        {(data.image && data.image.src) &&
-                            <AppImage
-                                src={data.image.src}
-                                alt={data.image?.alt ?? "hero image"}
-                                width={1000} height={1000}
-                                eager
-                                rounded={'full'}
-                                maxSmWidth={'w80'}
-                                smWidth={'w60'}
-                                lgWidth={'w90'}
-                            />
-                        }
+                        {data.image?.src && (
+                            <div className="relative mx-auto flex items-center justify-center w-full max-w-md lg:max-w-lg">
+                                <div className="relative w-full aspect-square rounded-[2.5rem] p-1.5 border border-border/80 bg-card shadow-lg">
+                                    <div className="relative w-full h-full rounded-[2rem] overflow-hidden">
+                                        <AppImage
+                                            src={data.image.src}
+                                            alt={data.image?.alt ?? "hero image"}
+                                            width={1000}
+                                            height={1000}
+                                            maxSmWidth={'w70'}
+                                            eager
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </>
                 }
 
@@ -89,5 +90,5 @@ export const HeroSection = async () => {
                 }
             />
         </Container>
-    )
-}
+    );
+};
