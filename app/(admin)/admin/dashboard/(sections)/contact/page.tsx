@@ -6,9 +6,10 @@ import { H1 } from "@/components/shared-ui/headings";
 import { Card, CardContent } from "@/components/ui/card";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { contactData } from "@/data/contact";
 import { contactSchema } from "@/schemas/zod-schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useTransition } from "react";
+import { use, useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
@@ -16,18 +17,13 @@ import z from "zod";
 type ContactForm = z.infer<typeof contactSchema>;
 
 export default function Page() {
+    const data = use(contactData);
+
     const [isPending, startTransition] = useTransition();
 
     const { handleSubmit, control } = useForm<ContactForm>({
         resolver: zodResolver(contactSchema),
-        defaultValues: {
-            email: "okaforrichard76@gmail.com",
-            phone: "2349059405621",
-            location: "Lagos, Nigeria",
-            github: "https://github.com/rekahdo",
-            linkedin: "https://www.linkedin.com/in/rekahdo",
-            x: "https://x.com/real_rekahdo",
-        },
+        defaultValues: data,
     });
 
     function submit(data: ContactForm) {
@@ -103,6 +99,42 @@ export default function Page() {
                         />
 
                         <Controller
+                            name="facebook"
+                            control={control}
+                            render={({ field, fieldState }) => (
+                                <Field>
+                                    <FieldLabel>Facebook URL</FieldLabel>
+                                    <Input
+                                        type="url"
+                                        aria-invalid={fieldState.invalid}
+                                        {...field}
+                                    />
+                                    {fieldState.invalid && (
+                                        <FieldError errors={[fieldState.error]} />
+                                    )}
+                                </Field>
+                            )}
+                        />
+
+                        <Controller
+                            name="whatsapp"
+                            control={control}
+                            render={({ field, fieldState }) => (
+                                <Field>
+                                    <FieldLabel>WhatsApp URL</FieldLabel>
+                                    <Input
+                                        type="url"
+                                        aria-invalid={fieldState.invalid}
+                                        {...field}
+                                    />
+                                    {fieldState.invalid && (
+                                        <FieldError errors={[fieldState.error]} />
+                                    )}
+                                </Field>
+                            )}
+                        />
+
+                        <Controller
                             name="github"
                             control={control}
                             render={({ field, fieldState }) => (
@@ -126,6 +158,42 @@ export default function Page() {
                             render={({ field, fieldState }) => (
                                 <Field>
                                     <FieldLabel>LinkedIn URL</FieldLabel>
+                                    <Input
+                                        type="url"
+                                        aria-invalid={fieldState.invalid}
+                                        {...field}
+                                    />
+                                    {fieldState.invalid && (
+                                        <FieldError errors={[fieldState.error]} />
+                                    )}
+                                </Field>
+                            )}
+                        />
+
+                        <Controller
+                            name="instagram"
+                            control={control}
+                            render={({ field, fieldState }) => (
+                                <Field>
+                                    <FieldLabel>Instagram URL</FieldLabel>
+                                    <Input
+                                        type="url"
+                                        aria-invalid={fieldState.invalid}
+                                        {...field}
+                                    />
+                                    {fieldState.invalid && (
+                                        <FieldError errors={[fieldState.error]} />
+                                    )}
+                                </Field>
+                            )}
+                        />
+
+                        <Controller
+                            name="tiktok"
+                            control={control}
+                            render={({ field, fieldState }) => (
+                                <Field>
+                                    <FieldLabel>TikTok URL</FieldLabel>
                                     <Input
                                         type="url"
                                         aria-invalid={fieldState.invalid}

@@ -3,8 +3,7 @@
 import { createHeaderAction } from "@/app/actions/header";
 import { ButtonImpl } from "@/components/shared-ui/button-impl";
 import { H1 } from "@/components/shared-ui/headings";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { headerSchema } from "@/schemas/zod-schemas";
@@ -24,13 +23,7 @@ export default function Page(props: PageProps) {
 
     const { handleSubmit, control } = useForm<z.infer<typeof headerSchema>>({
         resolver: zodResolver(headerSchema),
-        defaultValues: {
-            downloadCv: {
-                name: 'Richard_Okafor_CV.pdf',
-                href: '/docs/Richard_Okafor_CV.pdf',
-                type: "cv"
-            }
-        }
+        defaultValues: {},
     })
 
     function submit(data: z.infer<typeof headerSchema>) {
@@ -43,32 +36,12 @@ export default function Page(props: PageProps) {
     return (
         <div className="flex flex-col gap-6 max-w-lg">
             <H1 title="Header"
-                subtitle="Upload your CV so visitors can download it from your portfolio."
+                subtitle="Update the header content shown at the top of your portfolio."
                 className="text-center items-center" />
 
             <Card>
                 <form onSubmit={handleSubmit(submit)}>
                     <CardContent className="grid gap-4">
-                        <Controller
-                            name="downloadCv.name" control={control} render={({ field, fieldState }) => (
-                                <Field>
-                                    <FieldLabel>Name</FieldLabel>
-                                    <Input type="text" aria-invalid={fieldState.invalid} {...field} />
-                                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-                                </Field>
-                            )}
-                        />
-
-                        <Controller
-                            name="downloadCv.href" control={control} render={({ field, fieldState }) => (
-                                <Field>
-                                    <FieldLabel>Download CV</FieldLabel>
-                                    <Input type="text" aria-invalid={fieldState.invalid} {...field} />
-                                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-                                </Field>
-                            )}
-                        />
-
                         <ButtonImpl type="submit" text="Submit" isPending={isPending} />
                     </CardContent>
                 </form>

@@ -124,7 +124,7 @@ export function ButtonImpl({
             {(showIcon && side === 'left') && btnIcon()}
 
             <span data-sh={showTextAt} className={SHOW_TEXT_AT_STYLES}>
-                {isPending ? `${pendingState} . . .` : <>{text} {children}</>}
+                {isPending ? pendingState : <>{text} {children}</>}
             </span>
 
             {(showIcon && side === 'right') && btnIcon()}

@@ -39,11 +39,11 @@ export async function AboutSection() {
 
                     topClassName="lg:items-start shrink"
                     top={
-                        <>{(data.me && data.me.src) &&
+                        <>{(data.profile && data.profile.src) &&
 
                             <AppImage
-                                src={data.me.src}
-                                alt={data.me?.alt ?? "profile image of richard"}
+                                src={data.profile.src}
+                                alt={data.profile?.alt ?? "profile image of richard"}
                                 width={1000} height={1000}
                                 eager
                                 maxSmWidth={'w80'}

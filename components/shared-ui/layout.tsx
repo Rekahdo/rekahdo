@@ -91,6 +91,8 @@ type LayoutProps = VariantProps<typeof layoutVariants> & {
     className?: string;
     top?: ReactNode;
     topClassName?: string;
+    center?: ReactNode;
+    centerClassName?: string;
     bottom?: ReactNode;
     bottomClassName?: string;
     as?: ElementType;
@@ -99,13 +101,13 @@ type LayoutProps = VariantProps<typeof layoutVariants> & {
 export function Layout({
     className,
     top, topClassName,
+    center, centerClassName,
     bottom, bottomClassName,
     as: Tag = "section",
     place, maxSmPlace, smPlace,
     maxMdPlace, mdPlace, maxLgPlace,
     lgPlace,
     type = "flex",
-    axis,
     ...props
 }: LayoutProps) {
     return (
@@ -114,7 +116,6 @@ export function Layout({
 
             layoutVariants({
                 type,
-                axis: type === "flex" ? 'x' : 'y',
                 ...props
             }),
 
@@ -130,6 +131,12 @@ export function Layout({
                     }), topClassName)}>
 
                     {top}
+                </div>
+            }
+
+            {center &&
+                <div className={cn("flex flex-col justify-center items-center", centerClassName)}>
+                    {center}
                 </div>
             }
 

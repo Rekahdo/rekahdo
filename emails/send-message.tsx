@@ -88,7 +88,7 @@ export default function SendMessage({
                   <tbody>
                     <tr>
                       <td className="w-12 align-middle">
-                        <div className="w-10 h-10 rounded-full bg-primary text-white text-sm font-semibold flex items-center justify-center text-center leading-[40px]">
+                        <div className="mx-auto w-10 h-10 rounded-full bg-primary text-white text-sm font-semibold flex items-center justify-center text-center leading-[40px]">
                           {initials}
                         </div>
                       </td>

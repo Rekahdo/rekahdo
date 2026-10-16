@@ -1,14 +1,7 @@
-export type ProjectData = {
-    title: string;
-    description: string;
-    image: { src: string; alt: string };
-    github: string;
-    deployment?: string;
-    technologies: { title: string }[];
-    status: "development" | "deployed" | "maintenance";
-};
+import { projectValidator } from "@/convex/schema";
+import { Infer } from "convex/values";
 
-export const projectsData: Promise<ProjectData[]> = Promise.resolve([
+export const projectsData: Promise<Infer<typeof projectValidator>[]> = Promise.resolve([
     {
         title: "Portfolio — Personal Developer Showcase",
         description:

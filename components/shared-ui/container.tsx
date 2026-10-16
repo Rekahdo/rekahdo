@@ -12,8 +12,10 @@ export const containerVariants = cva(
             },
             background: {
                 background: "bg-background text-foreground",
+                foreground: "bg-foreground text-background",
                 secondary: "bg-secondary text-secondary-foreground",
                 muted: "bg-muted text-muted-foreground",
+                footer: "bg-foreground text-background dark:bg-background dark:text-foreground",
             },
             py: {
                 section: "py-20 md:py-26 lg:py-30",
@@ -161,6 +163,7 @@ type ContainerProps = VariantProps<typeof containerVariants>
 
     children: ReactNode;
     className?: string;
+    wrapperClassName?: string;
 } & Omit<HTMLAttributes<HTMLElement>, "id">;
 
 export function Container({
@@ -168,6 +171,7 @@ export function Container({
     as: Tag = "section",
     children,
     className,
+    wrapperClassName, 
     px, py,
     width, height,
     place,
@@ -181,7 +185,7 @@ export function Container({
                     // bgGradient: 'grid',
                     // bgAttach: 'fixed',
                     ...props
-                }))}>
+                }), wrapperClassName)}>
 
             <ContainerInner className={className} px={px} py={py} width={width}
                 height={height} place={place}>

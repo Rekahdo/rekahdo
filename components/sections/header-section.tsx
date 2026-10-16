@@ -12,14 +12,14 @@ import { ABOUT_ID } from "./about-section";
 import { STACK_ID } from "./stack-section";
 import { PROJECT_ID } from "./project-section";
 import { CONTACT_ID } from "./contact-section";
-import { headerData } from "@/data/header";
+import { documentData } from "@/data/document";
 
 export const HEADER_ID = "header";
 
 export const HeaderSection = async () => {
 
     // const cv = await fetchQuery(api.document.findByType, { type: 'cv' });
-    const cv = (await headerData).downloadCv
+    const cv = (await documentData).cv
 
     const navItems: NavItem[] = [
         { link: { type: "scroll", href: HERO_ID, label: "Home" } },
@@ -41,7 +41,7 @@ export const HeaderSection = async () => {
 
             <Header
                 headerLeft={
-                    <Logo />
+                    <Logo variant={'header'} />
                 }
 
                 headerCenter={
@@ -57,6 +57,7 @@ export const HeaderSection = async () => {
                         </a>
 
                         <ModeToggle />
+
                         <SideSheet
                             logo={<Logo />}
                             navItems={navItems}

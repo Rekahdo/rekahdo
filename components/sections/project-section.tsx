@@ -4,7 +4,7 @@ import { AppImageType } from "@/lib/types";
 import { TagType } from "../app-ui/tag";
 import { section } from "@/data/section";
 import { ProjectsTabs } from "../app-ui/projects-tab";
-import { projectsData } from "@/data/projects";
+import { projectsData } from "@/data/project";
 
 export const StatusArray = ["deployed", "development", "maintenance"] as const;
 
@@ -66,7 +66,8 @@ export default async function ProjectsSection() {
             id={PROJECT_ID}
             py={"section"}
             px={'section'}
-            background={'secondary'}>
+            background={'secondary'}
+            >
 
             <H2 title={sec.title} subtitle={sec.subtitle} />
             <ProjectsTabs projects={data.slice(0, 4) ?? []} />

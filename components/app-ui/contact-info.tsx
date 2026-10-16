@@ -24,11 +24,12 @@ interface ContactInfoProps {
 export default function ContactInfo({ data }: ContactInfoProps) {
     return (
         <Layout
-            lgAxis={'y'}
+            axis={'y'}
             maxSmAxis={'y'}
-            className="justify-between flex-wrap w-full items-start"
+            maxMdAxis={'x'}
+            className="grow w-full"
 
-            topClassName="gap-6 w-full *:w-full items-start sm:w-fit md:w-full"
+            topClassName="*:w-full grow gap-4"
             top={
                 <>
                     <Info title="Email" description={data.email} icon={<Mail />} allowCopy />
@@ -37,19 +38,19 @@ export default function ContactInfo({ data }: ContactInfoProps) {
                 </>
             }
 
-            bottomClassName="gap-6 w-full items-start sm:w-fit sm:items-end md:w-full md:items-start"
+            bottomClassName="items-start justify-start grow gap-4 h-full sm:max-md:items-end"
             bottom={
                 <>
                     <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground select-none">
                         Find me online</p>
 
-                    <div className="flex gap-3">
+                    <div className="flex gap-4">
                         <FindMeOnline url={data.linkedin} icon={<LinkedinIcon />} />
                         <FindMeOnline url={data.github} icon={<GithubIcon />} />
                         <FindMeOnline url={data.x} icon={<XFillIcon />} />
                     </div>
 
-                    <AvailableForWork width="full"/>
+                    <AvailableForWork width="full" className="mt-auto" />
                 </>
             }
         />
@@ -68,7 +69,7 @@ function Info({ icon, title, description, allowCopy }: {
     const media = useWidthMedia().md;
 
     return (
-        <div onClick={async () => {if(media) await copy(description)}}
+        <div onClick={async () => { if (media) await copy(description) }}
             className={cn("flex items-center gap-3.5 group", allowCopy && "md:hover:cursor-pointer")}>
             {icon && (
                 <div className={cn(

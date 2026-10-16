@@ -5,7 +5,7 @@ import type { ElementType, ReactNode } from "react";
 export const HeaderVariants = cva("", {
     variants: {
         titleSize: {
-            hero: "text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold uppercase",
+            hero: "text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold uppercase",
             h1: "text-4xl sm:text-5xl font-extrabold",
             h2: "text-3xl sm:text-4xl font-bold",
             h3: "text-xl sm:text-2xl font-bold",
@@ -14,7 +14,7 @@ export const HeaderVariants = cva("", {
             h6: "text-sm sm:text-base font-bold",
         },
         subtitleSize: {
-            hero: "font-semibold text-foreground capitalize text-xl md:text-3xl lg:text-4xl underline",
+            hero: "text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground capitalize underline",
         },
     },
 });
