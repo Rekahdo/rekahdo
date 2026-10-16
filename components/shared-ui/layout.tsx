@@ -40,7 +40,7 @@ const layoutVariants = cva(
                 x: "lg:flex-row lg:grid-cols-2",
             },
 
-            // TOP
+           
             place: {
                 top: "order-0",
                 bottom: "order-1",

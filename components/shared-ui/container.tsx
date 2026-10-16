@@ -2,7 +2,6 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from 'cn'
 import type { ElementType, HTMLAttributes, ReactNode } from 'react';
 
-
 export const containerVariants = cva(
     cn(''),
     {
@@ -54,7 +53,7 @@ export const containerVariants = cva(
                 bgImage: "bg-[url(/images/bg/bg-image.svg)] bg-no-repeat bg-top-left bg-fixed",
             },
             bgGradient: {
-                // ── Additive patterns ─────────────────────────────────────────────
+               
                 grid: cn(
                     "bg-[linear-gradient(to_right,color-mix(in_oklab,var(--border)_20%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_oklab,var(--border)_20%,transparent)_1px,transparent_1px)]",
                     "bg-size[32px_32px]",
@@ -85,11 +84,11 @@ export const containerVariants = cva(
                     "bg-size[32px_32px]",
                 ),
                 noise: cn(
-                    // Layered radial gradients approximate grain cheaply
+                   
                     "bg-[radial-gradient(circle_at_20%_30%,color-mix(in_oklab,var(--primary)_8%,transparent),transparent_40%),radial-gradient(circle_at_80%_70%,color-mix(in_oklab,var(--primary)_6%,transparent),transparent_50%)]",
                 ),
 
-                // ── Radial glows / gradient accents ──────────────────────────────
+               
                 "glow-top": cn(
                     "bg-[radial-gradient(80%_50%_at_50%_0%,color-mix(in_oklab,var(--primary)_18%,transparent),transparent_70%)]",
                 ),
@@ -109,12 +108,12 @@ export const containerVariants = cva(
                     "bg-[radial-gradient(at_10%_10%,color-mix(in_oklab,var(--chart-2)_20%,transparent)_0,transparent_55%),radial-gradient(at_90%_10%,color-mix(in_oklab,var(--chart-4)_20%,transparent)_0,transparent_55%),radial-gradient(at_50%_100%,color-mix(in_oklab,var(--chart-1)_22%,transparent)_0,transparent_55%)]",
                 ),
 
-                // ── Edge fades / spotlight ──────────────────────────────────────
+               
                 spotlight: cn(
                     "bg-[radial-gradient(60%_40%_at_50%_-10%,color-mix(in_oklab,var(--primary)_22%,transparent),transparent_60%),linear-gradient(180deg,transparent,color-mix(in_oklab,var(--background)_40%,transparent))]",
                 ),
 
-                // ── Diagonal lines & beams ──────────────────────────────────────
+               
                 "diagonal-lines": cn(
                     "bg-[repeating-linear-gradient(135deg,color-mix(in_oklab,var(--border)_50%,transparent)_0_1px,transparent_1px_10px)]",
                 ),
@@ -182,8 +181,8 @@ export function Container({
             className={cn("flex rounded-none *:grow min-w-87.5 items-center",
                 containerVariants({
                     background: 'background',
-                    // bgGradient: 'grid',
-                    // bgAttach: 'fixed',
+                   
+                   
                     ...props
                 }), wrapperClassName)}>
 

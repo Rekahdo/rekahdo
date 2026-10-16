@@ -132,10 +132,6 @@ export function ButtonImpl({
     );
 }
 
-// ======================================================================================================
-// ======================================================================================================
-// ======================================================================================================
-
 export function PageBtn(props: ButtonImplProps) {
     return <ButtonImpl {...props} />;
 }
@@ -198,7 +194,7 @@ export function LogoutBtn(props: ButtonImplProps) {
     }
 
     return (
-        // <Authenticated>
+       
         <ButtonImpl
             {...props}
             href="/auth/login"
@@ -208,6 +204,6 @@ export function LogoutBtn(props: ButtonImplProps) {
             isPending={isPending}
             icon={<LogOut />}
         />
-        // </Authenticated>
+       
     )
 }

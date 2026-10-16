@@ -35,14 +35,14 @@ function Experience({
 }: ExperienceCompType) {
   return (
     <div className={cn(experienceVariants({ variant }), className)}>
-      {/* Years */}
+      
       <p className={cn("flex items-center font-bold tabular-nums tracking-tight text-primary text-4xl")}>
         {years}
 
         <span className="text-primary/70 text-2xl">+</span>
       </p>
 
-      {/* Title */}
+      
       <p className={cn("font-medium text-muted-foreground")}>
         {title}
       </p>

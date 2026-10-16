@@ -55,7 +55,7 @@ function Education({
       aria-label={`${course} at ${institution}`}
     >
       <div className="flex flex-col gap-4">
-        {/* Header: Logo, Institution, Website Link */}
+        
         <header className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-3 min-w-0">
             <div className="flex size-12 shrink-0 items-center justify-center rounded-xl border border-border/80 bg-background/80 p-2 shadow-xs group-hover:border-primary/30 transition-colors">
@@ -91,7 +91,7 @@ function Education({
           )}
         </header>
 
-        {/* Degree / Course Title & Description */}
+        
         <div className="space-y-2">
           <h3 className="flex items-start gap-2 text-base font-semibold leading-snug text-foreground tracking-tight">
             <GraduationCap className="mt-0.5 size-4.5 shrink-0 text-primary" />
@@ -106,7 +106,7 @@ function Education({
         </div>
       </div>
 
-      {/* Footer Action: Sleek verification button */}
+      
       {certification && (
         <div className="mt-5 pt-4 border-t border-border/50">
           <Link

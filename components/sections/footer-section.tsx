@@ -12,30 +12,24 @@ import { GithubIcon } from "../icons/lucide-github";
 import { LinkedinIcon } from "../icons/lucide-linkedin";
 import { WhatsappIcon } from "../icons/cib-whatsapp";
 
-
 export interface FooterSectionProps { }
 
-
 export const FOOTER_ID = "sec-footer";
-
 
 export default async function FooterSection(props: FooterSectionProps) {
     const data = await footerData;
     const about = await aboutData;
     const contact = await contactData;
 
-
     const defaultWhatsAppMessage = encodeURIComponent(
         `Hi ${about.firstname || "Richard"}, I came across your portfolio and would love to connect!`
     );
-
 
     const whatsappHref = contact.whatsapp
         ? contact.whatsapp.startsWith("http")
             ? `${contact.whatsapp}${contact.whatsapp.includes("?") ? "&" : "?"}text=${defaultWhatsAppMessage}`
             : `https://wa.me/${contact.whatsapp.replace(/\D/g, "")}?text=${defaultWhatsAppMessage}`
         : undefined;
-
 
     const socialLinks = [
         { name: "GitHub", href: contact.github, icon: <GithubIcon /> },
@@ -44,16 +38,13 @@ export default async function FooterSection(props: FooterSectionProps) {
         { name: "Whatsapp", href: whatsappHref, icon: <WhatsappIcon /> },
     ].filter((item) => Boolean(item.href));
 
-
     const getInTouch = [
         { name: "Email", href: `mailto:${contact.email}`, label: contact.email, icon: <Mail /> },
         { name: "Phone", href: `tel:+${contact.phone}`, label: `+${contact.phone}`, icon: <Phone /> },
     ].filter((item) => Boolean(item.href));
 
-
     const textStyle = "text-xs md:text-sm select-none";
     const whiteForeground = "text-white/70";
-
 
     return (
         <Container
@@ -76,7 +67,6 @@ export default async function FooterSection(props: FooterSectionProps) {
                             className={cn(whiteForeground)}
                             subtitleClassName={cn(textStyle, whiteForeground)}
                         />
-
 
                         <div className="flex gap-2">
                             {socialLinks.map((social) => (
@@ -116,7 +106,6 @@ export default async function FooterSection(props: FooterSectionProps) {
                 }
             />
 
-
             <Layout
                 maxSmAxis={"y"}
                 className="pt-10"
@@ -126,7 +115,6 @@ export default async function FooterSection(props: FooterSectionProps) {
         </Container>
     );
 }
-
 
 function XIcon(props: React.SVGProps<SVGSVGElement>) {
     return (

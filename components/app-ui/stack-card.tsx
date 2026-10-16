@@ -75,7 +75,7 @@ export function StackCards({ className, data }: StackCardsType) {
         <Flex className={cn("max-sm:gap-8 gap-10 w-full", className)}
             topClassName="sticky top-20 z-20 md:top-24 py-2"
             top={
-                /* Floating glass toolbar */
+                
                 <div className="flex grow justify-between items-center gap-4 bg-background/80 dark:bg-card/75 backdrop-blur-md border border-border/70 p-2.5 sm:p-3 rounded-2xl shadow-sm">
                     <div className="flex gap-3 max-md:flex-col flex-wrap">
                         <FilterSelect
@@ -114,7 +114,6 @@ export function StackCards({ className, data }: StackCardsType) {
     );
 }
 
-// ── Tier styling tokens ────────────────────────────────────────────────────────
 const tierFor = (p: number) =>
     p >= 85
         ? {

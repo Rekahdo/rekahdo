@@ -90,7 +90,7 @@ export function Project({ project, className }: ProjectProps) {
             )}
         >
             <div>
-                {/* Image Banner with Scrim Gradient */}
+                
                 <CardHeader className="p-0 relative overflow-hidden">
                     <AspectRatio ratio={16 / 9} className="overflow-hidden bg-muted">
                         <Image
@@ -102,7 +102,7 @@ export function Project({ project, className }: ProjectProps) {
                         />
                     </AspectRatio>
 
-                    {/* Status badge floating on image */}
+                    
                     <PingTag
                         textFg={status.fg}
                         bg={status.bg}
@@ -132,7 +132,7 @@ export function Project({ project, className }: ProjectProps) {
                 </CardContent>
             </div>
 
-            {/* Action buttons */}
+            
             <CardFooter className="flex items-center gap-3 p-5 sm:p-6 pt-0 mt-auto border-t border-border/40">
                 <Link
                     href={project.github}

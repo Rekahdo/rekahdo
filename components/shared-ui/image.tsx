@@ -290,7 +290,7 @@ export default function AppImage({
                 loading={eager ? "eager" : undefined}
                 className={cn(
                     imageVariants({ objectFit }),
-                    // When using variant widths, make the img fill the wrapper
+                   
                     "w-full h-auto",
                     fill && "h-full",
                 )}

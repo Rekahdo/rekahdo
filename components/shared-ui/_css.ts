@@ -93,7 +93,6 @@ export const shadow = {
   sm: "shadow-sm",
 };
 
-// ─── JUSTIFY ────────────────────────────────────────────────────────────────
 export const justify = {
   all: {
     start: "justify-items-start justify-start me-auto",
@@ -137,7 +136,6 @@ export const justify = {
   },
 };
 
-// ─── ALIGN ──────────────────────────────────────────────────────────────────
 export const align = {
   all: {
     start: "items-start align-top content-start my-auto",
@@ -197,7 +195,6 @@ export const align = {
   },
 };
 
-// ─── TEXT ALIGN ─────────────────────────────────────────────────────────────
 export const textAlign = {
   all: {
     start: "text-start",

@@ -45,6 +45,7 @@ export const HeroSection = async () => {
                                             alt={data.image?.alt ?? "hero image"}
                                             width={1000}
                                             height={1000}
+                                            maxSmWidth={'w70'}
                                             eager
                                             className="w-full h-full object-cover"
                                         />
@@ -54,10 +55,6 @@ export const HeroSection = async () => {
                         )}
                     </>
                 }
-
-
-
-
 
                 bottom={
                     <HeroContent className="max-lg:text-center max-lg:*:mx-auto lg:relative"

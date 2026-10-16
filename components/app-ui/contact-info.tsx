@@ -22,14 +22,14 @@ interface ContactInfoProps {
 export default function ContactInfo({ data }: ContactInfoProps) {
     return (
         <div className="flex flex-col justify-between h-full w-full gap-8">
-            {/* Contact Details List */}
+            
             <div className="flex flex-col gap-3.5 w-full">
                 <Info title="Email" description={data.email} icon={<Mail />} allowCopy />
                 <Info title="Phone" description={`+${data.phone}`} icon={<Phone />} allowCopy />
                 <Info title="Location" description={data.location} icon={<MapPin />} />
             </div>
 
-            {/* Socials & Availability Banner */}
+            
             <div className="flex flex-col gap-5 pt-4 border-t border-border/50">
                 <div className="flex flex-col gap-3">
                     <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground select-none">
