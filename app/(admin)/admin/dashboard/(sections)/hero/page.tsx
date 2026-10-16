@@ -6,9 +6,10 @@ import { H1 } from "@/components/shared-ui/headings";
 import { Card, CardContent } from "@/components/ui/card";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { heroData } from "@/data/hero";
 import { heroSchema } from "@/schemas/zod-schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useTransition } from "react";
+import { use, useTransition } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
@@ -18,31 +19,13 @@ export interface PageProps {
 }
 
 export default function Page(props: PageProps) {
+    const data = use(heroData);
 
     const [isPending, startTransition] = useTransition();
 
-    const { handleSubmit, control } = useForm({
+    const { handleSubmit, control } = useForm<z.infer<typeof heroSchema>>({
         resolver: zodResolver(heroSchema),
-        defaultValues: {
-            badge: "developer that help your business grow",
-            greetings: "Hi there",
-            introduction: "I'M",
-            name: "RICHARD",
-            headline: "",
-            role: "Next.js Web Engineer",
-            description:
-                "Welcome to my portfolio! I specialize in crafting fast, responsive, and engaging user interfaces using React, TypeScript, and modern web technologies. I build scalable web applications focused on performance, clean code, and great user experience",
-            availableForWork: true,
-            image: {
-                src: "/images/me/richard.svg",
-                alt: "richard okafor",
-            },
-            tags: [
-                { title: "Clean-Code" },
-                { title: "Object Oriented" },
-                { title: "Component Based" },
-            ],
-        },
+        defaultValues: data,
     })
 
     function submit(data: z.infer<typeof heroSchema>) {
@@ -92,29 +75,9 @@ export default function Page(props: PageProps) {
                         />
 
                         <Controller
-                            name="name" control={control} render={({ field, fieldState }) => (
-                                <Field>
-                                    <FieldLabel>Name</FieldLabel>
-                                    <Input type="text" aria-invalid={fieldState.invalid} {...field} />
-                                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-                                </Field>
-                            )}
-                        />
-
-                        <Controller
                             name="headline" control={control} render={({ field, fieldState }) => (
                                 <Field>
                                     <FieldLabel>Headline</FieldLabel>
-                                    <Input type="text" aria-invalid={fieldState.invalid} {...field} />
-                                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-                                </Field>
-                            )}
-                        />
-
-                        <Controller
-                            name="role" control={control} render={({ field, fieldState }) => (
-                                <Field>
-                                    <FieldLabel>Role</FieldLabel>
                                     <Input type="text" aria-invalid={fieldState.invalid} {...field} />
                                     {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                                 </Field>
@@ -226,7 +189,7 @@ export default function Page(props: PageProps) {
                         <Controller
                             name={`tags.${2}.emoji`} control={control} render={({ field, fieldState }) => (
                                 <Field>
-                                    <FieldLabel>Tag 3    Emoji</FieldLabel>
+                                    <FieldLabel>Tag 3 Emoji</FieldLabel>
                                     <Input type="text" aria-invalid={fieldState.invalid} {...field} />
                                     {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                                 </Field>

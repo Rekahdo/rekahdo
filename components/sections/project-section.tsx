@@ -4,7 +4,7 @@ import { AppImageType } from "@/lib/types";
 import { TagType } from "../app-ui/tag";
 import { section } from "@/data/section";
 import { ProjectsTabs } from "../app-ui/projects-tab";
-import { projectsData } from "@/data/projects";
+import { projectsData } from "@/data/project";
 
 export const StatusArray = ["deployed", "development", "maintenance"] as const;
 

@@ -1,11 +1,6 @@
 import { ReactNode } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
-import { buttonVariants } from "../ui/button";
-import { STACK_ID } from "../sections/stack-section";
-import { scrollToId } from "../shared-ui/navigation";
-import { CONTACT_ID } from "../sections/contact-section";
-import { Download } from "lucide-react";
 import { documentData } from "@/data/document";
 
 export const heroContentVariants = cva(
@@ -43,8 +38,6 @@ export async function HeroContent({
     ctaBtns,
     className,
 }: HeroContentCompType) {
-
-    const cv = (await documentData).downloadCv;
 
     return (
         <div className={cn(heroContentVariants(), className)}>
