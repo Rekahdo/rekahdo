@@ -48,28 +48,28 @@ export const containerVariants = cva(
                 fixed: "bg-fixed"
             },
             bgImage: {
-                hero: "bg-[url(/images/bg/hero.svg)] bg-no-repeat bg-left-bottom bg-scroll",
-                about: "bg-[url(/images/bg/e.svg)] bg-no-repeat bg-right-bottom bg-scroll",
-                stack: "bg-[url(/images/bg/k.svg)] bg-no-repeat bg-left-bottom bg-fixed",
+                hero: "bg-[url(/images/bg/hero.svg)] bg-no-repeat bg-bottom-left bg-scroll",
+                about: "bg-[url(/images/bg/e.svg)] bg-no-repeat bg-bottom-right bg-scroll",
+                stack: "bg-[url(/images/bg/k.svg)] bg-no-repeat bg-bottom-left bg-fixed",
                 bgImage: "bg-[url(/images/bg/bg-image.svg)] bg-no-repeat bg-top-left bg-fixed",
             },
             bgGradient: {
                 // ── Additive patterns ─────────────────────────────────────────────
                 grid: cn(
                     "bg-[linear-gradient(to_right,color-mix(in_oklab,var(--border)_20%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_oklab,var(--border)_20%,transparent)_1px,transparent_1px)]",
-                    "bg-[size:32px_32px]",
+                    "bg-size[32px_32px]",
                 ),
                 "grid-sm": cn(
                     "bg-[linear-gradient(to_right,color-mix(in_oklab,var(--border)_50%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_oklab,var(--border)_50%,transparent)_1px,transparent_1px)]",
-                    "bg-[size:16px_16px]",
+                    "bg-size[32px_32px]",
                 ),
                 dots: cn(
                     "bg-[radial-gradient(color-mix(in_oklab,var(--border)_70%,transparent)_1px,transparent_1px)]",
-                    "bg-[size:20px_20px]",
+                    "bg-size[32px_32px]",
                 ),
                 "dots-lg": cn(
                     "bg-[radial-gradient(color-mix(in_oklab,var(--border)_70%,transparent)_1.5px,transparent_1.5px)]",
-                    "bg-[size:32px_32px]",
+                    "bg-size[32px_32px]",
                 ),
                 crosshatch: cn(
                     "bg-[repeating-linear-gradient(45deg,color-mix(in_oklab,var(--border)_40%,transparent)_0_1px,transparent_1px_12px),repeating-linear-gradient(-45deg,color-mix(in_oklab,var(--border)_40%,transparent)_0_1px,transparent_1px_12px)]",
@@ -82,7 +82,7 @@ export const containerVariants = cva(
                 ),
                 checker: cn(
                     "bg-[conic-gradient(from_90deg_at_50%_50%,color-mix(in_oklab,var(--border)_60%,transparent)_0_25%,transparent_0_50%,color-mix(in_oklab,var(--border)_60%,transparent)_0_75%,transparent_0)]",
-                    "bg-[size:24px_24px]",
+                    "bg-size[32px_32px]",
                 ),
                 noise: cn(
                     // Layered radial gradients approximate grain cheaply
