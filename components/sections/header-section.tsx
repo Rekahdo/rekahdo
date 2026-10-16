@@ -3,7 +3,7 @@ import { Container } from "../shared-ui/container";
 import { Header } from "../shared-ui/header";
 import { Logo } from "../shared-ui/logo";
 import { Navigation, NavItem } from "../shared-ui/navigation";
-import { ModeToggle } from "../shared-ui/toggle";
+import { ThemeToggle } from "../shared-ui/toggle";
 import { Download } from "lucide-react";
 import { buttonVariants } from "../ui/button";
 import { cn } from "cn";
@@ -56,7 +56,7 @@ export const HeaderSection = async () => {
                             <span className=" max-sm:hidden">Download CV</span>
                         </a>
 
-                        <ModeToggle />
+                        <ThemeToggle />
 
                         <SideSheet
                             logo={<Logo />}

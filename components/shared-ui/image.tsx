@@ -250,7 +250,7 @@ export default function AppImage({
     sizes,
     onClick,
     eager,
-    relative=true,
+    relative = true,
     objectFit,
     ...props
 }: ImageProps) {
@@ -272,10 +272,13 @@ export default function AppImage({
     }, [src, srcDark]);
 
     return (
-        <div className={cn(imageVariants({
-            ...props
-        }), "flex justify-center items-center overflow-hidden w-fit", className)}>
-
+        <div
+            className={cn(
+                imageVariants({ ...props }),
+                "relative flex justify-center items-center overflow-hidden",
+                className,
+            )}
+        >
             <NextImage
                 src={imageSrc}
                 alt={alt}
@@ -285,7 +288,12 @@ export default function AppImage({
                 sizes={sizes}
                 onClick={onClick}
                 loading={eager ? "eager" : undefined}
-                className={cn(imageVariants({ objectFit }), relative && "relative")}
+                className={cn(
+                    imageVariants({ objectFit }),
+                    // When using variant widths, make the img fill the wrapper
+                    "w-full h-auto",
+                    fill && "h-full",
+                )}
             />
         </div>
     );

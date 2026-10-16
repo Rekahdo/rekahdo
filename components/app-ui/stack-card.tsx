@@ -280,8 +280,9 @@ function CardIcon({
                 src={iconSrc}
                 srcDark={iconDarkSrc}
                 alt={`${name} tech stack`}
-                width={50} height={50}
-                variantWidth={'w50'}
+                width={100}
+                height={100}
+                variantWidth="w50"
             />
         </div>
     );
