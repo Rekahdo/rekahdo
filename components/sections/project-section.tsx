@@ -66,7 +66,8 @@ export default async function ProjectsSection() {
             id={PROJECT_ID}
             py={"section"}
             px={'section'}
-            background={'secondary'}>
+            background={'secondary'}
+            >
 
             <H2 title={sec.title} subtitle={sec.subtitle} />
             <ProjectsTabs projects={data.slice(0, 4) ?? []} />

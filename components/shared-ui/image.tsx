@@ -228,13 +228,14 @@ export const imageVariants = cva("", {
     },
 });
 
-type ImageProps = Omit<NextImageProps, "src" | "alt" | "loading" | "objectFit"> &
+export type ImageProps = Omit<NextImageProps, "src" | "alt" | "loading" | "objectFit"> &
     VariantProps<typeof imageVariants> & {
         className?: string;
         src: NextImageProps["src"];
         srcDark?: NextImageProps["src"];
         alt: string;
         eager?: boolean;
+        relative?: boolean;
         onClick?: () => void;
     };
 
@@ -249,6 +250,7 @@ export default function AppImage({
     sizes,
     onClick,
     eager,
+    relative=true,
     objectFit,
     ...props
 }: ImageProps) {
@@ -272,7 +274,7 @@ export default function AppImage({
     return (
         <div className={cn(imageVariants({
             ...props
-        }), "flex justify-center items-center overflow-hidden")}>
+        }), "flex justify-center items-center overflow-hidden w-fit", className)}>
 
             <NextImage
                 src={imageSrc}
@@ -283,7 +285,7 @@ export default function AppImage({
                 sizes={sizes}
                 onClick={onClick}
                 loading={eager ? "eager" : undefined}
-                className={cn("relative", imageVariants({ objectFit }), className)}
+                className={cn(imageVariants({ objectFit }), relative && "relative")}
             />
         </div>
     );

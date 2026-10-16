@@ -1,14 +1,7 @@
-export type StackData = {
-    name: string;
-    iconSrc: string;
-    iconDarkSrc?: string;
-    percentage: number;
-    description: string;
-    usages: { title: string }[];
-    type: "language" | "tool" | "resource";
-};
+import { stackValidator } from "@/convex/schema";
+import { Infer } from "convex/values";
 
-export const stacksData: Promise<StackData[]> = Promise.resolve([
+export const stacksData: Promise<Infer<typeof stackValidator>[]> = Promise.resolve([
     {
         name: "VS Code",
         iconSrc: "/images/stack/vscode.svg",

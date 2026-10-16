@@ -19,7 +19,8 @@ export default async function ContactSection() {
             id={CONTACT_ID}
             py={'section'}
             px={'section'}
-            className="justify-center min-h-[90dvh] "
+            className="justify-center min-h-[92dvh]"
+            wrapperClassName="dark:bg-secondary/30"
         >
             <Layout
                 type={'flex'}
@@ -31,7 +32,7 @@ export default async function ContactSection() {
                     <ContactInfo data={data} />
                 }
 
-                bottomClassName="flex w-full lg:w-7/10"
+                bottomClassName="w-full lg:w-7/10"
                 bottom={
                     <SendMessageForm title={sec.title} subtitle={sec.subtitle} from={data.email} />
                 }

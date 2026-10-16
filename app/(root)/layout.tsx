@@ -1,3 +1,4 @@
+import FooterSection from "@/components/sections/footer-section";
 import { HeaderSection } from "@/components/sections/header-section";
 import { ReactNode } from "react";
 
@@ -11,9 +12,11 @@ export default function Layout({ children }: LayoutProps) {
         <>
             <HeaderSection />
 
-            <main>{children}</main>
+            <main>
+                {children}
+            </main>
 
-            {/* <footer>FOOTER</footer> */}
+            <FooterSection />
         </>
     );
 }

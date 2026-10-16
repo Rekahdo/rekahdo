@@ -6,9 +6,10 @@ import { H1 } from "../shared-ui/headings";
 import { AvailableForWork, PingTag } from "../shared-ui/ping";
 import { heroData } from "@/data/hero";
 import AppImage from "../shared-ui/image";
-import { headerData } from "@/data/header";
+import { documentData } from "@/data/document";
 import { Layout } from "../shared-ui/layout";
 import CtaBtns from "../app-ui/cta-btns";
+import { aboutData } from "@/data/about";
 
 export const HERO_ID = "hero";
 
@@ -18,8 +19,9 @@ export const HeroSection = async () => {
     // const cv = await fetchQuery(api.document.findByType, { type: 'cv' });
     const data = await heroData;
     if (!data) return null;
-
-    const cv = (await headerData).downloadCv;
+    
+    const about = await aboutData;
+    const cv = (await documentData).cv;
 
     return (
         <Container
@@ -63,10 +65,11 @@ export const HeroSection = async () => {
                             <H1
                                 title={<>
                                     <span>{data.introduction}{" "}</span>
-                                    <span className="text-primary">{data.name}</span>
+                                    <span className="text-primary">{about.firstname}</span>
                                 </>}
+
                                 titleSize={'hero'}
-                                subtitle={data.role}
+                                subtitle={about.role}
                                 subtitleSize={'hero'}
                                 className="max-lg:text-center"
                             />
@@ -80,7 +83,7 @@ export const HeroSection = async () => {
                         }
 
                         ctaBtns={
-                            <CtaBtns {...cv} className=""/>
+                            <CtaBtns {...cv} className="" />
                         }
                     />
                 }
