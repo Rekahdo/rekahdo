@@ -2,16 +2,12 @@ import { Container } from "../shared-ui/container";
 import { section } from "@/data/section";
 import SendMessageForm from "../app-ui/send-message";
 import ContactInfo from "../app-ui/contact-info";
-import { Layout } from "../shared-ui/layout";
 import { contactData } from "@/data/contact";
 
 export const CONTACT_ID = "contact";
 
 export default async function ContactSection() {
-
-    // const data = await fetchQuery(api.contact.get)
     const data = await contactData;
-
     const sec = section.contact;
 
     return (
@@ -19,24 +15,18 @@ export default async function ContactSection() {
             id={CONTACT_ID}
             py={'section'}
             px={'section'}
-            className="justify-center min-h-[92dvh]"
-            wrapperClassName="dark:bg-secondary/30"
+            wrapperClassName="border-t border-border/40"
+            className="justify-center"
         >
-            <Layout
-                type={'flex'}
-                maxMdAxis={'y'}
-                className="max-md:gap-8"
-
-                topClassName="justify-start"
-                top={
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start w-full">
+                <div className="lg:col-span-5 w-full">
                     <ContactInfo data={data} />
-                }
+                </div>
 
-                bottomClassName="w-full lg:w-7/10"
-                bottom={
+                <div className="lg:col-span-7 w-full">
                     <SendMessageForm title={sec.title} subtitle={sec.subtitle} from={data.email} />
-                }
-            />
+                </div>
+            </div>
         </Container>
     );
 }

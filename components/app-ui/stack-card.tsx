@@ -6,19 +6,12 @@ import { ElementType, useEffect, useState } from "react";
 import { Flex } from "../shared-ui/layout2";
 import { FilterSelect } from "../shared-ui/filter-select";
 import { cn } from "cn";
-import z from "zod";
-import { stackSchema } from "@/schemas/zod-schemas";
-import { stackTable } from "@/convex/schema";
-import { Infer } from "convex/values";
 import { Doc } from "@/convex/_generated/dataModel";
 import { MultiToggle } from "../shared-ui/toggle";
 import { LayoutGrid, Rows3 } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
-import { Label } from "../ui/label";
 import { useWidthMedia } from "@/hooks/useMedia";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "../ui/hover-card";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
-import { hover } from "../shared-ui/_css";
 import { H3 } from "../shared-ui/headings";
 import { Progress } from "../ui/progress";
 import AppImage from "../shared-ui/image";
@@ -45,47 +38,46 @@ export function StackCards({ className, data }: StackCardsType) {
     if (!data) return null;
 
     const findUsageByPercent = (percent: number) =>
-        // Construct object {label, min, max} from type StackTier
         Object.entries(StackTier).map(([_, v]) => ({ label: v.label, min: v.min, max: v.max }))
-            // Find percent and return found {label, min, max}
             .find(({ min, max }) => percent >= min && percent <= max);
 
     const usages = ["all usage levels", ...new Set(data.map((stack) => findUsageByPercent(stack.percentage)!.label))];
     const stacks = ["all stacks", ...new Set(data.map((stack) => stack.type))];
-    const [selected, setSelected] = useState({ stack: stacks[0], usage: usages[0] })
+    const [selected, setSelected] = useState({ stack: stacks[0], usage: usages[0] });
     const [viewStacks, setViewStacks] = useState(data);
     const [mode, setMode] = useState<StackMode>("Compact");
     const maxMd = useWidthMedia().maxMd;
 
     function selectStack(value: string | null) {
-        filter({ stack: value! })
+        filter({ stack: value! });
     }
 
     function selectUsage(value: string | null) {
-        filter({ usage: value! })
+        filter({ usage: value! });
     }
 
     function selectMode(index: number) {
-        setMode(index === 0 ? "Compact" : "Detailed")
+        setMode(index === 0 ? "Compact" : "Detailed");
     }
 
     function filter({ stack = selected.stack, usage = selected.usage }
         : { stack?: string, usage?: string }) {
 
-        setSelected({ stack, usage })
+        setSelected({ stack, usage });
 
         const viewing = data!.filter((s) => stack === stacks[0] || s.type === stack)
-            .filter((s) => usage === usages[0] || findUsageByPercent(s.percentage)?.label === usage)
+            .filter((s) => usage === usages[0] || findUsageByPercent(s.percentage)?.label === usage);
 
-        setViewStacks(viewing)
+        setViewStacks(viewing);
     }
 
     return (
-        <Flex className={cn("max-sm:gap-8 gap-10")}
-            topClassName="sticky top-20 z-10 md:top-25 lg:top-25"
+        <Flex className={cn("max-sm:gap-8 gap-10 w-full", className)}
+            topClassName="sticky top-20 z-20 md:top-24 py-2"
             top={
-                <div className="flex grow justify-between items-center">
-                    <div className="flex gap-4 max-md:flex-col">
+                /* Floating glass toolbar */
+                <div className="flex grow justify-between items-center gap-4 bg-background/80 dark:bg-card/75 backdrop-blur-md border border-border/70 p-2.5 sm:p-3 rounded-2xl shadow-sm">
+                    <div className="flex gap-3 max-md:flex-col flex-wrap">
                         <FilterSelect
                             items={stacks}
                             onValueChange={selectStack}
@@ -100,8 +92,8 @@ export function StackCards({ className, data }: StackCardsType) {
                     </div>
 
                     <MultiToggle toggles={[
-                        { text: "Compact", icon: <LayoutGrid /> },
-                        { text: "Detailed", icon: <Rows3 /> },
+                        { text: "Compact", icon: <LayoutGrid className="size-4" /> },
+                        { text: "Detailed", icon: <Rows3 className="size-4" /> },
                     ]} rootToggle onChange={selectMode} showTextAt="sm" />
                 </div>
             }
@@ -109,68 +101,63 @@ export function StackCards({ className, data }: StackCardsType) {
             bottom={
                 <div data-mode={mode} className={cn(
                     "flex flex-wrap justify-evenly data-[mode=Compact]:justify-center-safe",
-                    "gap-4 lg:data-[mode=Compact]:gap-6",
+                    "gap-4 sm:gap-6",
                 )}>
                     {
                         viewStacks?.map((stack, i) =>
                             <StackCard key={`stack-${i}`} {...stack} mode={mode} maxMd={maxMd} />
                         )
                     }
-
                 </div>
             }
-
         />
-    )
+    );
 }
 
-
-
-
-// ==============================================================================
-// ==============================================================================
-// ==============================================================================
-
-
-
+// ── Tier styling tokens ────────────────────────────────────────────────────────
 const tierFor = (p: number) =>
     p >= 85
         ? {
             bar: "bg-emerald-500",
             text: "text-emerald-600 dark:text-emerald-400",
-            ring: "ring-emerald-500/20",
-            shadow: "hover:shadow-lg hover:shadow-emerald-500/20 hover:ring-1 hover:ring-emerald-500/30",
+            ring: "ring-emerald-500/25",
+            border: "border-emerald-500/30",
+            glow: "hover:shadow-[0_10px_25px_-5px_rgba(16,185,129,0.3)]",
             label: StackTier.primary.label,
         }
         : p >= 70
             ? {
                 bar: "bg-blue-500",
                 text: "text-blue-600 dark:text-blue-400",
-                ring: "ring-blue-500/20",
-                shadow: "hover:shadow-lg hover:shadow-blue-500/20 hover:ring-1 hover:ring-blue-500/30",
+                ring: "ring-blue-500/25",
+                border: "border-blue-500/30",
+                glow: "hover:shadow-[0_10px_25px_-5px_rgba(59,130,246,0.3)]",
                 label: StackTier.daily.label,
             }
             : p >= 46
                 ? {
                     bar: "bg-cyan-500",
                     text: "text-cyan-600 dark:text-cyan-400",
-                    ring: "ring-cyan-500/20",
-                    shadow: "hover:shadow-lg hover:shadow-cyan-500/20 hover:ring-1 hover:ring-cyan-500/30",
+                    ring: "ring-cyan-500/25",
+                    border: "border-cyan-500/30",
+                    glow: "hover:shadow-[0_10px_25px_-5px_rgba(6,182,212,0.3)]",
                     label: StackTier.frequent.label,
                 }
                 : p >= 25
                     ? {
                         bar: "bg-amber-500",
                         text: "text-amber-600 dark:text-amber-400",
-                        ring: "ring-amber-500/20",
-                        shadow: "hover:shadow-lg hover:shadow-amber-500/20 hover:ring-1 hover:ring-amber-500/30",
+                        ring: "ring-amber-500/25",
+                        border: "border-amber-500/30",
+                        glow: "hover:shadow-[0_10px_25px_-5px_rgba(245,158,11,0.25)]",
                         label: StackTier.occasional.label,
                     }
                     : {
-                        bar: "bg-slate-500/60",
+                        bar: "bg-slate-400 dark:bg-slate-500",
                         text: "text-slate-600 dark:text-slate-400",
                         ring: "ring-slate-500/20",
-                        shadow: "hover:shadow-lg hover:shadow-slate-500/15 hover:ring-1 hover:ring-slate-500/20",
+                        border: "border-slate-500/30",
+                        glow: "hover:shadow-[0_10px_25px_-5px_rgba(100,116,139,0.2)]",
                         label: StackTier.learning.label,
                     };
 
@@ -191,53 +178,65 @@ function StackCard({
     maxMd,
     ...props
 }: CardType) {
-
     const Root = mode === "Compact" ? (maxMd ? Sheet : HoverCard) : "article";
     const Trigger = (maxMd ? SheetTrigger : HoverCardTrigger) as ElementType;
     const Content = (maxMd ? SheetContent : HoverCardContent) as ElementType;
 
     const triggerProp = maxMd ? {} : { delay: 10, closeDelay: 0 };
-    const contentProp = maxMd ? { side: "bottom", showCloseButton: false } : {}
-
+    const contentProp = maxMd ? { side: "bottom", showCloseButton: false } : {};
     const size: IconSize = mode === "Compact" ? (maxMd ? "sheet" : "hover") : "detailed";
 
     return (
         <article data-mode={mode} className={cn(
-            "flex justify-center items-center",
-            "data-[mode=Detailed]:basis-2xs",
-            "data-[mode=Detailed]:grow max-w-100 max-sm:max-w-full shadow-2xs",
+            "flex justify-center items-center transition-transform",
+            "data-[mode=Detailed]:basis-80 data-[mode=Detailed]:grow max-w-105 max-sm:max-w-full",
         )}>
-            {mode === "Compact" && <>
+            {mode === "Compact" && (
                 <Root>
-                    <Trigger {...triggerProp} className="relative">
-                        <CardIcon name={name} iconSrc={iconSrc} iconDarkSrc={iconDarkSrc}
-                            percentage={percentage} mode={mode} size="trigger" className="" />
-
+                    <Trigger {...triggerProp} className="relative group focus-visible:outline-none">
+                        <CardIcon
+                            name={name}
+                            iconSrc={iconSrc}
+                            iconDarkSrc={iconDarkSrc}
+                            percentage={percentage}
+                            mode={mode}
+                            size="trigger"
+                        />
                         <Ping mode={mode} bg={tierFor(percentage).bar} />
                     </Trigger>
 
-                    <Content {...contentProp}>
-                        <CardContent {...props} name={name} iconSrc={iconSrc} iconDarkSrc={iconDarkSrc}
-                            percentage={percentage} mode={mode} size={size} />
+                    <Content {...contentProp} className={cn(
+                        maxMd
+                            ? "p-6 rounded-t-3xl bg-card border-border/60"
+                            : "w-80 p-0 rounded-2xl bg-card/95 backdrop-blur-xl border border-border/70 shadow-2xl overflow-hidden"
+                    )}>
+                        <CardContent
+                            {...props}
+                            name={name}
+                            iconSrc={iconSrc}
+                            iconDarkSrc={iconDarkSrc}
+                            percentage={percentage}
+                            mode={mode}
+                            size={size}
+                        />
                     </Content>
                 </Root>
-            </>}
+            )}
 
-            {mode === "Detailed" &&
-                <CardContent {...props} name={name} iconSrc={iconSrc} iconDarkSrc={iconDarkSrc}
-                    percentage={percentage} mode={mode} size={size} />
-            }
+            {mode === "Detailed" && (
+                <CardContent
+                    {...props}
+                    name={name}
+                    iconSrc={iconSrc}
+                    iconDarkSrc={iconDarkSrc}
+                    percentage={percentage}
+                    mode={mode}
+                    size={size}
+                />
+            )}
         </article>
-    )
+    );
 }
-
-
-
-// ==============================================================================
-// ==============================================================================
-// ==============================================================================
-
-
 
 function CardIcon({
     name,
@@ -248,20 +247,6 @@ function CardIcon({
     size,
     className,
 }: Omit<CardType, "description" | "usages" | "type"> & { size?: IconSize }) {
-    const cardIconStyle = cn(
-        "transition-all border-border/60",
-        mode === "Compact" ? cn(hover.outline) : "border-0 bg-background",
-        "flex flex-wrap justify-center items-center rounded-lg",
-
-        "data-[size=trigger]:size-14",
-        "md:data-[size=trigger]:size-16",
-        "lg:data-[size=trigger]:size-20",
-
-        "data-[size=sheet]:size-14",
-        "data-[size=hover]:size-14",
-        "data-[size=detailed]:size-14",
-    );
-
     const tier = tierFor(percentage);
 
     return (
@@ -269,13 +254,18 @@ function CardIcon({
             data-mode={mode}
             data-size={size}
             className={cn(
-                cardIconStyle,
-                tier.ring,
-                tier.shadow,
+                "relative flex justify-center items-center rounded-2xl transition-all duration-300",
+                "bg-card/90 dark:bg-card/70 backdrop-blur-sm border border-border/80",
+                "shadow-[0_4px_16px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)]",
+                tier.glow,
+                mode === "Compact" && "group-hover:-translate-y-1.5 group-hover:border-primary/50",
+                "data-[size=trigger]:size-16 sm:data-[size=trigger]:size-18 lg:data-[size=trigger]:size-20",
+                "data-[size=sheet]:size-14",
+                "data-[size=hover]:size-12",
+                "data-[size=detailed]:size-14 p-2.5",
                 className,
             )}
         >
-
             <AppImage
                 src={iconSrc}
                 srcDark={iconDarkSrc}
@@ -283,18 +273,11 @@ function CardIcon({
                 width={100}
                 height={100}
                 variantWidth="w50"
+                className="transition-transform duration-300 group-hover:scale-110 drop-shadow-sm"
             />
         </div>
     );
 }
-
-
-
-// ==============================================================================
-// ==============================================================================
-// ==============================================================================
-
-
 
 function CardContent({
     name,
@@ -307,73 +290,81 @@ function CardContent({
     size,
     className
 }: CardType & { size?: IconSize }) {
-
-    const cardContentStyle = cn(
-        "transition-all rounded-lg space-y-4 text-foreground", mode === "Detailed" ? (hover.outline, "hover:scale-105") : "",
-        "p-2 data-[size=sheet]:p-8",
-        "data-[mode=Detailed]:bg-background dark:data-[mode=Detailed]:bg-background data-[mode=Detailed]:border-border/60",
-        "data-[mode=Detailed]:w-full data-[mode=Detailed]:h-full data-[mode=Detailed]:p-6",
-        "flex flex-col justify-between",
-    );
+    const tier = tierFor(percentage);
 
     return (
-        <div data-mode={mode} data-size={size}
-            className={cn(cardContentStyle, mode === "Detailed" ? (
-                tierFor(percentage).ring,
-                tierFor(percentage).shadow) : "",
-                className)}>
+        <div
+            data-mode={mode}
+            data-size={size}
+            className={cn(
+                "flex flex-col justify-between gap-4 transition-all duration-300",
+                mode === "Detailed" ? [
+                    "w-full h-full p-6 sm:p-7 rounded-2xl",
+                    "bg-card/85 dark:bg-card/65 backdrop-blur-md border border-border/70",
+                    "shadow-[0_8px_30px_rgba(0,0,0,0.05)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.35)]",
+                    "hover:-translate-y-1.5 hover:border-primary/40",
+                    tier.glow,
+                ] : "p-5",
+                className
+            )}
+        >
+            <div className="flex gap-4 items-center">
+                <CardIcon
+                    name={name}
+                    iconSrc={iconSrc}
+                    iconDarkSrc={iconDarkSrc}
+                    percentage={percentage}
+                    mode={mode}
+                    size={size}
+                />
 
-            <div className="flex gap-5 items-center">
-                <CardIcon name={name} iconSrc={iconSrc} iconDarkSrc={iconDarkSrc}
-                    percentage={percentage} mode={mode} size={size} />
-
-                <div className="flex flex-col gap-1">
-                    <H3 title={name} titleSize={"h6"} />
+                <div className="flex flex-col gap-1 min-w-0">
+                    <H3 title={name} titleSize={"h6"} className="font-semibold tracking-tight truncate" />
 
                     <div className="flex items-center gap-2">
                         <span className={cn(
-                            "py-0.5 px-2 rounded-full uppercase ring-1 text-[0.7rem] font-medium",
-                            tierFor(percentage).text, tierFor(percentage).ring,
+                            "py-0.5 px-2.5 rounded-full ring-1 text-[0.7rem] font-semibold tracking-wide uppercase bg-background/50",
+                            tier.text,
+                            tier.ring,
                         )}>
-                            {tierFor(percentage).label}
+                            {tier.label}
                         </span>
 
-                        <span className="text-xs text-muted-foreground">
+                        <span className="text-xs font-mono font-medium text-muted-foreground">
                             {percentage}%
                         </span>
                     </div>
                 </div>
             </div>
 
-            <p className="text-[14px] w-full text-foreground">{description}</p>
+            <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
+                {description}
+            </p>
 
-            <Progress value={percentage} barClassName={cn(
-                tierFor(percentage).bar,
-                "duration-200"
-            )} />
+            <div className="space-y-1.5 pt-1">
+                <Progress
+                    value={percentage}
+                    className="h-2 bg-muted/80 rounded-full overflow-hidden"
+                    barClassName={cn(tier.bar, "transition-all duration-500")}
+                />
+            </div>
 
-            <Tags tags={usages} variant={'filledMuted'} className="flex flex-wrap gap-1.5" />
+            <Tags tags={usages} variant={'filledMuted'} className="flex flex-wrap gap-1.5 pt-2 border-t border-border/40" />
         </div>
-    )
+    );
 }
 
-
-
-// ==============================================================================
-// ==============================================================================
-// ==============================================================================
-
-
 function Ping({ mode = 'Compact', bg }: {
-    mode: StackMode; bg: string
+    mode: StackMode;
+    bg: string;
 }) {
-
-    const pingStyle = cn(
-        "absolute top-2 right-2 rounded-full",
-        "data-[mode=Compact]:size-1 sm:data-[mode=Compact]:size-2",
-    )
-
     return (
-        <span data-mode={mode} className={cn(pingStyle, bg)}></span>
-    )
+        <span
+            aria-hidden="true"
+            className="absolute top-2.5 right-2.5 flex size-2.5 pointer-events-none"
+        >
+            <span className={cn("animate-ping absolute inline-flex h-full w-full rounded-full opacity-60", bg)} />
+            <span className={cn("relative inline-flex rounded-full size-2.5 shadow-sm", bg)} />
+        </span>
+    );
 }

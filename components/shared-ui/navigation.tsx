@@ -73,29 +73,29 @@ export const navigationVariants = cva(
             },
             height: {
                 none: "py-0!",
-                xs: "py-2!",
-                sm: "py-4!",
-                lg: "py-6!",
-                xl: "py-8!",
+                xs: "py-1.5!",
+                sm: "py-2!",
+                lg: "py-3!",
+                xl: "py-4!",
             },
             width: {
                 none: "px-0!",
-                xs: "px-2!",
+                xs: "px-2.5!",
                 sm: "px-4!",
-                lg: "px-6!",
+                lg: "px-5!",
                 full: "w-full",
             },
             gap: {
                 none: "gap-0",
                 xxs: "gap-1",
-                xs: "gap-2",
-                sm: "gap-4",
-                md: "gap-6",
-                lg: "gap-8",
+                xs: "gap-1.5",
+                sm: "gap-3",
+                md: "gap-4",
+                lg: "gap-6",
             },
             orientation: {
                 vertical: "flex flex-col",
-                horizontal: "flex flex-row",
+                horizontal: "flex flex-row items-center",
             },
             side: {
                 start: "data-[orie=horizontal]:justify-start data-[orie=vertical]:items-start",
@@ -145,30 +145,29 @@ export function Navigation({ className, side, navItems, onNavigate, ...variants 
 
                         {Boolean(item.links) ?
                             <>
-                                <NavigationMenuTrigger className={"hover:text-primary hover:bg-primary/5"}>
+                                <NavigationMenuTrigger className={"hover:text-primary hover:bg-muted/60 rounded-full text-xs font-medium"}>
                                     {item.label}
                                 </NavigationMenuTrigger>
 
                                 <NavigationMenuContent>
-                                    <ul>
+                                    <ul className="p-2 min-w-44 bg-card/95 backdrop-blur-md rounded-xl border border-border/60 shadow-xl">
                                         {item.links?.map((link, i) => (
                                             <li key={i}>
-                                                {
-                                                    <NavigationMenuLink
-                                                        className={cn(
-                                                            navigationMenuTriggerStyle(),
-                                                            navigationVariants({
-                                                                width: variants.width,
-                                                                height: variants.height,
-                                                            }),
-                                                            "w-full",
-                                                        )}
-                                                        render={
-                                                            <NavigationLink fromList={true} link={link} onNavigate={onNavigate}
-                                                                textCase={variants.textCase} textSize={variants.textSize}
-                                                                textAlign={variants.textAlign} />
-                                                        } />
-                                                }
+                                                <NavigationMenuLink
+                                                    className={cn(
+                                                        navigationMenuTriggerStyle(),
+                                                        navigationVariants({
+                                                            width: variants.width,
+                                                            height: variants.height,
+                                                        }),
+                                                        "w-full rounded-lg text-xs"
+                                                    )}
+                                                    render={
+                                                        <NavigationLink fromList={true} link={link} onNavigate={onNavigate}
+                                                            textCase={variants.textCase} textSize={variants.textSize}
+                                                            textAlign={variants.textAlign} />
+                                                    }
+                                                />
                                             </li>
                                         ))}
                                     </ul>
@@ -182,16 +181,15 @@ export function Navigation({ className, side, navItems, onNavigate, ...variants 
                                         width: variants.width,
                                         height: variants.height,
                                     }),
-                                    "w-full",
+                                    "w-full bg-transparent hover:bg-background/80 dark:hover:bg-background/50 hover:text-foreground text-muted-foreground rounded-full transition-all text-xs font-medium"
                                 )}
                                 render={
                                     <NavigationLink fromList={false} link={item.link!} onNavigate={onNavigate}
                                         textCase={variants.textCase} textSize={variants.textSize}
                                         textAlign={variants.textAlign} />
-                                } />
-
+                                }
+                            />
                         }
-
                     </NavigationMenuItem>
                 ))}
             </NavigationMenuList>
@@ -216,7 +214,7 @@ export function NavigationLink({ className, link, onNavigate, width, height, tex
     const externalAttributes = link.type === "external" ? { target: "_blank", rel: "noopener noreferrer" } : {};
     const hrefAttributes = link.type === "scroll" ? { href: `#${link.href.replace(/^#/, "")}` } : { href: link.href };
     const scrollAttributes = link.type === "scroll"
-        ? { onClick: (e: MouseEvent<HTMLAnchorElement>) => scrollToId({id: link.href, onNavigate, e}) }
+        ? { onClick: (e: MouseEvent<HTMLAnchorElement>) => scrollToId({ id: link.href, onNavigate, e }) }
         : { onClick: onNavigate };
 
     return (
@@ -227,25 +225,24 @@ export function NavigationLink({ className, link, onNavigate, width, height, tex
             {...scrollAttributes}
             className={cn(
                 navigationVariants({ textAlign, width, height }),
-                "flex flex-row gap-2 transition-colors",
-                "hover:bg-primary/1 hover:text-primary",
-                "focus-visible:bg-primary/5 focus-visible:text-primary",
+                "flex flex-row items-center gap-2 transition-all rounded-lg",
+                "hover:text-primary focus-visible:text-primary",
                 className
             )}
         >
             {link.icon && (
-                <span className="size-4">
+                <span className="size-4 shrink-0">
                     {link.icon}
                 </span>
             )}
 
-            <div className="flex flex-col items-start text-start gap-2 text-sm max-w-lg">
+            <div className="flex flex-col items-start text-start gap-0.5 text-xs sm:text-sm max-w-lg">
                 <div className="leading-none font-medium">
                     {link.label}
                 </div>
 
                 {(fromList && link.description) && (
-                    <p className="line-clamp-2">
+                    <p className="line-clamp-2 text-xs text-muted-foreground font-normal">
                         {link.description}
                     </p>
                 )}

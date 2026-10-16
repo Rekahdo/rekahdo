@@ -1,9 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
-import { ExternalLink, GraduationCap } from "lucide-react";
-import { hover, shadow } from "../shared-ui/_css";
+import { Award, ExternalLink, GraduationCap } from "lucide-react";
 import AppImage from "../shared-ui/image";
-import { OpenBtn } from "../shared-ui/button-impl";
 import Link from "next/link";
 import { buttonVariants } from "../ui/button";
 
@@ -18,14 +16,16 @@ export type EducationType = {
 
 const educationVariants = cva(
   [
-    "group relative flex flex-col overflow-hidden rounded-xl border border-border bg-card text-card-foreground",
-    shadow.sm, hover.outline
+    "group relative flex flex-col justify-between overflow-hidden rounded-2xl",
+    "border border-border/70 bg-card/75 dark:bg-card/50 backdrop-blur-sm",
+    "shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-[0_6px_24px_rgba(0,0,0,0.25)]",
+    "transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg",
   ],
   {
     variants: {
       variant: {
-        normal: "",
-        compact: "text-sm",
+        normal: "p-5 sm:p-6",
+        compact: "p-4 text-sm",
       },
     },
     defaultVariants: {
@@ -52,37 +52,49 @@ function Education({
   return (
     <article
       className={cn(educationVariants({ variant }), className)}
-      aria-label={`${course} at ${institution}`}>
-
-      <div className="flex flex-1 flex-col gap-4 p-5">
-
-        <header className="flex justify-between gap-3 items-center">
-          <div className="flex items-center gap-3">
-            <div className="flex size-11 shrink-0 items-center justify-center rounded-lg border border-border bg-muted/50 p-1.5">
+      aria-label={`${course} at ${institution}`}
+    >
+      <div className="flex flex-col gap-4">
+        {/* Header: Logo, Institution, Website Link */}
+        <header className="flex items-start justify-between gap-3">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="flex size-12 shrink-0 items-center justify-center rounded-xl border border-border/80 bg-background/80 p-2 shadow-xs group-hover:border-primary/30 transition-colors">
               <AppImage
                 src={logo}
-                height={50}
-                width={50}
+                height={40}
+                width={40}
                 alt={`${institution} logo`}
+                className="object-contain"
               />
             </div>
 
-            <div className="min-w-0">
-              <p className="truncate text-xs font-medium uppercase tracking-wide text-muted-foreground">
+            <div className="min-w-0 flex flex-col">
+              <span className="truncate text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 {institution}
-              </p>
+              </span>
             </div>
           </div>
 
-          <Link href={website} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${institution} website`}
-            className={cn(buttonVariants({ variant: 'ghost' }))}>
-            <ExternalLink />
-          </Link>
+          {website && (
+            <Link
+              href={website}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Visit ${institution} website`}
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "size-8 rounded-lg text-muted-foreground hover:text-foreground shrink-0"
+              )}
+            >
+              <ExternalLink className="size-4" />
+            </Link>
+          )}
         </header>
 
-        <div className="space-y-1">
-          <h3 className="flex items-start gap-2 text-base font-semibold leading-snug text-card-foreground">
-            <GraduationCap className="mt-0.5 size-4 shrink-0 text-primary" />
+        {/* Degree / Course Title & Description */}
+        <div className="space-y-2">
+          <h3 className="flex items-start gap-2 text-base font-semibold leading-snug text-foreground tracking-tight">
+            <GraduationCap className="mt-0.5 size-4.5 shrink-0 text-primary" />
             <span>{course}</span>
           </h3>
 
@@ -92,23 +104,36 @@ function Education({
             </p>
           )}
         </div>
+      </div>
 
-        <div className="mt-auto pt-2">
-          <Link href={certification} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${institution} website`}
-            className={cn(buttonVariants({ size: 'lg' }), 'w-full')}>
-            <ExternalLink />
-            View Certification
+      {/* Footer Action: Sleek verification button */}
+      {certification && (
+        <div className="mt-5 pt-4 border-t border-border/50">
+          <Link
+            href={certification}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`View certification for ${course}`}
+            className={cn(
+              buttonVariants({ variant: "outline", size: "sm" }),
+              "w-full justify-center gap-2 rounded-xl text-xs font-medium group/btn hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
+            )}
+          >
+            <Award className="size-3.5 text-primary group-hover/btn:text-primary-foreground transition-colors" />
+            <span>View Certification</span>
+            <ExternalLink className="size-3 opacity-60 ml-auto" />
           </Link>
         </div>
-      </div>
+      )}
     </article>
   );
 }
 
-const educationsVariants = cva("", {
+const educationsVariants = cva("w-full", {
   variants: {
     variant: {
-      normal: "grid gap-6 sm:grid-cols-2 lg:grid-cols-3 items-stretch",
+      normal: "grid gap-5 grid-cols-1 md:grid-cols-2 items-stretch",
+      grid3: "grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-stretch",
       list: "flex flex-col gap-4",
     },
   },
