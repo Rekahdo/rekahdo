@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
-import { documentData } from "@/data/document";
 
 export const heroContentVariants = cva(
     cn("w-full flex flex-col gap-6 lg:gap-8 text-foreground"),

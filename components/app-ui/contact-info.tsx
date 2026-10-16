@@ -1,7 +1,6 @@
 "use client"
 
 import { AvailableForWork } from "../shared-ui/ping";
-import { Layout } from "../shared-ui/layout";
 import { ReactNode } from "react";
 import { Check, Copy, Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
