@@ -40,7 +40,7 @@ export const documentSchema = z.object({
 });
 
 export const headerSchema = z.object({
-  downloadCv: documentSchema,
+  
 });
 
 export const heroSchema = z.object({
