@@ -62,7 +62,7 @@ export function Experiences({
 
   return (
     <div role="list" aria-label="Experience"
-      className={cn("w-full flex items-center gap-4", className)}>
+      className={cn("w-full flex items-center justify-center gap-4", className)}>
 
       {experiences?.map((e, i) => (
         <Experience key={`${e.title}-${i}`} {...e} />

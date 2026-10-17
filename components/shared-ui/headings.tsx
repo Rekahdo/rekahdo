@@ -66,7 +66,7 @@ function Heading({
                     <Tag
                         id={id}
                         className={cn(
-                            "flex items-center gap-4 text-foreground capitalize",
+                            "flex items-center gap-4 text-foreground capitalize tracking-tight",
 
                             HeaderVariants({
                                 titleSize: visualSize
@@ -76,7 +76,7 @@ function Heading({
                         )}
                     >
                         {(icon && iconPosition === "left") &&
-                            <span className="*:size-8 flex items-center justify-center">
+                            <span className="flex items-center justify-center">
                                 {icon}
                             </span>
                         }
@@ -84,7 +84,7 @@ function Heading({
                         {title}
 
                         {(icon && iconPosition === "right") &&
-                            <span className={cn("*:size-8 flex items-center justify-center")}>
+                            <span className={cn("flex items-center justify-center")}>
                                 {icon}
                             </span>
                         }
@@ -92,13 +92,13 @@ function Heading({
                 )}
 
                 {subtitle !== undefined && subtitle !== null && subtitle !== "" && (
-                    <p className={cn("text-muted-foreground", subtitleClassName,
+                    <div className={cn("text-muted-foreground", subtitleClassName,
                         HeaderVariants({
                             subtitleSize
                         }))}>
 
                         {subtitle}
-                    </p>
+                    </div>
                 )}
             </div>
 

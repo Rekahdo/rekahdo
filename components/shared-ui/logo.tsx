@@ -13,7 +13,7 @@ const logoVariants = cva(cn(), {
 })
 
 export function Logo({ width=100, height=100, eager = true, variant, ...props }
-    : Omit<ImageProps, "src" | "alt"> & VariantProps<typeof logoVariants>) {
+    : Omit<ImageProps, "src" | "alt" | "variant"> & VariantProps<typeof logoVariants>) {
     const light = "/images/logo/logo.svg";
     const dark = "/images/logo/logo-dark.svg";
     const alt = "Rekahdo.dev Logo";

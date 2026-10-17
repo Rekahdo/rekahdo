@@ -15,6 +15,7 @@ import { Ping } from "../shared-ui/ping";
 import { H2, H3 } from "../shared-ui/headings";
 import AppInput from "../shared-ui/field";
 import { createSendMessageAction } from "@/app/actions/contact";
+import { Layout } from "../shared-ui/layout";
 
 interface SendMessageFormProps {
     className?: string;
@@ -112,7 +113,7 @@ function NotSent({ onSent, from }: { onSent: () => void, from: string }) {
     return (
         <form onSubmit={handleSubmit(submit)} className="space-y-6">
             <FieldGroup className="gap-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <Controller
                         name="name"
                         control={control}
@@ -182,21 +183,28 @@ function NotSent({ onSent, from }: { onSent: () => void, from: string }) {
                 />
             </FieldGroup>
 
-            <div className="flex items-center justify-between max-sm:flex-col-reverse gap-4 pt-2">
-                <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-muted/30 px-3.5 py-1.5 text-xs text-muted-foreground">
-                    <Clock className="size-3.5 text-primary" />
-                    <span>Response time: <strong className="font-semibold text-foreground">Under 24h</strong></span>
-                </div>
+            <Layout
+                maxSmAxis={'y'}
+                maxSmPlace={'bottom'}
 
-                <ButtonImpl
-                    type="submit"
-                    text="Send Message"
-                    className="max-sm:w-full rounded-xl px-6 shadow-sm"
-                    icon={<Send className="size-4" />}
-                    height={'md'}
-                    isPending={isPending}
-                />
-            </div>
+                top={<>
+                    <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-muted/30 px-3.5 py-1.5 text-xs text-muted-foreground">
+                        <Clock className="size-3.5 text-primary" />
+                        <span>Typical response time: <strong className="font-semibold text-foreground">Under 24h</strong></span>
+                    </div>
+                </>}
+
+                bottom={<>
+                    <ButtonImpl
+                        type="submit"
+                        text="Send Message"
+                        className="max-sm:w-full rounded-xl px-6 shadow-sm"
+                        icon={<Send className="size-4" />}
+                        height={'md'}
+                        isPending={isPending}
+                    />
+                </>}
+            />
         </form>
     );
 }
