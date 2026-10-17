@@ -17,10 +17,10 @@ export const containerVariants = cva(
                 footer: "bg-foreground text-background dark:bg-background dark:text-foreground",
             },
             py: {
-                section: "py-20 md:py-26 lg:py-30",
+                section: "py-base",
             },
             px: {
-                section: "px-6 sm:px-8 lg:px-10",
+                section: "px-base",
             },
             height: {
                 header: "py-1",

@@ -3,6 +3,7 @@ import { section } from "@/data/section";
 import SendMessageForm from "../app-ui/send-message";
 import ContactInfo from "../app-ui/contact-info";
 import { contactData } from "@/data/contact";
+import { Layout } from "../shared-ui/layout";
 
 export const CONTACT_ID = "contact";
 
@@ -13,20 +14,21 @@ export default async function ContactSection() {
     return (
         <Container
             id={CONTACT_ID}
-            py={'section'}
-            px={'section'}
             wrapperClassName="border-t border-border/40"
-            className="justify-center"
+            className="justify-center spacing-base"
         >
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start w-full">
-                <div className="lg:col-span-5 w-full">
-                    <ContactInfo data={data} />
-                </div>
+            <Layout
+                maxLgAxis={'y'}
+                className="*:grow"
 
-                <div className="lg:col-span-7 w-full">
+                top={<>
+                    <ContactInfo data={data} />
+                </>}
+
+                bottom={<>
                     <SendMessageForm title={sec.title} subtitle={sec.subtitle} from={data.email} />
-                </div>
-            </div>
+                </>}
+            />
         </Container>
     );
 }

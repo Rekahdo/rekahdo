@@ -13,6 +13,7 @@ import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { Infer } from "convex/values";
 import { contactValidator } from "@/convex/schema";
 import { useWidthMedia } from "@/hooks/useMedia";
+import { Layout } from "../shared-ui/layout";
 
 interface ContactInfoProps {
     data: Infer<typeof contactValidator>
@@ -20,16 +21,21 @@ interface ContactInfoProps {
 
 export default function ContactInfo({ data }: ContactInfoProps) {
     return (
-        <div className="flex flex-col justify-between h-full w-full gap-8">
-            
-            <div className="flex flex-col gap-3.5 w-full">
+        <Layout
+            className="w-full h-full"
+            lgAxis={'y'}
+            maxMdAxis={'y'}
+
+            topClassName="*:w-full gap-4"
+            top={<>
                 <Info title="Email" description={data.email} icon={<Mail />} allowCopy />
                 <Info title="Phone" description={`+${data.phone}`} icon={<Phone />} allowCopy />
                 <Info title="Location" description={data.location} icon={<MapPin />} />
-            </div>
+            </>}
 
-            
-            <div className="flex flex-col gap-5 pt-4 border-t border-border/50">
+
+            bottomClassName="*:w-full md:max-lg:h-full gap-4"
+            bottom={<>
                 <div className="flex flex-col gap-3">
                     <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground select-none">
                         Find me online
@@ -45,8 +51,8 @@ export default function ContactInfo({ data }: ContactInfoProps) {
                 <div className="pt-2">
                     <AvailableForWork width="full" className="shadow-xs backdrop-blur-md" />
                 </div>
-            </div>
-        </div>
+            </>}
+        />
     );
 }
 
@@ -98,7 +104,6 @@ function Info({ icon, title, description, allowCopy }: {
                         await copy(description);
                     }}
                     aria-label={`Copy ${title}`}
-                    className="size-8.5 shrink-0 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors"
                 >
                     {copied
                         ? <Check className="size-4 text-emerald-500 animate-into-view" />
@@ -125,7 +130,6 @@ function FindMeOnline({ icon, url, label }: {
                 buttonVariants({ size: 'icon', variant: 'outline' }),
                 "size-11 rounded-xl border-border/70 bg-card/80 backdrop-blur-sm",
                 "shadow-xs text-muted-foreground hover:text-foreground hover:border-primary/40 hover:-translate-y-0.5 hover:shadow-sm",
-                "transition-all duration-200 [&_svg]:size-5"
             )}
         >
             {icon}

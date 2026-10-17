@@ -5,11 +5,12 @@ import { Description, Greeting, Role } from "../app-ui/hero-ui";
 import { H1 } from "../shared-ui/headings";
 import { AvailableForWork, PingTag } from "../shared-ui/ping";
 import { heroData } from "@/data/hero";
-import AppImage from "../shared-ui/image";
+import AppImage, { imageVariants } from "../shared-ui/image";
 import { documentData } from "@/data/document";
 import { Layout } from "../shared-ui/layout";
 import CtaBtns from "../app-ui/cta-btns";
 import { aboutData } from "@/data/about";
+import { cn } from "cn";
 
 export const HERO_ID = "hero";
 
@@ -34,24 +35,22 @@ export const HeroSection = async () => {
                 lgPlace={'right'}
                 className="gap-12 items-center"
 
+                topClassName="lg:items-end"
                 top={
                     <>
                         {data.image?.src && (
-                            <div className="relative mx-auto flex items-center justify-center w-full max-w-md lg:max-w-lg">
-                                <div className="relative w-full aspect-square rounded-[2.5rem] p-1.5 border border-border/80 bg-card shadow-lg">
-                                    <div className="relative w-full h-full rounded-[2rem] overflow-hidden">
-                                        <AppImage
-                                            src={data.image.src}
-                                            alt={data.image?.alt ?? "hero image"}
-                                            width={1000}
-                                            height={1000}
-                                            maxSmWidth={'w70'}
-                                            eager
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
+                            <AppImage
+                                src={data.image.src}
+                                alt={data.image.alt ?? "hero image"}
+                                width={1000}
+                                height={1000}
+                                maxMdWidth={'w70'}
+                                mdWidth={'w50'}
+                                lgWidth={'w80'}
+                                rounded={'4xl'}
+                                variant={'elevate'}
+                                eager
+                            />
                         )}
                     </>
                 }
