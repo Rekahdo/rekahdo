@@ -36,7 +36,7 @@ export function StackCards({ className, data }: StackCardsType) {
 
     const [active, setActive] = useState(categories[0].type);
     const [preview, setPreview] = useState(categories[0].stacks[0]);
-    const [viewAll, setViewAll] = useState(false);
+    const [expand, setExpand] = useState(false);
 
     useEffect(() => {
         setPreview(categories.find((stack) => stack.type === active)!.stacks[0]);
@@ -99,7 +99,7 @@ export function StackCards({ className, data }: StackCardsType) {
             <div className="relative flex items-start *:grow gap-xs pb-4">
                 {categories.map((category) => (
                     <TabsContent key={category.type} value={category.type}>
-                        <ScrollArea className={cn("h-120 overflow-hidden!", viewAll && "h-auto")}>
+                        <ScrollArea className={cn("md:h-120 overflow-hidden!", expand ? "max-md:h-auto" : "max-md:max-h-100")}>
                             <div className="hidden md:flex flex-wrap gap-4 p-1">
                                 {category.stacks.map((s) => (
                                     <Card key={s.name} onMouseEnter={() => setPreview(s)} onFocus={() => console.log(s)}
@@ -145,20 +145,23 @@ export function StackCards({ className, data }: StackCardsType) {
                     className="max-w-4/10 lg:max-w-3.5/10 max-md:hidden sticky top-20"
                 />
 
-                {!viewAll && <FadeOverlay className="md:hidden" />}
+                {!expand && <FadeOverlay className="md:hidden" />}
             </div>
 
             <Button onClick={() => {
-                setViewAll(v => {
-                    if(v) scrollToId({ id: STACK_ID, scrollType: "instant" });   
-                    return !viewAll
+                setExpand(v => {
+                    if (v) scrollToId({ id: STACK_ID, scrollType: "instant" });
+                    return !expand
                 });
             }}
-                className={"mx-auto md:hidden px-6! py-2! h-auto! rounded-full shadow-sm"}
+                className={cn(
+                    "mx-auto md:hidden px-6! py-2! h-auto! rounded-full shadow-sm",
+                )}
+
                 variant={'outline'}>
 
-                {viewAll ? "Collapse" : "Expand"}
-                {viewAll ? <ChevronUp /> : <ChevronDown />}
+                {expand ? "Collapse" : "Expand"}
+                {expand ? <ChevronUp /> : <ChevronDown />}
             </Button>
         </Tabs>
     );
