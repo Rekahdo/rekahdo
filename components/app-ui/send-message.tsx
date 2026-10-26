@@ -36,7 +36,7 @@ export default function SendMessageForm({
         )}>
             {!sent && (title || subtitle) && (
                 <div className="mb-8 space-y-1.5">
-                    <H2 title={title} subtitle={subtitle} className="tracking-tight" />
+                    <H2 title={title} subtitle={subtitle} titleClassName="tracking-tight" />
                 </div>
             )}
 
@@ -59,7 +59,7 @@ function Sent({ onSendAgain }: { onSendAgain: () => void }) {
             />
 
             <H3
-                className="justify-center"
+                titleClassName="justify-center"
                 title="Message Sent"
                 subtitle="Thanks for reaching out. I'll get back to you as soon as I can."
             />

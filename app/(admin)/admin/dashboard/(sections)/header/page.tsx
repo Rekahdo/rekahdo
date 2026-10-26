@@ -37,7 +37,7 @@ export default function Page(props: PageProps) {
         <div className="flex flex-col gap-6 max-w-lg">
             <H1 title="Header"
                 subtitle="Update the header content shown at the top of your portfolio."
-                className="text-center items-center" />
+                titleClassName="text-center items-center" />
 
             <Card>
                 <form onSubmit={handleSubmit(submit)}>

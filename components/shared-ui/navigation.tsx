@@ -106,9 +106,10 @@ export const navigationVariants = cva(
     }
 );
 
-export function scrollToId({ id, onNavigate, e }: {
+export function scrollToId({ id, onNavigate, scrollType = "smooth", e }: {
     id: string;
     onNavigate?: () => void;
+    scrollType?: ScrollBehavior,
     e?: MouseEvent<HTMLElement>;
 }) {
     e?.preventDefault();
@@ -121,7 +122,7 @@ export function scrollToId({ id, onNavigate, e }: {
     const OFFSET = document.getElementById(HEADER_ID)?.getBoundingClientRect().height ?? 0;
     const top = element.getBoundingClientRect().top + window.scrollY - OFFSET;
 
-    window.scrollTo({ top, behavior: "smooth" });
+    window.scrollTo({ top, behavior: scrollType });
 }
 
 export function Navigation({ className, side, navItems, onNavigate, ...variants }:

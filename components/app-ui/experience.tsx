@@ -1,5 +1,6 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
+import { Card, CardContent } from "../ui/card";
 
 export type ExperienceType = {
   years: number;
@@ -13,7 +14,6 @@ const experienceVariants = cva(
       variant: {
         normal: cn("group flex flex-col items-center justify-center gap-2 rounded-xl",
           "border border-border bg-card text-card-foreground py-6 px-8 sm:px-10 text-center hover-1"),
-        inline: "flex flex-row items-baseline justify-start gap-3 p-0 border-0 bg-transparent text-left",
       },
     },
     defaultVariants: {
@@ -34,19 +34,21 @@ function Experience({
   className,
 }: ExperienceCompType) {
   return (
-    <div className={cn(experienceVariants({ variant }), className)}>
-      
-      <p className={cn("flex items-center font-bold tabular-nums tracking-tight text-primary text-4xl")}>
-        {years}
+    <Card className="p-4 xs:p-6 sm:p-10">
+      <CardContent className="flex flex-col items-center justify-center text-center">
 
-        <span className="text-primary/70 text-2xl">+</span>
-      </p>
+        <p className={cn("flex items-center font-bold tabular-nums tracking-tight text-primary text-4xl")}>
+          {years}
 
-      
-      <p className={cn("font-medium text-muted-foreground")}>
-        {title}
-      </p>
-    </div>
+          <span className="text-primary/70 text-2xl">+</span>
+        </p>
+
+        <p className={cn("font-medium text-muted-foreground capitalize")}>
+          {title}
+        </p>
+
+      </CardContent>
+    </Card>
   );
 }
 

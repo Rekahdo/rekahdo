@@ -21,11 +21,11 @@ export async function AboutSection() {
     return (
         <Container
             id={ABOUT_ID}
-            className="spacing-base"
+            containerClassName="spacing-base"
         >
             <H2 title={sec.title}
                 subtitle={<div className="h-1 w-12 rounded-full bg-primary/40 mx-auto" />}
-                className="mx-auto tracking-tight" />
+                titleClassName="mx-auto tracking-tight" />
 
             <Layout format={'container'}
                 maxLgAxis={'y'}
@@ -42,7 +42,7 @@ export async function AboutSection() {
                         rounded={'4xl'}
                         variant={'elevate'}
                         eager
-                        className={cn(
+                        rootClassName={cn(
                             "w-56 sm:w-64 md:w-72 lg:w-80 bg-linear-to-b from-primary/25 via-border/60 to-background/40",
                         )}
                         imgClassName="transition-transform duration-300 hover:scale-105"
@@ -51,14 +51,14 @@ export async function AboutSection() {
 
                 bottomClassName="grow gap-6"
                 bottom={<>
-                        <H3
-                            title={data.headline}
-                            className="text-center"
-                        />
+                    <H3
+                        title={data.headline}
+                        titleClassName="text-center"
+                    />
 
-                        <p className="whitespace-pre-line max-lg:text-center lg:text-left leading-relaxed text-base sm:text-lg">
-                            {data.bio}
-                        </p>
+                    <p className="whitespace-pre-line max-lg:text-center lg:text-left leading-relaxed text-base sm:text-lg">
+                        {data.bio}
+                    </p>
 
                     {data.experiences && (
                         <Experiences experiences={data.experiences} className="lg:justify-start" />
@@ -83,7 +83,7 @@ export async function AboutSection() {
 
                             bottomClassName="w-full"
                             bottom={
-                                <Educations educations={data.educations}/>
+                                <Educations educations={data.educations} />
                             }
                         />
                     )}

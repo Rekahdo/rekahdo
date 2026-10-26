@@ -11,7 +11,7 @@ export default function Layout(props: LayoutProps) {
 
     return (
         <Container id="" py={'section'} px={'section'} height={'hero'}
-            place={'center'} className="*:w-full">
+            place={'center'} containerClassName="*:w-full">
 
             {props.children}
         </Container>

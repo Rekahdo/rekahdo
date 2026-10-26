@@ -13,6 +13,7 @@ import { STACK_ID } from "./stack-section";
 import { PROJECT_ID } from "./project-section";
 import { CONTACT_ID } from "./contact-section";
 import { documentData } from "@/data/document";
+import { backDropBlur } from "../shared-ui/_css";
 
 export const HEADER_ID = "header";
 
@@ -31,16 +32,18 @@ export const HeaderSection = async () => {
         <Container
             id={HEADER_ID}
             as={"header"}
-            px={'section'}
             width={'w400'}
             height={'header'}
             sticky={'top'}
-            wrapperClassName="border-b border-border/50 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.25)] transition-all"
+            containerClassName="px-base"
+            rootClassName={cn("border-b border-border/50", backDropBlur.background)}
         >
             <Header
+            
                 headerLeft={
                     <Logo variant={'header'} />
                 }
+
                 headerCenter={
                     <Navigation
                         navItems={navItems}
@@ -49,6 +52,7 @@ export const HeaderSection = async () => {
                         className="max-mlg:hidden bg-muted/40 p-1 rounded-full border border-border/50"
                     />
                 }
+
                 headerRight={
                     <div className="flex items-center gap-2.5 sm:gap-3">
                         <a

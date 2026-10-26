@@ -23,7 +23,7 @@ export default function Layout(props: LayoutProps) {
         <Container
             id="signup"
             px={'section'}
-            className="min-h-screen flex items-center justify-center">
+            containerClassName="min-h-screen flex items-center justify-center">
             <div className="absolute top-5 left-5">
                 <Link href={ADMIN_AUTH} className={buttonVariants()}>
                     <ArrowLeft /> Home

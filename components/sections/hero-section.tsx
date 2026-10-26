@@ -71,7 +71,7 @@ export const HeroSection = async () => {
                                 titleSize={'hero'}
                                 subtitle={about.role}
                                 subtitleSize={'hero'}
-                                className="max-lg:text-center"
+                                titleClassName="max-lg:text-center"
                             />
                         }
 

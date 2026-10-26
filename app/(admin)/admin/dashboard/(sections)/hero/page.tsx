@@ -39,7 +39,7 @@ export default function Page(props: PageProps) {
         <div className="flex flex-col gap-6 max-w-6xl">
             <H1 title="Hero"
                 subtitle="Update your hero section content shown at the top of your portfolio."
-                className="text-center items-center" />
+                titleClassName="text-center items-center" />
 
             <Card>
                 <form onSubmit={handleSubmit(submit)}>

@@ -2,7 +2,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
 import type { ElementType, ReactNode } from "react";
 
-const layoutVariants = cva(
+export const layoutVariants = cva(
     cn(""),
     {
         variants: {

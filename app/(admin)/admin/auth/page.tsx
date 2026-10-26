@@ -20,7 +20,7 @@ export default function Page() {
 
     return (
         <Container id="admin" height={'full'} place={"center"} px={'section'}
-            className="items-center relative">
+            containerClassName="items-center relative">
             <ModeToggle className="max-sm:hidden absolute top-4 right-4" />
 
             <Card className="max-w-2xl w-full p-0 gap-8">
@@ -31,7 +31,7 @@ export default function Page() {
 
                     <CardTitle>
                         <H1
-                            title="Admin Portal" className="justify-center"
+                            title="Admin Portal" titleClassName="justify-center"
                             subtitle="Sign Up or Login to manage site content and settings."
                         />
                     </CardTitle>

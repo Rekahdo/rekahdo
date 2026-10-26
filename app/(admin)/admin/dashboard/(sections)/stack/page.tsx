@@ -18,10 +18,10 @@ export interface PageProps { }
 
 type StackItem = z.infer<typeof stackSchema>;
 
+// Update the empty stack to match the new object structure
 const emptyStack: StackItem = {
     name: "",
-    iconSrc: "",
-    iconDarkSrc: undefined,
+    icon: { src: "", srcDark: undefined, alt: "" },
     percentage: 0,
     description: "",
     usages: [],
@@ -63,7 +63,7 @@ export default function Page(props: PageProps) {
             <H1
                 title="Tech Stack"
                 subtitle="Manage all your stack entries in one place."
-                className="text-center items-center"
+                titleClassName="text-center items-center"
             />
 
             <Card>
@@ -132,8 +132,9 @@ export default function Page(props: PageProps) {
                                     )}
                                 />
 
+                                {/* Updated Icon Source */}
                                 <Controller
-                                    name={`stacks.${index}.iconSrc`}
+                                    name={`stacks.${index}.icon.src`}
                                     control={control}
                                     render={({ field, fieldState }) => (
                                         <Field>
@@ -144,8 +145,9 @@ export default function Page(props: PageProps) {
                                     )}
                                 />
 
+                                {/* Updated Icon Dark Source */}
                                 <Controller
-                                    name={`stacks.${index}.iconDarkSrc`}
+                                    name={`stacks.${index}.icon.srcDark`}
                                     control={control}
                                     render={({ field, fieldState }) => (
                                         <Field>
@@ -161,6 +163,19 @@ export default function Page(props: PageProps) {
                                                 name={field.name}
                                                 ref={field.ref}
                                             />
+                                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                        </Field>
+                                    )}
+                                />
+
+                                {/* Added Icon Alt Text (Required by Convex) */}
+                                <Controller
+                                    name={`stacks.${index}.icon.alt`}
+                                    control={control}
+                                    render={({ field, fieldState }) => (
+                                        <Field>
+                                            <FieldLabel>Icon Alt Text</FieldLabel>
+                                            <Input type="text" aria-invalid={fieldState.invalid} {...field} />
                                             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                                         </Field>
                                     )}

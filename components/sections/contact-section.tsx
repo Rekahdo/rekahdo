@@ -14,8 +14,8 @@ export default async function ContactSection() {
     return (
         <Container
             id={CONTACT_ID}
-            wrapperClassName="border-t border-border/40"
-            className="justify-center spacing-base"
+            rootClassName="border-t border-border/40"
+            containerClassName="justify-center spacing-base"
         >
             <Layout
                 maxLgAxis={'y'}

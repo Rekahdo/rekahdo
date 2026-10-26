@@ -3,6 +3,7 @@ import { v } from "convex/values";
 
 export const imageValidator = v.object({
   src: v.string(),
+  srcDark: v.optional(v.string()),
   alt: v.string(),
 });
 
@@ -32,9 +33,7 @@ export const documentTable = {
 
 export const documentValidator = v.object(documentTable);
 
-export const headerTable = {
-  
-};
+export const headerTable = {};
 
 export const headerValidator = v.object(headerTable);
 
@@ -90,8 +89,7 @@ export const aboutValidator = v.object(aboutTable);
 
 export const stackTable = {
   name: v.string(),
-  iconSrc: v.string(),
-  iconDarkSrc: v.optional(v.string()),
+  icon: imageValidator,
   percentage: v.number(),
   description: v.string(),
   usages: v.array(tagValidator),
