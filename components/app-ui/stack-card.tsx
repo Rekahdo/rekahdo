@@ -1,21 +1,168 @@
-'use client'
+"use client";
 
-import { fetchQuery } from "convex/nextjs";
-import { api } from "@/convex/_generated/api";
-import { ElementType, useEffect, useState } from "react";
-import { Flex } from "../shared-ui/layout2";
-import { FilterSelect } from "../shared-ui/filter-select";
+import { stackValidator } from "@/convex/schema";
+import { Infer } from "convex/values";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { cn } from "cn";
-import { Doc } from "@/convex/_generated/dataModel";
-import { MultiToggle } from "../shared-ui/toggle";
-import { LayoutGrid, Rows3 } from "lucide-react";
-import { useWidthMedia } from "@/hooks/useMedia";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "../ui/hover-card";
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
-import { H3 } from "../shared-ui/headings";
-import { Progress } from "../ui/progress";
-import AppImage from "../shared-ui/image";
+import { useEffect, useState } from "react";
+import { ScrollArea } from "../ui/scroll-area";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
+import { AppIcon } from "../shared-ui/icon";
+import { H3, H4, H6, HeaderVariants } from "../shared-ui/headings";
+import { Progress, ProgressIndicator, ProgressLabel, ProgressTrack, ProgressValue } from "../ui/progress";
+import { Button } from "../ui/button";
+import { CheckCircle2, ChevronDown, ChevronUp, Sparkles } from "lucide-react";
+import { scrollToId } from "../shared-ui/navigation";
+import { STACK_ID } from "../sections/stack-section";
 import { Tags } from "./tag";
+import { FadeOverlay } from "../shared-ui/fade-overlay";
+
+type StackCardsType = {
+    className?: string;
+    data?: Infer<typeof stackValidator>[];
+};
+
+export function StackCards({ className, data }: StackCardsType) {
+    if (!data) return null;
+
+    const categories = [
+        { type: "all", count: data.length, stacks: data },
+        ...[...new Set(data.map((stack) => stack.type.toLowerCase()))].map((t) => {
+            const filtered = data.filter((stack) => stack.type.toLowerCase() === t);
+            return { type: t, count: filtered.length, stacks: filtered };
+        }),
+    ];
+
+    const [active, setActive] = useState(categories[0].type);
+    const [preview, setPreview] = useState(categories[0].stacks[0]);
+    const [viewAll, setViewAll] = useState(false);
+
+    useEffect(() => {
+        setPreview(categories.find((stack) => stack.type === active)!.stacks[0]);
+    }, [active]);
+
+    type ContentType = Pick<Infer<typeof stackValidator>, "name" | "icon" | "percentage" | "type">;
+    const Content = ({ name, icon, percentage, type }: ContentType) => (
+        <div className="flex items-center gap-4 w-full min-w-0">
+            <AppIcon
+                src={icon.src}
+                srcDark={icon.srcDark}
+                alt={icon.alt}
+                size={"xs"}
+            />
+
+            <H6
+                title={name}
+                subtitle={type}
+                titleClassName={HeaderVariants({ titleSize: "h7" })}
+                subtitleClassName="capitalize"
+            />
+
+            <p className="ms-auto text-xs font-mono font-medium text-muted-foreground shrink-0">
+                {`${percentage}%`}
+            </p>
+        </div>
+    );
+
+    return (
+        <Tabs defaultValue={categories[0].type} className={cn("gap-xs")}>
+            <TabsList className="bg-transparent h-auto! w-full shrink-0 flex flex-wrap justify-start gap-2 p-0">
+                {categories.map((stack, i) => (
+                    <TabsTrigger
+                        key={i}
+                        value={stack.type}
+                        onClick={() => setActive(stack.type)}
+                        className={cn(
+                            "px-4 py-1 sm:py-2 gap-4 grow-0 text-xs font-medium capitalize",
+                            active === stack.type
+                                ? "bg-foreground! text-background! shadow-sm"
+                                : "bg-muted text-muted-foreground hover:bg-secondary hover:text-foreground"
+                        )}
+                    >
+                        {stack.type}
+                        <span
+                            className={cn(
+                                "flex items-center justify-center",
+                                "rounded-full size-6 text-[10px] font-mono",
+                                active === stack.type
+                                    ? "bg-background/20 text-background"
+                                    : "bg-background/60 text-muted-foreground border border-border/50"
+                            )}
+                        >
+                            {stack.count}
+                        </span>
+                    </TabsTrigger>
+                ))}
+            </TabsList>
+
+            <div className="relative flex items-start *:grow gap-xs pb-4">
+                {categories.map((category) => (
+                    <TabsContent key={category.type} value={category.type}>
+                        <ScrollArea className={cn("h-120 overflow-hidden!", viewAll && "h-auto")}>
+                            <div className="hidden md:flex flex-wrap gap-4 p-1">
+                                {category.stacks.map((s) => (
+                                    <Card key={s.name} onMouseEnter={() => setPreview(s)} onFocus={() => console.log(s)}
+                                        className={cn("p-0!",
+                                            "hover:border-primary hover:bg-primary/5 hover:shadow-sm hover:ring-1 hover:ring-primary/20",
+                                            "grow min-w-50",
+                                            className
+                                        )}>
+
+                                        <CardContent className="flex items-center text-card-foreground gap-4 p-4">
+                                            <Content {...s} />
+                                        </CardContent>
+                                    </Card>
+                                ))}
+                            </div>
+
+                            <Accordion
+                                defaultValue={[category.stacks[0]?.name]}
+                                className="md:hidden grid grid-cols-1 gap-3 p-1"
+                            >
+                                {category.stacks.map((s) => (
+                                    <AccordionItem key={s.name} className="border-0! w-full">
+                                        <Card className="w-full justify-center">
+                                            <AccordionTrigger
+                                                className="hover:no-underline p-0! px-4! gap-4! items-center"
+                                            >
+                                                <Content {...s} />
+                                            </AccordionTrigger>
+                                        </Card>
+
+                                        <AccordionContent className="px-1! pt-3">
+                                            <StackPreview stack={s} />
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                ))}
+                            </Accordion>
+                        </ScrollArea>
+                    </TabsContent>
+                ))}
+
+                <StackPreview
+                    stack={preview}
+                    className="max-w-4/10 lg:max-w-3.5/10 max-md:hidden sticky top-20"
+                />
+
+                {!viewAll && <FadeOverlay className="md:hidden" />}
+            </div>
+
+            <Button onClick={() => {
+                setViewAll(v => {
+                    if(v) scrollToId({ id: STACK_ID, scrollType: "instant" });   
+                    return !viewAll
+                });
+            }}
+                className={"mx-auto md:hidden px-6! py-2! h-auto! rounded-full shadow-sm"}
+                variant={'outline'}>
+
+                {viewAll ? "Collapse" : "Expand"}
+                {viewAll ? <ChevronUp /> : <ChevronDown />}
+            </Button>
+        </Tabs>
+    );
+}
 
 export const StackTier = {
     primary: { label: "Primary Focus", min: 85, max: 100 },
@@ -24,95 +171,6 @@ export const StackTier = {
     occasional: { label: "Occasional Use", min: 25, max: 45 },
     learning: { label: "Exploring / Adopting", min: 0, max: 24 },
 } as const;
-
-type StackMode = "Compact" | "Detailed";
-
-type Stack = Omit<Doc<'stack'>, "_id" | "_creationTime">;
-
-type StackCardsType = {
-    className?: string;
-    data?: Stack[];
-}
-
-export function StackCards({ className, data }: StackCardsType) {
-    if (!data) return null;
-
-    const findUsageByPercent = (percent: number) =>
-        Object.entries(StackTier).map(([_, v]) => ({ label: v.label, min: v.min, max: v.max }))
-            .find(({ min, max }) => percent >= min && percent <= max);
-
-    const usages = ["all usage levels", ...new Set(data.map((stack) => findUsageByPercent(stack.percentage)!.label))];
-    const stacks = ["all stacks", ...new Set(data.map((stack) => stack.type))];
-    const [selected, setSelected] = useState({ stack: stacks[0], usage: usages[0] });
-    const [viewStacks, setViewStacks] = useState(data);
-    const [mode, setMode] = useState<StackMode>("Compact");
-    const maxMd = useWidthMedia().maxMd;
-
-    function selectStack(value: string | null) {
-        filter({ stack: value! });
-    }
-
-    function selectUsage(value: string | null) {
-        filter({ usage: value! });
-    }
-
-    function selectMode(index: number) {
-        setMode(index === 0 ? "Compact" : "Detailed");
-    }
-
-    function filter({ stack = selected.stack, usage = selected.usage }
-        : { stack?: string, usage?: string }) {
-
-        setSelected({ stack, usage });
-
-        const viewing = data!.filter((s) => stack === stacks[0] || s.type === stack)
-            .filter((s) => usage === usages[0] || findUsageByPercent(s.percentage)?.label === usage);
-
-        setViewStacks(viewing);
-    }
-
-    return (
-        <Flex className={cn("max-sm:gap-8 gap-10 w-full", className)}
-            topClassName="sticky top-20 z-20 md:top-24 py-2"
-            top={
-                
-                <div className="flex grow justify-between items-center gap-4 bg-background/80 dark:bg-card/75 backdrop-blur-md border border-border/70 p-2.5 sm:p-3 rounded-2xl shadow-sm">
-                    <div className="flex gap-3 max-md:flex-col flex-wrap">
-                        <FilterSelect
-                            items={stacks}
-                            onValueChange={selectStack}
-                            label="Stacks"
-                        />
-
-                        <FilterSelect
-                            items={usages}
-                            onValueChange={selectUsage}
-                            label="Usage levels"
-                        />
-                    </div>
-
-                    <MultiToggle toggles={[
-                        { text: "Compact", icon: <LayoutGrid className="size-4" /> },
-                        { text: "Detailed", icon: <Rows3 className="size-4" /> },
-                    ]} rootToggle onChange={selectMode} showTextAt="sm" />
-                </div>
-            }
-
-            bottom={
-                <div data-mode={mode} className={cn(
-                    "flex flex-wrap justify-evenly data-[mode=Compact]:justify-center-safe",
-                    "gap-4 sm:gap-6",
-                )}>
-                    {
-                        viewStacks?.map((stack, i) =>
-                            <StackCard key={`stack-${i}`} {...stack} mode={mode} maxMd={maxMd} />
-                        )
-                    }
-                </div>
-            }
-        />
-    );
-}
 
 const tierFor = (p: number) =>
     p >= 85
@@ -160,210 +218,88 @@ const tierFor = (p: number) =>
                         label: StackTier.learning.label,
                     };
 
-type CardType = Stack & {
-    className?: string;
-    mode?: StackMode;
-    maxMd?: boolean;
-}
-
-type IconSize = "trigger" | "sheet" | "hover" | "detailed";
-
-function StackCard({
-    name,
-    iconSrc,
-    iconDarkSrc,
-    percentage,
-    mode = 'Compact',
-    maxMd,
-    ...props
-}: CardType) {
-    const Root = mode === "Compact" ? (maxMd ? Sheet : HoverCard) : "article";
-    const Trigger = (maxMd ? SheetTrigger : HoverCardTrigger) as ElementType;
-    const Content = (maxMd ? SheetContent : HoverCardContent) as ElementType;
-
-    const triggerProp = maxMd ? {} : { delay: 10, closeDelay: 0 };
-    const contentProp = maxMd ? { side: "bottom", showCloseButton: false } : {};
-    const size: IconSize = mode === "Compact" ? (maxMd ? "sheet" : "hover") : "detailed";
-
-    return (
-        <article data-mode={mode} className={cn(
-            "flex justify-center items-center transition-transform",
-            "data-[mode=Detailed]:basis-80 data-[mode=Detailed]:grow max-w-105 max-sm:max-w-full",
-        )}>
-            {mode === "Compact" && (
-                <Root>
-                    <Trigger {...triggerProp} className="relative group focus-visible:outline-none">
-                        <CardIcon
-                            name={name}
-                            iconSrc={iconSrc}
-                            iconDarkSrc={iconDarkSrc}
-                            percentage={percentage}
-                            mode={mode}
-                            size="trigger"
-                        />
-                        <Ping mode={mode} bg={tierFor(percentage).bar} />
-                    </Trigger>
-
-                    <Content {...contentProp} className={cn(
-                        maxMd
-                            ? "p-6 rounded-t-3xl bg-card border-border/60"
-                            : "w-80 p-0 rounded-2xl bg-card/95 backdrop-blur-xl border border-border/70 shadow-2xl overflow-hidden"
-                    )}>
-                        <CardContent
-                            {...props}
-                            name={name}
-                            iconSrc={iconSrc}
-                            iconDarkSrc={iconDarkSrc}
-                            percentage={percentage}
-                            mode={mode}
-                            size={size}
-                        />
-                    </Content>
-                </Root>
-            )}
-
-            {mode === "Detailed" && (
-                <CardContent
-                    {...props}
-                    name={name}
-                    iconSrc={iconSrc}
-                    iconDarkSrc={iconDarkSrc}
-                    percentage={percentage}
-                    mode={mode}
-                    size={size}
-                />
-            )}
-        </article>
-    );
-}
-
-function CardIcon({
-    name,
-    iconSrc,
-    iconDarkSrc,
-    percentage,
-    mode,
-    size,
+function StackPreview({
     className,
-}: Omit<CardType, "description" | "usages" | "type"> & { size?: IconSize }) {
-    const tier = tierFor(percentage);
+    stack,
+    isCompact = false,
+}: {
+    className?: string;
+    stack: Infer<typeof stackValidator>;
+    isCompact?: boolean;
+}) {
+    const { name, description, icon, percentage, usages, type } = stack;
 
     return (
-        <div
-            data-mode={mode}
-            data-size={size}
+        <Card
             className={cn(
-                "relative flex justify-center items-center rounded-2xl transition-all duration-300",
-                "bg-card/90 dark:bg-card/70 backdrop-blur-sm border border-border/80",
-                "shadow-[0_4px_16px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)]",
-                tier.glow,
-                mode === "Compact" && "group-hover:-translate-y-1.5 group-hover:border-primary/50",
-                "data-[size=trigger]:size-16 sm:data-[size=trigger]:size-18 lg:data-[size=trigger]:size-20",
-                "data-[size=sheet]:size-14",
-                "data-[size=hover]:size-12",
-                "data-[size=detailed]:size-14 p-2.5",
-                className,
-            )}
-        >
-            <AppImage
-                src={iconSrc}
-                srcDark={iconDarkSrc}
-                alt={`${name} tech stack`}
-                width={100}
-                height={100}
-                variantWidth="w50"
-                className="transition-transform duration-300 group-hover:scale-110 drop-shadow-sm"
-            />
-        </div>
-    );
-}
-
-function CardContent({
-    name,
-    iconSrc,
-    iconDarkSrc,
-    percentage,
-    description,
-    usages,
-    mode,
-    size,
-    className
-}: CardType & { size?: IconSize }) {
-    const tier = tierFor(percentage);
-
-    return (
-        <div
-            data-mode={mode}
-            data-size={size}
-            className={cn(
-                "flex flex-col justify-between gap-4 transition-all duration-300",
-                mode === "Detailed" ? [
-                    "w-full h-full p-6 sm:p-7 rounded-2xl",
-                    "bg-card/85 dark:bg-card/65 backdrop-blur-md border border-border/70",
-                    "shadow-[0_8px_30px_rgba(0,0,0,0.05)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.35)]",
-                    "hover:-translate-y-1.5 hover:border-primary/40",
-                    tier.glow,
-                ] : "p-5",
+                "transition-all duration-300 w-full gap-4 p-4! sm:p-8! sm:gap-6",
+                isCompact
+                    ? "p-4 border-0 shadow-none bg-transparent"
+                    : "p-6 sm:p-7 shadow-2xl bg-card border-border/80",
                 className
             )}
         >
-            <div className="flex gap-4 items-center">
-                <CardIcon
-                    name={name}
-                    iconSrc={iconSrc}
-                    iconDarkSrc={iconDarkSrc}
-                    percentage={percentage}
-                    mode={mode}
-                    size={size}
+            <CardHeader className="flex items-center gap-4 sm:gap-6 p-0 max-md:hidden">
+                <AppIcon
+                    src={icon.src}
+                    srcDark={icon.srcDark}
+                    alt={icon.alt}
+                    size={'sm'}
                 />
 
-                <div className="flex flex-col gap-1 min-w-0">
-                    <H3 title={name} titleSize={"h6"} className="font-semibold tracking-tight truncate" />
+                <H3
+                    title={name}
+                    subtitle={type}
+                    size={"h5"}
+                    titleClassName="font-semibold tracking-tight truncate"
+                    subtitleClassName="capitalize"
+                />
 
-                    <div className="flex items-center gap-2">
-                        <span className={cn(
-                            "py-0.5 px-2.5 rounded-full ring-1 text-[0.7rem] font-semibold tracking-wide uppercase bg-background/50",
-                            tier.text,
-                            tier.ring,
-                        )}>
-                            {tier.label}
-                        </span>
+                <span className="ms-auto rounded-md border border-border/60 bg-muted/50 px-2 py-0.5 font-mono text-xs font-semibold text-foreground shrink-0">
+                    {percentage}%
+                </span>
+            </CardHeader>
 
-                        <span className="text-xs font-mono font-medium text-muted-foreground">
-                            {percentage}%
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
-                {description}
-            </p>
-
-            <div className="space-y-1.5 pt-1">
+            <CardContent className={cn("flex flex-col gap-4! sm:gap-6! p-0!")}>
                 <Progress
                     value={percentage}
-                    className="h-2 bg-muted/80 rounded-full overflow-hidden"
-                    barClassName={cn(tier.bar, "transition-all duration-500")}
-                />
-            </div>
+                >
+                    <ProgressLabel>Usage</ProgressLabel>
 
-            <Tags tags={usages} variant={'filledMuted'} className="flex flex-wrap gap-1.5 pt-2 border-t border-border/40" />
-        </div>
-    );
-}
+                    <ProgressValue />
 
-function Ping({ mode = 'Compact', bg }: {
-    mode: StackMode;
-    bg: string;
-}) {
-    return (
-        <span
-            aria-hidden="true"
-            className="absolute top-2.5 right-2.5 flex size-2.5 pointer-events-none"
-        >
-            <span className={cn("animate-ping absolute inline-flex h-full w-full rounded-full opacity-60", bg)} />
-            <span className={cn("relative inline-flex rounded-full size-2.5 shadow-sm", bg)} />
-        </span>
+                    <ProgressTrack>
+                        <ProgressIndicator className={cn(tierFor(percentage).bar, "transition-all duration-500")} />
+                    </ProgressTrack>
+                </Progress>
+
+                <div className="flex flex-col gap-1.5">
+                    <span className="text-[11px] font-semibold text-foreground uppercase tracking-wider flex items-center gap-1.5">
+                        <Sparkles className="size-3 text-primary" />
+                        Overview
+                    </span>
+
+                    <p className="text-xs leading-relaxed text-muted-foreground">
+                        {description}
+                    </p>
+                </div>
+            </CardContent>
+
+            {usages && usages.length > 0 && (
+                <CardFooter className={cn(
+                    "flex flex-col items-stretch gap-2 border-t border-border/60 p-0 pt-4 sm:pt-6 bg-transparent!",
+                )}>
+                    <span className="text-[11px] font-semibold text-foreground uppercase tracking-wider">
+                        Key Areas & Usages
+                    </span>
+
+                    <Tags
+                        tags={usages}
+                        variant={"filledMuted"}
+                        className="flex flex-wrap gap-1.5"
+                    />
+                </CardFooter>
+            )}
+        </Card>
     );
 }

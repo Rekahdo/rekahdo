@@ -18,22 +18,17 @@ export async function StackSection() {
     return (
         <Container
             id={STACK_ID}
-            py={"section"}
-            px={'section'}
-            bgGradient={'dots'}
-            wrapperClassName="relative overflow-visible"
-            className="relative"
+            containerClassName="spacing-base gap-xs"
         >
-            <section className="flex flex-col gap-10 w-full relative z-10">
-                <H2
-                    title={sec.title}
-                    subtitle={sec.subtitle}
-                    icon={<CodeXml className="text-primary size-6" />}
-                    className={"mx-auto text-center tracking-tight"}
-                />
+            <H2
+                title={sec.title}
+                subtitle={sec.subtitle}
+                icon={<CodeXml className="text-primary size-6" />}
+                rootClassName={"me-auto"}
+                subtitleClassName="max-w-2xl leading-relaxed"
+            />
 
-                <StackCards data={data} />
-            </section>
+            <StackCards data={data} />
         </Container>
     );
 }

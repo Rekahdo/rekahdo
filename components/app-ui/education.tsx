@@ -6,6 +6,7 @@ import Link from "next/link";
 import { buttonVariants } from "../ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { H3, H5 } from "../shared-ui/headings";
+import { AppIcon } from "../shared-ui/icon";
 
 export type EducationType = {
   institution: string;
@@ -39,16 +40,9 @@ function Education({
       )}>
 
         <CardHeader className="flex items-center gap-4">
-          <AppImage
+          <AppIcon
             src={logo}
-            height={40}
-            width={40}
             alt={`${institution} logo`}
-            className={cn(
-              "bg-red-300 size-12",
-              "flex size-12 shrink-0 items-center justify-center rounded-xl",
-              "border border-border/80 bg-background/80 p-2 shadow-xs"
-            )}
           />
 
           <CardTitle className="truncate text-xs font-semibold uppercase tracking-wider text-muted-foreground">
@@ -89,13 +83,11 @@ function Education({
               rel="noopener noreferrer"
               aria-label={`View certification for ${course}`}
               className={cn("w-full gap-4 flex items-center py-4",
-                buttonVariants({ variant: "outline", size: "sm" }),
-                "group/btn hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
+                buttonVariants({ variant: "secondary", size: "sm" }),
+                "group/btn hover:bg-primary/50! transition-all"
               )}
             >
-              <Award className="size-3 text-primary group-hover/btn:text-primary-foreground transition-colors" />
-              <span>View Certification</span>
-              <ExternalLink className="size-3 opacity-60 ml-auto" />
+              View Certification
             </Link>
           </CardFooter>
         )}

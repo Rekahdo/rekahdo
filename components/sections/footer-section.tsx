@@ -11,6 +11,7 @@ import { Mail, Phone } from "lucide-react";
 import { GithubIcon } from "../icons/lucide-github";
 import { LinkedinIcon } from "../icons/lucide-linkedin";
 import { WhatsappIcon } from "../icons/cib-whatsapp";
+import { AppIconVariants } from "../shared-ui/icon";
 
 export interface FooterSectionProps { }
 
@@ -53,7 +54,7 @@ export default async function FooterSection(props: FooterSectionProps) {
             py={'section'}
             px={'section'}
             background={'footer'}
-            className={cn(textStyle, whiteForeground)}
+            containerClassName={cn(textStyle, whiteForeground)}
         >
             <Layout
                 maxSmAxis={"y"}
@@ -64,7 +65,7 @@ export default async function FooterSection(props: FooterSectionProps) {
                         <H2
                             title={about.firstname.concat(" ".concat(about.lastname))}
                             subtitle={about.stack}
-                            className={cn(whiteForeground)}
+                            titleClassName={cn(whiteForeground)}
                             subtitleClassName={cn(textStyle, whiteForeground)}
                         />
 
@@ -77,12 +78,10 @@ export default async function FooterSection(props: FooterSectionProps) {
                                     rel="noopener noreferrer"
                                     aria-label={social.name}
                                     className={cn(
-                                        "size-10 rounded-xl bg-white/10",
-                                        "border border-black/20 hover:bg-white/20",
-                                        "flex items-center justify-center transition-colors"
+                                        AppIconVariants({ variant: 'muted-alt', size: 'lg', hover: 'muted-alt' }),
                                     )}
                                 >
-                                    <span className="*:size-5">{social.icon}</span>
+                                    {social.icon}
                                 </Link>
                             ))}
                         </div>

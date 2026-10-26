@@ -66,15 +66,15 @@ export default async function ProjectsSection() {
             py={"section"}
             px={'section'}
             bgGradient={'grid-sm'}
-            wrapperClassName="relative overflow-visible"
-            className="relative"
+            rootClassName="relative overflow-visible"
+            containerClassName="relative"
         >
             <section className="flex flex-col gap-10 w-full relative z-10">
                 <H2
                     title={sec.title}
                     subtitle={sec.subtitle}
                     icon={<FolderGit2 className="text-primary size-6" />}
-                    className="mx-auto text-center tracking-tight"
+                    titleClassName="mx-auto text-center tracking-tight"
                 />
 
                 <ProjectsTabs projects={data.slice(0, 4) ?? []} />

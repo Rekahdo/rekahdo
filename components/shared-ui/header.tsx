@@ -52,19 +52,7 @@ function HeaderRight({ children }: { children?: ReactNode }) {
   );
 }
 
-const headerVariants = cva(
-  cn(
-    "flex items-center gap-2 sm:gap-4",
-  ),
-  {
-    variants: {
-    },
-    defaultVariants: {
-    }
-  }
-)
-
-export type HeaderCompType = VariantProps<typeof headerVariants> & {
+export type HeaderCompType = {
   className?: string;
   headerLeft?: ReactNode;
   headerCenter?: ReactNode;
@@ -82,7 +70,7 @@ export function Header({
 
   return (
     <header aria-label={ariaLabel}
-      className={cn(headerVariants({ className }))}>
+      className={cn("flex items-center gap-2 sm:gap-4", className)}>
 
       {headerLeft &&
         <HeaderLeft>

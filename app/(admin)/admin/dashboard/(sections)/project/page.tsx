@@ -65,7 +65,7 @@ export default function Page(props: PageProps) {
             <H1
                 title="Projects"
                 subtitle="Manage all your portfolio projects in one place."
-                className="text-center items-center"
+                titleClassName="text-center items-center"
             />
 
             <Card>

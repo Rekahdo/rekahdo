@@ -152,9 +152,10 @@ export const imageVariants = cva("", {
     },
 });
 
-export type ImageProps = Omit<NextImageProps, "src" | "alt" | "loading" | "objectFit"> &
+export type ImageProps = Omit<NextImageProps, "src" | "alt" | "loading" | "objectFit" | "className"> &
     VariantProps<typeof imageVariants> & {
-        className?: string;
+        rootClassName?: string;
+        wrapperClassName?: string;
         imgClassName?: string;
         src: NextImageProps["src"];
         srcDark?: NextImageProps["src"];
@@ -165,7 +166,8 @@ export type ImageProps = Omit<NextImageProps, "src" | "alt" | "loading" | "objec
     };
 
 export default function AppImage({
-    className,
+    rootClassName,
+    wrapperClassName,
     imgClassName,
     src,
     srcDark,
@@ -199,12 +201,13 @@ export default function AppImage({
     }, [src, srcDark]);
 
     return (
-        <div className={cn(imageVariants({ rounded, ...props }), className)}>
+        <div className={cn(imageVariants({ rounded, ...props }), rootClassName)}>
             <div
                 className={cn(
                     imageVariants({ rounded }),
                     "relative flex justify-center items-center",
                     "overflow-hidden w-full h-full",
+                    wrapperClassName,
                 )}
             >
                 <NextImage

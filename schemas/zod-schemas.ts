@@ -2,6 +2,7 @@ import z from "zod";
 
 const imageValidator = z.object({
   src: z.string(),
+  srcDark: z.optional(z.string()),
   alt: z.string(),
 });
 
@@ -91,8 +92,7 @@ export const aboutSchema = z.object({
 
 export const stackSchema = z.object({
   name: z.string(),
-  iconSrc: z.string(),
-  iconDarkSrc: z.optional(z.string()),
+  icon: imageValidator,
   percentage: z.number(),
   description: z.string(),
   usages: z.array(tagValidator),

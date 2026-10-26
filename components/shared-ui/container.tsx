@@ -53,7 +53,7 @@ export const containerVariants = cva(
                 bgImage: "bg-[url(/images/bg/bg-image.svg)] bg-no-repeat bg-top-left bg-fixed",
             },
             bgGradient: {
-               
+
                 grid: cn(
                     "bg-[linear-gradient(to_right,color-mix(in_oklab,var(--border)_20%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_oklab,var(--border)_20%,transparent)_1px,transparent_1px)]",
                     "bg-size[32px_32px]",
@@ -84,11 +84,11 @@ export const containerVariants = cva(
                     "bg-size[32px_32px]",
                 ),
                 noise: cn(
-                   
+
                     "bg-[radial-gradient(circle_at_20%_30%,color-mix(in_oklab,var(--primary)_8%,transparent),transparent_40%),radial-gradient(circle_at_80%_70%,color-mix(in_oklab,var(--primary)_6%,transparent),transparent_50%)]",
                 ),
 
-               
+
                 "glow-top": cn(
                     "bg-[radial-gradient(80%_50%_at_50%_0%,color-mix(in_oklab,var(--primary)_18%,transparent),transparent_70%)]",
                 ),
@@ -108,12 +108,12 @@ export const containerVariants = cva(
                     "bg-[radial-gradient(at_10%_10%,color-mix(in_oklab,var(--chart-2)_20%,transparent)_0,transparent_55%),radial-gradient(at_90%_10%,color-mix(in_oklab,var(--chart-4)_20%,transparent)_0,transparent_55%),radial-gradient(at_50%_100%,color-mix(in_oklab,var(--chart-1)_22%,transparent)_0,transparent_55%)]",
                 ),
 
-               
+
                 spotlight: cn(
                     "bg-[radial-gradient(60%_40%_at_50%_-10%,color-mix(in_oklab,var(--primary)_22%,transparent),transparent_60%),linear-gradient(180deg,transparent,color-mix(in_oklab,var(--background)_40%,transparent))]",
                 ),
 
-               
+
                 "diagonal-lines": cn(
                     "bg-[repeating-linear-gradient(135deg,color-mix(in_oklab,var(--border)_50%,transparent)_0_1px,transparent_1px_10px)]",
                 ),
@@ -160,33 +160,30 @@ type ContainerProps = VariantProps<typeof containerVariants>
     as?: ElementType;
     id?: string;
 
-    children: ReactNode;
-    className?: string;
-    wrapperClassName?: string;
-} & Omit<HTMLAttributes<HTMLElement>, "id">;
+    rootClassName?: string;
+    containerClassName?: string;
+} & Omit<HTMLAttributes<HTMLElement>, "id" >;
 
 export function Container({
     id,
     as: Tag = "section",
     children,
-    className,
-    wrapperClassName, 
+    rootClassName,
+    containerClassName,
     px, py,
     width, height,
     place,
     ...props
-}: ContainerProps) {
+}: Omit<ContainerProps, "className">) {
     return (
         <Tag data-slot="container" id={id}
             className={cn("flex rounded-none *:grow min-w-87.5 items-center",
                 containerVariants({
                     background: 'background',
-                   
-                   
                     ...props
-                }), wrapperClassName)}>
+                }), rootClassName)}>
 
-            <ContainerInner className={className} px={px} py={py} width={width}
+            <ContainerInner className={containerClassName} px={px} py={py} width={width}
                 height={height} place={place}>
 
                 {children}

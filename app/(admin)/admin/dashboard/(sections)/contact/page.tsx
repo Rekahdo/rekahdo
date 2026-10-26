@@ -38,7 +38,7 @@ export default function Page() {
             <H1
                 title="Contact"
                 subtitle="Update your contact links so visitors can reach you."
-                className="text-center items-center"
+                titleClassName="text-center items-center"
             />
 
             <Card>

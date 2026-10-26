@@ -90,7 +90,7 @@ export function Project({ project, className }: ProjectProps) {
             )}
         >
             <div>
-                
+
                 <CardHeader className="p-0 relative overflow-hidden">
                     <AspectRatio ratio={16 / 9} className="overflow-hidden bg-muted">
                         <Image
@@ -102,7 +102,7 @@ export function Project({ project, className }: ProjectProps) {
                         />
                     </AspectRatio>
 
-                    
+
                     <PingTag
                         textFg={status.fg}
                         bg={status.bg}
@@ -118,7 +118,7 @@ export function Project({ project, className }: ProjectProps) {
                         <H3
                             title={project.title}
                             titleSize={"h5"}
-                            className="tracking-tight font-semibold text-foreground group-hover:text-primary transition-colors"
+                            titleClassName="tracking-tight font-semibold text-foreground group-hover:text-primary transition-colors"
                         />
                     </CardTitle>
 
@@ -132,7 +132,7 @@ export function Project({ project, className }: ProjectProps) {
                 </CardContent>
             </div>
 
-            
+
             <CardFooter className="flex items-center gap-3 p-5 sm:p-6 pt-0 mt-auto border-t border-border/40">
                 <Link
                     href={project.github}
@@ -149,7 +149,7 @@ export function Project({ project, className }: ProjectProps) {
                         alt={`${project.title} GitHub repository`}
                         width={18}
                         height={18}
-                        className="size-4"
+                        rootClassName="size-4"
                     />
                     <span>Source</span>
                 </Link>

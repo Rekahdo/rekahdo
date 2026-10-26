@@ -227,7 +227,7 @@
   }
 
   .px-base {
-    @apply px-10 sm:px-12 md:px-16 lg:px-20;
+    @apply px-6 sm:px-12 md:px-16 lg:px-20;
   }
 
   .py-base {

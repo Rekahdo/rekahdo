@@ -12,7 +12,7 @@ const logoVariants = cva(cn(), {
     }
 })
 
-export function Logo({ width=100, height=100, eager = true, variant, ...props }
+export function Logo({ width = 100, height = 100, eager = true, variant, ...props }
     : Omit<ImageProps, "src" | "alt" | "variant"> & VariantProps<typeof logoVariants>) {
     const light = "/images/logo/logo.svg";
     const dark = "/images/logo/logo-dark.svg";
@@ -21,7 +21,7 @@ export function Logo({ width=100, height=100, eager = true, variant, ...props }
     return (
         <a href="/">
             <AppImage src={light} alt={alt} width={width} height={height}
-                eager className={cn(logoVariants({ variant }))} {...props} />
+                eager rootClassName={cn(logoVariants({ variant }))} {...props} />
         </a>
     );
 }
