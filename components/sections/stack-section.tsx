@@ -24,8 +24,7 @@ export async function StackSection() {
                 title={sec.title}
                 subtitle={sec.subtitle}
                 icon={<CodeXml className="text-primary size-6" />}
-                rootClassName={"me-auto"}
-                subtitleClassName="max-w-2xl leading-relaxed"
+                maxWidth
             />
 
             <StackCards data={data} />

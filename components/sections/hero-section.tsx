@@ -67,11 +67,9 @@ export const HeroSection = async () => {
                                     <span>{data.introduction}{" "}</span>
                                     <span className="text-primary">{about.firstname}</span>
                                 </>}
-
                                 titleSize={'hero'}
                                 subtitle={about.role}
                                 subtitleSize={'hero'}
-                                titleClassName="max-lg:text-center"
                             />
                         }
 

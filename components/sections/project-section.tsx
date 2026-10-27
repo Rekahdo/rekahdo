@@ -65,8 +65,8 @@ export default async function ProjectsSection() {
                     title={sec.title}
                     subtitle={sec.subtitle}
                     icon={<FolderGit2 className="text-primary size-6" />}
-                    subtitleClassName="text-center mx-auto"
-                    titleClassName="mx-auto text-center tracking-tight"
+                    align={'center'}
+                    maxWidth
                 />
 
                 <ProjectCards projects={data.filter(project => project.display) ?? []} />
