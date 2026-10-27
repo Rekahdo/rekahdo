@@ -4,8 +4,8 @@ import { cn } from "cn";
 import { ElementType, MouseEvent, ReactNode } from "react";
 import { hover } from "./_css";
 import { NavigationLink, scrollToId } from "./navigation";
-import { CONTACT_ID } from "../sections/contact-section";
 import Link from "next/link";
+import { CONTACT_FORM_ID } from "../app-ui/send-message";
 
 export interface PingProps {
     bg?: string;
@@ -105,11 +105,11 @@ export function PingTag({
     );
 }
 
-export function AvailableForWork({width, className}: Pick<PingTagProps, 'width' | 'className'>) {
+export function AvailableForWork({ width, className }: Pick<PingTagProps, 'width' | 'className'>) {
     const date = new Date();
     return (
         <PingTag
-            onClick={() => scrollToId({ id: CONTACT_ID })}
+            onClick={() => scrollToId({ id: CONTACT_FORM_ID })}
             width={width}
             className={cn("gap-4 shadow-sm cursor-pointer", className)}
             pingSize="size-3"
