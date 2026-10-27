@@ -24,19 +24,21 @@ interface SendMessageFormProps {
     from: string;
 }
 
+export const CONTACT_FORM_ID = 'contact-form-id'
+
 export default function SendMessageForm({
     className, title, subtitle, from
 }: SendMessageFormProps) {
     const [sent, setSent] = useState(false);
 
     return (
-        <Card className={cn(
+        <Card id={CONTACT_FORM_ID} className={cn(
             "w-full rounded-2xl border border-border/80 bg-card p-6 sm:p-8 md:p-10 shadow-sm",
             className
         )}>
             {!sent && (title || subtitle) && (
-                <div className="mb-8 space-y-1.5">
-                    <H2 title={title} subtitle={subtitle} titleClassName="tracking-tight" />
+                <div className="mb-4 sm:mb-6 md:mb-8 space-y-1.5">
+                    <H2 title={title} subtitle={subtitle} />
                 </div>
             )}
 
