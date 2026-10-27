@@ -12,7 +12,6 @@ import { XFillIcon } from "../icons/akar-icons-x-fill";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { Infer } from "convex/values";
 import { contactValidator } from "@/convex/schema";
-import { useWidthMedia } from "@/hooks/useMedia";
 import { Layout } from "../shared-ui/layout";
 import { AppIconVariants } from "../shared-ui/icon";
 
@@ -50,7 +49,7 @@ export default function ContactInfo({ data }: ContactInfoProps) {
                 </div>
 
                 <div className="pt-2">
-                    <AvailableForWork width="full" className="shadow-xs backdrop-blur-md" />
+                    <AvailableForWork width="full" className="shadow-xs" />
                 </div>
             </>}
         />
@@ -64,16 +63,18 @@ function Info({ icon, title, description, allowCopy }: {
     allowCopy?: boolean;
 }) {
     const [copy, copied] = useCopyToClipboard();
-    const media = useWidthMedia().md;
 
     return (
         <div
-            onClick={async () => { if (media && allowCopy) await copy(description) }}
+            onClick={async () => {
+                if (allowCopy && window.matchMedia("(min-width: 767px)").matches) {
+                    await copy(description);
+                }
+            }}
             className={cn(
                 "group relative flex items-center gap-4 p-4 rounded-2xl",
-                "border border-border/70 bg-card/75 dark:bg-card/45 backdrop-blur-sm",
-                "shadow-[0_2px_12px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_16px_rgba(0,0,0,0.2)]",
-                "transition-all duration-200",
+                "border border-border/70 bg-card shadow-sm",
+                "transition-[transform,border-color,box-shadow] duration-200",
                 allowCopy && "hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md md:cursor-pointer"
             )}
         >
@@ -126,6 +127,7 @@ function FindMeOnline({ icon, url, label }: {
             aria-label={label}
             className={cn(
                 AppIconVariants({ variant: 'muted', size: 'lg', hover: 'muted', border: true }),
+                "bg-card backdrop-blur-none",
             )}
         >
             {icon}
