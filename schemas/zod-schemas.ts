@@ -100,6 +100,7 @@ export const stackSchema = z.object({
 });
 
 export const projectSchema = z.object({
+  display: z.boolean(),
   title: z.string(),
   description: z.string(),
   image: imageValidator,

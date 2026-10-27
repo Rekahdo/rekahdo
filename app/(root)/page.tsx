@@ -10,6 +10,7 @@ export default function Page() {
             <HeroSection />
             <AboutSection />
             <StackSection />
+            <ProjectsSection />
             <ContactSection />
         </>
     )

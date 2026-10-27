@@ -78,7 +78,7 @@ function Heading({
             <Tag
                 id={id}
                 className={cn(
-                    "flex items-center gap-4 text-foreground capitalize tracking-tight text-wrap",
+                    "flex items-center gap-4 text-foreground capitalize tracking-tight truncate text-wrap",
                     HeaderVariants({ titleSize: visualSize }),
                     titleClassName,
                 )}
@@ -93,7 +93,10 @@ function Heading({
             </Tag>
 
             {hasSubtitle && (
-                <div className={cn(HeaderVariants({ subtitleSize: visualSubtitleSize }), subtitleClassName)}>
+                <div className={cn("max-w-8/10 sm:max-w-8/10 md:max-w-7/10 lg:max-w-6/10",
+                    HeaderVariants({ subtitleSize: visualSubtitleSize }),
+                    subtitleClassName)}>
+
                     {subtitle}
                 </div>
             )}

@@ -3,11 +3,12 @@ import { H2 } from "../shared-ui/headings";
 import { AppImageType } from "@/lib/types";
 import { TagType } from "../app-ui/tag";
 import { section } from "@/data/section";
-import { ProjectsTabs } from "../app-ui/projects-tab";
 import { projectsData } from "@/data/project";
 import { FolderGit2 } from "lucide-react";
+import { ProjectCards } from "../app-ui/project-card";
 
 export const StatusArray = ["deployed", "development", "maintenance"] as const;
+
 type StatusKey = (typeof StatusArray)[number];
 
 type StatusValue = {
@@ -44,16 +45,6 @@ export const Status: StatusType = {
     },
 };
 
-export type ProjectType = {
-    title: string;
-    description: string;
-    image: AppImageType;
-    github: string;
-    deployment?: string;
-    technologies: TagType[];
-    status: StatusKey;
-};
-
 export const PROJECT_ID = "project";
 
 export default async function ProjectsSection() {
@@ -74,10 +65,11 @@ export default async function ProjectsSection() {
                     title={sec.title}
                     subtitle={sec.subtitle}
                     icon={<FolderGit2 className="text-primary size-6" />}
+                    subtitleClassName="text-center mx-auto"
                     titleClassName="mx-auto text-center tracking-tight"
                 />
 
-                <ProjectsTabs projects={data.slice(0, 4) ?? []} />
+                <ProjectCards projects={data.filter(project => project.display) ?? []} />
             </section>
         </Container>
     );
