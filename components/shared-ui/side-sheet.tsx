@@ -9,6 +9,7 @@ import { Button } from "../ui/button";
 import { Logo } from "./logo";
 import { ThemeToggle } from "./toggle";
 import { Navigation, NavItem } from "./navigation";
+import { CurrentDataTime } from "./current-datetime";
 
 type SideBarType = {
     side?: "left" | "top" | "right" | "bottom";
@@ -22,6 +23,25 @@ type SideBarType = {
     bottom?: ReactNode;
     className?: string;
     navItems: NavItem[];
+    /** Date/time the project was last updated. Defaults to now. */
+    lastUpdated?: Date | string | number;
+};
+
+function formatLastUpdated(value: Date | string | number): string {
+    const date = value instanceof Date ? value : new Date(value);
+    if (Number.isNaN(date.getTime())) return "—";
+
+    const datePart = date.toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+    });
+    const timePart = date.toLocaleTimeString(undefined, {
+        hour: "2-digit",
+        minute: "2-digit",
+    });
+
+    return `${datePart} · ${timePart}`;
 }
 
 export function SideSheet({
@@ -35,74 +55,76 @@ export function SideSheet({
     bottom,
     className,
     navItems,
+    lastUpdated = new Date(),
 }: SideBarType) {
 
     const [open, setOpen] = useState(false);
     const media = useWidthMedia().maxMlg;
 
     return (
-        <>{
-            media &&
-            <section aria-label="Mobile navigation"
-                className={cn("ml-auto flex items-center")}>
+        <>
+            {media && (
+                <section aria-label="Mobile navigation"
+                    className={cn("ml-auto flex items-center")}>
 
-                <Sheet open={open} onOpenChange={setOpen}>
-                    <SheetTrigger aria-label={triggerLabel}
-                        render={
-                            <Button
-                                variant={"outline"}
-                                size={"icon"}
-                                className="size-9 rounded-xl border-border/70 hover:bg-muted/60"
-                            >
-                                {trigger}
-                            </Button>
-                        }>
-                    </SheetTrigger>
+                    <Sheet open={open} onOpenChange={setOpen}>
+                        <SheetTrigger aria-label={triggerLabel}
+                            render={
+                                <Button
+                                    variant={"outline"}
+                                    size={"icon"}
+                                    className="size-9 rounded-xl border-border/70 hover:bg-muted/60"
+                                >
+                                    {trigger}
+                                </Button>
+                            }>
+                        </SheetTrigger>
 
-                    <SheetContent
-                        side={side}
-                        showCloseButton={false}
-                        className={cn(
-                            "flex flex-col justify-between p-6 bg-card/95 backdrop-blur-xl border-border/70",
-                            className
-                        )}
-                    >
-                        {(logo || top || title || description || navItems) &&
-                            <SheetHeader className="p-0 text-left space-y-4">
-                                {logo &&
-                                    <div className="flex justify-between items-center w-full pb-3 border-b border-border/40">
-                                        <span onClick={() => setOpen(false)} className="cursor-pointer">{logo}</span>
-                                        <ThemeToggle />
+                        <SheetContent
+                            side={side}
+                            showCloseButton={false}
+                            className={cn(
+                                "flex flex-col justify-between p-6 bg-card/95 backdrop-blur-xl border-border/70",
+                                className
+                            )}
+                        >
+                            {(logo || top || title || description || navItems) && (
+                                <SheetHeader className="p-0 text-left space-y-4">
+                                    {logo && (
+                                        <div className="flex justify-between items-center w-full pb-3 border-b border-border/40">
+                                            <span onClick={() => setOpen(false)} className="cursor-pointer">{logo}</span>
+                                            <ThemeToggle />
+                                        </div>
+                                    )}
+
+                                    {top && <div className="pt-2">{top}</div>}
+
+                                    {title && <SheetTitle className="text-lg font-semibold tracking-tight">{title}</SheetTitle>}
+
+                                    {description && <SheetDescription className="text-xs text-muted-foreground">{description}</SheetDescription>}
+
+                                    <div className="py-2">
+                                        <Navigation
+                                            navItems={navItems}
+                                            onNavigate={() => setOpen(false)}
+                                            orientation={'vertical'}
+                                            width={'full'}
+                                            height={'sm'}
+                                            gap={'xs'}
+                                        />
                                     </div>
-                                }
+                                </SheetHeader>
+                            )}
 
-                                {top && <div className="pt-2">{top}</div>}
-
-                                {title && <SheetTitle className="text-lg font-semibold tracking-tight">{title}</SheetTitle>}
-
-                                {description && <SheetDescription className="text-xs text-muted-foreground">{description}</SheetDescription>}
-
-                                <div className="py-2">
-                                    <Navigation
-                                        navItems={navItems}
-                                        onNavigate={() => setOpen(false)}
-                                        orientation={'vertical'}
-                                        width={'full'}
-                                        height={'sm'}
-                                        gap={'xs'}
-                                    />
-                                </div>
-                            </SheetHeader>
-                        }
-
-                        {bottom && (
-                            <SheetFooter className="p-0 pt-4 border-t border-border/40 w-full">
+                            <SheetFooter className="p-0 pt-4 border-t border-border/40 w-full space-y-3">
                                 {bottom}
+                                
+                                <CurrentDataTime />
                             </SheetFooter>
-                        )}
-                    </SheetContent>
-                </Sheet>
-            </section>
-        }</>
+                        </SheetContent>
+                    </Sheet>
+                </section>
+            )}
+        </>
     );
 }

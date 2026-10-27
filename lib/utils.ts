@@ -1,4 +1,4 @@
-export { cn } from "cn"
+export { cn } from "cn";
 
 export function windowTheme(): MediaQueryList | null {
   if (typeof window === "undefined") return null;
@@ -13,7 +13,8 @@ export function themeIsDark(): boolean {
     return true;
   }
 
-  const storedTheme = localStorage.getItem("theme") ?? localStorage.getItem("dark");
+  const storedTheme =
+    localStorage.getItem("theme") ?? localStorage.getItem("dark");
   if (storedTheme !== null) {
     return storedTheme === "dark" || storedTheme === "true";
   }
@@ -26,3 +27,21 @@ export function getRootDocument(): HTMLElement | null {
   return document.documentElement;
 }
 
+export function currentDatetime(value: Date | string | number): string {
+  const date = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(date.getTime())) return "—";
+
+  const datePart = date.toLocaleDateString(undefined, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+
+  const timePart = date.toLocaleTimeString(undefined, {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
+
+  return `${datePart} · ${timePart}`;
+}
