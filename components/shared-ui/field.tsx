@@ -100,7 +100,7 @@ export default function AppInput({
                 data-disabled={isPending}
                 className={cn(
                     "gap-0 p-2!",
-                    "rounded-xl border border-input bg-background/50 backdrop-blur-sm transition-all duration-200 shadow-xs",
+                    "rounded-xl border border-input bg-background transition-colors duration-200 shadow-xs",
                     "hover:border-ring/50 hover:bg-background",
                     isBlock && "gap-1"
                 )}
