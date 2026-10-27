@@ -26,22 +26,3 @@ export function getRootDocument(): HTMLElement | null {
   if (typeof window === "undefined") return null;
   return document.documentElement;
 }
-
-export function currentDatetime(value: Date | string | number): string {
-  const date = value instanceof Date ? value : new Date(value);
-  if (Number.isNaN(date.getTime())) return "—";
-
-  const datePart = date.toLocaleDateString(undefined, {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-
-  const timePart = date.toLocaleTimeString(undefined, {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-  });
-
-  return `${datePart} · ${timePart}`;
-}
