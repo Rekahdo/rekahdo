@@ -1,10 +1,10 @@
 "use client"
 
 import { AvailableForWork } from "../shared-ui/ping";
-import { ReactNode } from "react";
+import { ElementType, ReactNode } from "react";
 import { Check, Copy, Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
-import { Button, buttonVariants } from "../ui/button";
+import { Button } from "../ui/button";
 import { cn } from "cn";
 import { LinkedinIcon } from "../icons/lucide-linkedin";
 import { GithubIcon } from "../icons/lucide-github";
@@ -28,8 +28,8 @@ export default function ContactInfo({ data }: ContactInfoProps) {
 
             topClassName="*:w-full gap-4"
             top={<>
-                <Info title="Email" description={data.email} icon={<Mail />} allowCopy />
-                <Info title="Phone" description={`+${data.phone}`} icon={<Phone />} allowCopy />
+                <Info title="Email" description={data.email} icon={<Mail />} href={`mailto:${data.email}`} allowCopy />
+                <Info title="Phone" description={`+${data.phone}`} icon={<Phone />} href={`tel:+${data.phone}`} allowCopy />
                 <Info title="Location" description={data.location} icon={<MapPin />} />
             </>}
 
@@ -56,60 +56,71 @@ export default function ContactInfo({ data }: ContactInfoProps) {
     );
 }
 
-function Info({ icon, title, description, allowCopy }: {
+function Info({ icon, title, href, description, allowCopy }: {
     icon?: ReactNode;
     title: string;
+    href?: string;
     description: string;
     allowCopy?: boolean;
 }) {
     const [copy, copied] = useCopyToClipboard();
+    const Tag = (href ? Link : 'div') as ElementType;
+    const tagAttribute = href ? { href: href } : {};
 
     return (
         <div
-            onClick={async () => {
-                if (allowCopy && window.matchMedia("(min-width: 767px)").matches) {
-                    await copy(description);
-                }
-            }}
             className={cn(
-                "group relative flex items-center gap-4 p-4 rounded-2xl",
+                "group/info relative flex items-center gap-4 p-4 rounded-2xl",
                 "border border-border/70 bg-card shadow-sm",
                 "transition-[transform,border-color,box-shadow] duration-200",
-                allowCopy && "hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md md:cursor-pointer"
+                allowCopy && "hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
             )}
         >
             {icon && (
-                <div className={cn(AppIconVariants({ variant: 'primary', size: 'lg', border: true }))}>
+                <Tag {...tagAttribute} className={cn(AppIconVariants({ variant: 'primary', size: 'lg', border: true }))}>
                     {icon}
-                </div>
+                </Tag>
             )}
 
-            <dl className="grow leading-snug min-w-0">
-                <dt className="text-[0.7rem] font-semibold uppercase tracking-wider text-muted-foreground select-none">
-                    {title}
-                </dt>
-                
-                <dd className="truncate text-sm font-medium text-foreground select-none pt-0.5 max-2xs:max-w-35 max-1xs:max-w-40">
-                    {description}
-                </dd>
-            </dl>
-
-            {allowCopy && (
-                <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={async (e) => {
-                        e.stopPropagation();
+            <div
+                onClick={async () => {
+                    if (allowCopy && window.matchMedia("(min-width: 767px)").matches) {
                         await copy(description);
-                    }}
-                    aria-label={`Copy ${title}`}
-                >
-                    {copied
-                        ? <Check className="size-4 text-emerald-500 animate-into-view" />
-                        : <Copy className="size-4 animate-into-view" />
                     }
-                </Button>
-            )}
+                }}
+
+                className={cn(
+                    "flex items-center w-full",
+                    allowCopy && "md:cursor-pointer"
+                )}>
+
+                <dl className="grow leading-snug min-w-0">
+                    <dt className="text-[0.7rem] font-semibold uppercase tracking-wider text-muted-foreground select-none">
+                        {title}
+                    </dt>
+
+                    <dd className="truncate text-sm font-medium text-foreground select-none pt-0.5 max-2xs:max-w-35 max-1xs:max-w-40">
+                        {description}
+                    </dd>
+                </dl>
+
+                {allowCopy && (
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={async (e) => {
+                            e.stopPropagation();
+                            await copy(description);
+                        }}
+                        aria-label={`Copy ${title}`}
+                    >
+                        {copied
+                            ? <Check className="size-4 text-emerald-500 animate-into-view" />
+                            : <Copy className="size-4 animate-into-view" />
+                        }
+                    </Button>
+                )}
+            </div>
         </div>
     );
 }

@@ -23,7 +23,7 @@ export default async function FooterSection(props: FooterSectionProps) {
     const contact = await contactData;
 
     const defaultWhatsAppMessage = encodeURIComponent(
-        `Hi ${about.firstname || "Richard"}, I came across your portfolio and would love to connect!`
+        `Hi ${about.firstname || "Richard"}, I came across your portfolio and would love to work with you!`
     );
 
     const whatsappHref = contact.whatsapp

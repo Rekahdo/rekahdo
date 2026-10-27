@@ -10,18 +10,16 @@ import { buttonVariants } from "../ui/button";
 import { AspectRatio } from "../ui/aspect-ratio";
 import Link from "next/link";
 import { Tags } from "./tag";
-import {
-    ProjectType,
-    StatusArray,
-    Status,
-} from "../sections/project-section";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import Image from "next/image";
 import AppImage from "../shared-ui/image";
 import { ExternalLink } from "lucide-react";
+import { Infer } from "convex/values";
+import { projectValidator } from "@/convex/schema";
+import { Status, StatusArray } from "../sections/project-section";
 
 interface ProjectsTabsProps {
-    projects: ProjectType[];
+    projects: Infer<typeof projectValidator>[];
 }
 
 export function ProjectsTabs({ projects }: ProjectsTabsProps) {
@@ -72,7 +70,7 @@ export function ProjectsTabs({ projects }: ProjectsTabsProps) {
 }
 
 interface ProjectProps {
-    project: ProjectType;
+    project: Infer<typeof projectValidator>;
     className?: string;
 }
 

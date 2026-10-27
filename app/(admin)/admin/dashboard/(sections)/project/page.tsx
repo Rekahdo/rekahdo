@@ -14,9 +14,7 @@ import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
 
-export interface PageProps {
-
-}
+export interface PageProps {}
 
 type ProjectItem = z.infer<typeof projectSchema>;
 
@@ -27,6 +25,7 @@ const multiProjectSchema = z.object({
 type MultiProjectForm = z.infer<typeof multiProjectSchema>;
 
 const emptyProject: ProjectItem = {
+    display: false,
     title: "",
     description: "",
     image: { src: "", alt: "" },
@@ -36,6 +35,12 @@ const emptyProject: ProjectItem = {
     status: "development",
 };
 
+const STATUS_OPTIONS = [
+    { value: "development", label: "Development" },
+    { value: "deployed", label: "Deployed" },
+    { value: "maintenance", label: "Maintenance" },
+] as const;
+
 export default function Page(props: PageProps) {
     const data = use(projectsData);
 
@@ -44,7 +49,20 @@ export default function Page(props: PageProps) {
     const { handleSubmit, control } = useForm<MultiProjectForm>({
         resolver: zodResolver(multiProjectSchema),
         defaultValues: {
-            projects: data,
+            projects: data.map((p) => ({
+                display: p.display ?? false,
+                title: p.title,
+                description: p.description,
+                image: {
+                    src: p.image?.src ?? "",
+                    srcDark: p.image?.srcDark,
+                    alt: p.image?.alt ?? "",
+                },
+                github: p.github,
+                deployment: p.deployment,
+                technologies: p.technologies ?? [],
+                status: p.status,
+            })),
         },
     });
 
@@ -53,9 +71,24 @@ export default function Page(props: PageProps) {
         name: "projects",
     });
 
-    function submit(data: MultiProjectForm) {
+    function submit(form: MultiProjectForm) {
+        const normalized = form.projects.map((p) => ({
+            ...p,
+            deployment:
+                p.deployment && p.deployment.trim() !== ""
+                    ? p.deployment.trim()
+                    : undefined,
+            image: {
+                src: p.image.src,
+                alt: p.image.alt || p.title,
+                ...(p.image.srcDark && p.image.srcDark.trim() !== ""
+                    ? { srcDark: p.image.srcDark }
+                    : {}),
+            },
+        }));
+
         startTransition(async () => {
-            await createProjectsAction(data.projects);
+            await createProjectsAction(normalized);
             toast.success("Projects Uploaded Successfully");
         });
     }
@@ -103,13 +136,40 @@ export default function Page(props: PageProps) {
                                 </div>
 
                                 <Controller
+                                    name={`projects.${index}.display`}
+                                    control={control}
+                                    render={({ field, fieldState }) => (
+                                        <Field className="md:col-span-2 flex flex-row items-center gap-2">
+                                            <input
+                                                type="checkbox"
+                                                checked={field.value}
+                                                onChange={field.onChange}
+                                                onBlur={field.onBlur}
+                                                name={field.name}
+                                                ref={field.ref}
+                                                id={`display-${index}`}
+                                                className="size-4 rounded border"
+                                            />
+                                            <FieldLabel htmlFor={`display-${index}`}>
+                                                Display on portfolio
+                                            </FieldLabel>
+                                            {fieldState.invalid && fieldState.error && (
+                                                <FieldError errors={[fieldState.error]} />
+                                            )}
+                                        </Field>
+                                    )}
+                                />
+
+                                <Controller
                                     name={`projects.${index}.title`}
                                     control={control}
                                     render={({ field, fieldState }) => (
                                         <Field className="md:col-span-2">
                                             <FieldLabel>Title</FieldLabel>
                                             <Input type="text" aria-invalid={fieldState.invalid} {...field} />
-                                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                            {fieldState.invalid && fieldState.error && (
+                                                <FieldError errors={[fieldState.error]} />
+                                            )}
                                         </Field>
                                     )}
                                 />
@@ -125,7 +185,9 @@ export default function Page(props: PageProps) {
                                                 {...field}
                                                 className="min-h-24 w-full rounded-md border px-3 py-2 text-sm"
                                             />
-                                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                            {fieldState.invalid && fieldState.error && (
+                                                <FieldError errors={[fieldState.error]} />
+                                            )}
                                         </Field>
                                     )}
                                 />
@@ -137,7 +199,33 @@ export default function Page(props: PageProps) {
                                         <Field>
                                             <FieldLabel>Image Source</FieldLabel>
                                             <Input type="text" aria-invalid={fieldState.invalid} {...field} />
-                                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                            {fieldState.invalid && fieldState.error && (
+                                                <FieldError errors={[fieldState.error]} />
+                                            )}
+                                        </Field>
+                                    )}
+                                />
+
+                                <Controller
+                                    name={`projects.${index}.image.srcDark`}
+                                    control={control}
+                                    render={({ field, fieldState }) => (
+                                        <Field>
+                                            <FieldLabel>Image Source (Dark, optional)</FieldLabel>
+                                            <Input
+                                                type="text"
+                                                aria-invalid={fieldState.invalid}
+                                                value={field.value ?? ""}
+                                                onChange={(e) =>
+                                                    field.onChange(e.target.value || undefined)
+                                                }
+                                                onBlur={field.onBlur}
+                                                name={field.name}
+                                                ref={field.ref}
+                                            />
+                                            {fieldState.invalid && fieldState.error && (
+                                                <FieldError errors={[fieldState.error]} />
+                                            )}
                                         </Field>
                                     )}
                                 />
@@ -149,7 +237,9 @@ export default function Page(props: PageProps) {
                                         <Field>
                                             <FieldLabel>Image Alt</FieldLabel>
                                             <Input type="text" aria-invalid={fieldState.invalid} {...field} />
-                                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                            {fieldState.invalid && fieldState.error && (
+                                                <FieldError errors={[fieldState.error]} />
+                                            )}
                                         </Field>
                                     )}
                                 />
@@ -161,7 +251,9 @@ export default function Page(props: PageProps) {
                                         <Field>
                                             <FieldLabel>GitHub</FieldLabel>
                                             <Input type="url" aria-invalid={fieldState.invalid} {...field} />
-                                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                            {fieldState.invalid && fieldState.error && (
+                                                <FieldError errors={[fieldState.error]} />
+                                            )}
                                         </Field>
                                     )}
                                 />
@@ -176,12 +268,16 @@ export default function Page(props: PageProps) {
                                                 type="url"
                                                 aria-invalid={fieldState.invalid}
                                                 value={field.value ?? ""}
-                                                onChange={(e) => field.onChange(e.target.value || undefined)}
+                                                onChange={(e) =>
+                                                    field.onChange(e.target.value || undefined)
+                                                }
                                                 onBlur={field.onBlur}
                                                 name={field.name}
                                                 ref={field.ref}
                                             />
-                                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                            {fieldState.invalid && fieldState.error && (
+                                                <FieldError errors={[fieldState.error]} />
+                                            )}
                                         </Field>
                                     )}
                                 />
@@ -191,24 +287,40 @@ export default function Page(props: PageProps) {
                                     control={control}
                                     render={({ field, fieldState }) => (
                                         <Field className="md:col-span-2">
-                                            <FieldLabel>Technologies (comma separated)</FieldLabel>
+                                            <FieldLabel>
+                                                Technologies (comma separated)
+                                            </FieldLabel>
                                             <Input
                                                 type="text"
                                                 aria-invalid={fieldState.invalid}
-                                                value={field.value?.map((t) => t.title).join(", ") ?? ""}
-                                                onChange={(e) =>
-                                                    field.onChange(
-                                                        e.target.value
-                                                            .split(",")
-                                                            .map((t) => ({ title: t.trim() }))
-                                                            .filter((t) => t.title !== "")
-                                                    )
+                                                value={
+                                                    field.value
+                                                        ?.map((t) =>
+                                                            t.emoji ? `${t.emoji} ${t.title}` : t.title
+                                                        )
+                                                        .join(", ") ?? ""
                                                 }
+                                                onChange={(e) => {
+                                                    const parsed = e.target.value
+                                                        .split(",")
+                                                        .map((raw) => raw.trim())
+                                                        .filter((raw) => raw.length > 0)
+                                                        .map((raw) => {
+                                                            const match = raw.match(/^(\p{Emoji_Presentation}|\p{Extended_Pictographic})\s*(.+)$/u);
+                                                            if (match) {
+                                                                return { emoji: match[1], title: match[2].trim() };
+                                                            }
+                                                            return { title: raw };
+                                                        });
+                                                    field.onChange(parsed);
+                                                }}
                                                 onBlur={field.onBlur}
                                                 name={field.name}
                                                 ref={field.ref}
                                             />
-                                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                            {fieldState.invalid && fieldState.error && (
+                                                <FieldError errors={[fieldState.error]} />
+                                            )}
                                         </Field>
                                     )}
                                 />
@@ -221,14 +333,22 @@ export default function Page(props: PageProps) {
                                             <FieldLabel>Status</FieldLabel>
                                             <select
                                                 aria-invalid={fieldState.invalid}
-                                                {...field}
+                                                value={field.value}
+                                                onChange={field.onChange}
+                                                onBlur={field.onBlur}
+                                                name={field.name}
+                                                ref={field.ref}
                                                 className="h-9 w-full rounded-md border px-3 text-sm"
                                             >
-                                                <option value="development">Development</option>
-                                                <option value="deployed">Deployed</option>
-                                                <option value="maintenance">Maintenance</option>
+                                                {STATUS_OPTIONS.map((opt) => (
+                                                    <option key={opt.value} value={opt.value}>
+                                                        {opt.label}
+                                                    </option>
+                                                ))}
                                             </select>
-                                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                            {fieldState.invalid && fieldState.error && (
+                                                <FieldError errors={[fieldState.error]} />
+                                            )}
                                         </Field>
                                     )}
                                 />

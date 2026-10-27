@@ -201,11 +201,14 @@ export default function AppImage({
     }, [src, srcDark]);
 
     return (
-        <div className={cn(imageVariants({ rounded, ...props }), rootClassName)}>
+        <div className={cn(
+            fill && "absolute inset-0 w-full h-full",
+            imageVariants({ rounded, ...props }), rootClassName
+        )}>
             <div
                 className={cn(
                     imageVariants({ rounded }),
-                    "relative flex justify-center items-center",
+                    "flex justify-center items-center",
                     "overflow-hidden w-full h-full",
                     wrapperClassName,
                 )}
@@ -214,8 +217,8 @@ export default function AppImage({
                     src={imageSrc}
                     alt={alt}
                     fill={fill}
-                    width={fill ? undefined : width}
-                    height={fill ? undefined : height}
+                    width={width}
+                    height={height}
                     sizes={sizes}
                     onClick={onClick}
                     loading={eager ? "eager" : undefined}

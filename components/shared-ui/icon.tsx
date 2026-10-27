@@ -9,6 +9,9 @@ export const AppIconVariants = cva(
     ), {
     variants: {
         variant: {
+            'no-bg': cn(
+                "border-transparent bg-transparent"
+            ),
             base: cn(
                 "border-border/80 bg-background/80"
             ),
@@ -28,7 +31,8 @@ export const AppIconVariants = cva(
             'muted-alt': "hover:bg-white/20",
         },
         size: {
-            xxs: "p-1 *:size-4 [&_svg]:size-1 rounded-xs",
+            '3xs': "p-0.5 *:size-2 [&_svg]:size-0.5 rounded-[1px]",
+            '2xs': "p-1 *:size-4 [&_svg]:size-1 rounded-xs",
             xs: "p-1.5 *:size-6 [&_svg]:size-2 rounded-sm",
             sm: "p-2 *:size-8 [&_svg]:size-3 rounded-md",
             md: "p-2.5 *:size-10 [&_svg]:size-4 rounded-lg",
@@ -46,7 +50,7 @@ export const AppIconVariants = cva(
 })
 
 export function AppIcon(props: VariantProps<typeof AppIconVariants>
-    & Omit<ImageProps, "width" | "height">) {
+    & Omit<ImageProps, "width" | "height" | "variant">) {
     const { src, srcDark, alt, variant, hover, size, border, ...rest } = props;
 
     return (
@@ -55,7 +59,8 @@ export function AppIcon(props: VariantProps<typeof AppIconVariants>
             srcDark={srcDark}
             alt={alt}
             fill
-            rootClassName={cn(AppIconVariants({ variant, hover, border, size }))}
+            eager
+            rootClassName={cn("relative w-fit h-fit", AppIconVariants({ variant, hover, border, size }))}
             {...rest}
         />
     );

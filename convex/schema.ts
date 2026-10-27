@@ -103,6 +103,7 @@ export const stackTable = {
 export const stackValidator = v.object(stackTable);
 
 export const projectTable = {
+  display: v.boolean(),
   title: v.string(),
   description: v.string(),
   image: imageValidator,
