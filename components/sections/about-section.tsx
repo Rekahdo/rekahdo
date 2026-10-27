@@ -25,8 +25,7 @@ export async function AboutSection() {
         >
             <H2 title={sec.title}
                 subtitle={<div className="h-1 w-12 rounded-full bg-primary/40 mx-auto" />}
-                titleClassName="mx-auto tracking-tight"
-                subtitleClassName="mx-auto" />
+                align={'center'} />
 
             <Layout format={'container'}
                 maxLgAxis={'y'}

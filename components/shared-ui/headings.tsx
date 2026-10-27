@@ -1,4 +1,4 @@
-import { cva } from "class-variance-authority";
+import { cva, VariantProps } from "class-variance-authority";
 import { cn } from "cn";
 import type { ElementType, ReactNode } from "react";
 
@@ -34,6 +34,41 @@ export const HeaderVariants = cva("", {
             h6: "gap-1 sm:gap-1.5",
             h7: "gap-0.5 sm:gap-1",
         },
+        align: {
+            start: "text-start justify-start me-auto",
+            center: "text-center justify-center mx-auto",
+            end: "text-end justify-end ms-auto",
+        },
+        smAlign: {
+            start: "sm:text-start sm:justify-start sm:me-auto",
+            center: "sm:text-center sm:justify-center sm:mx-auto",
+            end: "sm:text-end sm:justify-end sm:ms-auto",
+        },
+        mdAlign: {
+            start: "md:text-start md:justify-start md:me-auto",
+            center: "md:text-center md:justify-center md:mx-auto",
+            end: "md:text-end md:justify-end md:ms-auto",
+        },
+        lgAlign: {
+            start: "lg:text-start lg:justify-start lg:me-auto",
+            center: "lg:text-center lg:justify-center lg:mx-auto",
+            end: "lg:text-end lg:justify-end lg:ms-auto",
+        },
+        maxSmAlign: {
+            start: "max-sm:text-start max-sm:justify-start max-sm:me-auto",
+            center: "max-sm:text-center max-sm:justify-center max-sm:mx-auto",
+            end: "max-sm:text-end max-sm:justify-end max-sm:ms-auto",
+        },
+        maxMdAlign: {
+            start: "max-md:text-start max-md:justify-start max-md:me-auto",
+            center: "max-md:text-center max-md:justify-center max-md:mx-auto",
+            end: "max-md:text-end max-md:justify-end max-md:ms-auto",
+        },
+        maxLgAlign: {
+            start: "max-lg:text-start max-lg:justify-start max-lg:me-auto",
+            center: "max-lg:text-center max-lg:justify-center max-lg:mx-auto",
+            end: "max-lg:text-end max-lg:justify-end max-lg:ms-auto",
+        },
     },
 });
 
@@ -58,11 +93,22 @@ export type HeadingProps = {
 
     children?: ReactNode;
     childrenClassName?: string;
+
+    maxWidth?: boolean;
+    align?: VariantProps<typeof HeaderVariants>["align"];
+    smAlign?: VariantProps<typeof HeaderVariants>["smAlign"];
+    mdAlign?: VariantProps<typeof HeaderVariants>["mdAlign"];
+    lgAlign?: VariantProps<typeof HeaderVariants>["lgAlign"];
+    maxSmAlign?: VariantProps<typeof HeaderVariants>["maxSmAlign"];
+    maxMdAlign?: VariantProps<typeof HeaderVariants>["maxMdAlign"];
+    maxLgAlign?: VariantProps<typeof HeaderVariants>["maxLgAlign"];
 };
+
 function Heading({
     id, as, level = 2, size, titleSize, subtitleSize, icon, iconPosition = "left",
     rootClassName, title, titleClassName,
-    subtitle, subtitleClassName, children, childrenClassName,
+    subtitle, subtitleClassName, children, childrenClassName, maxWidth,
+    align, smAlign, mdAlign, lgAlign, maxSmAlign, maxMdAlign, maxLgAlign,
 }: HeadingProps) {
     const hasTitle = title !== undefined && title !== null && title !== "";
 
@@ -79,7 +125,11 @@ function Heading({
                 id={id}
                 className={cn(
                     "flex items-center gap-4 text-foreground capitalize tracking-tight truncate text-wrap",
-                    HeaderVariants({ titleSize: visualSize }),
+                    HeaderVariants({
+                        titleSize: visualSize,
+                        align, smAlign, mdAlign, lgAlign,
+                        maxSmAlign, maxMdAlign, maxLgAlign,
+                    }),
                     titleClassName,
                 )}
             >
@@ -93,8 +143,13 @@ function Heading({
             </Tag>
 
             {hasSubtitle && (
-                <div className={cn("max-w-8/10 sm:max-w-8/10 md:max-w-7/10 lg:max-w-6/10",
-                    HeaderVariants({ subtitleSize: visualSubtitleSize }),
+                <div className={cn("leading-relaxed",
+                    HeaderVariants({
+                        subtitleSize: visualSubtitleSize,
+                        align, smAlign, mdAlign, lgAlign,
+                        maxSmAlign, maxMdAlign, maxLgAlign,
+                    }),
+                    maxWidth && "max-w-8/10 sm:max-w-8/10 md:max-w-7/10 lg:max-w-8/10",
                     subtitleClassName)}>
 
                     {subtitle}
