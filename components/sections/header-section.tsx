@@ -64,7 +64,7 @@ export const HeaderSection = async () => {
 
                         <div className="h-4 w-px bg-border/60 mx-0.5 max-sm:hidden" />
 
-                        <AnimatedThemeToggler className="max-sm:hidden" />
+                        <AnimatedThemeToggler />
 
                         <SideSheet
                             logo={<Logo />}

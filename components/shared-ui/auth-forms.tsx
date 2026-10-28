@@ -69,13 +69,13 @@ export function DialogSignUpForm(props: DialogSignUpProps) {
                 }
             })
 
-            await fetchMutation(
-                api.role.createRole,
-                {
-                    role: isAdmin ? 'admin' : 'editor',
-                    userId: data!.user.id,
-                },
-            )
+            // await fetchMutation(
+            //     api.role.createRole,
+            //     {
+            //         role: isAdmin ? 'admin' : 'editor',
+            //         userId: data!.user.id,
+            //     },
+            // )
         })
     }
 
