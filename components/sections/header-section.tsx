@@ -3,7 +3,6 @@ import { Container } from "../shared-ui/container";
 import { Header } from "../shared-ui/header";
 import { Logo } from "../shared-ui/logo";
 import { Navigation, NavItem } from "../shared-ui/navigation";
-import { ThemeToggle } from "../shared-ui/toggle";
 import { Download } from "lucide-react";
 import { buttonVariants } from "../ui/button";
 import { cn } from "cn";
@@ -14,6 +13,9 @@ import { PROJECT_ID } from "./project-section";
 import { CONTACT_ID } from "./contact-section";
 import { documentData } from "@/data/document";
 import { backDropBlur } from "../shared-ui/_css";
+import { AnimatedThemeToggler } from "../ui/animated-theme-toggler";
+import { LoginBtn, LogoutBtn, SignUpBtn } from "../shared-ui/auth-btn";
+import { ButtonImpl, DownloadBtn, ExternalBtn, PageBtn, ScrollBtn } from "../shared-ui/button-impl";
 
 export const HEADER_ID = "header";
 
@@ -40,7 +42,6 @@ export const HeaderSection = async () => {
             rootClassName={cn("border-b border-border/50", backDropBlur.background)}
         >
             <Header
-
                 headerLeft={
                     <Logo variant={'header'} />
                 }
@@ -56,39 +57,20 @@ export const HeaderSection = async () => {
 
                 headerRight={
                     <div className="flex items-center gap-2.5 sm:gap-3">
-                        <a
-                            href={cv?.href}
-                            download={cv?.name}
-                            key={`hero-btn-1`}
-                            className={cn(
-                                buttonVariants({ size: 'sm' }),
-                                "h-9 gap-2 rounded-full px-4 text-xs font-medium shadow-xs hover:shadow-primary/20 hover:shadow-md transition-all"
-                            )}
-                        >
-                            <Download className="size-3.5" />
-                            <span className="max-sm:hidden">Download CV</span>
-                        </a>
+                        <DownloadBtn text="Download CV" href={cv?.href} filename={cv?.name} height={'md'} />
+                        <SignUpBtn height={'md'} />
+                        <LoginBtn height={'md'} />
+                        <LogoutBtn height={'md'} />
 
                         <div className="h-4 w-px bg-border/60 mx-0.5 max-sm:hidden" />
 
-                        <ThemeToggle />
+                        <AnimatedThemeToggler className="max-sm:hidden" />
 
                         <SideSheet
                             logo={<Logo />}
                             navItems={navItems}
                             bottom={
-                                <a
-                                    href={cv?.href}
-                                    download={cv?.name}
-                                    key={`hero-btn-1`}
-                                    className={cn(
-                                        buttonVariants({ size: 'default' }),
-                                        "w-full h-11 gap-2 rounded-xl text-sm font-medium shadow-sm"
-                                    )}
-                                >
-                                    <Download className="size-4" />
-                                    Download CV
-                                </a>
+                                <DownloadBtn text="Download CV" href={cv?.href} filename={cv?.name} />
                             }
                         />
                     </div>

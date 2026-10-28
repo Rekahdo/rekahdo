@@ -54,7 +54,7 @@ export default function Page(props: PageProps) {
                             )}
                         />
 
-                        <ButtonImpl type="submit" text="Submit" isPending={isPending} />
+                        <ButtonImpl type="submit" content="Submit" isPending={isPending} />
                     </CardContent>
                 </form>
             </Card>

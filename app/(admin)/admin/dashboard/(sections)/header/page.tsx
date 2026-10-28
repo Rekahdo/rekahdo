@@ -42,7 +42,7 @@ export default function Page(props: PageProps) {
             <Card>
                 <form onSubmit={handleSubmit(submit)}>
                     <CardContent className="grid gap-4">
-                        <ButtonImpl type="submit" text="Submit" isPending={isPending} />
+                        <ButtonImpl type="submit" content="Submit" isPending={isPending} />
                     </CardContent>
                 </form>
             </Card>

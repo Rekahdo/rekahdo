@@ -18,10 +18,11 @@ export interface PageProps { }
 
 type StackItem = z.infer<typeof stackSchema>;
 
-// Update the empty stack to match the new object structure
+// Updated empty stack to include `doc`
 const emptyStack: StackItem = {
     name: "",
     icon: { src: "", srcDark: undefined, alt: "" },
+    doc: "",
     percentage: 0,
     description: "",
     usages: [],
@@ -132,7 +133,25 @@ export default function Page(props: PageProps) {
                                     )}
                                 />
 
-                                {/* Updated Icon Source */}
+                                {/* NEW: Documentation Link */}
+                                <Controller
+                                    name={`stacks.${index}.doc`}
+                                    control={control}
+                                    render={({ field, fieldState }) => (
+                                        <Field className="md:col-span-2">
+                                            <FieldLabel>Documentation Link</FieldLabel>
+                                            <Input
+                                                type="url"
+                                                placeholder="https://..."
+                                                aria-invalid={fieldState.invalid}
+                                                {...field}
+                                            />
+                                            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                        </Field>
+                                    )}
+                                />
+
+                                {/* Icon Source */}
                                 <Controller
                                     name={`stacks.${index}.icon.src`}
                                     control={control}
@@ -145,7 +164,7 @@ export default function Page(props: PageProps) {
                                     )}
                                 />
 
-                                {/* Updated Icon Dark Source */}
+                                {/* Icon Dark Source */}
                                 <Controller
                                     name={`stacks.${index}.icon.srcDark`}
                                     control={control}
@@ -168,7 +187,7 @@ export default function Page(props: PageProps) {
                                     )}
                                 />
 
-                                {/* Added Icon Alt Text (Required by Convex) */}
+                                {/* Icon Alt Text */}
                                 <Controller
                                     name={`stacks.${index}.icon.alt`}
                                     control={control}
@@ -247,7 +266,7 @@ export default function Page(props: PageProps) {
 
                         <ButtonImpl
                             type="submit"
-                            text="Submit All"
+                            content="Submit All"
                             isPending={isPending}
                         />
                     </CardContent>

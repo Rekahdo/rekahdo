@@ -14,7 +14,7 @@ import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
 
-export interface PageProps {}
+export interface PageProps { }
 
 type ProjectItem = z.infer<typeof projectSchema>;
 
@@ -357,7 +357,7 @@ export default function Page(props: PageProps) {
 
                         <ButtonImpl
                             type="submit"
-                            text="Submit All"
+                            content="Submit All"
                             isPending={isPending}
                         />
                     </CardContent>

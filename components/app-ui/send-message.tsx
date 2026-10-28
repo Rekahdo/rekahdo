@@ -13,7 +13,7 @@ import { useState, useTransition } from "react";
 import { toast } from "sonner";
 import { Ping } from "../shared-ui/ping";
 import { H2, H3 } from "../shared-ui/headings";
-import AppInput from "../shared-ui/field";
+import AppField from "../shared-ui/field";
 import { createSendMessageAction } from "@/app/actions/contact";
 import { Layout } from "../shared-ui/layout";
 
@@ -120,7 +120,7 @@ function NotSent({ onSent, from }: { onSent: () => void, from: string }) {
                         name="name"
                         control={control}
                         render={({ field, fieldState }) => (
-                            <AppInput
+                            <AppField
                                 label="Name"
                                 textcase={'capitalize'}
                                 important
@@ -137,7 +137,7 @@ function NotSent({ onSent, from }: { onSent: () => void, from: string }) {
                         name="email"
                         control={control}
                         render={({ field, fieldState }) => (
-                            <AppInput
+                            <AppField
                                 label="Email Address"
                                 textcase={'lowercase'}
                                 important
@@ -155,7 +155,7 @@ function NotSent({ onSent, from }: { onSent: () => void, from: string }) {
                     name="subject"
                     control={control}
                     render={({ field, fieldState }) => (
-                        <AppInput
+                        <AppField
                             label="Subject"
                             textcase={'capitalize'}
                             important
@@ -172,7 +172,7 @@ function NotSent({ onSent, from }: { onSent: () => void, from: string }) {
                     name="message"
                     control={control}
                     render={({ field, fieldState }) => (
-                        <AppInput
+                        <AppField
                             as="textarea"
                             label="Message"
                             important
@@ -199,7 +199,7 @@ function NotSent({ onSent, from }: { onSent: () => void, from: string }) {
                 bottom={<>
                     <ButtonImpl
                         type="submit"
-                        text="Send Message"
+                        content="Send Message"
                         className="max-sm:w-full rounded-xl px-6 shadow-sm"
                         icon={<Send className="size-4" />}
                         height={'md'}

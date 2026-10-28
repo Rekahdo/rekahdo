@@ -226,7 +226,7 @@ export default function Page() {
 
                         <ButtonImpl
                             type="submit"
-                            text="Submit"
+                            content="Submit"
                             isPending={isPending}
                             className="md:col-span-2"
                         />

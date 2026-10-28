@@ -10,6 +10,7 @@ import { Logo } from "./logo";
 import { ThemeToggle } from "./toggle";
 import { Navigation, NavItem } from "./navigation";
 import { CurrentDataTime } from "./current-datetime";
+import { AnimatedThemeToggler } from "../ui/animated-theme-toggler";
 
 type SideBarType = {
     side?: "left" | "top" | "right" | "bottom";
@@ -73,7 +74,7 @@ export function SideSheet({
                                     {logo && (
                                         <div className="flex justify-between items-center w-full pb-3 border-b border-border/40">
                                             <span onClick={() => setOpen(false)} className="cursor-pointer">{logo}</span>
-                                            <ThemeToggle />
+                                            <AnimatedThemeToggler />
                                         </div>
                                     )}
 

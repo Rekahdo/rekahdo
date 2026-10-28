@@ -1,48 +1,55 @@
-import { cva, VariantProps } from "class-variance-authority";
-import { cn } from "cn";
+"use client"
+
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { ButtonHTMLAttributes, ElementType, MouseEvent, ReactNode, useTransition } from "react";
-import { buttonVariants } from "../ui/button";
-import { Download, ExternalLink, Loader, LogIn, LogOut, } from "lucide-react";
-import { Authenticated, Unauthenticated } from "convex/react";
-import { useRouter } from "next/navigation";
-import { authClient } from "@/lib/auth-client";
-import { toast } from "sonner";
-import { ErrorType } from "@/lib/types";
+import {
+    useEffect,
+    type ButtonHTMLAttributes,
+    type ElementType,
+    type ReactNode,
+} from "react";
+import { Button, buttonVariants } from "../ui/button";
+import { Download, ExternalLink, Loader } from "lucide-react";
+import { scrollToId } from "./navigation";
 
-export const buttonImplVariants = cva(
-    cn("flex gap-2 "),
-    {
-        variants: {
-            height: {
-                md: "h-10",
-                lg: "h-12",
-            }
-        }
-    }
-)
+export const buttonImplVariants = cva("flex gap-2", {
+    variants: {
+        height: {
+            md: "h-10",
+            lg: "h-12",
+        },
+    },
+});
 
-interface ButtonImplProps extends VariantProps<typeof buttonVariants>,
-    VariantProps<typeof buttonImplVariants> {
-    href?: string;
+type PageType = { type: "page"; href: string };
+type ScrollType = { type: "scroll"; id: string };
+type DownloadType = { type: "download"; href: string; filename: string };
+type ExternalType = { type: "external"; href: string };
+
+type RenderType = PageType | ScrollType | DownloadType | ExternalType;
+
+type ButtonVariantProps = VariantProps<typeof buttonVariants> &
+    VariantProps<typeof buttonImplVariants>;
+
+type NativeButtonProps = Omit<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    "type" | "onClick" | "className"
+>;
+
+export interface ButtonImplProps extends ButtonVariantProps, NativeButtonProps {
+    render?: RenderType;
     text?: ReactNode;
-    filename?: string;
     icon?: ReactNode;
     showIcon?: boolean;
-    side?: 'left' | 'right';
+    side?: "left" | "right";
     onClick?: () => void;
     className?: string;
-    children?: ReactNode;
     isPending?: boolean;
     pendingState?: ReactNode;
     isDisabled?: boolean;
     showTextAt?: "all" | "sm" | "md" | "lg";
-}
-
-type RenderType = {
-    download?: boolean;
-    scroll?: boolean;
-    open?: boolean;
+    type?: "submit" | "button" | "reset" | undefined;
 }
 
 const SHOW_TEXT_AT_STYLES = cn(
@@ -54,156 +61,114 @@ const SHOW_TEXT_AT_STYLES = cn(
 );
 
 export function ButtonImpl({
-    href,
+    render,
     text,
-    filename,
     icon,
     showIcon = true,
-    side = 'left',
+    side = "left",
     onClick,
     className,
-    children,
     isPending,
     pendingState = text,
     isDisabled,
-    showTextAt = 'all',
-    download,
-    scroll,
-    open,
-    type,
+    showTextAt = "all",
+    variant,
+    size,
     height,
-    ...btnProps
-}: ButtonImplProps & RenderType & ButtonHTMLAttributes<typeof HTMLButtonElement>) {
+    type = "button",
+    ...rest
+}: ButtonImplProps) {
+    const isDisabledOrPending = Boolean(isDisabled) || Boolean(isPending);
 
-    const scrollToId = (e: MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        e.preventDefault();
-        onClick?.();
+    let Tag: ElementType = Button;
+    let tagProps: Record<string, unknown> = { type, onClick };
 
-        if (!href) return;
-
-        const element = document.getElementById(href);
-        if (!element) return;
-
-        const OFFSET = 80;
-        const top = element.getBoundingClientRect().top + window.scrollY - OFFSET;
-
-        window.scrollTo({ top, behavior: "smooth" });
+    const scroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        if (render && render.type === "scroll") {
+            scrollToId({ id: render.id, e });
+        }
     };
 
-    const isButton = (Boolean(type) || !Boolean(href) || isDisabled || isPending)
-    const isAnchorTag = (!isButton && (download || scroll || open))
-    const isOpenLink = (isAnchorTag && open)
-    const isDownloadFile = (isAnchorTag && download)
-    const isScrollToID = (isAnchorTag && scroll)
+    if (render) {
+        if (render.type === "page") {
+            Tag = Link;
+            tagProps = { href: render.href, type: undefined, onClick };
+        } else if (render.type === "scroll") {
+            Tag = "a";
+            tagProps = { type: undefined, onClick: scroll };
+        } else if (render.type === "download") {
+            Tag = "a";
+            tagProps = { href: render.href, download: render.filename, type: undefined, onClick };
+        } else if (render.type === "external") {
+            Tag = Link;
+            tagProps = {
+                href: render.href,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                type: undefined,
+                onClick,
+            };
+        }
+    }
 
-    const Tag: ElementType = (isButton ? 'button' : (isAnchorTag ? 'a' : Link));
-    const buttonAttributes = isButton ? { type: type } : {};
-    const hrefAttributes = !isButton ? { href: href } : {};
-    const openAttributes = isOpenLink ? { target: "_blank", rel: "noopener noreferrer" } : {};
-    const downloadAttributes = isDownloadFile ? { download: filename } : {};
-    const scrollAttributes = isScrollToID ? { onClick: scrollToId } : { onClick };
+    if (isDisabledOrPending) {
+        Tag = 'button';
+    }
 
-    const btnIcon = () => <span>
-        {isPending ? <Loader className="size-4 animate-spin" /> : icon}
+    const BtnIcon = () => <span className="*:size-4">
+        {isPending ? <Loader className="animate-spin" /> : icon}
     </span>
 
     return (
         <Tag
-            disabled={(isDisabled || isPending) || undefined}
-            {...buttonAttributes}
-            {...hrefAttributes}
-            {...openAttributes}
-            {...downloadAttributes}
-            {...scrollAttributes}
-            className={cn(
-                buttonVariants({ ...btnProps }),
+            {...tagProps}
+            {...rest}
+            disabled={isDisabledOrPending || undefined}
+            className={cn("cursor-pointer",
+                buttonVariants({ variant, size }),
                 buttonImplVariants({ height }),
                 className,
             )}
         >
-            {(showIcon && side === 'left') && btnIcon()}
+            {showIcon && side === "left" && <BtnIcon />}
 
             <span data-sh={showTextAt} className={SHOW_TEXT_AT_STYLES}>
-                {isPending ? pendingState : <>{text} {children}</>}
+                {isPending ? pendingState : text}
             </span>
 
-            {(showIcon && side === 'right') && btnIcon()}
+            {showIcon && side === "right" && <BtnIcon />}
         </Tag>
     );
 }
 
-export function PageBtn(props: ButtonImplProps) {
-    return <ButtonImpl {...props} />;
+export function PageBtn(props: ButtonImplProps & { href: string }) {
+    return <ButtonImpl {...props} render={{ type: "page", href: props.href }} />;
 }
 
-export function AnchorBtn({ id, ...props }: { id: string } & Omit<ButtonImplProps, 'href'>) {
-    return <ButtonImpl href={id} {...props} scroll />;
+export function ScrollBtn({ id, ...props }: ButtonImplProps & { id: string }) {
+    return <ButtonImpl {...props} render={{ type: "scroll", id }} />;
 }
 
-export function DownloadBtn({ icon = <Download />, ...props }: ButtonImplProps) {
-    return <ButtonImpl icon={icon} {...props} download />;
-}
-
-export function OpenBtn({ icon = <ExternalLink />, ...props }: ButtonImplProps) {
-    return <ButtonImpl icon={icon} className="shadow-md" {...props} open />;
-}
-
-export function SignUpBtn(props: ButtonImplProps) {
+export function DownloadBtn({ href, filename, showTextAt = "sm", ...props }:
+    ButtonImplProps & { href: string; filename: string }) {
     return (
-        <Unauthenticated>
-            <ButtonImpl
-                {...props}
-                href="/auth/signup"
-                text="Signup"
-            />
-        </Unauthenticated>
-    )
-}
-
-export function LoginBtn(props: ButtonImplProps) {
-    return (
-        <Unauthenticated>
-            <ButtonImpl
-                {...props}
-                href="/auth/login"
-                text="Login"
-                icon={<LogIn />}
-            />
-        </Unauthenticated>
-    )
-}
-
-export function LogoutBtn(props: ButtonImplProps) {
-    const [isPending, startTransition] = useTransition();
-    const router = useRouter();
-
-    function logout() {
-        startTransition(async () => {
-            await authClient.signOut({
-                fetchOptions: {
-                    onSuccess: () => {
-                        toast.success("Logged out successfully");
-                        router.push('/')
-                    },
-                    onError: (error: ErrorType) => {
-                        toast.error(error.error.message)
-                    }
-                }
-            })
-        })
-    }
-
-    return (
-       
         <ButtonImpl
             {...props}
-            href="/auth/login"
-            text="Logout"
-            variant={'outline'}
-            onClick={logout}
-            isPending={isPending}
-            icon={<LogOut />}
+            showTextAt={showTextAt}
+            icon={<Download />}
+            render={{ type: "download", href, filename }}
         />
-       
-    )
+    );
+}
+
+export function ExternalBtn({ href, showTextAt = "sm", ...props }:
+    ButtonImplProps & { href: string }) {
+    return (
+        <ButtonImpl
+            {...props}
+            showTextAt={showTextAt}
+            icon={<ExternalLink />}
+            render={{ type: "external", href }}
+        />
+    );
 }
