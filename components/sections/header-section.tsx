@@ -57,7 +57,7 @@ export const HeaderSection = async () => {
 
                 headerRight={
                     <div className="flex items-center gap-2.5 sm:gap-3">
-                        <DownloadBtn text="Download CV" href={cv?.href} filename={cv?.name} height={'md'} />
+                        <DownloadBtn text="Download CV" href={cv?.href} filename={cv?.name} height={'md'} showTextAt="sm" />
                         <SignUpBtn height={'md'} />
                         <LoginBtn height={'md'} />
                         <LogoutBtn height={'md'} />

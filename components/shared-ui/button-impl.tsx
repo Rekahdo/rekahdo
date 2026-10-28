@@ -149,12 +149,11 @@ export function ScrollBtn({ id, ...props }: ButtonImplProps & { id: string }) {
     return <ButtonImpl {...props} render={{ type: "scroll", id }} />;
 }
 
-export function DownloadBtn({ href, filename, showTextAt = "sm", ...props }:
+export function DownloadBtn({ href, filename, ...props }:
     ButtonImplProps & { href: string; filename: string }) {
     return (
         <ButtonImpl
             {...props}
-            showTextAt={showTextAt}
             icon={<Download />}
             render={{ type: "download", href, filename }}
         />
