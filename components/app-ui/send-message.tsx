@@ -199,7 +199,7 @@ function NotSent({ onSent, from }: { onSent: () => void, from: string }) {
                 bottom={<>
                     <ButtonImpl
                         type="submit"
-                        content="Send Message"
+                        text="Send Message"
                         className="max-sm:w-full rounded-xl px-6 shadow-sm"
                         icon={<Send className="size-4" />}
                         height={'md'}
