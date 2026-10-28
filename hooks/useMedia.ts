@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useEffect, useState } from "react";
 
@@ -12,15 +12,24 @@ const queries = {
   mlg: "(min-width: 900px)",
   maxLg: "(max-width: 1023px)",
   lg: "(min-width: 1023px)",
+  maxXl: "(max-width: 1279px)",
+  xl: "(min-width: 1279px)",
 } as const;
 
 type Matches = Record<keyof typeof queries, boolean>;
 
 const empty: Matches = {
-  xs: false, maxSm: false, sm: false,
-  maxMd: false, md: false,
-  maxMlg: false, mlg: false,
-  maxLg: false, lg: false,
+  xs: false,
+  maxSm: false,
+  sm: false,
+  maxMd: false,
+  md: false,
+  maxMlg: false,
+  mlg: false,
+  maxLg: false,
+  lg: false,
+  maxXl: false,
+  xl: false,
 };
 
 export function useWidthMedia() {
@@ -40,9 +49,13 @@ export function useWidthMedia() {
 
     handleChange();
 
-    mediaList.forEach(({ mql }) => mql.addEventListener("change", handleChange));
+    mediaList.forEach(({ mql }) =>
+      mql.addEventListener("change", handleChange),
+    );
     return () => {
-      mediaList.forEach(({ mql }) => mql.removeEventListener("change", handleChange));
+      mediaList.forEach(({ mql }) =>
+        mql.removeEventListener("change", handleChange),
+      );
     };
   }, []);
 

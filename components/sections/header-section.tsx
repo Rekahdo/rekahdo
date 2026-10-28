@@ -25,6 +25,7 @@ export const HeaderSection = async () => {
         { link: { type: "scroll", href: ABOUT_ID, label: "About Me" } },
         { link: { type: "scroll", href: STACK_ID, label: "Stack" } },
         { link: { type: "scroll", href: PROJECT_ID, label: "Projects" } },
+        // { link: { type: "scroll", href: HERO_ID, label: "Services" } },
         { link: { type: "scroll", href: CONTACT_ID, label: "Contact Me" } },
     ];
 
@@ -39,7 +40,7 @@ export const HeaderSection = async () => {
             rootClassName={cn("border-b border-border/50", backDropBlur.background)}
         >
             <Header
-            
+
                 headerLeft={
                     <Logo variant={'header'} />
                 }
@@ -47,9 +48,9 @@ export const HeaderSection = async () => {
                 headerCenter={
                     <Navigation
                         navItems={navItems}
-                        width={"sm"}
+                        width={"2xs"}
                         gap={"xs"}
-                        className="max-mlg:hidden bg-muted/40 p-1 rounded-full border border-border/50"
+                        className="max-lg:hidden bg-muted/40 p-1 rounded-full border border-border/50"
                     />
                 }
 

@@ -5,7 +5,7 @@ import type { ElementType, ReactNode } from "react";
 export const HeaderVariants = cva("", {
     variants: {
         titleSize: {
-            hero: "text-4xl sm:text-6xl md:text-7xl lg:text-7xl font-extrabold uppercase",
+            hero: "text-5xl xs:text-6xl sm:text-7xl font-extrabold uppercase",
             h1: "text-4xl sm:text-5xl font-extrabold",
             h2: "text-3xl sm:text-4xl font-bold",
             h3: "text-2xl sm:text-3xl font-bold",
@@ -15,7 +15,6 @@ export const HeaderVariants = cva("", {
             h7: "text-xs sm:text-sm font-bold",
         },
         subtitleSize: {
-            hero: "text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground capitalize underline",
             h1: "text-lg sm:text-xl text-muted-foreground",
             h2: "text-base sm:text-lg text-muted-foreground",
             h3: "text-base text-muted-foreground",
@@ -25,7 +24,7 @@ export const HeaderVariants = cva("", {
             h7: "text-[0.5rem] sm:text-xs text-muted-foreground",
         },
         gap: {
-            hero: "gap-5 sm:gap-6",
+            hero: "gap-3 sm:gap-4",
             h1: "gap-4 sm:gap-5",
             h2: "gap-3.5 sm:gap-4",
             h3: "gap-3 sm:gap-3.5",
@@ -54,6 +53,11 @@ export const HeaderVariants = cva("", {
             center: "lg:text-center lg:justify-center lg:mx-auto",
             end: "lg:text-end lg:justify-end lg:ms-auto",
         },
+        xlAlign: {
+            start: "xl:text-start xl:justify-start xl:me-auto",
+            center: "xl:text-center xl:justify-center xl:mx-auto",
+            end: "xl:text-end xl:justify-end xl:ms-auto",
+        },
         maxSmAlign: {
             start: "max-sm:text-start max-sm:justify-start max-sm:me-auto",
             center: "max-sm:text-center max-sm:justify-center max-sm:mx-auto",
@@ -69,6 +73,11 @@ export const HeaderVariants = cva("", {
             center: "max-lg:text-center max-lg:justify-center max-lg:mx-auto",
             end: "max-lg:text-end max-lg:justify-end max-lg:ms-auto",
         },
+        maxXlAlign: {
+            start: "max-xl:text-start max-xl:justify-start max-xl:me-auto",
+            center: "max-xl:text-center max-xl:justify-center max-xl:mx-auto",
+            end: "max-xl:text-end max-xl:justify-end max-xl:ms-auto",
+        },
     },
 });
 
@@ -79,7 +88,7 @@ export type HeadingProps = {
     level?: 1 | 2 | 3 | 4 | 5 | 6;
     size?: "hero" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
     titleSize?: "hero" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "h7";
-    subtitleSize?: "hero" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "h7";
+    subtitleSize?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "h7";
 
     icon?: ReactNode;
     iconPosition?: "left" | "right";
@@ -99,16 +108,19 @@ export type HeadingProps = {
     smAlign?: VariantProps<typeof HeaderVariants>["smAlign"];
     mdAlign?: VariantProps<typeof HeaderVariants>["mdAlign"];
     lgAlign?: VariantProps<typeof HeaderVariants>["lgAlign"];
+    xlAlign?: VariantProps<typeof HeaderVariants>["xlAlign"];
     maxSmAlign?: VariantProps<typeof HeaderVariants>["maxSmAlign"];
     maxMdAlign?: VariantProps<typeof HeaderVariants>["maxMdAlign"];
     maxLgAlign?: VariantProps<typeof HeaderVariants>["maxLgAlign"];
+    maxXlAlign?: VariantProps<typeof HeaderVariants>["maxXlAlign"];
 };
 
 function Heading({
     id, as, level = 2, size, titleSize, subtitleSize, icon, iconPosition = "left",
     rootClassName, title, titleClassName,
     subtitle, subtitleClassName, children, childrenClassName, maxWidth,
-    align, smAlign, mdAlign, lgAlign, maxSmAlign, maxMdAlign, maxLgAlign,
+    align, smAlign, mdAlign, lgAlign, xlAlign,
+    maxSmAlign, maxMdAlign, maxLgAlign, maxXlAlign,
 }: HeadingProps) {
     const hasTitle = title !== undefined && title !== null && title !== "";
 
@@ -117,7 +129,8 @@ function Heading({
 
     const Tag = (as ?? (`h${level}` as ElementType)) as ElementType;
     const visualSize = titleSize ?? size ?? (`h${level}` as const);
-    const visualSubtitleSize = subtitleSize ?? size ?? (`h${level}` as const);
+    const visualSubtitleSize =
+        subtitleSize ?? (size === "hero" ? undefined : size) ?? (`h${level}` as const);
 
     return (
         <div className={cn("flex flex-col", HeaderVariants({ gap: visualSize }), rootClassName)}>
@@ -127,8 +140,8 @@ function Heading({
                     "flex items-center gap-4 text-foreground capitalize tracking-tight truncate text-wrap",
                     HeaderVariants({
                         titleSize: visualSize,
-                        align, smAlign, mdAlign, lgAlign,
-                        maxSmAlign, maxMdAlign, maxLgAlign,
+                        align, smAlign, mdAlign, lgAlign, xlAlign,
+                        maxSmAlign, maxMdAlign, maxLgAlign, maxXlAlign,
                     }),
                     titleClassName,
                 )}
@@ -146,8 +159,8 @@ function Heading({
                 <div className={cn("leading-relaxed",
                     HeaderVariants({
                         subtitleSize: visualSubtitleSize,
-                        align, smAlign, mdAlign, lgAlign,
-                        maxSmAlign, maxMdAlign, maxLgAlign,
+                        align, smAlign, mdAlign, lgAlign, xlAlign,
+                        maxSmAlign, maxMdAlign, maxLgAlign, maxXlAlign,
                     }),
                     maxWidth && "max-w-8/10 sm:max-w-8/10 md:max-w-7/10 lg:max-w-8/10",
                     subtitleClassName)}>

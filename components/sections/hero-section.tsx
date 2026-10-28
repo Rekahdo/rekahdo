@@ -1,16 +1,13 @@
 import { Tags } from "../app-ui/tag";
 import { Container } from "../shared-ui/container";
-import { HeroContent } from "../app-ui/hero-content";
-import { Description, Greeting, Role } from "../app-ui/hero-ui";
+import CtaBtns, { Description, Greeting, Role } from "../app-ui/hero-content";
 import { H1 } from "../shared-ui/headings";
 import { AvailableForWork, PingTag } from "../shared-ui/ping";
 import { heroData } from "@/data/hero";
 import AppImage, { imageVariants } from "../shared-ui/image";
 import { documentData } from "@/data/document";
 import { Layout } from "../shared-ui/layout";
-import CtaBtns from "../app-ui/cta-btns";
 import { aboutData } from "@/data/about";
-import { cn } from "cn";
 
 export const HERO_ID = "hero";
 
@@ -55,35 +52,36 @@ export const HeroSection = async () => {
                     </>
                 }
 
+                bottomClassName="gap-2 md:gap-4 lg:text-left lg:items-start "
                 bottom={
-                    <HeroContent className="max-lg:text-center max-lg:*:mx-auto lg:relative"
-                        greetings={<Greeting text={data.greetings} className="-mb-6" />}
-                        description={<Description text={data.description} className="max-lg:text-center max-lg:w-[80%] mx-auto" />}
-                        tags={<Tags tags={data.tags} className='w-fit justify-center max-lg:mx-auto' />}
-
-                        title={
-                            <H1
-                                title={<>
-                                    <span>{data.introduction}{" "}</span>
-                                    <span className="text-primary">{about.firstname}</span>
-                                </>}
-                                titleSize={'hero'}
-                                subtitle={about.role}
-                                subtitleSize={'hero'}
-                            />
-                        }
-
-                        badge={
+                    <>
+                        {
                             <>{
                                 data.availableForWork &&
-                                <AvailableForWork className="lg:absolute -top-18" />
+                                <AvailableForWork className="" />
                             }</>
                         }
 
-                        ctaBtns={
-                            <CtaBtns {...cv} className="" />
-                        }
-                    />
+                        <Greeting text={data.greetings} />
+
+                        <H1
+                            title={
+                                <div className="flex gap-[0.3ch]">
+                                    <span>{data.introduction}</span>
+                                    <span className="text-primary">{about.firstname}</span>
+                                </div>
+                            }
+                            titleSize={'hero'}
+                        />
+
+                        <Role text={about.role} />
+
+                        <Description text={data.description} />
+
+                        <Tags tags={data.tags} className='w-fit justify-center max-lg:mx-auto mt-3' />
+
+                        <CtaBtns {...cv} />
+                    </>
                 }
             />
         </Container>

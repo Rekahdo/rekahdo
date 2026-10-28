@@ -80,7 +80,8 @@ export const navigationVariants = cva(
             },
             width: {
                 none: "px-0!",
-                xs: "px-2.5!",
+                '2xs': "px-2.5!",
+                xs: "px-3!",
                 sm: "px-4!",
                 lg: "px-5!",
                 full: "w-full",
@@ -88,7 +89,7 @@ export const navigationVariants = cva(
             gap: {
                 none: "gap-0",
                 xxs: "gap-1",
-                xs: "gap-1.5",
+                xs: "gap-2",
                 sm: "gap-3",
                 md: "gap-4",
                 lg: "gap-6",

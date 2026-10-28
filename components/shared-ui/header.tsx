@@ -70,7 +70,7 @@ export function Header({
 
   return (
     <header aria-label={ariaLabel}
-      className={cn("flex items-center gap-2 sm:gap-4", className)}>
+      className={cn("flex items-center gap-2", className)}>
 
       {headerLeft &&
         <HeaderLeft>

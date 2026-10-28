@@ -5,7 +5,7 @@ import AppImage from "../shared-ui/image";
 import Link from "next/link";
 import { buttonVariants } from "../ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card";
-import { H3, H5 } from "../shared-ui/headings";
+import { H3, H4, H5 } from "../shared-ui/headings";
 import { AppIcon } from "../shared-ui/icon";
 
 export type EducationType = {
@@ -43,6 +43,7 @@ function Education({
           <AppIcon
             src={logo}
             alt={`${institution} logo`}
+            size={'lg'}
           />
 
           <CardTitle className="truncate text-xs font-semibold uppercase tracking-wider text-muted-foreground">
@@ -64,7 +65,8 @@ function Education({
         </CardHeader>
 
         <CardContent>
-          <H5 title={course} titleSize={'h6'}
+          <H4 title={course} titleSize={'h6'}
+            titleClassName="font-semibold"
             icon={<GraduationCap className="mt-0.5 shrink-0 text-primary" />}
           />
 
@@ -75,7 +77,7 @@ function Education({
           )}
         </CardContent>
 
-        {certification && (
+        {certification && false && (
           <CardFooter>
             <Link
               href={certification}
@@ -110,6 +112,7 @@ export function Educations({
     <div aria-label="Education"
       className={cn(
         "flex flex-wrap w-full *:grow gap-xs",
+        "lg:grid grid-cols-3",
         className
       )}
     >

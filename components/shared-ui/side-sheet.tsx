@@ -23,26 +23,7 @@ type SideBarType = {
     bottom?: ReactNode;
     className?: string;
     navItems: NavItem[];
-    /** Date/time the project was last updated. Defaults to now. */
-    lastUpdated?: Date | string | number;
 };
-
-function formatLastUpdated(value: Date | string | number): string {
-    const date = value instanceof Date ? value : new Date(value);
-    if (Number.isNaN(date.getTime())) return "—";
-
-    const datePart = date.toLocaleDateString(undefined, {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-    });
-    const timePart = date.toLocaleTimeString(undefined, {
-        hour: "2-digit",
-        minute: "2-digit",
-    });
-
-    return `${datePart} · ${timePart}`;
-}
 
 export function SideSheet({
     side = "left",
@@ -55,11 +36,10 @@ export function SideSheet({
     bottom,
     className,
     navItems,
-    lastUpdated = new Date(),
 }: SideBarType) {
 
     const [open, setOpen] = useState(false);
-    const media = useWidthMedia().maxMlg;
+    const media = useWidthMedia().maxLg;
 
     return (
         <>
@@ -118,7 +98,7 @@ export function SideSheet({
 
                             <SheetFooter className="p-0 pt-4 border-t border-border/40 w-full space-y-3">
                                 {bottom}
-                                
+
                                 <CurrentDataTime />
                             </SheetFooter>
                         </SheetContent>

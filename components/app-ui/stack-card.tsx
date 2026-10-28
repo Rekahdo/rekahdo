@@ -49,7 +49,7 @@ export function StackCards({ className, data }: StackCardsType) {
                 src={icon.src}
                 srcDark={icon.srcDark}
                 alt={icon.alt}
-                size={"xs"}
+                size={"sm"}
             />
 
             <H6
@@ -247,7 +247,7 @@ function StackPreview({
                     src={icon.src}
                     srcDark={icon.srcDark}
                     alt={icon.alt}
-                    size={'sm'}
+                    size={'lg'}
                 />
 
                 <H3
