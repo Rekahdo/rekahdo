@@ -29,14 +29,15 @@ export const aboutData: Promise<AboutData> = Promise.resolve({
   educations: [
     {
       institution: "NIIT",
-      course: "Software Engineering ",
+      course:
+        "Professional Diploma in Information Technology (Software Engineering)",
       certification: "/docs/NIIT_Diploma_and_Transcript_Okafor_Richard.pdf",
       website: "https://www.niit.com/nigeria/",
       logo: "/images/icons/niit.svg",
     },
     {
       institution: "Udemy",
-      course: "Spring Boot Certification",
+      course: "Master Spring Boot 3 & Spring Framework 6 with Java",
       certification: "/docs/Spring_Boot_Certification - Okafor Richard.pdf",
       website:
         "https://www.udemy.com/share/107zyk3@s_qIkz9IEydVxtT386qxf7AS7Nsxngx0f8X-SVtA6ghsg0cXKOaMBzJDswfjXhBYTQ==/",

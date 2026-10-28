@@ -1,53 +1,144 @@
-import { ReactNode } from "react";
+'use client'
+
+import { formatNumber } from "@/lib/number";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
+import { buttonVariants } from "../ui/button";
+import { Download } from "lucide-react";
+import { scrollToId } from "../shared-ui/navigation";
+import { STACK_ID } from "../sections/stack-section";
+import { CONTACT_ID } from "../sections/contact-section";
+import { buttonImplVariants } from "../shared-ui/button-impl";
 
-export const heroContentVariants = cva(
-    cn("w-full flex flex-col gap-6 lg:gap-8 text-foreground"),
-    {
-        variants: {
-        },
-        defaultVariants: {
-        },
-    }
-);
+type TextType = {
+    text: string | undefined
+};
 
-type HeroContentCompType = VariantProps<typeof heroContentVariants> & {
-    badge?: ReactNode;
-    greetings?: ReactNode;
-    title?: ReactNode;
-    role?: ReactNode;
-    description?: ReactNode;
-    tags?: ReactNode;
-    ctaBtns?: ReactNode;
-    socialProfText?: ReactNode;
-    heroImage?: ReactNode;
-    location?: string;
+type ClassNameType = {
     className?: string;
 }
 
-export async function HeroContent({
-    badge,
-    greetings,
-    title,
-    role,
-    description,
-    tags,
-    socialProfText,
-    ctaBtns,
-    className,
-}: HeroContentCompType) {
-
+export function BadgeText({ text, className }: TextType & ClassNameType) {
     return (
-        <div className={cn(heroContentVariants(), className)}>
-            {badge}
-            {greetings}
-            {title}
-            {role}
-            {description}
-            {tags}
-            {ctaBtns}
-            {socialProfText}
+        <p className={cn("font-medium text-primary uppercase", className)}>
+            <span className="rotate-90 inline-block mr-2">|</span>
+            {text}
+        </p>
+    )
+}
+
+export function Greeting({ text, className }: TextType & ClassNameType) {
+    return (
+        <p className={cn("font-medium text-foreground text-lg sm:text-xl mt-3", className)}>
+            {text}
+        </p>
+    )
+}
+
+export function Role({ text, className }: TextType & ClassNameType) {
+    return (
+        <p className={cn("text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground capitalize underline", className)}>
+            {text}
+        </p>
+    )
+}
+
+export function Description({ text, className }: TextType & ClassNameType) {
+    return (
+        <p className={cn("text-muted-foreground text-sm md:text-lg max-lg:text-center max-lg:w-[80%] mx-auto mt-3", className)}>
+            {text}
+        </p>
+    )
+}
+
+export interface CtaBtnsProps {
+    name: string;
+    href: string;
+    className?: string;
+}
+
+export default function CtaBtns({ name, href, className }: CtaBtnsProps) {
+    return (
+        <div className={cn("flex flex-wrap gap-4 items-center *:grow *:min-w-30 *:max-w-40 max-lg:justify-center mt-3", className)}>
+            <a
+                href={href}
+                download={name}
+                className={cn(
+                    buttonVariants({ size: 'lg' }),
+                    buttonImplVariants({ height: 'lg' }),
+                    "shadow-lg")}
+            >
+
+                <Download />
+                Download CV
+            </a>
+
+            <p
+                onClick={() => scrollToId({ id: STACK_ID })}
+                className={cn(
+                    buttonVariants({ size: 'lg', variant: 'secondary' }),
+                    buttonImplVariants({ height: 'lg' }),
+                    "shadow-sm")}
+            >
+                Tech Stack
+            </p>
+
+            <p
+                onClick={() => scrollToId({ id: CONTACT_ID })}
+                className={cn(
+                    buttonVariants({ size: 'lg', variant: 'outline' }),
+                    buttonImplVariants({ height: 'lg' }),
+                    "shadow-sm")}
+            >
+                Contact
+            </p>
+
         </div>
+    );
+}
+
+const SocialProfTextVariant = cva(
+    "flex items-center flex-wrap max-lg:justify-center gap-4 text-foreground",
+    {
+        variants: {
+            variant: {
+                default: cn(
+
+                )
+            },
+            size: {
+                default: cn(
+
+                )
+            }
+        },
+        defaultVariants: {
+            variant: "default",
+            size: "default",
+        }
+    }
+)
+
+export function SocialProfText({ count, variant, className }: { count: number } & ClassNameType & VariantProps<typeof SocialProfTextVariant>) {
+    return (
+        <>
+            {
+                <div className={cn(SocialProfTextVariant({ variant, className }))}>
+                    <div className="flex -space-x-2">
+                        <img className="w-10 h-10 rounded-full border-2 border-background object-cover" src="https://readymadeui.com/team-1.webp"
+                            alt="team img-1" />
+                        <img className="w-10 h-10 rounded-full border-2 border-background object-cover" src="https://readymadeui.com/team-2.webp"
+                            alt="team img-2" />
+                        <img className="w-10 h-10 rounded-full border-2 border-background object-cover" src="https://readymadeui.com/team-3.webp"
+                            alt="team img-3" />
+                    </div>
+                    <div className="text-muted-foreground text-base">
+                        Over
+                        <span className="font-semibold text-foreground"> {formatNumber(count)} </span>
+                        Professionals trust us
+                    </div>
+                </div>
+            }
+        </>
     )
 }

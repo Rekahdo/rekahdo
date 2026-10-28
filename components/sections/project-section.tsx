@@ -64,8 +64,8 @@ export default async function ProjectsSection() {
                 <H2
                     title={sec.title}
                     subtitle={sec.subtitle}
-                    icon={<FolderGit2 className="text-primary size-6" />}
                     align={'center'}
+                    icon={<FolderGit2 className="text-primary size-6" />}
                     maxWidth
                 />
 
