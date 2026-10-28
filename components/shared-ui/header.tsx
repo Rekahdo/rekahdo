@@ -38,7 +38,7 @@ function HeaderLeft({ children }: { children?: ReactNode }) {
 
 function HeaderCenter({ children }: { children?: ReactNode }) {
   return (
-    <HeaderGroup className={"mx-auto w-full px-4 items-center *:grow"} gap={"sm"}>
+    <HeaderGroup className={"mx-auto w-full px-0 sm:px-4 items-center *:grow"} gap={"sm"}>
       {children}
     </HeaderGroup>
   );
@@ -70,7 +70,7 @@ export function Header({
 
   return (
     <header aria-label={ariaLabel}
-      className={cn("flex items-center gap-2", className)}>
+      className={cn("flex items-center gap-0 sm:gap-2", className)}>
 
       {headerLeft &&
         <HeaderLeft>

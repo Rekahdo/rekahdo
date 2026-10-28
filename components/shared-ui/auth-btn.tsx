@@ -61,7 +61,7 @@ export function LogoutBtn(props: ButtonImplProps) {
                 onClick={logout}
                 isPending={isPending}
                 icon={<LogOut />}
-                showTextAt="sm"
+                showTextAt="sm" 
                 {...props}
             />
         </Authenticated>
