@@ -1,6 +1,6 @@
 import { ControllerFieldState, ControllerRenderProps } from "react-hook-form";
 import { Field, FieldError, FieldLabel } from "../ui/field";
-import { ElementType, ReactNode, useState } from "react";
+import { ElementType, HTMLInputTypeAttribute, ReactNode, useState } from "react";
 import { cn } from "cn";
 import {
     InputGroup,
@@ -29,7 +29,7 @@ const inputVariants = cva(cn(), {
     }
 })
 
-interface InputProps extends VariantProps<typeof inputVariants> {
+interface AppFieldProps extends VariantProps<typeof inputVariants> {
     className?: string;
     label: string;
     important?: boolean;
@@ -43,9 +43,10 @@ interface InputProps extends VariantProps<typeof inputVariants> {
     endIcon?: ReactNode;
     clearable?: boolean;
     height?: number | string;
+    type?: HTMLInputTypeAttribute | undefined;
 }
 
-export default function AppInput({
+export default function AppField({
     className,
     label,
     important,
@@ -60,8 +61,9 @@ export default function AppInput({
     endIcon,
     clearable = true,
     height,
+    type,
     ...props
-}: InputProps) {
+}: AppFieldProps) {
 
     const isInput = as === "input";
     const Tag = (isInput ? InputGroupInput : InputGroupTextarea) as ElementType;
@@ -134,6 +136,7 @@ export default function AppInput({
                     <Tag
                         id={field.name}
                         {...field}
+                        type={type}
                         aria-invalid={fieldState.invalid}
                         aria-describedby={fieldState.invalid ? errorId : undefined}
                         aria-disabled={isPending}

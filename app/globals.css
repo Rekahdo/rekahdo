@@ -80,7 +80,7 @@
   --muted-foreground: oklch(0.65 0.02 260);
   --accent: oklch(0.24 0.03 260);
   --accent-foreground: oklch(0.96 0.01 260);
-  --destructive: oklch(0.5 0.2 25);
+  --destructive: oklch(62.948% 0.2558 26.298);
   --destructive-foreground: oklch(0.96 0.01 260);
   --border: oklch(0.26 0.02 260);
   --input: oklch(0.26 0.02 260);
@@ -266,4 +266,8 @@
   .py-xs {
     @apply py-4! sm:py-6! md:py-8! lg:py-10!;
   }
+}
+  ::view-transition-old(root), ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
 }

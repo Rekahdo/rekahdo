@@ -6,7 +6,6 @@ import { Logo } from "@/components/shared-ui/logo";
 import { Container } from "@/components/shared-ui/container";
 import { ModeToggle } from "@/components/shared-ui/toggle";
 import { Navigation, NavItem } from "@/components/shared-ui/navigation";
-import { LogoutBtn } from "@/components/shared-ui/button-impl";
 import { SideSheet } from "@/components/shared-ui/side-sheet";
 import { useConvexAuth } from "convex/react";
 import { redirect, RedirectType } from "next/navigation";
@@ -19,51 +18,50 @@ export interface LayoutProps {
 }
 
 export default function Layout(props: LayoutProps) {
-    const { isAuthenticated, isLoading } = useConvexAuth()
+    // const { isAuthenticated, isLoading } = useConvexAuth()
 
-    if (isLoading) {
-        return (
-            <div className="flex min-h-screen items-center justify-center">
-                <Spinner className="size-8" />
-            </div>
-        );
-    }
+    // if (isLoading) {
+    //     return (
+    //         <div className="flex min-h-screen items-center justify-center">
+    //             <Spinner className="size-8" />
+    //         </div>
+    //     );
+    // }
 
-    if (!isAuthenticated) {
-        toast.success("Login to continue to dashboard")
-        redirect(ADMIN_AUTH, RedirectType.push);
-    }
+    // if (!isAuthenticated) {
+    //     toast.success("Login to continue to dashboard")
+    // }
 
-    const navItems: NavItem[] = [
-        {
-            link: { type: "page", href: ADMIN_DASHBOARD.root, label: "Dashboard" },
-        },
-        {
-            link: { type: "page", href: ADMIN_DASHBOARD.header, label: "Header" },
-        },
-        {
-            link: { type: "page", href: ADMIN_DASHBOARD.hero, label: "Hero" },
-        },
-        {
-            link: { type: "page", href: ADMIN_DASHBOARD.about, label: "About" },
-        },
-        {
-            link: { type: "page", href: ADMIN_DASHBOARD.stack, label: "Tech Stack" },
-        },
-        {
-            link: { type: "page", href: ADMIN_DASHBOARD.projects, label: "Projects" },
-        },
-        {
-            link: { type: "page", href: ADMIN_DASHBOARD.contact, label: "Contact" },
-        },
-        {
-            link: { type: "page", href: ADMIN_DASHBOARD.footer, label: "Footer" },
-        },
-    ]
+    // const navItems: NavItem[] = [
+    //     {
+    //         link: { type: "page", href: ADMIN_DASHBOARD.root, label: "Dashboard" },
+    //     },
+    //     {
+    //         link: { type: "page", href: ADMIN_DASHBOARD.header, label: "Header" },
+    //     },
+    //     {
+    //         link: { type: "page", href: ADMIN_DASHBOARD.hero, label: "Hero" },
+    //     },
+    //     {
+    //         link: { type: "page", href: ADMIN_DASHBOARD.about, label: "About" },
+    //     },
+    //     {
+    //         link: { type: "page", href: ADMIN_DASHBOARD.stack, label: "Tech Stack" },
+    //     },
+    //     {
+    //         link: { type: "page", href: ADMIN_DASHBOARD.projects, label: "Projects" },
+    //     },
+    //     {
+    //         link: { type: "page", href: ADMIN_DASHBOARD.contact, label: "Contact" },
+    //     },
+    //     {
+    //         link: { type: "page", href: ADMIN_DASHBOARD.footer, label: "Footer" },
+    //     },
+    // ]
 
     return (
         <>
-            <Container id="admin-header" width={'w400'} height={'header'}
+            {/* <Container id="admin-header" width={'w400'} height={'header'}
                 sticky={'top'} >
                 <Header
                     headerLeft={<Logo />}
@@ -81,7 +79,6 @@ export default function Layout(props: LayoutProps) {
 
                     headerRight={
                         <>
-                            <LogoutBtn />
                             <ModeToggle />
                             <SideSheet
                                 navItems={navItems}
@@ -89,7 +86,7 @@ export default function Layout(props: LayoutProps) {
                         </>
                     }
                 />
-            </Container>
+            </Container> */}
 
             {props.children}
         </>

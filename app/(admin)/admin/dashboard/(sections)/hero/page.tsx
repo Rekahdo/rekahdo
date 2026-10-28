@@ -198,7 +198,7 @@ export default function Page(props: PageProps) {
 
                         <ButtonImpl
                             type="submit"
-                            text="Submit"
+                            content="Submit"
                             isPending={isPending}
                             className="md:col-span-2"
                         />

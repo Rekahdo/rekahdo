@@ -8,7 +8,7 @@ import { Download } from "lucide-react";
 import { scrollToId } from "../shared-ui/navigation";
 import { STACK_ID } from "../sections/stack-section";
 import { CONTACT_ID } from "../sections/contact-section";
-import { buttonImplVariants } from "../shared-ui/button-impl";
+import { buttonImplVariants, DownloadBtn, ScrollBtn } from "../shared-ui/button-impl";
 
 type TextType = {
     text: string | undefined
@@ -60,39 +60,9 @@ export interface CtaBtnsProps {
 export default function CtaBtns({ name, href, className }: CtaBtnsProps) {
     return (
         <div className={cn("flex flex-wrap gap-4 items-center *:grow *:min-w-30 *:max-w-40 max-lg:justify-center mt-3", className)}>
-            <a
-                href={href}
-                download={name}
-                className={cn(
-                    buttonVariants({ size: 'lg' }),
-                    buttonImplVariants({ height: 'lg' }),
-                    "shadow-lg")}
-            >
-
-                <Download />
-                Download CV
-            </a>
-
-            <p
-                onClick={() => scrollToId({ id: STACK_ID })}
-                className={cn(
-                    buttonVariants({ size: 'lg', variant: 'secondary' }),
-                    buttonImplVariants({ height: 'lg' }),
-                    "shadow-sm")}
-            >
-                Tech Stack
-            </p>
-
-            <p
-                onClick={() => scrollToId({ id: CONTACT_ID })}
-                className={cn(
-                    buttonVariants({ size: 'lg', variant: 'outline' }),
-                    buttonImplVariants({ height: 'lg' }),
-                    "shadow-sm")}
-            >
-                Contact
-            </p>
-
+            <DownloadBtn text="Download CV" href={href} filename={name} height={'lg'} className="shadow-sm" />
+            <ScrollBtn text="Tech Stack" id={STACK_ID} height={'lg'} variant='secondary' className="shadow-sm" />
+            <ScrollBtn text="Contact" id={CONTACT_ID} height={'lg'} variant='outline' className="shadow-sm" />
         </div>
     );
 }

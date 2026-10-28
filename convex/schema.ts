@@ -90,6 +90,7 @@ export const aboutValidator = v.object(aboutTable);
 export const stackTable = {
   name: v.string(),
   icon: imageValidator,
+  doc: v.string(),
   percentage: v.number(),
   description: v.string(),
   usages: v.array(tagValidator),

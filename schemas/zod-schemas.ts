@@ -21,7 +21,7 @@ export const signUpSchema = z.object({
   name: z.string().min(3).max(30),
   email: z.email(),
   password: z.string().min(8).max(30),
-  adminApiKey: z.string().nonempty(),
+  accessKey: z.string().nonempty(),
 });
 
 export const loginSchema = z.object({
@@ -40,9 +40,7 @@ export const documentSchema = z.object({
   type: z.enum(["cv"]),
 });
 
-export const headerSchema = z.object({
-  
-});
+export const headerSchema = z.object({});
 
 export const heroSchema = z.object({
   badge: z.optional(z.string()),
@@ -93,6 +91,7 @@ export const aboutSchema = z.object({
 export const stackSchema = z.object({
   name: z.string(),
   icon: imageValidator,
+  doc: z.string(),
   percentage: z.number(),
   description: z.string(),
   usages: z.array(tagValidator),
