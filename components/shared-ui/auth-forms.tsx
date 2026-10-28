@@ -65,17 +65,18 @@ export function DialogSignUpForm(props: DialogSignUpProps) {
                     },
                     onError: (error: ErrorType) => {
                         toast.error(error.error.message);
+                        return;
                     },
                 }
             })
 
-            // await fetchMutation(
-            //     api.role.createRole,
-            //     {
-            //         role: isAdmin ? 'admin' : 'editor',
-            //         userId: data!.user.id,
-            //     },
-            // )
+            await fetchMutation(
+                api.role.createRole,
+                {
+                    role: isAdmin ? 'admin' : 'editor',
+                    userId: data!.user.id,
+                },
+            )
         })
     }
 

@@ -9,6 +9,8 @@ import { scrollToId } from "../shared-ui/navigation";
 import { STACK_ID } from "../sections/stack-section";
 import { CONTACT_ID } from "../sections/contact-section";
 import { buttonImplVariants, DownloadBtn, ScrollBtn } from "../shared-ui/button-impl";
+import { useWidthMedia } from "@/hooks/useMedia";
+import { CONTACT_FORM_ID } from "./send-message";
 
 type TextType = {
     text: string | undefined
@@ -58,11 +60,13 @@ export interface CtaBtnsProps {
 }
 
 export default function CtaBtns({ name, href, className }: CtaBtnsProps) {
+    const media = useWidthMedia().lg;
+
     return (
         <div className={cn("flex flex-wrap gap-4 items-center *:grow *:min-w-30 *:max-w-40 max-lg:justify-center mt-3", className)}>
             <DownloadBtn text="Download CV" href={href} filename={name} height={'lg'} className="shadow-sm" />
             <ScrollBtn text="Tech Stack" id={STACK_ID} height={'lg'} variant='secondary' className="shadow-sm" />
-            <ScrollBtn text="Contact" id={CONTACT_ID} height={'lg'} variant='outline' className="shadow-sm" />
+            <ScrollBtn text="Contact" id={(media ? CONTACT_ID : CONTACT_FORM_ID)} height={'lg'} variant='outline' className="shadow-sm" />
         </div>
     );
 }

@@ -46,7 +46,7 @@ export interface ButtonImplProps extends ButtonVariantProps, NativeButtonProps {
     onClick?: () => void;
     className?: string;
     isPending?: boolean;
-    pendingState?: ReactNode;
+    pending?: ReactNode;
     isDisabled?: boolean;
     showTextAt?: "all" | "sm" | "md" | "lg";
     type?: "submit" | "button" | "reset" | undefined;
@@ -69,7 +69,7 @@ export function ButtonImpl({
     onClick,
     className,
     isPending,
-    pendingState = text,
+    pending = text,
     isDisabled,
     showTextAt = "all",
     variant,
@@ -132,9 +132,11 @@ export function ButtonImpl({
         >
             {showIcon && side === "left" && <BtnIcon />}
 
-            <span data-sh={showTextAt} className={SHOW_TEXT_AT_STYLES}>
-                {isPending ? pendingState : text}
-            </span>
+            {text &&
+                <span data-sh={showTextAt} className={SHOW_TEXT_AT_STYLES}>
+                    {isPending ? pending : text}
+                </span>
+            }
 
             {showIcon && side === "right" && <BtnIcon />}
         </Tag>
