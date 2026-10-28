@@ -15,7 +15,7 @@ import { documentData } from "@/data/document";
 import { backDropBlur } from "../shared-ui/_css";
 import { AnimatedThemeToggler } from "../ui/animated-theme-toggler";
 import { LoginBtn, LogoutBtn, SignUpBtn } from "../shared-ui/auth-btn";
-import { ButtonImpl, DownloadBtn, ExternalBtn, PageBtn, ScrollBtn } from "../shared-ui/button-impl";
+import { ButtonImpl, buttonImplVariants, DownloadBtn, ExternalBtn, PageBtn, ScrollBtn } from "../shared-ui/button-impl";
 
 export const HEADER_ID = "header";
 
@@ -57,17 +57,20 @@ export const HeaderSection = async () => {
 
                 headerRight={
                     <div className="flex items-center gap-2.5 sm:gap-3">
-                        <DownloadBtn text="Download CV" href={cv?.href} filename={cv?.name} height={'md'} showTextAt="sm" />
+                        <DownloadBtn text="Download CV" href={cv?.href}
+                            filename={cv?.name} height={'md'} showTextAt="sm" />
                         <SignUpBtn height={'md'} />
                         <LoginBtn height={'md'} />
                         <LogoutBtn height={'md'} />
 
                         <div className="h-4 w-px bg-border/60 mx-0.5 max-sm:hidden" />
 
-                        <AnimatedThemeToggler />
+                        <AnimatedThemeToggler className={cn(
+                            buttonVariants({ variant: 'outline' }),
+                            "cursor-pointer max-sm:hidden h-10",
+                        )} />
 
                         <SideSheet
-                            logo={<Logo />}
                             navItems={navItems}
                             bottom={
                                 <DownloadBtn text="Download CV" href={cv?.href} filename={cv?.name} />

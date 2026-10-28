@@ -6,6 +6,8 @@ import { hover } from "./_css";
 import { NavigationLink, scrollToId } from "./navigation";
 import Link from "next/link";
 import { CONTACT_FORM_ID } from "../app-ui/send-message";
+import { useWidthMedia } from "@/hooks/useMedia";
+import { CONTACT_ID } from "../sections/contact-section";
 
 export interface PingProps {
     bg?: string;
@@ -106,10 +108,11 @@ export function PingTag({
 }
 
 export function AvailableForWork({ width, className }: Pick<PingTagProps, 'width' | 'className'>) {
-    const date = new Date();
+    const media = useWidthMedia().lg;
+
     return (
         <PingTag
-            onClick={() => scrollToId({ id: CONTACT_FORM_ID })}
+            onClick={() => scrollToId({ id: (media ? CONTACT_ID : CONTACT_FORM_ID) })}
             width={width}
             className={cn("gap-4 shadow-sm cursor-pointer", className)}
             pingSize="size-3"

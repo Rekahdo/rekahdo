@@ -5,12 +5,13 @@ import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetT
 import { useState, type ReactNode } from "react";
 import { cn } from "cn";
 import { useWidthMedia } from "../../hooks/useMedia";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import { Logo } from "./logo";
 import { ThemeToggle } from "./toggle";
 import { Navigation, NavItem } from "./navigation";
 import { CurrentDataTime } from "./current-datetime";
 import { AnimatedThemeToggler } from "../ui/animated-theme-toggler";
+import { ButtonImpl } from "./button-impl";
 
 type SideBarType = {
     side?: "left" | "top" | "right" | "bottom";
@@ -30,7 +31,7 @@ export function SideSheet({
     side = "left",
     trigger = <Menu className="size-5" />,
     triggerLabel = "Open menu",
-    logo = <Logo />,
+    logo = <Logo variant={'header'} />,
     title,
     description,
     top,
@@ -51,13 +52,11 @@ export function SideSheet({
                     <Sheet open={open} onOpenChange={setOpen}>
                         <SheetTrigger aria-label={triggerLabel}
                             render={
-                                <Button
+                                <ButtonImpl
                                     variant={"outline"}
-                                    size={"icon"}
-                                    className="size-9 rounded-xl border-border/70 hover:bg-muted/60"
-                                >
-                                    {trigger}
-                                </Button>
+                                    height={'md'}
+                                    icon={trigger}
+                                />
                             }>
                         </SheetTrigger>
 
@@ -74,7 +73,11 @@ export function SideSheet({
                                     {logo && (
                                         <div className="flex justify-between items-center w-full pb-3 border-b border-border/40">
                                             <span onClick={() => setOpen(false)} className="cursor-pointer">{logo}</span>
-                                            <AnimatedThemeToggler />
+
+                                            <AnimatedThemeToggler className={cn(
+                                                buttonVariants({ variant: 'outline' }),
+                                                "cursor-pointer h-10",
+                                            )} />
                                         </div>
                                     )}
 

@@ -8,7 +8,7 @@ import authConfig from "./auth.config";
 
 const siteUrl = (globalThis as typeof globalThis & {
     process: { env: Record<string, string | undefined> };
-}).process.env.SITE_URL!;
+}).process.env.DEV_SITE_URL!;
 
 // The component client has methods needed for integrating Convex with Better Auth,
 // as well as helper methods for general use.
