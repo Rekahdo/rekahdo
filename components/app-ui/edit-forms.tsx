@@ -56,8 +56,7 @@ export function HeaderEditForm() {
 export function HeroEditForm() {
     const data = use(heroData);
 
-    async function submit(parsed: z.infer<typeof heroSchema>,
-        form: UseFormReturn<z.infer<typeof heroSchema>>) {
+    async function submit(parsed: z.infer<typeof heroSchema>) {
     }
 
     return (

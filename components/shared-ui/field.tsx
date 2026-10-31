@@ -13,7 +13,7 @@ import {
 import { X, Eye, EyeOff } from "lucide-react";
 import { cva, VariantProps } from "class-variance-authority";
 
-const inputVariants = cva(cn(), {
+const fieldVariants = cva(cn(), {
     variants: {
         textcase: {
             capitalize: "capitalize",
@@ -29,27 +29,48 @@ const inputVariants = cva(cn(), {
     },
 });
 
-export interface AppFieldProps extends VariantProps<typeof inputVariants> {
+export interface AppFieldProps extends VariantProps<typeof fieldVariants> {
+    // extra wrapper classes
     className?: string;
+    // visible field label
     label: string;
+    // renders required (*) marker
     important?: boolean;
+    // RHF field object (value/onChange/name)
     field: ControllerRenderProps<any, any>;
+    // RHF field state (error/invalid/touched)
     fieldState: ControllerFieldState;
+    // disables input while submitting
     isPending?: boolean;
+    // input placeholder text
     placeholder?: string;
+    // which control to render
     as?: "input" | "textarea";
+    // text shown in the addon (e.g. prefix)
     alignLabel?: string;
+    // icon at the start of the group
     startIcon?: ReactNode;
+    // icon at the end of the group
     endIcon?: ReactNode;
+    // show clear (X) button when filled
     clearable?: boolean;
+    // min-height (number = rem)
     height?: number | string;
+    // input type (password/file/etc.)
     type?: HTMLInputTypeAttribute | undefined;
+    // file input accept filter
     accept?: string;
+    // file input multi-select
     multiple?: boolean;
+    // input min
     min?: number | string;
+    // input max
     max?: number | string;
+    // input step
     step?: number | string;
+    // autocomplete hint
     autoComplete?: string;
+    // textarea rows
     rows?: number;
 }
 
@@ -264,7 +285,7 @@ export default function AppField({
                         rows={!isInput ? (rows ?? 6) : undefined}
                         className={cn(
                             "min-h-full p-0! text-sm sm:text-base",
-                            inputVariants({ ...props })
+                            fieldVariants({ ...props })
                         )}
                     />
 
