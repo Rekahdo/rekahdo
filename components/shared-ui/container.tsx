@@ -162,7 +162,7 @@ type ContainerProps = VariantProps<typeof containerVariants>
 
     rootClassName?: string;
     containerClassName?: string;
-} & Omit<HTMLAttributes<HTMLElement>, "id" >;
+} & Omit<HTMLAttributes<HTMLElement>, "id">;
 
 export function Container({
     id,
@@ -177,7 +177,7 @@ export function Container({
 }: Omit<ContainerProps, "className">) {
     return (
         <Tag data-slot="container" id={id}
-            className={cn("flex rounded-none *:grow min-w-87.5 items-center",
+            className={cn("flex rounded-none *:grow min-w-87.5 items-center relative",
                 containerVariants({
                     background: 'background',
                     ...props

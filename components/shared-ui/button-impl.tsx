@@ -124,7 +124,7 @@ export function ButtonImpl({
             {...tagProps}
             {...rest}
             disabled={isDisabledOrPending || undefined}
-            className={cn("cursor-pointer",
+            className={cn("cursor-pointer capitalize",
                 buttonVariants({ variant, size }),
                 buttonImplVariants({ height }),
                 className,
