@@ -43,7 +43,7 @@ export interface ButtonImplProps extends ButtonVariantProps, NativeButtonProps {
     icon?: ReactNode;
     showIcon?: boolean;
     side?: "left" | "right";
-    onClick?: () => void;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
     className?: string;
     isPending?: boolean;
     pending?: ReactNode;
@@ -99,12 +99,10 @@ export function ButtonImpl({
         } else if (render.type === "download") {
             Tag = "a";
             tagProps = {
-                href: render.href, 
-                download: render.filename, 
-                type: undefined, 
+                href: render.href,
+                download: render.filename,
+                type: undefined,
                 onClick,
-                target: "_blank",
-                rel: "noopener noreferrer",
             };
         } else if (render.type === "external") {
             Tag = Link;
@@ -145,7 +143,7 @@ export function ButtonImpl({
                 <span data-sh={showTextAt} className={SHOW_TEXT_AT_STYLES}>
                     {isPending ? pending : text}
                 </span>
-            }   
+            }
 
             {showIcon && side === "right" && <BtnIcon />}
         </Tag>
@@ -169,9 +167,9 @@ export default function ButtonImplGroup({ className, buttons, isPending }: Butto
                 <ButtonImpl
                     key={index}
                     text={text}
-                    onClick={() => {
+                    onClick={(e) => {
                         setClickedIndex(index);
-                        onClick?.();
+                        onClick?.(e);
                     }}
                     isPending={clickedIndex === index && isPending}
                     isDisabled={isPending}
@@ -198,6 +196,52 @@ export function DownloadBtn({ href, filename, ...props }:
             {...props}
             icon={<Download />}
             render={{ type: "download", href, filename }}
+        />
+    );
+}
+
+export function DownloadExternalBtn({ href, filename, ...props }:
+    ButtonImplProps & { href: string; filename: string }) {
+
+    const [isDownloading, setIsDownloading] = useState(false);
+
+    const handleDownload = async (e: React.MouseEvent) => {
+        e.preventDefault();
+        if (!href) return;
+
+        try {
+            setIsDownloading(true);
+            // Fetch the file from the cross-origin Convex URL
+            const response = await fetch(href);
+            const blob = await response.blob();
+
+            // Create a local blob URL
+            const blobUrl = window.URL.createObjectURL(blob);
+
+            // Create a temporary hidden anchor to trigger the download
+            const a = document.createElement("a");
+            a.href = blobUrl;
+            a.download = filename || "download";
+            document.body.appendChild(a);
+            a.click();
+
+            // Clean up
+            a.remove();
+            window.URL.revokeObjectURL(blobUrl);
+        } catch (error) {
+            console.error("Download failed", error);
+        } finally {
+            setIsDownloading(false);
+        }
+    };
+
+    return (
+        <ButtonImpl
+            {...props}
+            icon={<Download />}
+            isPending={isDownloading}
+            onClick={handleDownload}
+            render={{ type: "button" } as any}
         />
     );
 }
