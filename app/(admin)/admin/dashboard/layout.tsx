@@ -10,7 +10,7 @@ import { SideSheet } from "@/components/shared-ui/side-sheet";
 import { useConvexAuth } from "convex/react";
 import { redirect, RedirectType } from "next/navigation";
 import { toast } from "sonner";
-import { ADMIN_AUTH, ADMIN_DASHBOARD } from "../layout";
+// import { ADMIN_AUTH, ADMIN_DASHBOARD } from "../layout";
 import { Spinner } from "@/components/ui/spinner";
 
 export interface LayoutProps {
