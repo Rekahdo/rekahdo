@@ -131,21 +131,19 @@ export function DialogForm<TValues extends FieldValues>({
                             }
                         />
 
-                        <ButtonImplGroup
+                        <ButtonImpl
+                            variant={'destructive'}
+                            isDisabled={isPending}
+                            type="reset"
+                            text={"reset"}
+                            height="md"
+                        />
+
+                        <ButtonImpl
                             isPending={isPending}
-                            buttons={[
-                                {
-                                    variant: "destructive",
-                                    type: "reset",
-                                    text: "reset",
-                                    height: "md",
-                                },
-                                {
-                                    type: "submit",
-                                    text: submitText,
-                                    height: "md",
-                                }
-                            ]}
+                            type="submit"
+                            text={submitText}
+                            height="md"
                         />
                     </DialogFooter>
                 </form>
