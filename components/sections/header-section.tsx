@@ -3,7 +3,6 @@ import { Container } from "../shared-ui/container";
 import { Header } from "../shared-ui/header";
 import { Logo } from "../shared-ui/logo";
 import { Navigation, NavItem } from "../shared-ui/navigation";
-import { Download } from "lucide-react";
 import { buttonVariants } from "../ui/button";
 import { cn } from "cn";
 import { HERO_ID } from "./hero-section";
@@ -15,12 +14,16 @@ import { documentData } from "@/data/document";
 import { backDropBlur } from "../shared-ui/_css";
 import { AnimatedThemeToggler } from "../ui/animated-theme-toggler";
 import { LoginBtn, LogoutBtn, SignUpBtn } from "../shared-ui/auth-btn";
-import { ButtonImpl, buttonImplVariants, DownloadBtn, ExternalBtn, PageBtn, ScrollBtn } from "../shared-ui/button-impl";
+import { AuthRoute } from "../shared-ui/admin-roles";
+import { DownloadBtn } from "../shared-ui/button-impl";
+import { HeaderEditForm } from "../app-ui/edit-forms";
+import { fetchQuery } from "convex/nextjs";
+import { api } from "@/convex/_generated/api";
 
 export const HEADER_ID = "header";
 
 export const HeaderSection = async () => {
-    const cv = (await documentData).cv;
+    const cv = await fetchQuery(api.document.findByType, { type: 'cv' });
 
     const navItems: NavItem[] = [
         { link: { type: "scroll", href: HERO_ID, label: "Home" } },
@@ -57,11 +60,14 @@ export const HeaderSection = async () => {
 
                 headerRight={
                     <div className="flex items-center gap-2.5 sm:gap-3">
-                        <DownloadBtn text="Download CV" href={cv?.href}
-                            filename={cv?.name} height={'md'} showTextAt="sm" />
-                        <SignUpBtn height={'md'} />
-                        <LoginBtn height={'md'} />
-                        <LogoutBtn height={'md'} />
+                        <DownloadBtn text="Download CV" href={cv.file!}
+                            filename={cv.name} height={'md'} showTextAt="sm" />
+
+                        <AuthRoute>
+                            <SignUpBtn height={'md'} />
+                            <LoginBtn height={'md'} />
+                            <LogoutBtn height={'md'} />
+                        </AuthRoute>
 
                         <div className="h-4 w-px bg-border/60 mx-0.5 max-sm:hidden" />
 
@@ -73,12 +79,14 @@ export const HeaderSection = async () => {
                         <SideSheet
                             navItems={navItems}
                             bottom={
-                                <DownloadBtn text="Download CV" href={cv?.href} filename={cv?.name} />
+                                <DownloadBtn text="Download CV" href={cv.file!} filename={cv?.name} />
                             }
                         />
                     </div>
                 }
             />
+
+            <HeaderEditForm />
         </Container>
     );
 };

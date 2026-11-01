@@ -68,5 +68,6 @@
   "typescript.referencesCodeLens.enabled": true,
   "typescript.implementationsCodeLens.enabled": true,
   "javascript.referencesCodeLens.enabled": true,
-  "javascript.implementationsCodeLens.enabled": true
+  "javascript.implementationsCodeLens.enabled": true,
+  "js/ts.tsdk.path": "node_modules\\typescript\\lib"
 }

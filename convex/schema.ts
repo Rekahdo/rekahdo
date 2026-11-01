@@ -26,9 +26,9 @@ export const roleTable = {
 export const roleValidator = v.object(roleTable);
 
 export const documentTable = {
-  href: v.string(),
   name: v.string(),
   type: v.union(v.literal("cv")),
+  storageId: v.id("_storage"),
 };
 
 export const documentValidator = v.object(documentTable);

@@ -1,18 +1,13 @@
-'use server'
+"use server";
 
 import z from "zod";
-import { validateZodData } from "./about";
+import { validateFormData } from "./about";
 import { fetchMutation } from "convex/nextjs";
 import { api } from "@/convex/_generated/api";
 import { footerSchema } from "@/schemas/zod-schemas";
 
 export async function createFooterAction(data: z.infer<typeof footerSchema>) {
+  const { parsed, token } = await validateFormData(footerSchema, data);
 
-    const { parsed, token } = await validateZodData(footerSchema, data)
-
-    await fetchMutation(
-        api.footer.save,
-        { ...parsed },
-        { token }
-    )
+  await fetchMutation(api.footer.save, { ...parsed }, { token });
 }
