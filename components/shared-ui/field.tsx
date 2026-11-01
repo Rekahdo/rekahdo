@@ -29,51 +29,6 @@ const fieldVariants = cva(cn(), {
     },
 });
 
-export interface AppFieldProps extends VariantProps<typeof fieldVariants> {
-    // extra wrapper classes
-    className?: string;
-    // visible field label
-    label: string;
-    // renders required (*) marker
-    important?: boolean;
-    // RHF field object (value/onChange/name)
-    field: ControllerRenderProps<any, any>;
-    // RHF field state (error/invalid/touched)
-    fieldState: ControllerFieldState;
-    // disables input while submitting
-    isPending?: boolean;
-    // input placeholder text
-    placeholder?: string;
-    // which control to render
-    as?: "input" | "textarea";
-    // text shown in the addon (e.g. prefix)
-    alignLabel?: string;
-    // icon at the start of the group
-    startIcon?: ReactNode;
-    // icon at the end of the group
-    endIcon?: ReactNode;
-    // show clear (X) button when filled
-    clearable?: boolean;
-    // min-height (number = rem)
-    height?: number | string;
-    // input type (password/file/etc.)
-    type?: HTMLInputTypeAttribute | undefined;
-    // file input accept filter
-    accept?: string;
-    // file input multi-select
-    multiple?: boolean;
-    // input min
-    min?: number | string;
-    // input max
-    max?: number | string;
-    // input step
-    step?: number | string;
-    // autocomplete hint
-    autoComplete?: string;
-    // textarea rows
-    rows?: number;
-}
-
 const BARE_TYPES = new Set<string>([
     "file",
     "checkbox",
@@ -83,6 +38,30 @@ const BARE_TYPES = new Set<string>([
     "hidden",
     "image",
 ]);
+
+export interface AppFieldProps extends VariantProps<typeof fieldVariants> {
+    className?: string;
+    label: string;
+    important?: boolean;
+    field: ControllerRenderProps<any, any>;
+    fieldState: ControllerFieldState;
+    isPending?: boolean;
+    placeholder?: string;
+    as?: "input" | "textarea";
+    alignLabel?: string;
+    startIcon?: ReactNode;
+    endIcon?: ReactNode;
+    clearable?: boolean;
+    height?: number | string;
+    type?: HTMLInputTypeAttribute | undefined;
+    accept?: string;
+    multiFiles?: boolean;
+    min?: number | string;
+    max?: number | string;
+    step?: number | string;
+    autoComplete?: string;
+    rows?: number;
+}
 
 export default function AppField({
     className,
@@ -101,7 +80,7 @@ export default function AppField({
     height,
     type,
     accept,
-    multiple,
+    multiFiles,
     min,
     max,
     step,
@@ -109,24 +88,211 @@ export default function AppField({
     rows,
     ...props
 }: AppFieldProps) {
+    const isInput = as === "input";
+    const isBare = isInput && type !== undefined && BARE_TYPES.has(type);
+    const errorId = `${field.name}-error`;
+
+    const inputProps = {
+        id: field.name,
+        ...field,
+        type,
+        "aria-invalid": fieldState.invalid,
+        "aria-describedby": fieldState.invalid ? errorId : undefined,
+        "aria-disabled": isPending,
+        disabled: isPending,
+        placeholder,
+        accept,
+        min,
+        max,
+        step,
+        autoComplete,
+    } as Record<string, unknown>;
+
+    return (
+        <Field className="flex flex-col gap-2">
+            <AppFieldLabel
+                label={label}
+                fieldName={field.name}
+                important={important}
+            />
+
+            {isBare && (
+                <BareField
+                    className={className}
+                    type={type as HTMLInputTypeAttribute}
+                    field={field}
+                    multiFiles={multiFiles}
+                    inputProps={inputProps}
+                />
+            )} 
+            
+            {!isBare && (
+                <NotBareField
+                    className={className}
+                    label={label}
+                    type={type}
+                    field={field}
+                    fieldState={fieldState}
+                    isPending={isPending}
+                    isInput={isInput}
+                    isPassword={type === "password"}
+                    clearable={clearable}
+                    height={height}
+                    align={align ?? "inline-start"}
+                    alignLabel={alignLabel}
+                    startIcon={startIcon}
+                    endIcon={endIcon}
+                    rows={rows}
+                    inputProps={inputProps}
+                    Tag={
+                        (isInput ? InputGroupInput
+                            : InputGroupTextarea) as ElementType
+                    }
+                    variantProps={props}
+                />
+            )}
+
+            <FieldError id={errorId} errors={[fieldState.error]} />
+        </Field>
+    );
+}
+
+// LABEL
+interface AppFieldLabelProps {
+    label: string;
+    fieldName: string;
+    important?: boolean;
+}
+
+function AppFieldLabel({ label, fieldName, important }: AppFieldLabelProps) {
+    return (
+        <FieldLabel
+            htmlFor={fieldName}
+            className={cn(
+                "gap-0.5 text-xs font-medium uppercase tracking-wide text-muted-foreground transition-colors",
+                important && "after:text-destructive after:content-['*']"
+            )}
+        >
+            {label}
+        </FieldLabel>
+    );
+}
+
+// BARE INPUT
+interface BareFieldProps {
+    className?: string;
+    type: HTMLInputTypeAttribute;
+    inputProps: Record<string, unknown>;
+    field: ControllerRenderProps<any, any>;
+    multiFiles?: boolean;
+}
+
+function BareField({ className, type, inputProps, field, multiFiles }: BareFieldProps) {
+    if (type === "file") {
+        delete inputProps.value;
+        inputProps.onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+            const files = e.target.files;
+            field.onChange(multiFiles ? files : files?.[0] ?? null);
+        };
+    }
+
+    if (type === "checkbox" || type === "radio") {
+        inputProps.checked = Boolean(field.value);
+        delete inputProps.value;
+        inputProps.onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+            field.onChange(
+                type === "checkbox" ? e.target.checked : e.target.value
+            );
+        };
+    }
+
+    return (
+        <>
+            {type === "color" || type === "range" ? (
+                <input
+                    {...inputProps}
+                    className={cn(
+                        "w-full",
+                        type === "color" &&
+                        "h-10 w-20 cursor-pointer rounded-md border border-input bg-background p-1",
+                        type === "range" && "accent-primary",
+                        className
+                    )}
+                />
+            ) : (
+                <input
+                    {...inputProps}
+                    className={cn(
+                        "rounded-xl border border-input bg-background p-2 text-sm shadow-xs transition-colors",
+                        "file:me-3 file:cursor-pointer file:rounded-md file:border-0 file:bg-muted file:px-3 file:py-1.5 file:text-xs file:font-medium file:text-foreground hover:file:bg-muted-foreground/20",
+                        "hover:border-ring/50",
+                        "aria-invalid:border-destructive",
+                        "disabled:cursor-not-allowed disabled:opacity-50",
+                        className
+                    )}
+                />
+            )}
+        </>
+    );
+}
+
+// NOT BARE INPUT
+interface NotBareFieldProps {
+    className?: string;
+    label: string;
+    type?: HTMLInputTypeAttribute | undefined;
+    field: ControllerRenderProps<any, any>;
+    fieldState: ControllerFieldState;
+    isPending?: boolean;
+    isInput: boolean;
+    isPassword: boolean;
+    clearable: boolean;
+    height?: number | string;
+    align?: "inline-start" | "inline-end" | "block-start" | "block-end";
+    alignLabel?: string;
+    startIcon?: ReactNode;
+    endIcon?: ReactNode;
+    rows?: number;
+    inputProps: Record<string, unknown>;
+    Tag: ElementType;
+    variantProps: VariantProps<typeof fieldVariants>;
+}
+
+function NotBareField({
+    className,
+    label,
+    type,
+    field,
+    fieldState,
+    isPending,
+    isInput,
+    isPassword,
+    clearable,
+    height,
+    align = "inline-start",
+    alignLabel,
+    startIcon,
+    endIcon,
+    rows,
+    inputProps,
+    Tag,
+    variantProps,
+}: NotBareFieldProps) {
     const [showPassword, setShowPassword] = useState(false);
 
-    const isInput = as === "input";
-    const isPassword = type === "password";
-    const isBare = isInput && type !== undefined && BARE_TYPES.has(type);
-    const Tag = (isInput ? InputGroupInput : InputGroupTextarea) as ElementType;
-    const errorId = `${field.name}-error`;
     const hasAddon = Boolean(startIcon || endIcon || alignLabel);
+    const isBlock = align === "block-start" || align === "block-end";
+    
+    const safeValue = field.value ?? "";
 
     const hasValue =
-        field.value !== undefined &&
-        field.value !== null &&
-        String(field.value).length > 0;
-    const showClearButton =
-        clearable && hasValue && !isPending && !isBare && !isPassword;
-    const showPasswordToggle = isPassword && !isPending;
+        safeValue !== undefined &&
+        safeValue !== null &&
+        String(safeValue).length > 0;
 
-    const isBlock = align === "block-start" || align === "block-end";
+    const showClearButton =
+        clearable && hasValue && !isPending && !isPassword;
+    const showPasswordToggle = isPassword && !isPending;
 
     const resolvedMinHeight =
         height !== undefined
@@ -142,6 +308,7 @@ export default function AppField({
             ? "text"
             : "password"
         : type;
+        
 
     const handleClear = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -155,180 +322,90 @@ export default function AppField({
         setShowPassword((v) => !v);
     };
 
-    const inputProps = {
-        id: field.name,
-        ...field,
-        type: resolvedType,
-        "aria-invalid": fieldState.invalid,
-        "aria-describedby": fieldState.invalid ? errorId : undefined,
-        "aria-disabled": isPending,
-        disabled: isPending,
-        placeholder,
-        accept,
-        multiple,
-        min,
-        max,
-        step,
-        autoComplete,
-    } as Record<string, unknown>;
-
-    if (type === "file") {
-        delete inputProps.value;
-        inputProps.onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-            const files = e.target.files;
-            field.onChange(multiple ? files : files?.[0] ?? null);
-        };
-    }
-
-    if (type === "checkbox" || type === "radio") {
-        inputProps.checked = Boolean(field.value);
-        delete inputProps.value;
-        inputProps.onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-            field.onChange(type === "checkbox" ? e.target.checked : e.target.value);
-        };
-    }
-
-    if (isBare) {
-        return (
-            <Field className={cn("flex flex-col gap-2", className)}>
-                <FieldLabel
-                    htmlFor={field.name}
-                    className={cn(
-                        "gap-0.5 text-xs font-medium uppercase tracking-wide text-muted-foreground transition-colors",
-                        important &&
-                        "after:text-destructive after:content-['*']"
-                    )}
-                >
-                    {label}
-                </FieldLabel>
-
-                {type === "color" || type === "range" ? (
-                    <input
-                        {...inputProps}
-                        className={cn(
-                            "w-full",
-                            type === "color" &&
-                            "h-10 w-20 cursor-pointer rounded-md border border-input bg-background p-1",
-                            type === "range" && "accent-primary"
-                        )}
-                    />
-                ) : (
-                    <input
-                        {...inputProps}
-                        className={cn(
-                            "rounded-xl border border-input bg-background p-2 text-sm shadow-xs transition-colors",
-                            "file:me-3 file:cursor-pointer file:rounded-md file:border-0 file:bg-muted file:px-3 file:py-1.5 file:text-xs file:font-medium file:text-foreground hover:file:bg-muted-foreground/20",
-                            "hover:border-ring/50",
-                            "aria-invalid:border-destructive",
-                            "disabled:cursor-not-allowed disabled:opacity-50"
-                        )}
-                    />
-                )}
-
-                <FieldError id={errorId} errors={[fieldState.error]} />
-            </Field>
-        );
-    }
-
     return (
-        <Field className={cn("flex flex-col gap-2", className)}>
-            <FieldLabel
-                htmlFor={field.name}
-                className={cn(
-                    "gap-0.5 text-xs font-medium uppercase tracking-wide text-muted-foreground transition-colors",
-                    important && "after:text-destructive after:content-['*']"
-                )}
-            >
-                {label}
-            </FieldLabel>
+        <InputGroup
+            data-invalid={fieldState.invalid}
+            data-disabled={isPending}
+            className={cn(
+                "gap-0 p-2!",
+                "rounded-xl border border-input bg-background transition-colors duration-200 shadow-xs",
+                "hover:border-ring/50 hover:bg-background",
+                isBlock && "gap-1",
+                className
+            )}
+            style={{ minHeight: resolvedMinHeight }}
+        >
+            {hasAddon && (
+                <InputGroupAddon
+                    align={align}
+                    className="*:text-muted-foreground flex items-center gap-4 p-2"
+                >
+                    {startIcon}
 
-            <InputGroup
-                data-invalid={fieldState.invalid}
-                data-disabled={isPending}
+                    {alignLabel && (
+                        <InputGroupText className="font-mono text-xs">
+                            {alignLabel}
+                        </InputGroupText>
+                    )}
+
+                    {endIcon && <span className="ms-auto">{endIcon}</span>}
+                </InputGroupAddon>
+            )}
+
+            <div
                 className={cn(
-                    "gap-0 p-2!",
-                    "rounded-xl border border-input bg-background transition-colors duration-200 shadow-xs",
-                    "hover:border-ring/50 hover:bg-background",
-                    isBlock && "gap-1"
+                    "flex w-full h-full px-2",
+                    isInput ? "items-center" : "py-2"
                 )}
-                style={{ minHeight: resolvedMinHeight }}
             >
-                {hasAddon && (
-                    <InputGroupAddon
-                        align={align}
+                <Tag
+                    {...inputProps}
+                    value={safeValue}
+                    type={resolvedType}
+                    rows={!isInput ? (rows ?? 6) : undefined}
+                    className={cn(
+                        "min-h-full p-0! text-sm sm:text-base",
+                        fieldVariants({ ...variantProps })
+                    )}
+                />
+
+                {showPasswordToggle && (
+                    <InputGroupButton
+                        type="button"
+                        onClick={handleTogglePassword}
+                        aria-label={
+                            showPassword ? "Hide password" : "Show password"
+                        }
+                        aria-pressed={showPassword}
                         className={cn(
-                            "*:text-muted-foreground flex items-center gap-4 p-2"
+                            "flex items-center justify-center rounded-full",
+                            "text-muted-foreground hover:text-foreground",
+                            "transition-all"
                         )}
                     >
-                        {startIcon}
-
-                        {alignLabel && (
-                            <InputGroupText className="font-mono text-xs">
-                                {alignLabel}
-                            </InputGroupText>
+                        {showPassword ? (
+                            <EyeOff className="size-4" />
+                        ) : (
+                            <Eye className="size-4" />
                         )}
-
-                        {endIcon && (
-                            <span className="ms-auto">{endIcon}</span>
-                        )}
-                    </InputGroupAddon>
+                    </InputGroupButton>
                 )}
 
-                <div
-                    className={cn(
-                        "flex w-full h-full px-2",
-                        isInput ? "items-center" : "py-2"
-                    )}
-                >
-                    <Tag
-                        {...inputProps}
-                        rows={!isInput ? (rows ?? 6) : undefined}
+                {showClearButton && (
+                    <InputGroupButton
+                        type="button"
+                        onClick={handleClear}
+                        aria-label={`Clear ${label}`}
                         className={cn(
-                            "min-h-full p-0! text-sm sm:text-base",
-                            fieldVariants({ ...props })
+                            "flex items-center justify-center rounded-full",
+                            "bg-muted hover:bg-muted-foreground/20 text-muted-foreground hover:text-foreground",
+                            "transition-all animate-into-view size-6"
                         )}
-                    />
-
-                    {showPasswordToggle && (
-                        <InputGroupButton
-                            type="button"
-                            onClick={handleTogglePassword}
-                            aria-label={
-                                showPassword ? "Hide password" : "Show password"
-                            }
-                            aria-pressed={showPassword}
-                            className={cn(
-                                "flex items-center justify-center rounded-full",
-                                "text-muted-foreground hover:text-foreground",
-                                "transition-all"
-                            )}
-                        >
-                            {showPassword ? (
-                                <EyeOff className="size-4" />
-                            ) : (
-                                <Eye className="size-4" />
-                            )}
-                        </InputGroupButton>
-                    )}
-
-                    {showClearButton && (
-                        <InputGroupButton
-                            type="button"
-                            onClick={handleClear}
-                            aria-label={`Clear ${label}`}
-                            className={cn(
-                                "flex items-center justify-center rounded-full",
-                                "bg-muted hover:bg-muted-foreground/20 text-muted-foreground hover:text-foreground",
-                                "transition-all animate-into-view size-6"
-                            )}
-                        >
-                            <X className="size-3" />
-                        </InputGroupButton>
-                    )}
-                </div>
-            </InputGroup>
-
-            <FieldError id={errorId} errors={[fieldState.error]} />
-        </Field>
+                    >
+                        <X className="size-3" />
+                    </InputGroupButton>
+                )}
+            </div>
+        </InputGroup>
     );
 }

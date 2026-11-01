@@ -17,11 +17,13 @@ import { LoginBtn, LogoutBtn, SignUpBtn } from "../shared-ui/auth-btn";
 import { AuthRoute } from "../shared-ui/admin-roles";
 import { DownloadBtn } from "../shared-ui/button-impl";
 import { HeaderEditForm } from "../app-ui/edit-forms";
+import { fetchQuery } from "convex/nextjs";
+import { api } from "@/convex/_generated/api";
 
 export const HEADER_ID = "header";
 
 export const HeaderSection = async () => {
-    const cv = (await documentData).cv;
+    const cv = await fetchQuery(api.document.findByType, { type: 'cv' });
 
     const navItems: NavItem[] = [
         { link: { type: "scroll", href: HERO_ID, label: "Home" } },
@@ -58,8 +60,8 @@ export const HeaderSection = async () => {
 
                 headerRight={
                     <div className="flex items-center gap-2.5 sm:gap-3">
-                        <DownloadBtn text="Download CV" href={cv?.href}
-                            filename={cv?.name} height={'md'} showTextAt="sm" />
+                        <DownloadBtn text="Download CV" href={cv.file!}
+                            filename={cv.name} height={'md'} showTextAt="sm" />
 
                         <AuthRoute>
                             <SignUpBtn height={'md'} />
@@ -77,7 +79,7 @@ export const HeaderSection = async () => {
                         <SideSheet
                             navItems={navItems}
                             bottom={
-                                <DownloadBtn text="Download CV" href={cv?.href} filename={cv?.name} />
+                                <DownloadBtn text="Download CV" href={cv.file!} filename={cv?.name} />
                             }
                         />
                     </div>

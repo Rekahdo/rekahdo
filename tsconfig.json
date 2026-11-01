@@ -36,7 +36,7 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts",
     "components/app-ui/stack-card.tsx.bak"
-  ],
+, "components/shared-ui/field.tsx"  ],
   "exclude": [
     "node_modules"
   ]

@@ -8,12 +8,12 @@ import { somethingWentWrong } from "@/convex/errors";
 import { signUpSchema } from "@/schemas/zod-schemas";
 import { fetchMutation } from "convex/nextjs";
 import { api } from "@/convex/_generated/api";
-import AppField from "./field";
+import AppField from "./field-used";
 import { UseFormReturn } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
 import { DialogForm } from "./dialog-form";
 import { LogIn, UserRoundPlus } from "lucide-react";
- "./dialog-form";
+"./dialog-form";
 
 interface DialogSignUpProps {
     buttonProps?: ButtonImplProps;

@@ -35,9 +35,16 @@ export const roleSchema = z.object({
 });
 
 export const documentSchema = z.object({
-  href: z.string(),
   name: z.string().nonempty().max(50),
   type: z.enum(["cv"]),
+  file: z
+    .instanceof(File, { message: "Please select a valid file" })
+    .refine((file) => file.size <= 5 * 1024 * 1024, "Max file size is 5MB")
+    .refine(
+      (file) =>
+        ["application/pdf", "image/png", "image/jpeg"].includes(file.type),
+      "Only PDF, PNG, or JPEG allowed",
+    ),
 });
 
 export const headerSchema = z.object({});

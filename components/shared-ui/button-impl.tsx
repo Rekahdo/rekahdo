@@ -98,7 +98,14 @@ export function ButtonImpl({
             tagProps = { type: undefined, onClick: scroll };
         } else if (render.type === "download") {
             Tag = "a";
-            tagProps = { href: render.href, download: render.filename, type: undefined, onClick };
+            tagProps = {
+                href: render.href, 
+                download: render.filename, 
+                type: undefined, 
+                onClick,
+                target: "_blank",
+                rel: "noopener noreferrer",
+            };
         } else if (render.type === "external") {
             Tag = Link;
             tagProps = {
@@ -115,9 +122,11 @@ export function ButtonImpl({
         Tag = 'button';
     }
 
-    const BtnIcon = () => <span className="*:size-4">
-        {isPending ? <Loader className="animate-spin" /> : icon}
-    </span>
+    const BtnIcon = () => <>{(icon || isPending) &&
+        <span className="*:size-4">
+            {isPending ? <Loader className="animate-spin" /> : icon}
+        </span>
+    }</>
 
     return (
         <Tag
@@ -136,10 +145,41 @@ export function ButtonImpl({
                 <span data-sh={showTextAt} className={SHOW_TEXT_AT_STYLES}>
                     {isPending ? pending : text}
                 </span>
-            }
+            }   
 
             {showIcon && side === "right" && <BtnIcon />}
         </Tag>
+    );
+} import { useState } from "react";
+
+export interface ButtonImplGroupProps {
+    className?: string;
+    buttons?: Omit<ButtonImplProps, "isPending">[];
+    isPending?: boolean;
+}
+
+export default function ButtonImplGroup({ className, buttons, isPending }: ButtonImplGroupProps) {
+    const [clickedIndex, setClickedIndex] = useState<number | null>(null);
+
+    if (!buttons || buttons.length === 0) return null;
+
+    return (
+        <div className={cn("flex items-center gap-2", className)}>
+            {buttons.map(({ text, onClick, ...btnProps }, index) => (
+                <ButtonImpl
+                    key={index}
+                    text={text}
+                    onClick={() => {
+                        setClickedIndex(index);
+                        onClick?.();
+                    }}
+                    isPending={clickedIndex === index && isPending}
+                    isDisabled={isPending}
+                    type={btnProps.type ?? "button"}
+                    {...btnProps}
+                />
+            ))}
+        </div>
     );
 }
 

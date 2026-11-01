@@ -4,11 +4,12 @@ import { FieldGroup } from "@/components/ui/field";
 import { Controller, useForm, FieldValues, Path, UseFormReturn, DefaultValues } from "react-hook-form";
 import { ReactNode, useTransition } from "react";
 import { H2 } from "@/components/shared-ui/headings";
-import { ButtonImpl, ButtonImplProps } from "@/components/shared-ui/button-impl";
+import ButtonImplGroup, { ButtonImpl, ButtonImplProps } from "@/components/shared-ui/button-impl";
 import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle, DialogFooter, DialogClose } from "../ui/dialog";
-import AppField from "./field";
+import AppField, { AppFieldProps } from "./field";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ZodType } from "zod";
+import { cn } from "cn";
 
 export interface DialogProps<TValues extends FieldValues> {
     triggerText: string;
@@ -22,24 +23,13 @@ export interface DialogProps<TValues extends FieldValues> {
     schema: ZodType<TValues, any, any>;
     defaultValues: DefaultValues<TValues>;
     fields: DialogFieldProps<TValues>[];
-    onSubmit: (data: TValues, form: UseFormReturn<TValues>) => void | Promise<void>;
+    onSubmit: (values: TValues, form: UseFormReturn<TValues>) => void | Promise<void>;
     resetOnClose?: boolean;
 }
 
-export interface DialogFieldProps<TValues extends FieldValues> {
+export interface DialogFieldProps<TValues extends FieldValues> extends
+    Omit<AppFieldProps, "field" | "fieldState"> {
     name: Path<TValues>;
-    label: string;
-    placeholder?: string;
-    type?: React.ComponentProps<typeof AppField>["type"];
-    important?: boolean;
-    as?: "input" | "textarea";
-    startIcon?: ReactNode;
-    endIcon?: ReactNode;
-    clearable?: boolean;
-    accept?: string;
-    multiple?: boolean;
-    autoComplete?: string;
-    rows?: number;
 }
 
 export function DialogForm<TValues extends FieldValues>({
@@ -58,6 +48,7 @@ export function DialogForm<TValues extends FieldValues>({
     resetOnClose = true,
 }: DialogProps<TValues>) {
     const [isPending, startTransition] = useTransition();
+    const clicked = undefined;
 
     const form = useForm<TValues>({
         resolver: zodResolver(schema as any),
@@ -72,9 +63,9 @@ export function DialogForm<TValues extends FieldValues>({
         lg: "sm:max-w-lg",
     }[size];
 
-    function submit(data: TValues) {
+    function submit(values: TValues) {
         startTransition(async () => {
-            await onSubmit(data, form);
+            await onSubmit(values, form);
         });
     }
 
@@ -91,8 +82,8 @@ export function DialogForm<TValues extends FieldValues>({
                     />
                 }
             />
-            
-            <DialogContent className={sizeClass}>
+
+            <DialogContent className={cn("shadow-2xl", sizeClass)}>
                 <DialogHeader>
                     <DialogTitle>
                         <H2 title={title} />
@@ -119,7 +110,7 @@ export function DialogForm<TValues extends FieldValues>({
                                         endIcon={f.endIcon}
                                         clearable={f.clearable}
                                         accept={f.accept}
-                                        multiple={f.multiple}
+                                        multiFiles={f.multiFiles}
                                         autoComplete={f.autoComplete}
                                         rows={f.rows}
                                     />
@@ -140,19 +131,21 @@ export function DialogForm<TValues extends FieldValues>({
                             }
                         />
 
-                        <ButtonImpl
+                        <ButtonImplGroup
                             isPending={isPending}
-                            type="submit"
-                            text={submitText}
-                            height="md"
-                        />
-
-                        <ButtonImpl
-                            variant={'destructive'}
-                            isPending={isPending}
-                            type="reset"
-                            text={"reset"}
-                            height="md"
+                            buttons={[
+                                {
+                                    variant: "destructive",
+                                    type: "reset",
+                                    text: "reset",
+                                    height: "md",
+                                },
+                                {
+                                    type: "submit",
+                                    text: submitText,
+                                    height: "md",
+                                }
+                            ]}
                         />
                     </DialogFooter>
                 </form>
