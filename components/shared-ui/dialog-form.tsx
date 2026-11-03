@@ -110,7 +110,7 @@ export function DialogForm<TValues extends FieldValues>({
                                         endIcon={f.endIcon}
                                         clearable={f.clearable}
                                         accept={f.accept}
-                                        multiFiles={f.multiFiles}
+                                        multiple={f.multiple}
                                         autoComplete={f.autoComplete}
                                         rows={f.rows}
                                     />

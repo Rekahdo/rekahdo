@@ -1,22 +1,23 @@
 'use client'
 
-import { documentSchema } from "@/schemas/zod-schemas";
+import { fileSchema, heroSchema } from "@/schemas/zod-schemas";
 import EditPen from "../shared-ui/edit-pen";
 import z from "zod";
-import { saveDocumentAction } from "@/app/actions/document";
+import { saveFileAction } from "@/app/actions/file";
 import { toast } from "sonner";
 import { api } from "@/convex/_generated/api";
 import { useMutation, useQuery } from "convex/react";
+import { saveHeroAction } from "@/app/actions/hero";
 
 export function HeaderEditForm() {
-    const data = useQuery(api.document.findByType, { type: "cv" });
-    const generateUploadUrl = useMutation(api.document.generateUploadUrl);
+    const data = useQuery(api.file.findByType, { type: "cv" });
+    const generateUploadUrl = useMutation(api.file.generateUploadUrl);
 
     if (data === undefined) return null;
 
-    async function submit(values: z.infer<typeof documentSchema>) {
+    async function submit(values: z.infer<typeof fileSchema>) {
         const postUrl = await generateUploadUrl()
-        await saveDocumentAction({ values, postUrl });
+        await saveFileAction({ values, postUrl });
         toast.success("Cv Uploaded Successfully");
     }
 
@@ -25,7 +26,7 @@ export function HeaderEditForm() {
             title="Header"
             size="sm"
             submitText="Update"
-            schema={documentSchema}
+            schema={fileSchema}
             defaultValues={{
                 type: data?.type,
                 name: data?.name,
@@ -40,11 +41,87 @@ export function HeaderEditForm() {
                 {
                     name: "name",
                     label: "Name",
-                    placeholder: "My CV",
+                    placeholder: "Curriculum Vitae",
                 },
                 {
                     name: "type",
                     label: "Type",
+                },
+            ]}
+            onSubmit={submit}
+        />
+    );
+}
+
+export function HeroEditForm() {
+    const data = useQuery(api.hero.get);
+    const generateUploadUrl = useMutation(api.file.generateUploadUrl);
+
+    if (data === undefined) return null;
+
+    async function submit(values: z.infer<typeof heroSchema>) {
+        const postUrl = await generateUploadUrl()
+        await saveHeroAction({ values, postUrl });
+        toast.success("Hero Saved Successfully");
+    }
+
+    return (
+        <EditPen
+            title="Hero"
+            size="sm"
+            submitText="Update"
+            schema={heroSchema}
+            defaultValues={{
+                badge: data?.badge,
+                greetings: data?.greetings,
+                introduction: data?.introduction,
+                headline: data?.headline,
+                description: data?.description ?? "",
+                availableForWork: data?.availableForWork ?? false,
+                image: undefined,
+                tags: data?.tags,
+            }}
+            fields={[
+                {
+                    name: "badge",
+                    label: "Badge",
+                    placeholder: "Available for work",
+                },
+                {
+                    name: "greetings",
+                    label: "Greetings",
+                    placeholder: "Hello, I'm",
+                },
+                {
+                    name: "introduction",
+                    label: "Introduction",
+                    placeholder: "John Doe",
+                },
+                {
+                    name: "headline",
+                    label: "Headline",
+                    placeholder: "Full Stack Developer",
+                },
+                {
+                    name: "description",
+                    label: "Description",
+                    type: "textarea",
+                },
+                {
+                    name: "availableForWork",
+                    label: "Available for work",
+                    type: "checkbox",
+                },
+                {
+                    name: "image",
+                    label: "Image",
+                    type: "image",
+                    accept: "image/png,image/jpeg,image/svg+xml",
+                },
+                {
+                    name: "tags",
+                    label: "Tags",
+                    type: "tags",
                 },
             ]}
             onSubmit={submit}

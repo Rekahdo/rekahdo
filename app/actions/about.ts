@@ -25,8 +25,14 @@ export async function validateFormData<S extends ZodObject<ZodRawShape>>(
   return { parsed: parsed.data, token };
 }
 
-export async function createAboutAction(data: z.infer<typeof aboutSchema>) {
-  const { parsed, token } = await validateFormData(aboutSchema, data);
+export async function saveAboutAction({
+    values,
+    postUrl,
+  }: {
+    values: z.infer<typeof aboutSchema>;
+    postUrl: string;
+  }) {
+  const { parsed, token } = await validateFormData(aboutSchema, values);
 
   await fetchMutation(api.about.save, { ...parsed }, { token });
 }

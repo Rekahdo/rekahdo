@@ -10,7 +10,6 @@ import { SideSheet } from "@/components/shared-ui/side-sheet";
 import { useConvexAuth } from "convex/react";
 import { redirect, RedirectType } from "next/navigation";
 import { toast } from "sonner";
-// import { ADMIN_AUTH, ADMIN_DASHBOARD } from "../layout";
 import { Spinner } from "@/components/ui/spinner";
 
 export interface LayoutProps {
@@ -18,76 +17,22 @@ export interface LayoutProps {
 }
 
 export default function Layout(props: LayoutProps) {
-    // const { isAuthenticated, isLoading } = useConvexAuth()
+    const { isAuthenticated, isLoading } = useConvexAuth()
 
-    // if (isLoading) {
-    //     return (
-    //         <div className="flex min-h-screen items-center justify-center">
-    //             <Spinner className="size-8" />
-    //         </div>
-    //     );
-    // }
+    if (isLoading) {
+        return (
+            <div className="flex min-h-screen items-center justify-center">
+                <Spinner className="size-8" />
+            </div>
+        );
+    }
 
-    // if (!isAuthenticated) {
-    //     toast.success("Login to continue to dashboard")
-    // }
-
-    // const navItems: NavItem[] = [
-    //     {
-    //         link: { type: "page", href: ADMIN_DASHBOARD.root, label: "Dashboard" },
-    //     },
-    //     {
-    //         link: { type: "page", href: ADMIN_DASHBOARD.header, label: "Header" },
-    //     },
-    //     {
-    //         link: { type: "page", href: ADMIN_DASHBOARD.hero, label: "Hero" },
-    //     },
-    //     {
-    //         link: { type: "page", href: ADMIN_DASHBOARD.about, label: "About" },
-    //     },
-    //     {
-    //         link: { type: "page", href: ADMIN_DASHBOARD.stack, label: "Tech Stack" },
-    //     },
-    //     {
-    //         link: { type: "page", href: ADMIN_DASHBOARD.projects, label: "Projects" },
-    //     },
-    //     {
-    //         link: { type: "page", href: ADMIN_DASHBOARD.contact, label: "Contact" },
-    //     },
-    //     {
-    //         link: { type: "page", href: ADMIN_DASHBOARD.footer, label: "Footer" },
-    //     },
-    // ]
+    if (!isAuthenticated) {
+        toast.success("Login to continue to dashboard")
+    }
 
     return (
         <>
-            {/* <Container id="admin-header" width={'w400'} height={'header'}
-                sticky={'top'} >
-                <Header
-                    headerLeft={<Logo />}
-
-                    headerCenter={
-                        <>
-                            <Navigation
-                                className="max-md:hidden"
-                                navItems={navItems}
-                                width={'lg'}
-                                height={'lg'}
-                            />
-                        </>
-                    }
-
-                    headerRight={
-                        <>
-                            <ModeToggle />
-                            <SideSheet
-                                navItems={navItems}
-                            />
-                        </>
-                    }
-                />
-            </Container> */}
-
             {props.children}
         </>
     );

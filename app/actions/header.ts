@@ -6,8 +6,14 @@ import { api } from "@/convex/_generated/api";
 import { validateFormData } from "./about";
 import z from "zod";
 
-export async function createHeaderAction(data: z.infer<typeof headerSchema>) {
-  const { parsed, token } = await validateFormData(headerSchema, data);
+export async function saveHeaderAction({
+    values,
+    postUrl,
+  }: {
+    values: z.infer<typeof headerSchema>;
+    postUrl: string;
+  }) {
+  const { parsed, token } = await validateFormData(headerSchema, values);
 
   await fetchMutation(api.header.save, { ...parsed }, { token });
 }

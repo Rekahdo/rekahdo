@@ -10,8 +10,12 @@ import { Resend } from "resend";
 import SendMessage from "@/emails/send-message";
 import { createElement } from "react";
 
-export async function createContactAction(data: z.infer<typeof contactSchema>) {
-  const { parsed, token } = await validateFormData(contactSchema, data);
+export async function saveContactAction({
+    values,
+  }: {
+    values: z.infer<typeof contactSchema>;
+  }) {
+  const { parsed, token } = await validateFormData(contactSchema, values);
 
   await fetchMutation(api.contact.save, { ...parsed }, { token });
 }

@@ -2,8 +2,8 @@ import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
 export const imageValidator = v.object({
-  src: v.string(),
-  srcDark: v.optional(v.string()),
+  src: v.id("_storage"),
+  srcDark: v.optional(v.id("_storage")),
   alt: v.string(),
 });
 
@@ -25,13 +25,21 @@ export const roleTable = {
 
 export const roleValidator = v.object(roleTable);
 
-export const documentTable = {
+export const fileTable = {
   name: v.string(),
-  type: v.union(v.literal("cv")),
+  type: v.union(
+    v.literal("cv"),
+    v.literal("hero"),
+    v.literal("about"),
+    v.literal("logo"),
+    v.literal("stack"),
+    v.literal("project"),
+    v.literal("icon"),
+  ),
   storageId: v.id("_storage"),
 };
 
-export const documentValidator = v.object(documentTable);
+export const fileValidator = v.object(fileTable);
 
 export const headerTable = {};
 
@@ -78,7 +86,7 @@ export const aboutTable = {
         course: v.string(),
         certification: v.string(),
         website: v.string(),
-        logo: v.string(),
+        logo: imageValidator,
       }),
     ),
   ),
@@ -151,13 +159,13 @@ export const footerTable = {
 export const footerValidator = v.object(footerTable);
 
 export default defineSchema({
-  document: defineTable({
-    ...documentTable,
+  file: defineTable({
+    ...fileTable,
   }).index("by_type", ["type"]),
 
   role: defineTable({
     ...roleTable,
-  }),
+  }).index("by_userId", ["userId"]),
 
   header: defineTable({
     ...headerTable,
@@ -173,11 +181,13 @@ export default defineSchema({
 
   stack: defineTable({
     ...stackTable,
-  }),
+  }).index("by_type", ["type"]),
 
   project: defineTable({
     ...projectTable,
-  }),
+  })
+    .index("by_display", ["display"])
+    .index("by_status", ["status"]),
 
   contact: defineTable({
     ...contactTable,

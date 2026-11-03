@@ -11,8 +11,8 @@
 import type * as about from "../about.js";
 import type * as auth from "../auth.js";
 import type * as contact from "../contact.js";
-import type * as document from "../document.js";
 import type * as errors from "../errors.js";
+import type * as file from "../file.js";
 import type * as footer from "../footer.js";
 import type * as header from "../header.js";
 import type * as hero from "../hero.js";
@@ -32,8 +32,8 @@ declare const fullApi: ApiFromModules<{
   about: typeof about;
   auth: typeof auth;
   contact: typeof contact;
-  document: typeof document;
   errors: typeof errors;
+  file: typeof file;
   footer: typeof footer;
   header: typeof header;
   hero: typeof hero;

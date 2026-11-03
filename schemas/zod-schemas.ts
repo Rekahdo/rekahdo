@@ -1,17 +1,39 @@
+import { MimeTypes } from "@/lib/utils";
 import z from "zod";
 
-const imageValidator = z.object({
-  src: z.string(),
-  srcDark: z.optional(z.string()),
+const IMAGE_MIME_TYPES = [
+  MimeTypes.JPEG,
+  MimeTypes.PNG,
+  MimeTypes.SVG,
+] as string[];
+
+const MAX_IMAGE_SIZE = 10 * 1024 * 1024;
+
+export const imageValidator = z.object({
+  src: z
+    .instanceof(File, { message: "Please select a valid image" })
+    .refine((file) => file.size <= MAX_IMAGE_SIZE, "Max file size is 10MB")
+    .refine(
+      (file) => IMAGE_MIME_TYPES.includes(file.type),
+      "Only SVG, PNG, or JPEG allowed",
+    ),
+  srcDark: z
+    .instanceof(File, { message: "Please select a valid image" })
+    .refine((file) => file.size <= MAX_IMAGE_SIZE, "Max file size is 10MB")
+    .refine(
+      (file) => IMAGE_MIME_TYPES.includes(file.type),
+      "Only SVG, PNG, or JPEG allowed",
+    )
+    .optional(),
   alt: z.string(),
 });
 
-const tagValidator = z.object({
+export const tagValidator = z.object({
   title: z.string(),
   emoji: z.optional(z.string()),
 });
 
-const socialLinkValidator = z.object({
+export const socialLinkValidator = z.object({
   platform: z.string(),
   url: z.string(),
   icon: z.string(),
@@ -34,16 +56,23 @@ export const roleSchema = z.object({
   role: z.enum(["admin", "editor"]),
 });
 
-export const documentSchema = z.object({
+export const fileSchema = z.object({
   name: z.string().nonempty().max(50),
-  type: z.enum(["cv"]),
+  type: z.enum(["cv", "hero", "about", "logo", "stack", "project", "icon"]),
   file: z
     .instanceof(File, { message: "Please select a valid file" })
     .refine((file) => file.size <= 5 * 1024 * 1024, "Max file size is 5MB")
     .refine(
       (file) =>
-        ["application/pdf", "image/png", "image/jpeg"].includes(file.type),
-      "Only PDF, PNG, or JPEG allowed",
+        (
+          [
+            MimeTypes.PDF,
+            MimeTypes.JPEG,
+            MimeTypes.PNG,
+            MimeTypes.SVG,
+          ] as string[]
+        ).includes(file.type),
+      "Only PDF, PNG, JPEG, or SVG allowed",
     ),
 });
 
@@ -88,7 +117,7 @@ export const aboutSchema = z.object({
         course: z.string(),
         certification: z.string(),
         website: z.string(),
-        logo: z.string(),
+        logo: imageValidator,
       }),
     ),
   ),
@@ -118,8 +147,8 @@ export const projectSchema = z.object({
 
 export const contactSchema = z.object({
   email: z.email(),
-  phone: z.string(),
-  location: z.string(),
+  phone: z.string().min(1),
+  location: z.string().min(1),
   facebook: z.string(),
   whatsapp: z.string(),
   github: z.string(),

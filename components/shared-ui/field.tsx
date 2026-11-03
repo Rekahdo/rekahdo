@@ -55,7 +55,7 @@ export interface AppFieldProps extends VariantProps<typeof fieldVariants> {
     height?: number | string;
     type?: HTMLInputTypeAttribute | undefined;
     accept?: string;
-    multiFiles?: boolean;
+    multiple?: boolean;
     min?: number | string;
     max?: number | string;
     step?: number | string;
@@ -80,7 +80,7 @@ export default function AppField({
     height,
     type,
     accept,
-    multiFiles,
+    multiple,
     min,
     max,
     step,
@@ -91,6 +91,15 @@ export default function AppField({
     const isInput = as === "input";
     const isBare = isInput && type !== undefined && BARE_TYPES.has(type);
     const errorId = `${field.name}-error`;
+
+    const resolvedMinHeight =
+        height !== undefined
+            ? typeof height === "number"
+                ? `${height}rem`
+                : height
+            : isInput
+                ? "3rem"
+                : "6rem";
 
     const inputProps = {
         id: field.name,
@@ -116,41 +125,42 @@ export default function AppField({
                 important={important}
             />
 
-            {isBare && (
-                <BareField
-                    className={className}
-                    type={type as HTMLInputTypeAttribute}
-                    field={field}
-                    multiFiles={multiFiles}
-                    inputProps={inputProps}
-                />
-            )} 
-            
-            {!isBare && (
-                <NotBareField
-                    className={className}
-                    label={label}
-                    type={type}
-                    field={field}
-                    fieldState={fieldState}
-                    isPending={isPending}
-                    isInput={isInput}
-                    isPassword={type === "password"}
-                    clearable={clearable}
-                    height={height}
-                    align={align ?? "inline-start"}
-                    alignLabel={alignLabel}
-                    startIcon={startIcon}
-                    endIcon={endIcon}
-                    rows={rows}
-                    inputProps={inputProps}
-                    Tag={
-                        (isInput ? InputGroupInput
-                            : InputGroupTextarea) as ElementType
-                    }
-                    variantProps={props}
-                />
-            )}
+            {isBare ?
+                (
+                    <BareField
+                        className={className}
+                        type={type}
+                        field={field}
+                        multiple={multiple}
+                        inputProps={inputProps}
+                    />
+                ) : (
+                    <NotBareField
+                        className={className}
+                        label={label}
+                        type={type}
+                        field={field}
+                        fieldState={fieldState}
+                        isPending={isPending}
+                        isInput={isInput}
+                        isPassword={type === "password"}
+                        clearable={clearable}
+                        height={resolvedMinHeight}
+                        align={align ?? "inline-start"}
+                        alignLabel={alignLabel}
+                        startIcon={startIcon}
+                        endIcon={endIcon}
+                        rows={rows}
+                        multiple={multiple}
+                        inputProps={inputProps}
+                        Tag={
+                            (isInput ? InputGroupInput
+                                : InputGroupTextarea) as ElementType
+                        }
+                        variantProps={props}
+                    />
+                )
+            }
 
             <FieldError id={errorId} errors={[fieldState.error]} />
         </Field>
@@ -184,15 +194,15 @@ interface BareFieldProps {
     type: HTMLInputTypeAttribute;
     inputProps: Record<string, unknown>;
     field: ControllerRenderProps<any, any>;
-    multiFiles?: boolean;
+    multiple?: boolean;
 }
 
-function BareField({ className, type, inputProps, field, multiFiles }: BareFieldProps) {
+function BareField({ className, type, inputProps, field, multiple }: BareFieldProps) {
     if (type === "file") {
         delete inputProps.value;
         inputProps.onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             const files = e.target.files;
-            field.onChange(multiFiles ? files : files?.[0] ?? null);
+            field.onChange(multiple ? files : files?.[0] ?? null);
         };
     }
 
@@ -247,12 +257,13 @@ interface NotBareFieldProps {
     isInput: boolean;
     isPassword: boolean;
     clearable: boolean;
-    height?: number | string;
+    height?: AppFieldProps["height"];
     align?: "inline-start" | "inline-end" | "block-start" | "block-end";
     alignLabel?: string;
     startIcon?: ReactNode;
     endIcon?: ReactNode;
     rows?: number;
+    multiple?: boolean;
     inputProps: Record<string, unknown>;
     Tag: ElementType;
     variantProps: VariantProps<typeof fieldVariants>;
@@ -274,6 +285,7 @@ function NotBareField({
     startIcon,
     endIcon,
     rows,
+    multiple,
     inputProps,
     Tag,
     variantProps,
@@ -282,7 +294,7 @@ function NotBareField({
 
     const hasAddon = Boolean(startIcon || endIcon || alignLabel);
     const isBlock = align === "block-start" || align === "block-end";
-    
+
     const safeValue = field.value ?? "";
 
     const hasValue =
@@ -294,21 +306,12 @@ function NotBareField({
         clearable && hasValue && !isPending && !isPassword;
     const showPasswordToggle = isPassword && !isPending;
 
-    const resolvedMinHeight =
-        height !== undefined
-            ? typeof height === "number"
-                ? `${height}rem`
-                : height
-            : isInput
-                ? "3rem"
-                : "6rem";
-
     const resolvedType = isPassword
         ? showPassword
             ? "text"
             : "password"
         : type;
-        
+
 
     const handleClear = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -333,7 +336,7 @@ function NotBareField({
                 isBlock && "gap-1",
                 className
             )}
-            style={{ minHeight: resolvedMinHeight }}
+            style={{ minHeight: height }}
         >
             {hasAddon && (
                 <InputGroupAddon
