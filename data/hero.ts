@@ -1,7 +1,7 @@
 import { heroValidator } from "@/convex/schema";
 import { Infer } from "convex/values";
 
-export const heroData: Promise<Infer<typeof heroValidator>> = Promise.resolve({
+export const heroData: Promise<Omit<Infer<typeof heroValidator>, "image">> = Promise.resolve({
     badge: "developer that help your business grow",
     greetings: "Hi there",
     introduction: "I'M",

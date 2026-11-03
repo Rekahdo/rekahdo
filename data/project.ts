@@ -1,7 +1,7 @@
 import { projectValidator } from "@/convex/schema";
 import { Infer } from "convex/values";
 
-export const projectsData: Promise<Infer<typeof projectValidator>[]> = Promise.resolve(
+export const projectsData: Promise<Omit<Infer<typeof projectValidator>, "image">[]> = Promise.resolve(
   [
     {
       display: true,
