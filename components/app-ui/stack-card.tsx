@@ -17,10 +17,11 @@ import { scrollToId } from "../shared-ui/navigation";
 import { STACK_ID } from "../sections/stack-section";
 import { Tags } from "./tag";
 import { FadeOverlay } from "../shared-ui/fade-overlay";
+import { StackData } from "@/data/stack";
 
 type StackCardsType = {
     className?: string;
-    data?: Infer<typeof stackValidator>[];
+    data?: StackData[];
 };
 
 export function StackCards({ className, data }: StackCardsType) {
@@ -42,7 +43,7 @@ export function StackCards({ className, data }: StackCardsType) {
         setPreview(categories.find((stack) => stack.type === active)!.stacks[0]);
     }, [active]);
 
-    type ContentType = Pick<Infer<typeof stackValidator>, "name" | "icon" | "percentage" | "type">;
+    type ContentType = Pick<StackData, "name" | "icon" | "percentage" | "type">;
     const Content = ({ name, icon, percentage, type }: ContentType) => (
         <div className="flex items-center gap-4 w-full min-w-0">
             <AppIcon
@@ -227,7 +228,7 @@ function StackPreview({
     isCompact = false,
 }: {
     className?: string;
-    stack: Infer<typeof stackValidator>;
+    stack: StackData;
     isCompact?: boolean;
 }) {
     const { name, description, icon, percentage, usages, type } = stack;

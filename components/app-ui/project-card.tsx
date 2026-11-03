@@ -19,9 +19,10 @@ import { Status } from "../sections/project-section";
 import { AppIcon, AppIconVariants } from "../shared-ui/icon";
 import { GithubIcon } from "../icons/lucide-github";
 import { FadeOverlay } from "../shared-ui/fade-overlay";
+import { ProjectData } from "@/data/project";
 
 interface ProjectCardsProps {
-    projects: Infer<typeof projectValidator>[];
+    projects: ProjectData[];
 }
 
 export function ProjectCards({ projects }: ProjectCardsProps) {
@@ -39,7 +40,7 @@ export function ProjectCards({ projects }: ProjectCardsProps) {
 
 interface ProjectProps {
     index: number;
-    project: Infer<typeof projectValidator>;
+    project: ProjectData;
     className?: string;
 }
 
