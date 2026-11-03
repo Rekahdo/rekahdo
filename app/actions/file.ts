@@ -3,7 +3,7 @@
 import { fileSchema } from "@/schemas/zod-schemas";
 import { fetchMutation } from "convex/nextjs";
 import { api } from "@/convex/_generated/api";
-import { validateFormData } from "./about";
+import { validateFormData } from "./header";
 import z from "zod";
 
 export async function uploadFile({
