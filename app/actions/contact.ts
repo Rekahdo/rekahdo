@@ -4,7 +4,7 @@ import { sendMessageSchema, contactSchema } from "@/schemas/zod-schemas";
 import z from "zod";
 import { fetchMutation } from "convex/nextjs";
 import { api } from "@/convex/_generated/api";
-import { validateFormData } from "./about";
+import { validateFormData } from "./header";
 import { somethingWentWrong } from "@/convex/errors";
 import { Resend } from "resend";
 import SendMessage from "@/emails/send-message";

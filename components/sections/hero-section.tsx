@@ -10,6 +10,7 @@ import { Layout } from "../shared-ui/layout";
 import { aboutData } from "@/data/about";
 import { fetchQuery } from "convex/nextjs";
 import { api } from "@/convex/_generated/api";
+import { HeroEditForm } from "../app-ui/edit-forms";
 
 export const HERO_ID = "hero";
 
@@ -18,7 +19,7 @@ export const HeroSection = async () => {
     if (!data) return null;
 
     const about = await aboutData;
-    const cv = await fetchQuery(api.document.findByType, { type: 'cv' });
+    const cv = await fetchQuery(api.file.findByType, { type: 'cv' });
 
     return (
         <Container
@@ -82,10 +83,12 @@ export const HeroSection = async () => {
 
                         <Tags tags={data.tags} className='w-fit justify-center max-lg:mx-auto mt-3' />
 
-                        <CtaBtns name={cv.name} href={cv.file!} />
+                        <CtaBtns name={cv?.name} href={cv?.file} />
                     </>
                 }
             />
+
+            <HeroEditForm />
         </Container>
     );
 };

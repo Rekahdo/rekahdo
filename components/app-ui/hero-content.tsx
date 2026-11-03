@@ -54,8 +54,8 @@ export function Description({ text, className }: TextType & ClassNameType) {
 }
 
 export interface CtaBtnsProps {
-    name: string;
-    href: string;
+    name?: string;
+    href?: string | null;
     className?: string;
 }
 
@@ -64,7 +64,9 @@ export default function CtaBtns({ name, href, className }: CtaBtnsProps) {
 
     return (
         <div className={cn("flex flex-wrap gap-4 items-center *:grow *:min-w-30 *:max-w-40 max-lg:justify-center mt-3", className)}>
-            <DownloadExternalBtn text="Download CV" href={href} filename={name} height={'lg'} className="shadow-sm" />
+            {href && name && (
+                <DownloadExternalBtn text="Download CV" href={href} filename={name} height={'lg'} className="shadow-sm" />
+            )}
             <ScrollBtn text="Tech Stack" id={STACK_ID} height={'lg'} variant='secondary' className="shadow-sm" />
             <ScrollBtn text="Contact" id={(media ? CONTACT_ID : CONTACT_FORM_ID)} height={'lg'} variant='outline' className="shadow-sm" />
         </div>

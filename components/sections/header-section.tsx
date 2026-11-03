@@ -23,7 +23,7 @@ import { api } from "@/convex/_generated/api";
 export const HEADER_ID = "header";
 
 export const HeaderSection = async () => {
-    const cv = await fetchQuery(api.document.findByType, { type: 'cv' });
+    const cv = await fetchQuery(api.file.findByType, { type: 'cv' });
 
     const navItems: NavItem[] = [
         { link: { type: "scroll", href: HERO_ID, label: "Home" } },
@@ -60,8 +60,10 @@ export const HeaderSection = async () => {
 
                 headerRight={
                     <div className="flex items-center gap-2.5 sm:gap-3">
-                        <DownloadExternalBtn text="Download CV" href={cv.file!}
-                            filename={cv.name} height={'md'} showTextAt="sm" />
+                        {cv?.file && (
+                            <DownloadExternalBtn text="Download CV" href={cv.file}
+                                filename={cv.name} height={'md'} showTextAt="sm" />
+                        )}
 
                         <AuthRoute>
                             <SignUpBtn height={'md'} />
@@ -79,7 +81,9 @@ export const HeaderSection = async () => {
                         <SideSheet
                             navItems={navItems}
                             bottom={
-                                <DownloadExternalBtn text="Download CV" href={cv.file!} filename={cv?.name} />
+                                cv?.file ? (
+                                    <DownloadExternalBtn text="Download CV" height={'lg'} href={cv.file} filename={cv.name} />
+                                ) : null
                             }
                         />
                     </div>

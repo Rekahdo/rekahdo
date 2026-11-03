@@ -1,4 +1,4 @@
-import { ConvexError, v } from "convex/values";
+import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { authenticateUser } from "./hero";
 import { stackTable } from "./schema";
@@ -6,7 +6,7 @@ import { stackTable } from "./schema";
 export const insertMany = mutation({
     args: { stacks: v.array(v.object(stackTable)) },
     handler: async (ctx, args) => {
-        // await authenticateUser(ctx);
+        await authenticateUser(ctx);
 
         const existing = await ctx.db.query("stack").collect();
         await Promise.all(existing.map((row) => ctx.db.delete(row._id)));

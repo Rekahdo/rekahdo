@@ -1,7 +1,19 @@
 import { aboutValidator } from "@/convex/schema";
 import { Infer } from "convex/values";
 
-export type AboutData = Infer<typeof aboutValidator>;
+export type AboutData = Omit<
+  Infer<typeof aboutValidator>,
+  "profile" | "educations"
+> & {
+  profile: { src: string; alt: string };
+  educations: {
+    institution: string;
+    course: string;
+    certification: string;
+    website: string;
+    logo: string;
+  }[];
+};
 
 export const aboutData: Promise<AboutData> = Promise.resolve({
   firstname: "Richard",

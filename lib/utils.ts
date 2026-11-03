@@ -26,3 +26,10 @@ export function getRootDocument(): HTMLElement | null {
   if (typeof window === "undefined") return null;
   return document.documentElement;
 }
+
+export const MimeTypes = {
+  PDF: "application/pdf",
+  PNG: "image/png",
+  JPEG: "image/jpeg",
+  SVG: "image/svg+xml",
+} as const;
