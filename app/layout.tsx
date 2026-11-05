@@ -44,10 +44,11 @@ export const metadata: Metadata = {
       "I build scalable web applications, custom UI components, and high-converting websites with Next.js, React, and Convex.",
     images: [
       {
-        url: "/images/ogs/og.png",
+        url: "/images/ogs/og.jpg",
         width: 1200,
         height: 630,
         alt: "Richard T. Okafor — Next.js Web Engineer",
+        type: "image/jpeg",
       },
     ],
   },
@@ -56,7 +57,8 @@ export const metadata: Metadata = {
     title: "Richard T. Okafor | Next.js Web Engineer",
     description:
       "I build scalable web applications, custom UI components, and high-converting websites with Next.js, React, and Convex.",
-    images: ["/images/ogs/og.png"],
+    images: ["/images/ogs/og.jpg"],
+    creator: "https://x.com/real_rekahdo",
   },
   robots: {
     index: true,
