@@ -3,17 +3,15 @@
 import { Container } from "@/components/shared-ui/container";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { H1, H2 } from "@/components/shared-ui/headings";
-import { ArrowLeft, ArrowLeftCircleIcon, Briefcase, CheckCircle2, LayoutDashboard, Loader2, LogIn, LogOut, PersonStanding, ShieldCheck, UserPlus } from "lucide-react";
-import Link from "next/link";
+import { Briefcase, CheckCircle2, LayoutDashboard, LogIn, ShieldCheck, UserPlus } from "lucide-react";
 import { AppLayout } from "@/components/shared-ui/layout";
 import { Authenticated, Unauthenticated } from "convex/react";
 import { useState } from "react";
 import { LogoutBtn } from "@/components/shared-ui/auth-btn";
-import { cn } from "cn";
-import { buttonVariants } from "@/components/ui/button";
-import { ButtonImpl, buttonImplVariants } from "@/components/shared-ui/button-impl";
+import { ButtonImpl } from "@/components/shared-ui/button-impl";
 import { CardLoginForm, CardSignUpForm, DialogLoginForm, DialogSignUpForm } from "@/components/shared-ui/auth-forms";
 import { DASHBOARD_ROUTE, PORTFOLIO_ROUTE } from "@/lib/routes";
+import { BackRoute } from "@/components/shared-ui/router-navigation";
 
 export interface PageProps {
 
@@ -29,19 +27,8 @@ export default function Page(props: PageProps) {
             rootClassName="h-dvh"
             containerClassName="flex items-center justify-center relative"
         >
-
             <Unauthenticated>
-                <ButtonImpl
-                    text={"Portfolio"}
-                    height={'lg'}
-                    icon={<ArrowLeft />}
-                    variant={'secondary'}
-                    render={{
-                        type: "page",
-                        href: PORTFOLIO_ROUTE,
-                    }}
-                    className="fixed top-4 left-4"
-                />
+                <BackRoute fixed />
             </Unauthenticated>
 
             <Unauthenticated>
