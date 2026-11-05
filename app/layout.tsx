@@ -25,12 +25,32 @@ export const metadata: Metadata = {
   description:
     "I build scalable web applications, custom UI components, and high-converting websites that give businesses strong online visibility.",
   keywords: [
+    // Brand & Identity
     "Richard Okafor",
+    "Richard T. Okafor",
     "Rekahdo",
+    "Rekahdo Web Developer",
+    "Rekahdo Portfolio",
+    "Richard Okafor Portfolio",
+
+    // Core Tech & Roles
     "Next.js Engineer",
     "Next.js Developer",
     "Frontend Developer",
+    "Frontend Engineer",
+    "Full Stack Developer",
+    "React Developer",
+    "TypeScript Developer",
+
+    // Stack & Services
     "Convex Developer",
+    "Tailwind CSS Developer",
+    "Shadcn UI Developer",
+    "Base UI Developer",
+    "Web Application Developer",
+    "Custom UI Component Developer",
+    "High-Converting Website Developer",
+    "Freelance Next.js Developer",
   ],
   authors: [{ name: "Richard T. Okafor", url: "https://rekahdo.vercel.app" }],
   creator: "Richard T. Okafor",
