@@ -19,6 +19,7 @@ import { DownloadExternalBtn } from "../shared-ui/button-impl";
 import { HeaderEditForm } from "../app-ui/edit-forms";
 import { fetchQuery } from "convex/nextjs";
 import { api } from "@/convex/_generated/api";
+import { SERVICE_ID } from "./service-section";
 
 export const HEADER_ID = "header";
 
@@ -29,8 +30,8 @@ export const HeaderSection = async () => {
         { link: { type: "scroll", href: HERO_ID, label: "Home" } },
         { link: { type: "scroll", href: ABOUT_ID, label: "About Me" } },
         { link: { type: "scroll", href: STACK_ID, label: "Stack" } },
+        { link: { type: "scroll", href: SERVICE_ID, label: "Services" } },
         { link: { type: "scroll", href: PROJECT_ID, label: "Projects" } },
-        // { link: { type: "scroll", href: HERO_ID, label: "Services" } },
         { link: { type: "scroll", href: CONTACT_ID, label: "Contact Me" } },
     ];
 
@@ -65,11 +66,7 @@ export const HeaderSection = async () => {
                                 filename={cv.name} height={'md'} showTextAt="sm" />
                         )}
 
-                        <AuthRoute>
-                            <SignUpBtn height={'md'} />
-                            <LoginBtn height={'md'} />
-                            <LogoutBtn height={'md'} />
-                        </AuthRoute>
+                        <LogoutBtn height={'md'} />
 
                         <div className="h-4 w-px bg-border/60 mx-0.5 max-sm:hidden" />
 

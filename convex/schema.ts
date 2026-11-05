@@ -111,6 +111,17 @@ export const stackTable = {
 
 export const stackValidator = v.object(stackTable);
 
+export const serviceTable = {
+  title: v.string(),
+  badge: v.string(),
+  subHeading: v.string(),
+  description: v.string(),
+  tags: v.array(tagValidator),
+  order: v.number(),
+};
+
+export const serviceValidator = v.object(serviceTable);
+
 export const projectTable = {
   display: v.boolean(),
   title: v.string(),
@@ -182,6 +193,11 @@ export default defineSchema({
   stack: defineTable({
     ...stackTable,
   }).index("by_type", ["type"]),
+
+  service: defineTable({
+    ...serviceTable,
+  })
+  .index("by_order", ["order"]),
 
   project: defineTable({
     ...projectTable,

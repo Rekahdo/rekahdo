@@ -6,7 +6,7 @@ import { AvailableForWork, PingTag } from "../shared-ui/ping";
 import { heroData } from "@/data/hero";
 import AppImage, { imageVariants } from "../shared-ui/image";
 import { documentData } from "@/data/document";
-import { Layout } from "../shared-ui/layout";
+import { AppLayout } from "../shared-ui/layout";
 import { aboutData } from "@/data/about";
 import { fetchQuery } from "convex/nextjs";
 import { api } from "@/convex/_generated/api";
@@ -29,7 +29,7 @@ export const HeroSection = async () => {
             place={'center'}
             height={'hero'}
         >
-            <Layout
+            <AppLayout
                 type={'grid'}
                 lgAxis={'x'}
                 lgPlace={'right'}

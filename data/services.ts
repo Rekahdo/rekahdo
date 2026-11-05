@@ -1,66 +1,39 @@
-export type ServiceData = {
-    id: number;
-    title: string;
-    badge: string;
-    subHeading: string;
-    description: string;
-    tags: string[];
-    actionLabel: string;
-    actionUrl: string;
+import { serviceValidator } from "@/convex/schema";
+import { Infer } from "convex/values";
+
+export type ServiceData = Infer<typeof serviceValidator> & {
+  id: string;
 };
 
-export type ServicesData = {
-    headline: string;
-    services: ServiceData[];
-};
-
-export const servicesData: Promise<ServicesData> = Promise.resolve({
-    headline:
-        "As a developer with focused backend experience and ongoing frontend training, I am driven by a passion for creating seamless, user-centered applications that grow alongside evolving needs.",
-    services: [
-        {
-            id: 1,
-            title: "API Development & Integration",
-            badge: "Backend",
-            subHeading: "REST · Microservices · Security",
-            description:
-                "I design resilient, versioned APIs with secure authentication, solid form validation, and scalable communication patterns between microservices. From third-party integrations to clear documentation, I build APIs that are dependable in production.",
-            tags: ["Spring Security", "JWT Auth", "REST / JSON", "Swagger Docs"],
-            actionLabel: "Learn more",
-            actionUrl: "#contact",
-        },
-        {
-            id: 2,
-            title: "Full-Stack Development",
-            badge: "Full-Stack",
-            subHeading: "Java · Spring Boot · React",
-            description:
-                "Combining backend expertise with growing frontend skills, I build end-to-end web applications — from scalable server-side APIs to responsive, component-driven UIs that deliver cohesive digital experiences.",
-            tags: ["Spring Boot", "React", "Tailwind CSS", "PostgreSQL"],
-            actionLabel: "Learn more",
-            actionUrl: "#contact",
-        },
-        {
-            id: 3,
-            title: "Backend Systems & Architecture",
-            badge: "Architecture",
-            subHeading: "Scalability · Reliability · Clean Code",
-            description:
-                "I engineer robust, maintainable backend systems using best practices — SOLID principles, layered architecture, and microservices design — to deliver solutions that scale alongside business growth.",
-            tags: ["Microservices", "SOLID", "JPA / Hibernate", "Docker"],
-            actionLabel: "Learn more",
-            actionUrl: "#contact",
-        },
-        {
-            id: 4,
-            title: "Technical Consulting & Mentoring",
-            badge: "Consulting",
-            subHeading: "Teaching · Problem Solving · Growth",
-            description:
-                "Leveraging my passion for clean code and continuous learning, I assist teams with code reviews, architecture discussions, and knowledge transfer to elevate engineering quality across projects.",
-            tags: ["Code Review", "Pair Programming", "Documentation", "Agile"],
-            actionLabel: "Learn more",
-            actionUrl: "#contact",
-        },
+export const servicesData: Promise<ServiceData[]> = Promise.resolve([
+  {
+    id:"1",
+    title: "Web Frontend Development",
+    badge: "Development",
+    subHeading: "UI/UX Architecture · Responsive Design · Performance",
+    description:
+    "Building responsive, accessible, and high-performance web applications with modern frameworks, clean code standards, and seamless user experiences.",
+    tags: [
+      { title: "React" },
+      { title: "Next.js" },
+      { title: "Tailwind CSS" },
+      { title: "TypeScript" },
     ],
-});
+    order: 1,
+  },
+  {
+    id:"2",
+    title: "Technical Consulting & Mentoring",
+    badge: "Consulting",
+    subHeading: "Teaching · Problem Solving · Growth",
+    description:
+      "Leveraging my passion for clean code and continuous learning, I assist teams with code reviews, architecture discussions, and knowledge transfer to elevate engineering quality across projects.",
+    tags: [
+      { title: "Code Review" },
+      { title: "Pair Programming" },
+      { title: "Documentation" },
+      { title: "Agile" },
+    ],
+    order: 2,
+  },
+]);

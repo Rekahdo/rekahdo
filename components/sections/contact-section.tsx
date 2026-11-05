@@ -3,7 +3,7 @@ import { section } from "@/data/section";
 import SendMessageForm from "../app-ui/send-message";
 import ContactInfo from "../app-ui/contact-info";
 import { contactData } from "@/data/contact";
-import { Layout } from "../shared-ui/layout";
+import { AppLayout } from "../shared-ui/layout";
 
 export const CONTACT_ID = "contact";
 
@@ -17,7 +17,7 @@ export default async function ContactSection() {
             rootClassName="border-t border-border/40"
             containerClassName="justify-center spacing-base"
         >
-            <Layout
+            <AppLayout
                 maxLgAxis={'y'}
                 className="*:grow"
 

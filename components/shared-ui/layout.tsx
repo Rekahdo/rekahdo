@@ -2,7 +2,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
 import type { ElementType, ReactNode } from "react";
 
-export const layoutVariants = cva(
+export const appLayoutVariants = cva(
     cn(""),
     {
         variants: {
@@ -39,7 +39,6 @@ export const layoutVariants = cva(
                 y: "lg:flex-col lg:grid-cols-1",
                 x: "lg:flex-row lg:grid-cols-2",
             },
-
 
             place: {
                 top: "order-0",
@@ -98,22 +97,19 @@ export const layoutVariants = cva(
     }
 );
 
-type LayoutProps = VariantProps<typeof layoutVariants> & {
+type AppLayoutProps = VariantProps<typeof appLayoutVariants> & {
     dataSlot?: string;
     className?: string;
     top?: ReactNode;
     topClassName?: string;
-    center?: ReactNode;
-    centerClassName?: string;
     bottom?: ReactNode;
     bottomClassName?: string;
     as?: ElementType;
 }
 
-export function Layout({
+export function AppLayout({
     className,
     top, topClassName,
-    center, centerClassName,
     bottom, bottomClassName,
     as: Tag = "section",
     place, maxSmPlace, smPlace,
@@ -122,12 +118,12 @@ export function Layout({
     type = "flex",
     dataSlot = `${type}-layout`,
     ...props
-}: LayoutProps) {
+}: AppLayoutProps) {
     return (
         <Tag data-slot={dataSlot} className={cn(
             "gap-6 lg:gap-8",
 
-            layoutVariants({
+            appLayoutVariants({
                 type,
                 ...props
             }),
@@ -137,19 +133,13 @@ export function Layout({
 
             {top &&
                 <div className={cn("flex flex-col justify-center items-center",
-                    layoutVariants({
+                    appLayoutVariants({
                         place, maxSmPlace, smPlace,
                         maxMdPlace, mdPlace, maxLgPlace,
                         lgPlace,
                     }), topClassName)}>
 
                     {top}
-                </div>
-            }
-
-            {center &&
-                <div className={cn("flex flex-col justify-center items-center", centerClassName)}>
-                    {center}
                 </div>
             }
 

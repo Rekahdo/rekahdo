@@ -12,7 +12,7 @@ import { XFillIcon } from "../icons/akar-icons-x-fill";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { Infer } from "convex/values";
 import { contactValidator } from "@/convex/schema";
-import { Layout } from "../shared-ui/layout";
+import { AppLayout } from "../shared-ui/layout";
 import { AppIconVariants } from "../shared-ui/icon";
 
 interface ContactInfoProps {
@@ -21,7 +21,7 @@ interface ContactInfoProps {
 
 export default function ContactInfo({ data }: ContactInfoProps) {
     return (
-        <Layout
+        <AppLayout
             className="w-full h-full"
             lgAxis={'y'}
             maxMdAxis={'y'}
