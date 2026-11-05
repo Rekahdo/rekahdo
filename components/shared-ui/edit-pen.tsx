@@ -3,27 +3,28 @@
 import { Pen } from "lucide-react";
 import { Authenticated } from "convex/react";
 import { AuthRoute } from "./admin-roles";
-import { DialogForm, DialogProps } from "./dialog-form";
+import { AppForm, AppFormProps } from "./form";
 import { FieldValues } from "react-hook-form";
 
 export interface EditPenProps<TValues extends FieldValues>
-    extends Omit<DialogProps<TValues>, "triggerIcon" | "triggerText" | "triggerVariant"> {
+    extends Omit<AppFormProps<TValues>, "ui"> {
 }
 
 export default function EditPen<TValues extends FieldValues>({
-    ...dialogProps
+    ...formProps
 }: EditPenProps<TValues>) {
     return (
-        <AuthRoute>
-            <Authenticated>
-                <div className="absolute top-4 right-4">
-                    <DialogForm
-                        triggerText=""
-                        triggerIcon={<Pen />}
-                        {...dialogProps}
-                    />
-                </div>
-            </Authenticated>
-        </AuthRoute>
+        <Authenticated>
+            <div className="absolute top-4 right-4">
+                <AppForm
+                    ui={{
+                        type: "dialog",
+                        triggerText: "",
+                        triggerIcon: <Pen />,
+                    }}
+                    {...formProps}
+                />
+            </div>
+        </Authenticated>
     );
 }

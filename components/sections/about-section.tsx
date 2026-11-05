@@ -8,7 +8,7 @@ import { H2, H3, H4 } from "../shared-ui/headings";
 import { section } from "@/data/section";
 import { aboutData } from "@/data/about";
 import AppImage from "../shared-ui/image";
-import { Layout } from "../shared-ui/layout";
+import { AppLayout } from "../shared-ui/layout";
 
 export const ABOUT_ID = "aboutMe";
 
@@ -27,7 +27,7 @@ export async function AboutSection() {
                 subtitle={<div className="h-1 w-12 rounded-full bg-primary/40 mx-auto" />}
                 align={'center'} />
 
-            <Layout format={'container'}
+            <AppLayout format={'container'}
                 maxLgAxis={'y'}
                 className="spacing-base"
 
@@ -66,13 +66,13 @@ export async function AboutSection() {
                 </>}
             />
 
-            <Layout
+            <AppLayout
                 type={'grid'}
                 className="gap-base"
 
                 top={
                     data.educations && (
-                        <Layout
+                        <AppLayout
                             format={'card'}
                             axis={'y'}
                             className="items-start justify-start grow w-full"
@@ -90,7 +90,7 @@ export async function AboutSection() {
 
                 bottom={
                     data.skillTags && (
-                        <Layout
+                        <AppLayout
                             format={'card'}
                             className="items-start justify-start w-full"
                             axis={'y'}

@@ -134,6 +134,15 @@ export const stackSchema = z.object({
   type: z.enum(["language", "tool", "resource"]),
 });
 
+export const serviceSchema = z.object({
+  title: z.string().nonempty(),
+  badge: z.string().nonempty(),
+  subHeading: z.string().nonempty(),
+  description: z.string().nonempty(),
+  tags: z.array(tagValidator),
+  order: z.number().int().nonnegative(),
+});
+
 export const projectSchema = z.object({
   display: z.boolean(),
   title: z.string(),

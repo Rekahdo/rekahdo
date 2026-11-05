@@ -20,6 +20,7 @@ import type * as http from "../http.js";
 import type * as project from "../project.js";
 import type * as role from "../role.js";
 import type * as sendMessage from "../sendMessage.js";
+import type * as service from "../service.js";
 import type * as stack from "../stack.js";
 
 import type {
@@ -41,6 +42,7 @@ declare const fullApi: ApiFromModules<{
   project: typeof project;
   role: typeof role;
   sendMessage: typeof sendMessage;
+  service: typeof service;
   stack: typeof stack;
 }>;
 

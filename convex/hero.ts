@@ -1,17 +1,6 @@
-import { GenericMutationCtx, GenericQueryCtx } from "convex/server";
 import { mutation, query } from "./_generated/server";
-import { authComponent } from "./auth";
 import { heroTable } from "./schema";
-import { DataModel } from "./_generated/dataModel";
-import { notAuthenticated } from "./errors";
-
-export const authenticateUser = async (
-  ctx: GenericMutationCtx<DataModel> | GenericQueryCtx<DataModel>,
-) => {
-  const user = await authComponent.safeGetAuthUser(ctx);
-  if (!user) throw notAuthenticated();
-  return user;
-};
+import { authenticateUser } from "./header";
 
 export const save = mutation({
   args: { ...heroTable },

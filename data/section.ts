@@ -22,6 +22,6 @@ export const section = {
     },
     service: {
         title: "Services",
-        subtitle: "Have a project in mind or just want to say hi? I'd love to hear from you.",
+        subtitle: "As a developer with focused backend experience and ongoing frontend training, I am driven by a passion for creating seamless, user-centered applications that grow alongside evolving needs.",
     },
 } as Record<string, SectionProps>

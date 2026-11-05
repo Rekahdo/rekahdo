@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { footerData } from "@/data/footer";
 import { Container } from "../shared-ui/container";
-import { Layout } from "../shared-ui/layout";
+import { AppLayout } from "../shared-ui/layout";
 import { Logo } from "../shared-ui/logo";
 import { contactData } from "@/data/contact";
 import { H2 } from "../shared-ui/headings";
@@ -12,6 +12,9 @@ import { GithubIcon } from "../icons/lucide-github";
 import { LinkedinIcon } from "../icons/lucide-linkedin";
 import { WhatsappIcon } from "../icons/cib-whatsapp";
 import { AppIconVariants } from "../shared-ui/icon";
+import { AUTH_ROUTE } from "@/lib/routes";
+import { Unauthenticated } from "convex/react";
+import AuthRoute from "../shared-ui/auth-route";
 
 export interface FooterSectionProps { }
 
@@ -56,7 +59,7 @@ export default async function FooterSection(props: FooterSectionProps) {
             background={'footer'}
             containerClassName={cn(textStyle, whiteForeground)}
         >
-            <Layout
+            <AppLayout
                 maxSmAxis={"y"}
                 className="py-10 border-y border-border/20 dark:border-border/80 max-sm:gap-10"
                 topClassName="text-start items-start gap-6"
@@ -105,11 +108,19 @@ export default async function FooterSection(props: FooterSectionProps) {
                 }
             />
 
-            <Layout
+            <AppLayout
                 maxSmAxis={"y"}
                 className="pt-10"
                 top={<Logo variant={'footer'} />}
-                bottom={<p className="text-center sm:text-left">{data.copyright}</p>}
+
+                bottomClassName="gap-4 sm:flex-row sm:gap-6"
+                bottom={
+                    <>
+                        <p className="text-center sm:text-left">{data.copyright}</p>
+
+                        <AuthRoute />
+                    </>
+                }
             />
         </Container>
     );

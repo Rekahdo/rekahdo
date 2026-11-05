@@ -58,19 +58,17 @@ export default async function ProjectsSection() {
             px={'section'}
             bgGradient={'grid-sm'}
             rootClassName="relative overflow-visible"
-            containerClassName="relative"
+            containerClassName="gap-base"
         >
-            <section className="flex flex-col gap-10 w-full relative z-10">
-                <H2
-                    title={sec.title}
-                    subtitle={sec.subtitle}
-                    align={'center'}
-                    icon={<FolderGit2 className="text-primary size-6" />}
-                    maxWidth
-                />
+            <H2
+                title={sec.title}
+                subtitle={sec.subtitle}
+                align={'center'}
+                icon={<FolderGit2 className="text-primary size-6" />}
+                maxWidth
+            />
 
-                <ProjectCards projects={data.filter(project => project.display) ?? []} />
-            </section>
+            <ProjectCards projects={data.filter(project => project.display) ?? []} />
         </Container>
     );
 }

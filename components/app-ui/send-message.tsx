@@ -15,7 +15,7 @@ import { Ping } from "../shared-ui/ping";
 import { H2, H3 } from "../shared-ui/headings";
 import AppField from "../shared-ui/field";
 import { createSendMessageAction } from "@/app/actions/contact";
-import { Layout } from "../shared-ui/layout";
+import { AppLayout } from "../shared-ui/layout";
 
 interface SendMessageFormProps {
     className?: string;
@@ -185,7 +185,7 @@ function NotSent({ onSent, from }: { onSent: () => void, from: string }) {
                 />
             </FieldGroup>
 
-            <Layout
+            <AppLayout
                 maxSmAxis={'y'}
                 maxSmPlace={'bottom'}
 

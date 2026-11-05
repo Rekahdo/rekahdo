@@ -1,10 +1,8 @@
 import { mutation } from "./_generated/server";
 import { fileTable } from "./schema";
 import { query } from "./_generated/server";
-import { authenticateUser } from "./hero";
+import { authenticateUser } from "./header";
 import { v } from "convex/values";
-import { Id } from "./_generated/dataModel";
-import { GenericMutationCtx } from "convex/server";
 
 export const generateUploadUrl = mutation({
   args: {},
