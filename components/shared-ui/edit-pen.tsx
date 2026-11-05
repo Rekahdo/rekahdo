@@ -2,7 +2,6 @@
 
 import { Pen } from "lucide-react";
 import { Authenticated } from "convex/react";
-import { AuthRoute } from "./admin-roles";
 import { AppForm, AppFormProps } from "./form";
 import { FieldValues } from "react-hook-form";
 
