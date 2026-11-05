@@ -3,19 +3,6 @@
 import { AdminProvider, useAdmin } from "@/contexts/AdminProvider";
 import { ReactNode } from "react";
 
-export interface AuthRouteProps {
-    children: ReactNode;
-}
-
-export function AuthRoute(props: AuthRouteProps) {
-    const { isAdminPage } = useAdmin();
-    if (!isAdminPage) return null;
-
-    return (
-        <>{props.children}</>
-    );
-}
-
 export interface RoleProps {
     role: string;
     children: ReactNode;
@@ -24,7 +11,7 @@ export interface RoleProps {
 export function Role(props: RoleProps) {
     const authRole = "admin";
 
-    if(!authRole) 
+    if (!authRole)
         return null;
 
     if (props.role !== "admin")
@@ -32,9 +19,7 @@ export function Role(props: RoleProps) {
             return null
 
     return (
-        <AuthRoute>
-            <>{props.children}</>
-        </AuthRoute>
+        <>{props.children}</>
     );
 }
 
