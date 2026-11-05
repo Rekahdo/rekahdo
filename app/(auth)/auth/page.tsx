@@ -30,17 +30,19 @@ export default function Page(props: PageProps) {
             containerClassName="flex items-center justify-center relative"
         >
 
-            <ButtonImpl
-                text={"Portfolio"}
-                height={'lg'}
-                icon={<ArrowLeft />}
-                variant={'secondary'}
-                render={{
-                    type: "page",
-                    href: PORTFOLIO_ROUTE,
-                }}
-                className="fixed top-4 left-4"
-            />
+            <Unauthenticated>
+                <ButtonImpl
+                    text={"Portfolio"}
+                    height={'lg'}
+                    icon={<ArrowLeft />}
+                    variant={'secondary'}
+                    render={{
+                        type: "page",
+                        href: PORTFOLIO_ROUTE,
+                    }}
+                    className="fixed top-4 left-4"
+                />
+            </Unauthenticated>
 
             <Unauthenticated>
                 <AppLayout
