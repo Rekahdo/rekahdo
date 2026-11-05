@@ -12,89 +12,6 @@ import { cn } from "cn";
 import { Card, CardFooter, CardHeader } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle, DialogFooter, DialogClose } from "../ui/dialog";
 
-// ==========================================
-// AUTH FORM CLASS
-// ==========================================
-
-type AuthFormConfig<TValues extends FieldValues> = {
-    title: string;
-    submitText: string;
-    form: UseFormReturn<TValues, any, TValues>;
-    fields: (Omit<AppFieldProps, "field" | "fieldState"> & { name: Path<TValues> })[];
-    isPending: boolean;
-}
-
-class AuthForm<TValues extends FieldValues> {
-    private readonly formProp: AuthFormConfig<TValues>;
-
-    constructor({ formProps }: { formProps: AuthFormConfig<TValues> }) {
-        this.formProp = formProps;
-    }
-
-    get title() {
-        return <H2 title={this.formProp.title} />
-    }
-
-    get fields() {
-        return (
-            <FieldGroup>
-                {this.formProp.fields.map((f) => (
-                    <Controller
-                        key={f.name}
-                        name={f.name}
-                        control={this.formProp.form.control}
-                        render={({ field, fieldState }) => (
-                            <AppField
-                                field={field}
-                                fieldState={fieldState}
-                                label={f.label}
-                                placeholder={f.placeholder}
-                                type={f.type}
-                                important={f.important}
-                                as={f.as}
-                                startIcon={f.startIcon}
-                                endIcon={f.endIcon}
-                                clearable={f.clearable}
-                                accept={f.accept}
-                                multiple={f.multiple}
-                                autoComplete={f.autoComplete}
-                                rows={f.rows}
-                            />
-                        )}
-                    />
-                ))}
-            </FieldGroup>
-        );
-    }
-
-    get footer() {
-        return ({
-            className: "flex flex-col-reverse *:grow sm:flex-row sm:justify-end gap-4 px-0 bg-transparent!",
-            buttons: <>
-                <ButtonImpl
-                    variant={'destructive'}
-                    isDisabled={this.formProp.isPending}
-                    type="reset"
-                    onClick={() => this.formProp.form.reset()}
-                    text={"reset"}
-                    height="md"
-                />
-
-                <ButtonImpl
-                    isPending={this.formProp.isPending}
-                    type="submit"
-                    text={this.formProp.submitText}
-                    height="md"
-                />
-            </>
-        });
-    }
-}
-
-// ==========================================
-// FORM COMPONENT
-// ==========================================
-
 type CardType = {
     type: "card";
 }
@@ -107,7 +24,10 @@ type DialogType = {
     triggerProps?: ButtonImplProps;
 }
 
-export interface AppFormProps<TValues extends FieldValues> extends Omit<AuthFormConfig<TValues>, "form" | "isPending"> {
+export interface AppFormProps<TValues extends FieldValues> {
+    title: string;
+    submitText: string;
+    fields: (Omit<AppFieldProps, "field" | "fieldState"> & { name: Path<TValues> })[];
     ui?: CardType | DialogType;
     size: "sm" | "md" | "lg";
     schema: ZodType<TValues, any, any>;
@@ -134,7 +54,7 @@ export function AppForm<TValues extends FieldValues>({
         defaultValues,
     });
 
-    const { handleSubmit, reset } = form;
+    const { handleSubmit, reset, control } = form;
 
     const sizeClass = {
         sm: "max-w-sm",
@@ -148,29 +68,85 @@ export function AppForm<TValues extends FieldValues>({
         });
     }
 
-    const authForm = new AuthForm({
-        formProps: {
-            title,
-            submitText,
-            fields,
-            form,
-            isPending,
-        }
-    });
+    const paddingStyle = "p-6! md:p-8!";
+    const gapStyle = "gap-6! md:gap-8!";
+    const footerStyle = cn(
+        "bg-transparent! border-0! p-0! m-0! gap-4! flex! flex-col-reverse!",
+        "rounded-b-xl! sm:flex-row! sm:justify-end!",
+    );
+
+    const Title = () => {
+        return (<H2 title={title} />)
+    }
+
+    const Content = () => {
+        return (
+            <FieldGroup className={gapStyle}>
+                {fields.map((f) => (
+                    <Controller
+                        key={f.name}
+                        name={f.name}
+                        control={control}
+                        render={({ field, fieldState }) => (
+                            <AppField
+                                field={field}
+                                fieldState={fieldState}
+                                label={f.label}
+                                placeholder={f.placeholder}
+                                type={f.type}
+                                important={f.important}
+                                as={f.as}
+                                startIcon={f.startIcon}
+                                endIcon={f.endIcon}
+                                clearable={f.clearable}
+                                accept={f.accept}
+                                multiple={f.multiple}
+                                autoComplete={f.autoComplete}
+                                rows={f.rows}
+                            />
+                        )}
+                    />
+                ))}
+            </FieldGroup>
+        )
+    }
+
+    const FooterButtons = () => {
+        return (
+            <>
+                <ButtonImpl
+                    variant={'destructive'}
+                    isDisabled={isPending}
+                    type="reset"
+                    onClick={() => reset()}
+                    text={"reset"}
+                    height="md"
+                />
+
+                <ButtonImpl
+                    isPending={isPending}
+                    type="submit"
+                    text={submitText}
+                    height="md"
+                />
+            </>
+        );
+    }
 
     return (
         <>{ui.type === "card" ?
             (
-                <Card className={cn("w-full p-6 md:p-8 shadow-lg rounded-2xl flex flex-col gap-6", sizeClass, className)}>
+                <Card className={cn("w-full shadow-lg rounded-2xl flex flex-col",
+                    paddingStyle, gapStyle, sizeClass, className)}>
                     <CardHeader className="p-0!">
-                        {authForm.title}
+                        <Title />
                     </CardHeader>
 
-                    <form onSubmit={handleSubmit(submit)} className="flex flex-col gap-6">
-                        {authForm.fields}
+                    <form onSubmit={handleSubmit(submit)} className={cn("flex flex-col", gapStyle)}>
+                        <Content />
 
-                        <CardFooter className={authForm.footer.className}>
-                            {authForm.footer.buttons}
+                        <CardFooter className={footerStyle}>
+                            <FooterButtons />
                         </CardFooter>
                     </form>
                 </Card>
@@ -188,17 +164,17 @@ export function AppForm<TValues extends FieldValues>({
                         }
                     />
 
-                    <DialogContent className={cn("shadow-2xl", sizeClass)}>
-                        <DialogHeader>
+                    <DialogContent className={cn("shadow-2xl p-0! max-sm:w-9/10", paddingStyle, sizeClass)}>
+                        <DialogHeader className="p-0!">
                             <DialogTitle>
-                                {authForm.title}
+                                <Title />
                             </DialogTitle>
                         </DialogHeader>
 
-                        <form onSubmit={handleSubmit(submit)} className="flex flex-col gap-4">
-                            {authForm.fields}
+                        <form onSubmit={handleSubmit(submit)} className={cn("flex flex-col", gapStyle)}>
+                            <Content />
 
-                            <DialogFooter className={authForm.footer.className}>
+                            <DialogFooter className={cn(footerStyle)}>
                                 <DialogClose
                                     onClick={() => reset()}
                                     render={
@@ -210,7 +186,7 @@ export function AppForm<TValues extends FieldValues>({
                                     }
                                 />
 
-                                {authForm.footer.buttons}
+                                <FooterButtons />
                             </DialogFooter>
                         </form>
                     </DialogContent>
